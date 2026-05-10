@@ -13,6 +13,12 @@ import {
   LayoutGrid, PanelTop, PanelLeft, PanelBottom, Box, Layers,
   MousePointerClick, TextCursorInput, CreditCard, Table, Maximize2, Bell,
   Moon, Sun,
+  CheckSquare, Circle, ToggleLeft, ChevronDown, AlignLeft, CalendarDays,
+  Phone, Mail, Upload,
+  Tag, Hash, UserCircle, Info, AlertTriangle, Loader, Activity, RotateCw,
+  Grid3X3, CalendarRange, List, Clock,
+  PanelsTopLeft, Navigation, ArrowLeftRight, Footprints, ChevronsUpDown, MoreHorizontal,
+  Layers2, Move, Minus, FileText, SlidersHorizontal, Image, Sparkles,
 } from "lucide-react";
 import { SearchBox } from "./components/SearchBox";
 import { TableOfContents } from "./components/TableOfContents";
@@ -35,12 +41,51 @@ const pageIcons: Record<string, ReactNode> = {
   "layout-footer": <PanelBottom size={16} />,
   "page-container": <Box size={16} />,
   stack: <Layers size={16} />,
+  // 입력
   button: <MousePointerClick size={16} />,
   input: <TextCursorInput size={16} />,
+  checkbox: <CheckSquare size={16} />,
+  radio: <Circle size={16} />,
+  switch: <ToggleLeft size={16} />,
+  select: <ChevronDown size={16} />,
+  textarea: <AlignLeft size={16} />,
+  "date-picker": <CalendarDays size={16} />,
+  "phone-input": <Phone size={16} />,
+  "email-input": <Mail size={16} />,
+  "file-upload": <Upload size={16} />,
+  // 표시
+  badge: <Hash size={16} />,
+  chip: <Tag size={16} />,
+  avatar: <UserCircle size={16} />,
+  tooltip: <Info size={16} />,
+  alert: <AlertTriangle size={16} />,
+  skeleton: <Loader size={16} />,
+  progress: <Activity size={16} />,
+  spinner: <RotateCw size={16} />,
+  // 데이터
   card: <CreditCard size={16} />,
   table: <Table size={16} />,
+  sheet: <Grid3X3 size={16} />,
+  calendar: <CalendarRange size={16} />,
+  "list-view": <List size={16} />,
+  timeline: <Clock size={16} />,
+  // 네비게이션
+  tabs: <PanelsTopLeft size={16} />,
+  breadcrumb: <Navigation size={16} />,
+  pagination: <ArrowLeftRight size={16} />,
+  stepper: <Footprints size={16} />,
+  accordion: <ChevronsUpDown size={16} />,
+  menu: <MoreHorizontal size={16} />,
+  // 오버레이
   modal: <Maximize2 size={16} />,
   toast: <Bell size={16} />,
+  popover: <Layers2 size={16} />,
+  "floating-action": <Move size={16} />,
+  // 기타
+  carousel: <Image size={16} />,
+  icon: <Sparkles size={16} />,
+  divider: <Minus size={16} />,
+  form: <FileText size={16} />,
 };
 
 export function App() {
@@ -107,6 +152,7 @@ export function App() {
     >
       {categories.map((category) => {
         const items = pages.filter((p) => p.category === category);
+        if (items.length === 0) return null;
         return (
           <SidebarGroup key={category} label={category}>
             {items.map((item) => (
@@ -117,7 +163,24 @@ export function App() {
                 tooltip={item.label}
                 onClick={() => navigate(`/${item.path}`)}
               >
-                {item.label}
+                <span style={{ display: "flex", alignItems: "center", gap: 6, width: "100%" }}>
+                  {item.label}
+                  {item.status === "planned" && (
+                    <span style={{
+                      fontSize: 9,
+                      fontWeight: 700,
+                      color: "var(--ark-color-warning-700)",
+                      backgroundColor: "var(--ark-color-warning-50)",
+                      padding: "1px 5px",
+                      borderRadius: 4,
+                      lineHeight: "14px",
+                      flexShrink: 0,
+                      marginLeft: "auto",
+                    }}>
+                      예정
+                    </span>
+                  )}
+                </span>
               </SidebarItem>
             ))}
           </SidebarGroup>
