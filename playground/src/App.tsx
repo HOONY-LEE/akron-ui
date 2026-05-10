@@ -1,0 +1,195 @@
+import { useState, useEffect, type ReactNode } from "react";
+import { Routes, Route, Navigate, useLocation, useNavigate, Link } from "react-router-dom";
+import {
+  AppShell,
+  Header,
+  LayoutSidebar,
+  SidebarGroup,
+  SidebarItem,
+  ToastProvider,
+} from "@akron/ui";
+import {
+  BookOpen, Palette, Type, Ruler,
+  LayoutGrid, PanelTop, PanelLeft, PanelBottom, Box, Layers,
+  MousePointerClick, TextCursorInput, CreditCard, Table, Maximize2, Bell,
+  Moon, Sun,
+} from "lucide-react";
+import { SearchBox } from "./components/SearchBox";
+import { TableOfContents } from "./components/TableOfContents";
+import { pages, categories, getPageByPath } from "./pagesConfig";
+import { AppShellPreview } from "./pages/previews/AppShellPreview";
+import { HeaderPreview } from "./pages/previews/HeaderPreview";
+import { SidebarPreview } from "./pages/previews/SidebarPreview";
+import { FooterPreview } from "./pages/previews/FooterPreview";
+import { PageContainerPreview } from "./pages/previews/PageContainerPreview";
+import "./global.css";
+
+const pageIcons: Record<string, ReactNode> = {
+  overview: <BookOpen size={16} />,
+  colors: <Palette size={16} />,
+  typography: <Type size={16} />,
+  spacing: <Ruler size={16} />,
+  "app-shell": <LayoutGrid size={16} />,
+  "layout-header": <PanelTop size={16} />,
+  "layout-sidebar": <PanelLeft size={16} />,
+  "layout-footer": <PanelBottom size={16} />,
+  "page-container": <Box size={16} />,
+  stack: <Layers size={16} />,
+  button: <MousePointerClick size={16} />,
+  input: <TextCursorInput size={16} />,
+  card: <CreditCard size={16} />,
+  table: <Table size={16} />,
+  modal: <Maximize2 size={16} />,
+  toast: <Bell size={16} />,
+};
+
+export function App() {
+  const [darkMode, setDarkMode] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", darkMode ? "dark" : "light");
+  }, [darkMode]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
+  if (location.pathname.startsWith("/preview")) {
+    return (
+      <ToastProvider>
+        <Routes>
+          <Route path="/preview/app-shell" element={<AppShellPreview />} />
+          <Route path="/preview/header" element={<HeaderPreview />} />
+          <Route path="/preview/sidebar" element={<SidebarPreview />} />
+          <Route path="/preview/footer" element={<FooterPreview />} />
+          <Route path="/preview/page-container" element={<PageContainerPreview />} />
+        </Routes>
+      </ToastProvider>
+    );
+  }
+
+  const currentPage = getPageByPath(location.pathname);
+  const currentPath = currentPage?.path ?? "overview";
+
+  const sidebar = (
+    <LayoutSidebar
+      header={
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <span style={{
+              width: 28, height: 28, borderRadius: 8,
+              background: "var(--ark-color-primary-500)", color: "#fff",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontWeight: 700, fontSize: 14, flexShrink: 0,
+            }}>A</span>
+            <span style={{ fontWeight: 700, fontSize: 16, letterSpacing: "-0.01em" }}>Akron UI</span>
+          </div>
+          <button
+            onClick={() => setDarkMode((d) => !d)}
+            aria-label="Toggle theme"
+            style={{
+              width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center",
+              border: "1px solid var(--ark-color-border)", borderRadius: 8,
+              background: "var(--ark-color-bg)", color: "var(--ark-color-text-secondary)",
+              cursor: "pointer", flexShrink: 0,
+            }}
+          >
+            {darkMode ? <Sun size={16} /> : <Moon size={16} />}
+          </button>
+        </div>
+      }
+      collapsed={collapsed}
+      onCollapse={() => setCollapsed(true)}
+      onExpand={() => setCollapsed(false)}
+    >
+      {categories.map((category) => {
+        const items = pages.filter((p) => p.category === category);
+        return (
+          <SidebarGroup key={category} label={category}>
+            {items.map((item) => (
+              <SidebarItem
+                key={item.path}
+                active={item.path === currentPath}
+                icon={pageIcons[item.path]}
+                tooltip={item.label}
+                onClick={() => navigate(`/${item.path}`)}
+              >
+                {item.label}
+              </SidebarItem>
+            ))}
+          </SidebarGroup>
+        );
+      })}
+    </LayoutSidebar>
+  );
+
+  return (
+    <ToastProvider>
+      <AppShell
+        sidebar={sidebar}
+        sidebarWidth={260}
+        sidebarCollapsed={collapsed}
+      >
+        <Header
+          sticky
+          logo={
+            currentPage ? (
+              <div className="docs-breadcrumb">
+                <span className="breadcrumb-root">{currentPage.category}</span>
+                <span className="breadcrumb-separator">/</span>
+                <span className="breadcrumb-current">{currentPage.label}</span>
+              </div>
+            ) : undefined
+          }
+          actions={<SearchBox />}
+        />
+        <div className="docs-main">
+          <div className="docs-content">
+            <Routes>
+              <Route path="/" element={<Navigate to="/overview" replace />} />
+              {pages.map((p) => (
+                <Route key={p.path} path={`/${p.path}`} element={<p.component />} />
+              ))}
+            </Routes>
+            <DocsPagination />
+          </div>
+          <TableOfContents currentPage={currentPath} />
+        </div>
+      </AppShell>
+    </ToastProvider>
+  );
+}
+
+function DocsPagination() {
+  const location = useLocation();
+  const currentPage = getPageByPath(location.pathname);
+  if (!currentPage) return null;
+
+  const idx = pages.indexOf(currentPage);
+  const prev = idx > 0 ? pages[idx - 1] : null;
+  const next = idx < pages.length - 1 ? pages[idx + 1] : null;
+
+  return (
+    <nav className="docs-pagination">
+      {prev ? (
+        <Link to={`/${prev.path}`} className="pagination-btn prev">
+          <span className="pagination-label">이전</span>
+          <span className="pagination-title">{prev.label}</span>
+        </Link>
+      ) : (
+        <div />
+      )}
+      {next ? (
+        <Link to={`/${next.path}`} className="pagination-btn next">
+          <span className="pagination-label">다음</span>
+          <span className="pagination-title">{next.label}</span>
+        </Link>
+      ) : (
+        <div />
+      )}
+    </nav>
+  );
+}
