@@ -80,8 +80,8 @@ export const pages: PageMeta[] = [
   // ── 데이터 ──
   { path: "card", component: CardPage, label: "Card", category: "데이터" },
   { path: "table", component: TablePage, label: "Table", category: "데이터" },
-  { path: "sheet", component: createComingSoonPage("Sheet", "스프레드시트 컴포넌트. 엑셀/구글시트와 호환되는 셀 편집 기능을 제공합니다."), label: "Sheet", category: "데이터", status: "planned" },
-  { path: "calendar", component: createComingSoonPage("Calendar", "캘린더 뷰. 월간/주간/일간 보기를 지원하는 일정 표시 컴포넌트입니다."), label: "Calendar", category: "데이터", status: "planned" },
+  { path: "sheet", component: createComingSoonPage("Sheet", "스프레드시트 UI 컴포넌트. 셀 편집, 선택, 정렬 등 UI를 제공하며, 엑셀/구글시트 연동은 data/onChange prop을 통해 외부에서 처리합니다."), label: "Sheet", category: "데이터", status: "planned" },
+  { path: "calendar", component: createComingSoonPage("Calendar", "캘린더 뷰 UI 컴포넌트. 월간/주간/일간 보기를 지원하며, 일정 데이터는 prop으로 전달받아 표시합니다."), label: "Calendar", category: "데이터", status: "planned" },
   { path: "list-view", component: createComingSoonPage("ListView", "카드형/리스트형 뷰 전환. 데이터를 다양한 형태로 표시합니다."), label: "ListView", category: "데이터", status: "planned" },
   { path: "timeline", component: createComingSoonPage("Timeline", "타임라인 컴포넌트. 시간순 활동 기록을 표시합니다."), label: "Timeline", category: "데이터", status: "planned" },
 

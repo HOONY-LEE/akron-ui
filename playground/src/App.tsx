@@ -154,7 +154,7 @@ export function App() {
         const items = pages.filter((p) => p.category === category);
         if (items.length === 0) return null;
         return (
-          <SidebarGroup key={category} label={category}>
+          <SidebarGroup key={category} label={category} collapsible>
             {items.map((item) => (
               <SidebarItem
                 key={item.path}

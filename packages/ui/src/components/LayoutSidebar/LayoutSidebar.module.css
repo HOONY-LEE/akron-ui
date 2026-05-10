@@ -80,6 +80,46 @@
   margin-bottom: var(--ark-spacing-1);
 }
 
+.groupLabelBtn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-size: var(--ark-font-size-xs);
+  font-weight: var(--ark-font-weight-bold);
+  color: var(--ark-color-text-disabled);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: var(--ark-spacing-1) var(--ark-spacing-2);
+  margin-bottom: var(--ark-spacing-1);
+  background: none;
+  border: none;
+  border-radius: var(--ark-sidebar-item-radius);
+  cursor: pointer;
+  font-family: var(--ark-font-family);
+  transition: color var(--ark-transition-fast), background-color var(--ark-transition-fast);
+}
+
+.groupLabelBtn:hover {
+  color: var(--ark-color-text-secondary);
+  background-color: var(--ark-color-bg-muted);
+}
+
+.groupLabelBtn:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.groupChevron {
+  transition: transform var(--ark-transition-fast);
+  transform: rotate(-90deg);
+  flex-shrink: 0;
+}
+
+.groupChevronOpen {
+  transform: rotate(0deg);
+}
+
 .item {
   display: flex;
   align-items: center;

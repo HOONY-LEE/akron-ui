@@ -1,5 +1,5 @@
-import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
-import { ChevronsLeft, ChevronsRight } from "lucide-react";
+import { forwardRef, useState, type HTMLAttributes, type ReactNode } from "react";
+import { ChevronsLeft, ChevronsRight, ChevronDown } from "lucide-react";
 import styles from "./LayoutSidebar.module.css";
 
 export interface LayoutSidebarProps extends HTMLAttributes<HTMLDivElement> {
@@ -48,19 +48,42 @@ LayoutSidebar.displayName = "LayoutSidebar";
 
 export interface SidebarGroupProps extends HTMLAttributes<HTMLDivElement> {
   label?: string;
+  collapsible?: boolean;
+  defaultOpen?: boolean;
 }
 
 export const SidebarGroup = forwardRef<HTMLDivElement, SidebarGroupProps>(
-  ({ label, className, children, ...rest }, ref) => (
-    <div
-      ref={ref}
-      className={[styles.group, className ?? ""].filter(Boolean).join(" ")}
-      {...rest}
-    >
-      {label && <div className={styles.groupLabel}>{label}</div>}
-      {children}
-    </div>
-  ),
+  ({ label, collapsible = false, defaultOpen = true, className, children, ...rest }, ref) => {
+    const [open, setOpen] = useState(defaultOpen);
+    const isCollapsed = collapsible && !open;
+
+    return (
+      <div
+        ref={ref}
+        className={[styles.group, className ?? ""].filter(Boolean).join(" ")}
+        {...rest}
+      >
+        {label && (
+          collapsible ? (
+            <button
+              className={styles.groupLabelBtn}
+              onClick={() => setOpen((v) => !v)}
+              aria-expanded={open}
+            >
+              <span>{label}</span>
+              <ChevronDown
+                size={12}
+                className={[styles.groupChevron, open ? styles.groupChevronOpen : ""].filter(Boolean).join(" ")}
+              />
+            </button>
+          ) : (
+            <div className={styles.groupLabel}>{label}</div>
+          )
+        )}
+        {!isCollapsed && children}
+      </div>
+    );
+  },
 );
 SidebarGroup.displayName = "SidebarGroup";
 
