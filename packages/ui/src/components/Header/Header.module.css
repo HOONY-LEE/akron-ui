@@ -1,0 +1,37 @@
+.header {
+  display: flex;
+  align-items: center;
+  height: var(--ark-header-height);
+  padding: 0 var(--ark-header-padding-x);
+  background-color: var(--ark-header-bg);
+  border-bottom: 1px solid var(--ark-header-border-color);
+  flex-shrink: 0;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  z-index: var(--ark-z-sticky);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: var(--ark-font-size-md);
+  font-weight: var(--ark-font-weight-bold);
+  color: var(--ark-color-text);
+  margin-right: auto;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--ark-spacing-2);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--ark-spacing-2);
+  margin-left: auto;
+}

@@ -1,0 +1,13 @@
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--ark-container-padding-x);
+  padding-right: var(--ark-container-padding-x);
+}
+
+.sm { max-width: var(--ark-container-sm); }
+.md { max-width: var(--ark-container-md); }
+.lg { max-width: var(--ark-container-lg); }
+.xl { max-width: var(--ark-container-xl); }
+.full { max-width: 100%; }

@@ -1,4 +1,4 @@
-# Arkron Design System
+# Akron Design System
 
 Enterprise Groupware / ERP 제품을 위한 디자인 시스템.
 

@@ -1,0 +1,20 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ark-footer-padding-y) var(--ark-footer-padding-x);
+  background-color: var(--ark-footer-bg);
+  border-top: 1px solid var(--ark-footer-border-color);
+  font-size: var(--ark-font-size-sm);
+  color: var(--ark-color-text-secondary);
+  flex-shrink: 0;
+  margin-top: auto;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    gap: var(--ark-spacing-3);
+    text-align: center;
+  }
+}

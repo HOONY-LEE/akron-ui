@@ -1,0 +1,201 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--ark-sidebar-bg);
+  font-family: var(--ark-font-family);
+}
+
+.sidebarHeader {
+  display: flex;
+  align-items: center;
+  height: var(--ark-layout-header-height);
+  padding: 0 var(--ark-spacing-5);
+  border-bottom: 1px solid var(--ark-sidebar-border-color);
+  flex-shrink: 0;
+  box-sizing: border-box;
+  gap: var(--ark-spacing-2);
+}
+
+.headerContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.collapseBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--ark-spacing-8);
+  height: var(--ark-spacing-8);
+  border: 1px solid var(--ark-sidebar-border-color);
+  border-radius: var(--ark-sidebar-item-radius);
+  background: var(--ark-sidebar-bg);
+  color: var(--ark-color-text-secondary);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color var(--ark-transition-fast), color var(--ark-transition-fast);
+}
+
+.collapseBtn:hover {
+  background-color: var(--ark-color-bg-muted);
+  color: var(--ark-color-text);
+}
+
+.collapseBtn:active {
+  background-color: var(--ark-color-bg-muted);
+}
+
+.collapseBtn:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.sidebarContent {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--ark-spacing-4) var(--ark-spacing-3);
+}
+
+.sidebarFooter {
+  padding: var(--ark-spacing-4) var(--ark-spacing-5);
+  border-top: 1px solid var(--ark-sidebar-border-color);
+  flex-shrink: 0;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-sidebar-item-gap);
+  margin-bottom: var(--ark-sidebar-group-gap);
+}
+
+.groupLabel {
+  font-size: var(--ark-font-size-xs);
+  font-weight: var(--ark-font-weight-bold);
+  color: var(--ark-color-text-disabled);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0 var(--ark-spacing-2);
+  margin-bottom: var(--ark-spacing-1);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: var(--ark-sidebar-item-padding-y) var(--ark-sidebar-item-padding-x);
+  font-size: var(--ark-font-size-sm);
+  color: var(--ark-color-text-secondary);
+  border: none;
+  background: none;
+  border-radius: var(--ark-sidebar-item-radius);
+  cursor: pointer;
+  transition: background-color var(--ark-transition-fast), color var(--ark-transition-fast);
+  font-family: var(--ark-font-family);
+  line-height: var(--ark-line-height-normal);
+}
+
+.itemContent {
+  display: flex;
+  align-items: center;
+  gap: var(--ark-spacing-2);
+  width: 100%;
+  min-width: 0;
+}
+
+.itemIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.itemLabel {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.item:hover {
+  background-color: var(--ark-color-bg-muted);
+  color: var(--ark-color-text);
+}
+
+.item:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.itemActive {
+  background-color: var(--ark-color-bg-muted);
+  color: var(--ark-color-text);
+  font-weight: var(--ark-font-weight-semibold);
+}
+
+/* ── Collapsed state ── */
+
+.sidebarCollapsed .sidebarHeader {
+  justify-content: center;
+  padding: 0;
+}
+
+.sidebarCollapsed .headerContent {
+  display: none;
+}
+
+.sidebarCollapsed .sidebarContent {
+  padding: var(--ark-spacing-4) 0;
+  overflow: visible;
+}
+
+.sidebarCollapsed .sidebarFooter {
+  display: none;
+}
+
+.sidebarCollapsed .groupLabel {
+  display: none;
+}
+
+.sidebarCollapsed .item {
+  width: auto;
+  height: calc(var(--ark-font-size-sm) * var(--ark-line-height-normal) + var(--ark-sidebar-item-padding-y) * 2);
+  aspect-ratio: 1;
+  padding: 0;
+  margin: 0 auto;
+  position: relative;
+}
+
+.sidebarCollapsed .itemContent {
+  width: auto;
+  gap: 0;
+}
+
+.sidebarCollapsed .itemLabel {
+  display: none;
+}
+
+.sidebarCollapsed .item[data-tooltip]:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: calc(100% + var(--ark-spacing-2));
+  top: 50%;
+  transform: translateY(-50%);
+  padding: var(--ark-spacing-1) var(--ark-spacing-2);
+  font-size: var(--ark-font-size-xs);
+  font-weight: var(--ark-font-weight-medium);
+  color: var(--ark-color-text-inverse);
+  background-color: var(--ark-color-gray-900);
+  border-radius: var(--ark-sidebar-item-radius);
+  white-space: nowrap;
+  z-index: var(--ark-z-tooltip);
+  pointer-events: none;
+}
+
+.sidebarCollapsed .group {
+  margin-bottom: var(--ark-spacing-3);
+}
