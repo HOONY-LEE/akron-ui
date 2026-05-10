@@ -1,7 +1,7 @@
 .overlay {
   position: fixed;
   inset: 0;
-  background-color: var(--ark-color-overlay);
+  background-color: var(--ark-modal-overlay-bg);
   z-index: var(--ark-z-overlay);
   display: flex;
   align-items: center;
@@ -11,10 +11,10 @@
 
 .content {
   position: relative;
-  background-color: var(--ark-color-bg);
-  border-radius: var(--ark-radius-xl);
+  background-color: var(--ark-modal-bg);
+  border-radius: var(--ark-modal-radius);
   padding: var(--ark-spacing-6);
-  box-shadow: var(--ark-shadow-lg);
+  box-shadow: var(--ark-modal-shadow);
   z-index: var(--ark-z-modal);
   width: 90vw;
   max-height: 85vh;
@@ -28,9 +28,9 @@
 }
 
 /* ── Sizes ── */
-.sm { max-width: 400px; }
-.md { max-width: 560px; }
-.lg { max-width: 720px; }
+.sm { max-width: var(--ark-modal-width-sm); }
+.md { max-width: var(--ark-modal-width-md); }
+.lg { max-width: var(--ark-modal-width-lg); }
 
 /* ── Title ── */
 .title {
@@ -94,5 +94,13 @@
   to {
     opacity: 1;
     transform: scale(1) translateY(0);
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .content {
+    width: calc(100vw - var(--ark-spacing-8));
+    max-height: 90vh;
   }
 }

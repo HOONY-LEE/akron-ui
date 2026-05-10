@@ -1,9 +1,9 @@
 .card {
-  background-color: var(--ark-color-bg);
-  border: 1px solid var(--ark-color-border);
-  border-radius: var(--ark-radius-lg);
-  padding: var(--ark-spacing-6);
-  box-shadow: var(--ark-shadow-sm);
+  background-color: var(--ark-card-bg);
+  border: 1px solid var(--ark-card-border-color);
+  border-radius: var(--ark-card-radius);
+  padding: var(--ark-card-padding);
+  box-shadow: var(--ark-card-shadow);
   transition: box-shadow var(--ark-transition-fast);
 }
 
@@ -12,11 +12,11 @@
 }
 
 .clickable:hover {
-  box-shadow: var(--ark-shadow-md);
+  box-shadow: var(--ark-card-shadow-hover);
 }
 
 .clickable:active {
-  box-shadow: var(--ark-shadow-sm);
+  box-shadow: var(--ark-card-shadow);
 }
 
 .clickable:focus-visible {

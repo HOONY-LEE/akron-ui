@@ -4,7 +4,7 @@
   justify-content: center;
   gap: var(--ark-spacing-2);
   border: 1px solid transparent;
-  border-radius: var(--ark-radius-md);
+  border-radius: var(--ark-btn-radius);
   font-family: var(--ark-font-family);
   font-weight: var(--ark-font-weight-medium);
   line-height: var(--ark-line-height-tight);
@@ -19,21 +19,21 @@
 
 /* ── Sizes ── */
 .sm {
-  height: 32px;
-  padding: 0 var(--ark-spacing-3);
-  font-size: var(--ark-font-size-xs);
+  height: var(--ark-btn-height-sm);
+  padding: 0 var(--ark-btn-padding-x-sm);
+  font-size: var(--ark-btn-font-size-sm);
 }
 
 .md {
-  height: 36px;
-  padding: 0 var(--ark-spacing-4);
-  font-size: var(--ark-font-size-sm);
+  height: var(--ark-btn-height-md);
+  padding: 0 var(--ark-btn-padding-x-md);
+  font-size: var(--ark-btn-font-size-md);
 }
 
 .lg {
-  height: 44px;
-  padding: 0 var(--ark-spacing-6);
-  font-size: var(--ark-font-size-md);
+  height: var(--ark-btn-height-lg);
+  padding: 0 var(--ark-btn-padding-x-lg);
+  font-size: var(--ark-btn-font-size-lg);
 }
 
 /* ── Variants ── */

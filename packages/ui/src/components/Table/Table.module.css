@@ -7,22 +7,22 @@
 }
 
 .thead {
-  background-color: var(--ark-color-bg-subtle);
+  background-color: var(--ark-table-header-bg);
 }
 
 .th {
-  padding: var(--ark-spacing-3) var(--ark-spacing-4);
+  padding: var(--ark-table-cell-padding-y) var(--ark-table-cell-padding-x);
   text-align: left;
   font-weight: var(--ark-font-weight-semibold);
   color: var(--ark-color-text-secondary);
-  border-bottom: 1px solid var(--ark-color-border);
+  border-bottom: 1px solid var(--ark-table-border-color);
   line-height: var(--ark-line-height-normal);
   white-space: nowrap;
 }
 
 .td {
-  padding: var(--ark-spacing-3) var(--ark-spacing-4);
-  border-bottom: 1px solid var(--ark-color-border);
+  padding: var(--ark-table-cell-padding-y) var(--ark-table-cell-padding-x);
+  border-bottom: 1px solid var(--ark-table-border-color);
   line-height: var(--ark-line-height-normal);
 }
 
@@ -31,7 +31,7 @@
 }
 
 .tbody .tr:hover {
-  background-color: var(--ark-color-bg-subtle);
+  background-color: var(--ark-table-row-hover-bg);
 }
 
 .numeric {

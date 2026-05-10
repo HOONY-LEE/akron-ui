@@ -14,9 +14,9 @@
 
 .input {
   width: 100%;
-  border: 1px solid var(--ark-color-border-strong);
-  border-radius: var(--ark-radius-md);
-  background-color: var(--ark-color-bg);
+  border: 1px solid var(--ark-input-border-color);
+  border-radius: var(--ark-input-radius);
+  background-color: var(--ark-input-bg);
   color: var(--ark-color-text);
   font-family: var(--ark-font-family);
   line-height: var(--ark-line-height-normal);
@@ -31,23 +31,23 @@
 /* ── Sizes ── */
 .sm .input,
 .sm.inputOnly {
-  height: 32px;
-  padding: 0 var(--ark-spacing-2);
-  font-size: var(--ark-font-size-xs);
+  height: var(--ark-input-height-sm);
+  padding: 0 var(--ark-input-padding-x);
+  font-size: var(--ark-input-font-size-sm);
 }
 
 .md .input,
 .md.inputOnly {
-  height: 36px;
-  padding: 0 var(--ark-spacing-3);
-  font-size: var(--ark-font-size-sm);
+  height: var(--ark-input-height-md);
+  padding: 0 var(--ark-input-padding-x);
+  font-size: var(--ark-input-font-size-md);
 }
 
 .lg .input,
 .lg.inputOnly {
-  height: 44px;
+  height: var(--ark-input-height-lg);
   padding: 0 var(--ark-spacing-4);
-  font-size: var(--ark-font-size-md);
+  font-size: var(--ark-input-font-size-lg);
 }
 
 /* ── States ── */

@@ -1,4 +1,4 @@
-# @arkron/ui — AI 작업 규칙
+# @akron/ui — AI 작업 규칙
 
 ## 컴포넌트 구조
 - 새 컴포넌트 추가 시 기존 컴포넌트와 동일한 폴더 구조를 따를 것: `ComponentName/ComponentName.tsx`, `ComponentName.module.css`, `index.ts`
@@ -19,6 +19,20 @@
 - 그 외 외부 UI 라이브러리 사용 금지
 - 아이콘은 `lucide-react`만 사용
 
+## 반응형 & 커스텀 토큰
+- 반응형은 `tokens.css` 내 `@media` 쿼리에서 토큰 값을 재정의하는 방식
+- 컴포넌트별 CSS 변수(`--ark-btn-*`, `--ark-input-*`, `--ark-sidebar-*` 등)를 통해 외부에서 커스텀 가능
+- 브레이크포인트: `sm(640)`, `md(768)`, `lg(1024)`, `xl(1280)`, `2xl(1536)`
+
 ## 다크모드
 - `[data-theme="dark"]` 선택자로 다크모드 지원
 - 다크모드 색상은 `tokens.css`에서 자동 전환되므로 컴포넌트에서 별도 처리 불필요
+
+## Git 작업 규칙
+- 작업 시작 전 반드시 `git pull origin main` 실행
+- 새 기능은 `feature/<기능명>` 브랜치에서 작업 후 PR 생성
+- 버그 수정은 `fix/<이슈>`, 리팩토링은 `refactor/<대상>` 브랜치 사용
+- 커밋 메시지 형식: `타입: 설명` (예: `feat: 사이드바 컴포넌트 추가`)
+  - 타입: `feat`, `fix`, `refactor`, `style`, `docs`, `chore`
+- 커밋은 논리적 단위로 나눠서 — 한 커밋에 관련 없는 변경 섞지 말 것
+- main 브랜치에 직접 push는 초기 세팅 단계에서만 허용, 이후 PR 기반으로 전환

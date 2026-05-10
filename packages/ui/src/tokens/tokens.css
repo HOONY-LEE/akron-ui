@@ -1,5 +1,5 @@
 /* ===================================================
-   Arkron Design Tokens
+   Akron Design Tokens
    Enterprise Groupware / ERP Design System
    =================================================== */
 
@@ -60,7 +60,9 @@
 
   /* ── Spacing ── */
   --ark-spacing-0: 0;
+  --ark-spacing-0-5: 2px;
   --ark-spacing-1: 4px;
+  --ark-spacing-1-5: 6px;
   --ark-spacing-2: 8px;
   --ark-spacing-3: 12px;
   --ark-spacing-4: 16px;
@@ -106,11 +108,116 @@
   --ark-z-modal: 300;
   --ark-z-overlay: 400;
   --ark-z-toast: 500;
+  --ark-z-tooltip: 600;
 
   /* ── Transition ── */
   --ark-transition-fast: 150ms ease;
   --ark-transition-normal: 200ms ease;
   --ark-transition-slow: 300ms ease;
+
+  /* ── Breakpoints (reference) ── */
+  --ark-breakpoint-sm: 640px;
+  --ark-breakpoint-md: 768px;
+  --ark-breakpoint-lg: 1024px;
+  --ark-breakpoint-xl: 1280px;
+  --ark-breakpoint-2xl: 1536px;
+
+  /* ===================================================
+     Component Tokens
+     Override these to customize individual components
+     without touching internal styles.
+     =================================================== */
+
+  /* ── Layout ── */
+  --ark-layout-header-height: 56px;
+  --ark-layout-sidebar-width: 260px;
+  --ark-layout-sidebar-collapsed-width: 56px;
+  --ark-layout-footer-height: auto;
+
+  /* ── Header ── */
+  --ark-header-height: var(--ark-layout-header-height);
+  --ark-header-padding-x: var(--ark-spacing-6);
+  --ark-header-bg: var(--ark-color-bg);
+  --ark-header-border-color: var(--ark-color-border);
+
+  /* ── Footer ── */
+  --ark-footer-padding-x: var(--ark-spacing-6);
+  --ark-footer-padding-y: var(--ark-spacing-5);
+  --ark-footer-bg: var(--ark-color-bg);
+  --ark-footer-border-color: var(--ark-color-border);
+
+  /* ── Sidebar ── */
+  --ark-sidebar-bg: var(--ark-color-bg);
+  --ark-sidebar-border-color: var(--ark-color-border);
+  --ark-sidebar-item-radius: var(--ark-radius-md);
+  --ark-sidebar-item-padding-x: var(--ark-spacing-3);
+  --ark-sidebar-item-padding-y: var(--ark-spacing-2);
+  --ark-sidebar-item-gap: var(--ark-spacing-0-5);
+  --ark-sidebar-group-gap: var(--ark-spacing-6);
+
+  /* ── Button ── */
+  --ark-btn-height-sm: 32px;
+  --ark-btn-height-md: 36px;
+  --ark-btn-height-lg: 44px;
+  --ark-btn-radius: var(--ark-radius-md);
+  --ark-btn-font-size-sm: var(--ark-font-size-xs);
+  --ark-btn-font-size-md: var(--ark-font-size-sm);
+  --ark-btn-font-size-lg: var(--ark-font-size-md);
+  --ark-btn-padding-x-sm: var(--ark-spacing-3);
+  --ark-btn-padding-x-md: var(--ark-spacing-4);
+  --ark-btn-padding-x-lg: var(--ark-spacing-6);
+
+  /* ── Input ── */
+  --ark-input-height-sm: 32px;
+  --ark-input-height-md: 36px;
+  --ark-input-height-lg: 44px;
+  --ark-input-radius: var(--ark-radius-md);
+  --ark-input-font-size-sm: var(--ark-font-size-xs);
+  --ark-input-font-size-md: var(--ark-font-size-sm);
+  --ark-input-font-size-lg: var(--ark-font-size-md);
+  --ark-input-padding-x: var(--ark-spacing-3);
+  --ark-input-bg: var(--ark-color-bg);
+  --ark-input-border-color: var(--ark-color-border-strong);
+
+  /* ── Card ── */
+  --ark-card-radius: var(--ark-radius-lg);
+  --ark-card-padding: var(--ark-spacing-6);
+  --ark-card-bg: var(--ark-color-bg);
+  --ark-card-border-color: var(--ark-color-border);
+  --ark-card-shadow: var(--ark-shadow-sm);
+  --ark-card-shadow-hover: var(--ark-shadow-md);
+
+  /* ── Table ── */
+  --ark-table-cell-padding-x: var(--ark-spacing-4);
+  --ark-table-cell-padding-y: var(--ark-spacing-3);
+  --ark-table-header-bg: var(--ark-color-bg-subtle);
+  --ark-table-border-color: var(--ark-color-border);
+  --ark-table-row-hover-bg: var(--ark-color-bg-subtle);
+
+  /* ── Modal ── */
+  --ark-modal-radius: var(--ark-radius-xl);
+  --ark-modal-width-sm: 400px;
+  --ark-modal-width-md: 560px;
+  --ark-modal-width-lg: 720px;
+  --ark-modal-shadow: var(--ark-shadow-lg);
+  --ark-modal-bg: var(--ark-color-bg);
+  --ark-modal-overlay-bg: var(--ark-color-overlay);
+
+  /* ── Toast ── */
+  --ark-toast-min-width: 320px;
+  --ark-toast-max-width: 420px;
+  --ark-toast-radius: var(--ark-radius-lg);
+  --ark-toast-shadow: var(--ark-shadow-lg);
+  --ark-toast-bg: var(--ark-color-bg);
+  --ark-toast-border-color: var(--ark-color-border);
+
+  /* ── PageContainer ── */
+  --ark-container-sm: 640px;
+  --ark-container-md: 768px;
+  --ark-container-lg: 960px;
+  --ark-container-xl: 1200px;
+  --ark-container-2xl: 1440px;
+  --ark-container-padding-x: var(--ark-spacing-6);
 }
 
 /* ── Dark Mode ── */
@@ -173,4 +280,35 @@
   --ark-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
   --ark-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
   --ark-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+}
+
+/* ===================================================
+   Responsive Defaults
+   Adjust layout & component tokens per breakpoint.
+   Users can override these in their own stylesheet.
+   =================================================== */
+
+@media (max-width: 1024px) {
+  :root {
+    --ark-layout-sidebar-width: 240px;
+    --ark-container-padding-x: var(--ark-spacing-5);
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --ark-layout-header-height: 48px;
+    --ark-header-height: 48px;
+    --ark-header-padding-x: var(--ark-spacing-4);
+    --ark-layout-sidebar-width: 280px;
+    --ark-footer-padding-x: var(--ark-spacing-4);
+    --ark-footer-padding-y: var(--ark-spacing-4);
+    --ark-container-padding-x: var(--ark-spacing-4);
+    --ark-modal-width-sm: 100%;
+    --ark-modal-width-md: 100%;
+    --ark-modal-width-lg: 100%;
+    --ark-modal-radius: var(--ark-radius-lg);
+    --ark-toast-min-width: 0;
+    --ark-toast-max-width: 100%;
+  }
 }
