@@ -1,0 +1,100 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--ark-font-family);
+}
+
+.label {
+  font-size: var(--ark-font-size-sm);
+  font-weight: var(--ark-font-weight-medium);
+  color: var(--ark-color-text);
+  margin-bottom: var(--ark-spacing-1);
+  line-height: var(--ark-line-height-normal);
+}
+
+.input {
+  width: 100%;
+  border: 1px solid var(--ark-color-border-strong);
+  border-radius: var(--ark-radius-md);
+  background-color: var(--ark-color-bg);
+  color: var(--ark-color-text);
+  font-family: var(--ark-font-family);
+  line-height: var(--ark-line-height-normal);
+  transition: border-color var(--ark-transition-fast),
+              box-shadow var(--ark-transition-fast);
+}
+
+.input::placeholder {
+  color: var(--ark-color-text-disabled);
+}
+
+/* ── Sizes ── */
+.sm .input,
+.sm.inputOnly {
+  height: 32px;
+  padding: 0 var(--ark-spacing-2);
+  font-size: var(--ark-font-size-xs);
+}
+
+.md .input,
+.md.inputOnly {
+  height: 36px;
+  padding: 0 var(--ark-spacing-3);
+  font-size: var(--ark-font-size-sm);
+}
+
+.lg .input,
+.lg.inputOnly {
+  height: 44px;
+  padding: 0 var(--ark-spacing-4);
+  font-size: var(--ark-font-size-md);
+}
+
+/* ── States ── */
+.input:hover:not(:disabled):not(:focus) {
+  border-color: var(--ark-color-gray-400);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--ark-color-primary-500);
+  box-shadow: 0 0 0 1px var(--ark-color-primary-500);
+}
+
+.input:focus-visible {
+  outline: none;
+  border-color: var(--ark-color-primary-500);
+  box-shadow: 0 0 0 1px var(--ark-color-primary-500);
+}
+
+.input:disabled {
+  background-color: var(--ark-color-gray-50);
+  color: var(--ark-color-text-disabled);
+  cursor: not-allowed;
+}
+
+/* ── Error ── */
+.error .input {
+  border-color: var(--ark-color-error-500);
+}
+
+.error .input:focus,
+.error .input:focus-visible {
+  border-color: var(--ark-color-error-500);
+  box-shadow: 0 0 0 1px var(--ark-color-error-500);
+}
+
+/* ── Helper / Error text ── */
+.helperText {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-secondary);
+  margin-top: var(--ark-spacing-1);
+  line-height: var(--ark-line-height-normal);
+}
+
+.errorMessage {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-error-500);
+  margin-top: var(--ark-spacing-1);
+  line-height: var(--ark-line-height-normal);
+}

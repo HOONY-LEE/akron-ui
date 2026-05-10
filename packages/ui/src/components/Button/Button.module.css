@@ -1,0 +1,123 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ark-spacing-2);
+  border: 1px solid transparent;
+  border-radius: var(--ark-radius-md);
+  font-family: var(--ark-font-family);
+  font-weight: var(--ark-font-weight-medium);
+  line-height: var(--ark-line-height-tight);
+  cursor: pointer;
+  transition: background-color var(--ark-transition-fast),
+              border-color var(--ark-transition-fast),
+              color var(--ark-transition-fast),
+              box-shadow var(--ark-transition-fast);
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* ── Sizes ── */
+.sm {
+  height: 32px;
+  padding: 0 var(--ark-spacing-3);
+  font-size: var(--ark-font-size-xs);
+}
+
+.md {
+  height: 36px;
+  padding: 0 var(--ark-spacing-4);
+  font-size: var(--ark-font-size-sm);
+}
+
+.lg {
+  height: 44px;
+  padding: 0 var(--ark-spacing-6);
+  font-size: var(--ark-font-size-md);
+}
+
+/* ── Variants ── */
+.primary {
+  background-color: var(--ark-color-primary-500);
+  color: var(--ark-color-text-inverse);
+}
+.primary:hover {
+  background-color: var(--ark-color-primary-600);
+}
+.primary:active {
+  background-color: var(--ark-color-primary-700);
+}
+
+.secondary {
+  background-color: var(--ark-color-gray-100);
+  color: var(--ark-color-gray-700);
+}
+.secondary:hover {
+  background-color: var(--ark-color-gray-200);
+}
+.secondary:active {
+  background-color: var(--ark-color-gray-300);
+}
+
+.outline {
+  background-color: transparent;
+  border-color: var(--ark-color-border-strong);
+  color: var(--ark-color-gray-700);
+}
+.outline:hover {
+  background-color: var(--ark-color-gray-50);
+}
+.outline:active {
+  background-color: var(--ark-color-gray-100);
+}
+
+.ghost {
+  background-color: transparent;
+  color: var(--ark-color-gray-700);
+}
+.ghost:hover {
+  background-color: var(--ark-color-gray-100);
+}
+.ghost:active {
+  background-color: var(--ark-color-gray-200);
+}
+
+.danger {
+  background-color: var(--ark-color-error-500);
+  color: var(--ark-color-text-inverse);
+}
+.danger:hover {
+  background-color: var(--ark-color-error-600);
+}
+.danger:active {
+  background-color: var(--ark-color-error-600);
+}
+
+/* ── Focus ── */
+.button:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+/* ── Disabled ── */
+.button:disabled,
+.button[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── Loading ── */
+.loading {
+  pointer-events: none;
+}
+
+.spinner {
+  animation: spin 0.6s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

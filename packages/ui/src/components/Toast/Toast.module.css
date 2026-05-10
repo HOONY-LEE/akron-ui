@@ -1,0 +1,131 @@
+.container {
+  position: fixed;
+  bottom: var(--ark-spacing-6);
+  right: var(--ark-spacing-6);
+  z-index: var(--ark-z-toast);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-3);
+  pointer-events: none;
+}
+
+.toast {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ark-spacing-3);
+  min-width: 320px;
+  max-width: 420px;
+  padding: var(--ark-spacing-3) var(--ark-spacing-4);
+  background-color: var(--ark-color-bg);
+  border: 1px solid var(--ark-color-border);
+  border-radius: var(--ark-radius-lg);
+  box-shadow: var(--ark-shadow-lg);
+  overflow: hidden;
+  pointer-events: auto;
+  animation: slideIn var(--ark-transition-normal) forwards;
+  position: relative;
+}
+
+/* ── Color bar ── */
+.toast::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  border-radius: var(--ark-radius-lg) 0 0 var(--ark-radius-lg);
+}
+
+.success::before { background-color: var(--ark-color-success-500); }
+.warning::before { background-color: var(--ark-color-warning-500); }
+.error::before   { background-color: var(--ark-color-error-500); }
+.info::before    { background-color: var(--ark-color-info-500); }
+
+/* ── Icon ── */
+.icon {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.success .icon { color: var(--ark-color-success-500); }
+.warning .icon { color: var(--ark-color-warning-500); }
+.error .icon   { color: var(--ark-color-error-500); }
+.info .icon    { color: var(--ark-color-info-500); }
+
+/* ── Body ── */
+.body {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-family: var(--ark-font-family);
+  font-size: var(--ark-font-size-sm);
+  font-weight: var(--ark-font-weight-semibold);
+  color: var(--ark-color-text);
+  line-height: var(--ark-line-height-tight);
+}
+
+.message {
+  font-family: var(--ark-font-family);
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-secondary);
+  line-height: var(--ark-line-height-normal);
+  margin-top: var(--ark-spacing-1);
+}
+
+/* ── Close ── */
+.close {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: var(--ark-radius-sm);
+  background: transparent;
+  color: var(--ark-color-text-secondary);
+  cursor: pointer;
+  transition: background-color var(--ark-transition-fast),
+              color var(--ark-transition-fast);
+}
+
+.close:hover {
+  background-color: var(--ark-color-gray-100);
+  color: var(--ark-color-text);
+}
+
+.close:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+/* ── Exit ── */
+.exiting {
+  animation: slideOut var(--ark-transition-normal) forwards;
+}
+
+/* ── Animations ── */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}

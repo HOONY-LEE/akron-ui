@@ -1,0 +1,176 @@
+/* ===================================================
+   Arkron Design Tokens
+   Enterprise Groupware / ERP Design System
+   =================================================== */
+
+:root {
+  /* ── Brand / Primary ── */
+  --ark-color-primary-50: #EEF2FF;
+  --ark-color-primary-100: #E0E7FF;
+  --ark-color-primary-200: #C7D2FE;
+  --ark-color-primary-300: #A5B4FC;
+  --ark-color-primary-400: #818CF8;
+  --ark-color-primary-500: #4F46E5;
+  --ark-color-primary-600: #4338CA;
+  --ark-color-primary-700: #3730A3;
+
+  /* ── Neutral / Gray ── */
+  --ark-color-gray-50: #F9FAFB;
+  --ark-color-gray-100: #F3F4F6;
+  --ark-color-gray-200: #E5E7EB;
+  --ark-color-gray-300: #D1D5DB;
+  --ark-color-gray-400: #9CA3AF;
+  --ark-color-gray-500: #6B7280;
+  --ark-color-gray-600: #4B5563;
+  --ark-color-gray-700: #374151;
+  --ark-color-gray-800: #1F2937;
+  --ark-color-gray-900: #111827;
+
+  /* ── Semantic: Success ── */
+  --ark-color-success-50: #F0FDF4;
+  --ark-color-success-500: #22C55E;
+  --ark-color-success-600: #16A34A;
+
+  /* ── Semantic: Warning ── */
+  --ark-color-warning-50: #FFFBEB;
+  --ark-color-warning-500: #F59E0B;
+  --ark-color-warning-600: #D97706;
+
+  /* ── Semantic: Error ── */
+  --ark-color-error-50: #FEF2F2;
+  --ark-color-error-500: #EF4444;
+  --ark-color-error-600: #DC2626;
+
+  /* ── Semantic: Info ── */
+  --ark-color-info-50: #EFF6FF;
+  --ark-color-info-500: #3B82F6;
+  --ark-color-info-600: #2563EB;
+
+  /* ── Surface & Text ── */
+  --ark-color-bg: #FFFFFF;
+  --ark-color-bg-subtle: #F9FAFB;
+  --ark-color-bg-muted: #F3F4F6;
+  --ark-color-text: #111827;
+  --ark-color-text-secondary: #6B7280;
+  --ark-color-text-disabled: #9CA3AF;
+  --ark-color-text-inverse: #FFFFFF;
+  --ark-color-border: #E5E7EB;
+  --ark-color-border-strong: #D1D5DB;
+  --ark-color-overlay: rgba(0, 0, 0, 0.5);
+
+  /* ── Spacing ── */
+  --ark-spacing-0: 0;
+  --ark-spacing-1: 4px;
+  --ark-spacing-2: 8px;
+  --ark-spacing-3: 12px;
+  --ark-spacing-4: 16px;
+  --ark-spacing-5: 20px;
+  --ark-spacing-6: 24px;
+  --ark-spacing-8: 32px;
+  --ark-spacing-10: 40px;
+  --ark-spacing-12: 48px;
+  --ark-spacing-16: 64px;
+
+  /* ── Typography ── */
+  --ark-font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --ark-font-size-xs: 12px;
+  --ark-font-size-sm: 14px;
+  --ark-font-size-md: 16px;
+  --ark-font-size-lg: 18px;
+  --ark-font-size-xl: 20px;
+  --ark-font-size-2xl: 24px;
+  --ark-font-weight-regular: 400;
+  --ark-font-weight-medium: 500;
+  --ark-font-weight-semibold: 600;
+  --ark-font-weight-bold: 700;
+  --ark-line-height-tight: 1.25;
+  --ark-line-height-normal: 1.5;
+  --ark-line-height-relaxed: 1.75;
+
+  /* ── Border Radius ── */
+  --ark-radius-none: 0;
+  --ark-radius-sm: 4px;
+  --ark-radius-md: 6px;
+  --ark-radius-lg: 8px;
+  --ark-radius-xl: 12px;
+  --ark-radius-full: 9999px;
+
+  /* ── Shadows ── */
+  --ark-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --ark-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --ark-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+
+  /* ── Z-Index ── */
+  --ark-z-dropdown: 100;
+  --ark-z-sticky: 200;
+  --ark-z-modal: 300;
+  --ark-z-overlay: 400;
+  --ark-z-toast: 500;
+
+  /* ── Transition ── */
+  --ark-transition-fast: 150ms ease;
+  --ark-transition-normal: 200ms ease;
+  --ark-transition-slow: 300ms ease;
+}
+
+/* ── Dark Mode ── */
+[data-theme="dark"] {
+  /* Brand / Primary */
+  --ark-color-primary-50: #1E1B4B;
+  --ark-color-primary-100: #272463;
+  --ark-color-primary-200: #312E81;
+  --ark-color-primary-300: #3730A3;
+  --ark-color-primary-400: #4F46E5;
+  --ark-color-primary-500: #818CF8;
+  --ark-color-primary-600: #A5B4FC;
+  --ark-color-primary-700: #C7D2FE;
+
+  /* Neutral / Gray */
+  --ark-color-gray-50: #111827;
+  --ark-color-gray-100: #1F2937;
+  --ark-color-gray-200: #374151;
+  --ark-color-gray-300: #4B5563;
+  --ark-color-gray-400: #6B7280;
+  --ark-color-gray-500: #9CA3AF;
+  --ark-color-gray-600: #D1D5DB;
+  --ark-color-gray-700: #E5E7EB;
+  --ark-color-gray-800: #F3F4F6;
+  --ark-color-gray-900: #F9FAFB;
+
+  /* Semantic: Success */
+  --ark-color-success-50: #052E16;
+  --ark-color-success-500: #4ADE80;
+  --ark-color-success-600: #22C55E;
+
+  /* Semantic: Warning */
+  --ark-color-warning-50: #451A03;
+  --ark-color-warning-500: #FBBF24;
+  --ark-color-warning-600: #F59E0B;
+
+  /* Semantic: Error */
+  --ark-color-error-50: #450A0A;
+  --ark-color-error-500: #F87171;
+  --ark-color-error-600: #EF4444;
+
+  /* Semantic: Info */
+  --ark-color-info-50: #172554;
+  --ark-color-info-500: #60A5FA;
+  --ark-color-info-600: #3B82F6;
+
+  /* Surface & Text */
+  --ark-color-bg: #0F172A;
+  --ark-color-bg-subtle: #1E293B;
+  --ark-color-bg-muted: #334155;
+  --ark-color-text: #F9FAFB;
+  --ark-color-text-secondary: #9CA3AF;
+  --ark-color-text-disabled: #4B5563;
+  --ark-color-text-inverse: #0F172A;
+  --ark-color-border: #334155;
+  --ark-color-border-strong: #475569;
+  --ark-color-overlay: rgba(0, 0, 0, 0.7);
+
+  /* Shadows */
+  --ark-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --ark-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --ark-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+}

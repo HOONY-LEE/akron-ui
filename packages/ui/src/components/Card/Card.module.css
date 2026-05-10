@@ -1,0 +1,25 @@
+.card {
+  background-color: var(--ark-color-bg);
+  border: 1px solid var(--ark-color-border);
+  border-radius: var(--ark-radius-lg);
+  padding: var(--ark-spacing-6);
+  box-shadow: var(--ark-shadow-sm);
+  transition: box-shadow var(--ark-transition-fast);
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover {
+  box-shadow: var(--ark-shadow-md);
+}
+
+.clickable:active {
+  box-shadow: var(--ark-shadow-sm);
+}
+
+.clickable:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
