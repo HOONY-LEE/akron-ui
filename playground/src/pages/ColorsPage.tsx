@@ -1,15 +1,9 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { CodeBlock } from "../components/CodeBlock";
 
+/* ── Color math utilities ── */
+
 const SHADE_KEYS = [50, 100, 200, 300, 400, 500, 600, 700] as const;
-
-const LIGHTNESS_MAP: Record<number, number> = {
-  50: 95, 100: 90, 200: 82, 300: 70, 400: 55, 500: 0, 600: -12, 700: -22,
-};
-
-const SATURATION_MAP: Record<number, number> = {
-  50: -40, 100: -30, 200: -15, 300: -5, 400: 5, 500: 0, 600: 5, 700: 5,
-};
 
 function hexToHsl(hex: string): [number, number, number] {
   const r = parseInt(hex.slice(1, 3), 16) / 255;
@@ -27,6 +21,39 @@ function hexToHsl(hex: string): [number, number, number] {
   return [h * 360, s * 100, l * 100];
 }
 
+function hexToHsv(hex: string): [number, number, number] {
+  const r = parseInt(hex.slice(1, 3), 16) / 255;
+  const g = parseInt(hex.slice(3, 5), 16) / 255;
+  const b = parseInt(hex.slice(5, 7), 16) / 255;
+  const max = Math.max(r, g, b), min = Math.min(r, g, b);
+  const d = max - min;
+  const v = max;
+  const s = max === 0 ? 0 : d / max;
+  let h = 0;
+  if (d !== 0) {
+    if (max === r) h = ((g - b) / d + (g < b ? 6 : 0)) / 6;
+    else if (max === g) h = ((b - r) / d + 2) / 6;
+    else h = ((r - g) / d + 4) / 6;
+  }
+  return [h * 360, s * 100, v * 100];
+}
+
+function hsvToHex(h: number, s: number, v: number): string {
+  s /= 100; v /= 100;
+  const c = v * s;
+  const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
+  const m = v - c;
+  let r = 0, g = 0, b = 0;
+  if (h < 60) { r = c; g = x; }
+  else if (h < 120) { r = x; g = c; }
+  else if (h < 180) { g = c; b = x; }
+  else if (h < 240) { g = x; b = c; }
+  else if (h < 300) { r = x; b = c; }
+  else { r = c; b = x; }
+  const toHex = (n: number) => Math.round((n + m) * 255).toString(16).padStart(2, "0");
+  return `#${toHex(r)}${toHex(g)}${toHex(b)}`.toUpperCase();
+}
+
 function hslToHex(h: number, s: number, l: number): string {
   s = Math.max(0, Math.min(100, s));
   l = Math.max(0, Math.min(100, l));
@@ -41,38 +68,306 @@ function hslToHex(h: number, s: number, l: number): string {
   else if (h < 240) { g = x; b = c; }
   else if (h < 300) { r = x; b = c; }
   else { r = c; b = x; }
-  const toHex = (v: number) => Math.round((v + m) * 255).toString(16).padStart(2, "0");
+  const toHex = (n: number) => Math.round((n + m) * 255).toString(16).padStart(2, "0");
   return `#${toHex(r)}${toHex(g)}${toHex(b)}`.toUpperCase();
 }
 
-function generatePalette(baseHex: string): { shade: number; hex: string }[] {
+function getLuminance(hex: string): number {
+  const r = parseInt(hex.slice(1, 3), 16) / 255;
+  const g = parseInt(hex.slice(3, 5), 16) / 255;
+  const b = parseInt(hex.slice(5, 7), 16) / 255;
+  return (r * 299 + g * 587 + b * 114) / 1000;
+}
+
+/* ── Palette generation ── */
+
+const LIGHT_LIGHTNESS: Record<number, number> = {
+  50: 95, 100: 90, 200: 82, 300: 70, 400: 55, 500: 0, 600: -12, 700: -22,
+};
+const LIGHT_SATURATION: Record<number, number> = {
+  50: -40, 100: -30, 200: -15, 300: -5, 400: 5, 500: 0, 600: 5, 700: 5,
+};
+
+function generateLightPalette(baseHex: string): { shade: number; hex: string }[] {
   const [h, s, l] = hexToHsl(baseHex);
   return SHADE_KEYS.map((shade) => {
     if (shade === 500) return { shade, hex: baseHex.toUpperCase() };
-    const lOffset = LIGHTNESS_MAP[shade];
-    const sOffset = SATURATION_MAP[shade];
-    const newL = shade < 500 ? l + (lOffset / 100) * (100 - l) : l + (lOffset / 100) * l;
-    const newS = s + sOffset;
-    return { shade, hex: hslToHex(h, newS, Math.max(0, Math.min(100, newL))) };
+    const lOff = LIGHT_LIGHTNESS[shade];
+    const sOff = LIGHT_SATURATION[shade];
+    const newL = shade < 500 ? l + (lOff / 100) * (100 - l) : l + (lOff / 100) * l;
+    return { shade, hex: hslToHex(h, s + sOff, Math.max(0, Math.min(100, newL))) };
   });
 }
 
-function applyPalette(palette: { shade: number; hex: string }[]) {
-  const root = document.documentElement;
-  palette.forEach(({ shade, hex }) => {
-    root.style.setProperty(`--ark-color-primary-${shade}`, hex);
+function generateDarkPalette(baseHex: string): { shade: number; hex: string }[] {
+  const [h, s, l] = hexToHsl(baseHex);
+
+  // dark-500: ensure minimum lightness of 60% for visibility on dark backgrounds
+  const dark500L = Math.max(65, l > 55 ? l + 15 : 100 - l + 10);
+  const dark500S = Math.min(s, 80);
+  const dark500Hex = hslToHex(h, dark500S, dark500L);
+
+  // shade mapping for dark mode (inverted: 50 is darkest, 700 is lightest)
+  const darkShades: Record<number, { lOff: number; sOff: number }> = {
+    50:  { lOff: -50, sOff: -20 },
+    100: { lOff: -42, sOff: -15 },
+    200: { lOff: -32, sOff: -8 },
+    300: { lOff: -20, sOff: -3 },
+    400: { lOff: -8,  sOff: 0 },
+    500: { lOff: 0,   sOff: 0 },
+    600: { lOff: 10,  sOff: -10 },
+    700: { lOff: 18,  sOff: -20 },
+  };
+
+  return SHADE_KEYS.map((shade) => {
+    if (shade === 500) return { shade, hex: dark500Hex };
+    const { lOff, sOff } = darkShades[shade];
+    const newL = Math.max(0, Math.min(100, dark500L + lOff));
+    const newS = Math.max(0, Math.min(100, dark500S + sOff));
+    return { shade, hex: hslToHex(h, newS, newL) };
   });
 }
+
+function applyPalettes(
+  lightPalette: { shade: number; hex: string }[],
+  darkPalette: { shade: number; hex: string }[],
+) {
+  const root = document.documentElement;
+  const isDark = root.getAttribute("data-theme") === "dark";
+  const active = isDark ? darkPalette : lightPalette;
+  active.forEach(({ shade, hex }) => {
+    root.style.setProperty(`--ark-color-primary-${shade}`, hex);
+  });
+
+  // inject a <style> for dark mode overrides so toggling theme applies correctly
+  let styleEl = document.getElementById("akron-dynamic-primary");
+  if (!styleEl) {
+    styleEl = document.createElement("style");
+    styleEl.id = "akron-dynamic-primary";
+    document.head.appendChild(styleEl);
+  }
+  styleEl.textContent = `
+    :root { ${lightPalette.map(({ shade, hex }) => `--ark-color-primary-${shade}: ${hex};`).join(" ")} }
+    [data-theme="dark"] { ${darkPalette.map(({ shade, hex }) => `--ark-color-primary-${shade}: ${hex};`).join(" ")} }
+  `;
+}
+
+/* ── Figma-style Color Picker ── */
+
+function FigmaColorPicker({
+  color,
+  onChange,
+}: {
+  color: string;
+  onChange: (hex: string) => void;
+}) {
+  const [hsv, setHsv] = useState<[number, number, number]>(() => hexToHsv(color));
+  const [hexInput, setHexInput] = useState(color.toUpperCase());
+  const satPanelRef = useRef<HTMLDivElement>(null);
+  const hueBarRef = useRef<HTMLDivElement>(null);
+  const draggingRef = useRef<"sat" | "hue" | null>(null);
+
+  useEffect(() => {
+    const newHsv = hexToHsv(color);
+    setHsv(newHsv);
+    setHexInput(color.toUpperCase());
+  }, [color]);
+
+  const emitColor = useCallback(
+    (h: number, s: number, v: number) => {
+      const hex = hsvToHex(h, s, v);
+      setHsv([h, s, v]);
+      setHexInput(hex);
+      onChange(hex);
+    },
+    [onChange],
+  );
+
+  const handleSatMove = useCallback(
+    (e: MouseEvent | React.MouseEvent) => {
+      const rect = satPanelRef.current?.getBoundingClientRect();
+      if (!rect) return;
+      const x = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+      const y = Math.max(0, Math.min(1, (e.clientY - rect.top) / rect.height));
+      emitColor(hsv[0], x * 100, (1 - y) * 100);
+    },
+    [hsv, emitColor],
+  );
+
+  const handleHueMove = useCallback(
+    (e: MouseEvent | React.MouseEvent) => {
+      const rect = hueBarRef.current?.getBoundingClientRect();
+      if (!rect) return;
+      const x = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+      emitColor(x * 360, hsv[1], hsv[2]);
+    },
+    [hsv, emitColor],
+  );
+
+  useEffect(() => {
+    const onMove = (e: MouseEvent) => {
+      if (draggingRef.current === "sat") handleSatMove(e);
+      else if (draggingRef.current === "hue") handleHueMove(e);
+    };
+    const onUp = () => { draggingRef.current = null; };
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseup", onUp);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mouseup", onUp);
+    };
+  }, [handleSatMove, handleHueMove]);
+
+  const [h, s, v] = hsv;
+  const pureHue = hsvToHex(h, 100, 100);
+
+  return (
+    <div
+      style={{
+        width: 260,
+        padding: 12,
+        borderRadius: 10,
+        border: "1px solid var(--docs-border)",
+        backgroundColor: "var(--docs-bg-subtle)",
+        display: "flex",
+        flexDirection: "column",
+        gap: 10,
+        userSelect: "none",
+      }}
+    >
+      {/* Saturation / Brightness panel */}
+      <div
+        ref={satPanelRef}
+        onMouseDown={(e) => {
+          draggingRef.current = "sat";
+          handleSatMove(e);
+        }}
+        style={{
+          position: "relative",
+          width: "100%",
+          height: 160,
+          borderRadius: 6,
+          cursor: "crosshair",
+          background: `linear-gradient(to top, #000, transparent), linear-gradient(to right, #fff, ${pureHue})`,
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            left: `${s}%`,
+            top: `${100 - v}%`,
+            width: 14,
+            height: 14,
+            borderRadius: "50%",
+            border: "2px solid #fff",
+            boxShadow: "0 0 0 1px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.3)",
+            transform: "translate(-50%, -50%)",
+            pointerEvents: "none",
+          }}
+        />
+      </div>
+
+      {/* Hue bar */}
+      <div
+        ref={hueBarRef}
+        onMouseDown={(e) => {
+          draggingRef.current = "hue";
+          handleHueMove(e);
+        }}
+        style={{
+          position: "relative",
+          width: "100%",
+          height: 14,
+          borderRadius: 7,
+          cursor: "pointer",
+          background:
+            "linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%)",
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            left: `${(h / 360) * 100}%`,
+            top: "50%",
+            width: 16,
+            height: 16,
+            borderRadius: "50%",
+            border: "2px solid #fff",
+            boxShadow: "0 0 0 1px rgba(0,0,0,0.2), 0 1px 3px rgba(0,0,0,0.3)",
+            transform: "translate(-50%, -50%)",
+            backgroundColor: pureHue,
+            pointerEvents: "none",
+          }}
+        />
+      </div>
+
+      {/* Hex input + preview */}
+      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+        <div
+          style={{
+            width: 32,
+            height: 32,
+            borderRadius: 6,
+            backgroundColor: hsvToHex(h, s, v),
+            border: "1px solid var(--docs-border)",
+            flexShrink: 0,
+          }}
+        />
+        <div style={{ display: "flex", alignItems: "center", gap: 4, flex: 1 }}>
+          <span
+            style={{
+              fontSize: 13,
+              color: "var(--docs-text-tertiary)",
+              fontFamily: "'SF Mono', 'Fira Code', monospace",
+            }}
+          >
+            #
+          </span>
+          <input
+            type="text"
+            value={hexInput.replace("#", "")}
+            onChange={(e) => {
+              const raw = e.target.value.replace(/[^0-9A-Fa-f]/g, "").slice(0, 6);
+              setHexInput("#" + raw.toUpperCase());
+              if (raw.length === 6) {
+                const hex = "#" + raw;
+                const newHsv = hexToHsv(hex);
+                setHsv(newHsv);
+                onChange(hex.toUpperCase());
+              }
+            }}
+            style={{
+              flex: 1,
+              padding: "5px 8px",
+              fontSize: 13,
+              fontFamily: "'SF Mono', 'Fira Code', monospace",
+              border: "1px solid var(--docs-border)",
+              borderRadius: 5,
+              backgroundColor: "var(--docs-bg)",
+              color: "var(--docs-text)",
+              outline: "none",
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Page ── */
 
 export function ColorsPage() {
   const [baseColor, setBaseColor] = useState("#4F46E5");
-  const [palette, setPalette] = useState(() => generatePalette("#4F46E5"));
+  const [lightPalette, setLightPalette] = useState(() => generateLightPalette("#4F46E5"));
+  const [darkPalette, setDarkPalette] = useState(() => generateDarkPalette("#4F46E5"));
 
   const handleColorChange = useCallback((hex: string) => {
     setBaseColor(hex);
-    const newPalette = generatePalette(hex);
-    setPalette(newPalette);
-    applyPalette(newPalette);
+    const lp = generateLightPalette(hex);
+    const dp = generateDarkPalette(hex);
+    setLightPalette(lp);
+    setDarkPalette(dp);
+    applyPalettes(lp, dp);
   }, []);
 
   return (
@@ -88,56 +383,28 @@ export function ColorsPage() {
       <section className="docs-section" id="primary">
         <h2 className="section-title">Primary</h2>
         <p className="section-desc">
-          브랜드 색상입니다. Primary-500 색상을 선택하면 나머지 팔레트가 자동으로 생성됩니다.
+          브랜드 색상입니다. Primary-500 색상을 선택하면 라이트/다크 모드 팔레트가 자동 생성됩니다.
+          다크모드에서는 명도와 채도를 보정하여 어두운 배경에서도 가시성을 확보합니다.
         </p>
-        <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-          <label
-            htmlFor="primary-picker"
-            style={{ fontSize: 14, fontWeight: 600, color: "var(--docs-text-secondary)" }}
-          >
-            Primary-500
-          </label>
-          <input
-            id="primary-picker"
-            type="color"
-            value={baseColor}
-            onChange={(e) => handleColorChange(e.target.value)}
-            style={{
-              width: 40,
-              height: 40,
-              border: "2px solid var(--docs-border)",
-              borderRadius: 8,
-              cursor: "pointer",
-              padding: 2,
-              backgroundColor: "transparent",
-            }}
-          />
-          <input
-            type="text"
-            value={baseColor.toUpperCase()}
-            onChange={(e) => {
-              const v = e.target.value;
-              if (/^#[0-9A-Fa-f]{6}$/.test(v)) handleColorChange(v);
-              else setBaseColor(v);
-            }}
-            onBlur={() => {
-              if (!/^#[0-9A-Fa-f]{6}$/.test(baseColor)) setBaseColor("#4F46E5");
-            }}
-            style={{
-              width: 90,
-              padding: "6px 10px",
-              fontSize: 13,
-              fontFamily: "'SF Mono', 'Fira Code', 'Consolas', monospace",
-              border: "1px solid var(--docs-border)",
-              borderRadius: 6,
-              backgroundColor: "var(--docs-bg-subtle)",
-              color: "var(--docs-text)",
-            }}
-          />
+
+        <div style={{ display: "flex", gap: 24, flexWrap: "wrap", marginBottom: 28 }}>
+          <FigmaColorPicker color={baseColor} onChange={handleColorChange} />
         </div>
+
+        <h3 className="section-subtitle" style={{ marginTop: 0 }}>Light Mode</h3>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(120px, 1fr))", gap: 12 }}>
-          {palette.map((c) => (
+          {lightPalette.map((c) => (
             <ColorSwatch key={c.shade} token={`primary-${c.shade}`} value={c.hex} />
+          ))}
+        </div>
+
+        <h3 className="section-subtitle">Dark Mode</h3>
+        <p className="section-desc" style={{ marginBottom: 12 }}>
+          어두운 배경에서의 가시성을 위해 명도가 자동으로 보정된 팔레트입니다.
+        </p>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(120px, 1fr))", gap: 12 }}>
+          {darkPalette.map((c) => (
+            <DarkSwatchPreview key={c.shade} shade={c.shade} hex={c.hex} />
           ))}
         </div>
       </section>
@@ -263,6 +530,8 @@ export function ColorsPage() {
   );
 }
 
+/* ── Shared sub-components ── */
+
 function dotStyle(color: string): React.CSSProperties {
   return {
     display: "inline-block",
@@ -276,7 +545,7 @@ function dotStyle(color: string): React.CSSProperties {
 }
 
 function ColorSwatch({ token, value }: { token: string; value: string }) {
-  const isDark = isColorDark(value);
+  const isDark = getLuminance(value) < 0.5;
   return (
     <div style={{ borderRadius: 8, overflow: "hidden", border: "1px solid var(--ark-color-border)" }}>
       <div
@@ -299,9 +568,27 @@ function ColorSwatch({ token, value }: { token: string; value: string }) {
   );
 }
 
-function isColorDark(hex: string): boolean {
-  const r = parseInt(hex.slice(1, 3), 16);
-  const g = parseInt(hex.slice(3, 5), 16);
-  const b = parseInt(hex.slice(5, 7), 16);
-  return (r * 299 + g * 587 + b * 114) / 1000 < 128;
+function DarkSwatchPreview({ shade, hex }: { shade: number; hex: string }) {
+  const isDark = getLuminance(hex) < 0.5;
+  return (
+    <div style={{ borderRadius: 8, overflow: "hidden", border: "1px solid var(--docs-border)" }}>
+      <div
+        style={{
+          backgroundColor: hex,
+          height: 64,
+          display: "flex",
+          alignItems: "flex-end",
+          padding: "0 8px 6px",
+          background: `linear-gradient(135deg, #1e1e1e 0%, #1e1e1e 30%, ${hex} 30%)`,
+        }}
+      >
+        <span style={{ fontSize: 11, fontWeight: 600, color: isDark ? "#fff" : "#111827", opacity: 0.8 }}>
+          {hex}
+        </span>
+      </div>
+      <div style={{ padding: "8px 10px", fontSize: 12, color: "var(--ark-color-text-secondary)", backgroundColor: "var(--docs-bg)" }}>
+        primary-{shade}
+      </div>
+    </div>
+  );
 }
