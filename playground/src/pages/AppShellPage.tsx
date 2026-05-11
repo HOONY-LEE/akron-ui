@@ -287,9 +287,9 @@ const deviceConfigs = {
     imageW: 2170,
     imageH: 1430,
     /* Screen area within image (%) — tightened to stay inside bezel */
-    screen: { top: 6.8, left: 8.5, width: 83.0, height: 81.5 },
+    screen: { top: 10.5, left: 9.6, width: 80.8, height: 77.0 },
     screenRadius: 6,
-    displayW: 1260,
+    displayW: 1300,
   },
   tablet: {
     iframeW: 900,
@@ -397,8 +397,6 @@ function DevicePreview({ url }: { url: string }) {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        background: "var(--ark-color-bg-subtle)",
-        minHeight: device === "pc" ? 480 : 560,
       }}>
         <div style={{
           position: "relative",
