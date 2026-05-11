@@ -333,11 +333,9 @@ function DevicePreview({ url }: { url: string }) {
 
   /* Calculate display dimensions */
   const displayW = cfg.displayW;
-  const displayH = displayW * (cfg.imageH / cfg.imageW);
 
   /* Screen area in display pixels */
   const screenPxW = displayW * cfg.screen.width / 100;
-  const screenPxH = displayH * cfg.screen.height / 100;
 
   /* Scale iframe to fit screen area */
   const scale = screenPxW / cfg.iframeW;
@@ -386,14 +384,27 @@ function DevicePreview({ url }: { url: string }) {
         padding: device === "pc" ? "24px 0 32px" : device === "mobile" ? "56px 24px 32px" : "32px 24px",
         display: "flex",
         justifyContent: "center",
-        alignItems: "center",
+        alignItems: "flex-start",
       }}>
         <div style={{
           position: "relative",
           width: displayW,
-          height: displayH,
+          maxWidth: "100%",
         }}>
-          {/* iframe positioned inside the screen area — rendered FIRST (below) */}
+          {/* Device mockup image — determines container height via natural aspect ratio */}
+          <img
+            src={cfg.image}
+            alt={`${device} frame`}
+            style={{
+              width: "100%",
+              height: "auto",
+              display: "block",
+              pointerEvents: "none",
+              position: "relative",
+              zIndex: 2,
+            }}
+          />
+          {/* iframe positioned inside the screen area, overflow clipped */}
           <div style={{
             position: "absolute",
             top: `${cfg.screen.top}%`,
@@ -402,6 +413,7 @@ function DevicePreview({ url }: { url: string }) {
             height: `${cfg.screen.height}%`,
             overflow: "hidden",
             borderRadius: cfg.screenRadius,
+            zIndex: 1,
           }}>
             <iframe
               src={embedUrl}
@@ -415,19 +427,6 @@ function DevicePreview({ url }: { url: string }) {
               }}
             />
           </div>
-          {/* Device mockup image — rendered LAST (on top, masks overflow) */}
-          <img
-            src={cfg.image}
-            alt={`${device} frame`}
-            style={{
-              width: "100%",
-              height: "100%",
-              display: "block",
-              pointerEvents: "none",
-              position: "relative",
-              zIndex: 2,
-            }}
-          />
         </div>
       </div>
     </div>
