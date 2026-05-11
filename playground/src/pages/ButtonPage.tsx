@@ -1,6 +1,7 @@
 import { Button } from "@sunghoon_lee/akron-ui";
 import { Mail, ArrowRight } from "lucide-react";
 import { CodeBlock } from "../components/CodeBlock";
+import { LiveCodeBlock } from "../components/LiveCodeBlock";
 
 export function ButtonPage() {
   return (
@@ -18,15 +19,12 @@ export function ButtonPage() {
           <code className="inline-code">variant</code>와 <code className="inline-code">size</code> prop으로
           버튼의 시각적 스타일과 크기를 지정합니다.
         </p>
-        <div className="example-label">Editable Example</div>
-        <div className="preview-box">
-          <Button variant="primary">확인</Button>
-          <Button variant="secondary">취소</Button>
-          <Button variant="outline">더보기</Button>
-        </div>
-        <CodeBlock>{`<Button variant="primary">확인</Button>
+        <LiveCodeBlock
+          code={`<Button variant="primary">확인</Button>
 <Button variant="secondary">취소</Button>
-<Button variant="outline">더보기</Button>`}</CodeBlock>
+<Button variant="outline">더보기</Button>`}
+          scope={{ Button }}
+        />
       </section>
 
       <section className="docs-section" id="sizes">
@@ -36,12 +34,12 @@ export function ButtonPage() {
           <code className="inline-code">lg</code> 세 가지 크기를 지원합니다.
           기본값은 <code className="inline-code">md</code>입니다.
         </p>
-        <div className="example-label">Editable Example</div>
-        <div className="preview-box">
-          <Button size="sm">Small</Button>
-          <Button size="md">Medium</Button>
-          <Button size="lg">Large</Button>
-        </div>
+        <LiveCodeBlock
+          code={`<Button size="sm">Small</Button>
+<Button size="md">Medium</Button>
+<Button size="lg">Large</Button>`}
+          scope={{ Button }}
+        />
       </section>
 
       <section className="docs-section" id="states">
@@ -50,11 +48,11 @@ export function ButtonPage() {
           <code className="inline-code">loading</code> 상태에서는 스피너가 표시되며
           클릭이 불가능합니다. <code className="inline-code">disabled</code>는 버튼을 비활성화합니다.
         </p>
-        <div className="example-label">Editable Example</div>
-        <div className="preview-box">
-          <Button loading>저장 중...</Button>
-          <Button disabled>비활성</Button>
-        </div>
+        <LiveCodeBlock
+          code={`<Button loading>저장 중...</Button>
+<Button disabled>비활성</Button>`}
+          scope={{ Button }}
+        />
       </section>
 
       <section className="docs-section" id="variants">
@@ -63,40 +61,14 @@ export function ButtonPage() {
           5가지 variant를 제공합니다. 맥락에 따라 적절한 스타일을 선택하세요.
         </p>
 
-        <h3 className="section-subtitle">primary</h3>
-        <p className="section-desc">가장 강조되는 주요 액션에 사용합니다.</p>
-        <div className="preview-box">
-          <Button variant="primary" leftIcon={<Mail size={16} />}>메일 전송</Button>
-          <Button variant="primary" rightIcon={<ArrowRight size={16} />}>다음 단계</Button>
-        </div>
-
-        <h3 className="section-subtitle">secondary</h3>
-        <p className="section-desc">보조 액션에 사용합니다.</p>
-        <div className="preview-box">
-          <Button variant="secondary">필터</Button>
-          <Button variant="secondary">내보내기</Button>
-        </div>
-
-        <h3 className="section-subtitle">outline</h3>
-        <p className="section-desc">테두리만 있는 스타일입니다. 보조적인 액션에 적합합니다.</p>
-        <div className="preview-box">
-          <Button variant="outline">수정</Button>
-          <Button variant="outline">복사</Button>
-        </div>
-
-        <h3 className="section-subtitle">ghost</h3>
-        <p className="section-desc">배경이 없는 텍스트 스타일입니다. 부가 액션에 사용합니다.</p>
-        <div className="preview-box">
-          <Button variant="ghost">더보기</Button>
-          <Button variant="ghost">접기</Button>
-        </div>
-
-        <h3 className="section-subtitle">danger</h3>
-        <p className="section-desc">삭제 등 파괴적 액션에 사용합니다.</p>
-        <div className="preview-box">
-          <Button variant="danger">삭제</Button>
-          <Button variant="danger">계정 탈퇴</Button>
-        </div>
+        <LiveCodeBlock
+          code={`<Button variant="primary" leftIcon={<Mail size={16} />}>메일 전송</Button>
+<Button variant="secondary">필터</Button>
+<Button variant="outline">수정</Button>
+<Button variant="ghost">더보기</Button>
+<Button variant="danger">삭제</Button>`}
+          scope={{ Button, Mail, ArrowRight }}
+        />
       </section>
 
       <section className="docs-section" id="interface">

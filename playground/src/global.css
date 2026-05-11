@@ -250,6 +250,56 @@ body {
   outline-offset: 2px;
 }
 
+/* ── Live Code Block ── */
+.live-preview {
+  background-color: var(--docs-bg-preview);
+  border-radius: 12px 12px 0 0;
+  border: 1px solid var(--docs-border);
+  border-bottom: none;
+  padding: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+.live-editor-wrap {
+  position: relative;
+  background-color: var(--docs-code-bg);
+  border-radius: 0 0 10px 10px;
+  border: 1px solid var(--docs-border);
+  border-top: 1px dashed var(--docs-border);
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.live-editor-wrap textarea,
+.live-editor-wrap pre {
+  padding: 16px 20px !important;
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace !important;
+  font-size: 13px !important;
+  line-height: 1.7 !important;
+}
+
+.live-editor-wrap textarea:focus {
+  outline: none;
+}
+
+.live-error {
+  background-color: var(--ark-color-primary-50);
+  color: var(--ark-color-primary-600);
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  padding: 12px 16px;
+  border-radius: 0 0 10px 10px;
+  margin-top: -24px;
+  margin-bottom: 24px;
+  border: 1px solid var(--ark-color-primary-200);
+  border-top: none;
+}
+
 /* ── Inline Code ── */
 .inline-code {
   background-color: var(--docs-code-bg);

@@ -1,5 +1,6 @@
 import { Input } from "@sunghoon_lee/akron-ui";
 import { CodeBlock } from "../components/CodeBlock";
+import { LiveCodeBlock } from "../components/LiveCodeBlock";
 
 export function InputPage() {
   return (
@@ -17,13 +18,10 @@ export function InputPage() {
           <code className="inline-code">label</code> prop으로 라벨을 지정합니다.
           placeholder는 라벨을 대체하지 않으며, 보조 힌트로만 사용합니다.
         </p>
-        <div className="example-label">Editable Example</div>
-        <div className="preview-box vertical">
-          <Input label="이름" placeholder="홍길동" />
-          <Input label="이메일" type="email" placeholder="name@company.com" />
-        </div>
-        <CodeBlock>{`<Input label="이름" placeholder="홍길동" />
-<Input label="이메일" type="email" placeholder="name@company.com" />`}</CodeBlock>
+        <LiveCodeBlock
+          code={`<Input label="이름" placeholder="홍길동" />\n<Input label="이메일" type="email" placeholder="name@company.com" />`}
+          scope={{ Input }}
+        />
       </section>
 
       <section className="docs-section" id="sizes">

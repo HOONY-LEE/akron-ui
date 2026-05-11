@@ -6,7 +6,7 @@ import {
   TableHead,
   TableCell,
 } from "@sunghoon_lee/akron-ui";
-import { CodeBlock } from "../components/CodeBlock";
+import { LiveCodeBlock } from "../components/LiveCodeBlock";
 
 export function TablePage() {
   return (
@@ -30,63 +30,50 @@ export function TablePage() {
           <code className="inline-code">TableCell</code>을 조합하여 사용합니다.
         </p>
         <div className="example-label">Editable Example</div>
-        <div className="preview-box" style={{ padding: 0, overflow: "hidden" }}>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>사원명</TableHead>
-                <TableHead>부서</TableHead>
-                <TableHead>직급</TableHead>
-                <TableHead>입사일</TableHead>
-                <TableHead numeric>연봉 (만원)</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              <TableRow>
-                <TableCell>홍길동</TableCell>
-                <TableCell>개발팀</TableCell>
-                <TableCell>시니어</TableCell>
-                <TableCell>2020-03-15</TableCell>
-                <TableCell numeric>6,500</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>김영희</TableCell>
-                <TableCell>디자인팀</TableCell>
-                <TableCell>리드</TableCell>
-                <TableCell>2019-07-01</TableCell>
-                <TableCell numeric>7,200</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>이철수</TableCell>
-                <TableCell>기획팀</TableCell>
-                <TableCell>매니저</TableCell>
-                <TableCell>2021-01-10</TableCell>
-                <TableCell numeric>5,800</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>박지영</TableCell>
-                <TableCell>마케팅팀</TableCell>
-                <TableCell>주니어</TableCell>
-                <TableCell>2023-09-01</TableCell>
-                <TableCell numeric>4,200</TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </div>
-        <CodeBlock>{`<Table>
+        <LiveCodeBlock
+          code={`<Table>
   <TableHeader>
     <TableRow>
       <TableHead>사원명</TableHead>
-      <TableHead numeric>연봉</TableHead>
+      <TableHead>부서</TableHead>
+      <TableHead>직급</TableHead>
+      <TableHead>입사일</TableHead>
+      <TableHead numeric>연봉 (만원)</TableHead>
     </TableRow>
   </TableHeader>
   <TableBody>
     <TableRow>
       <TableCell>홍길동</TableCell>
+      <TableCell>개발팀</TableCell>
+      <TableCell>시니어</TableCell>
+      <TableCell>2020-03-15</TableCell>
       <TableCell numeric>6,500</TableCell>
     </TableRow>
+    <TableRow>
+      <TableCell>김영희</TableCell>
+      <TableCell>디자인팀</TableCell>
+      <TableCell>리드</TableCell>
+      <TableCell>2019-07-01</TableCell>
+      <TableCell numeric>7,200</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>이철수</TableCell>
+      <TableCell>기획팀</TableCell>
+      <TableCell>매니저</TableCell>
+      <TableCell>2021-01-10</TableCell>
+      <TableCell numeric>5,800</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>박지영</TableCell>
+      <TableCell>마케팅팀</TableCell>
+      <TableCell>주니어</TableCell>
+      <TableCell>2023-09-01</TableCell>
+      <TableCell numeric>4,200</TableCell>
+    </TableRow>
   </TableBody>
-</Table>`}</CodeBlock>
+</Table>`}
+          scope={{ Table, TableHeader, TableBody, TableRow, TableHead, TableCell }}
+        />
       </section>
 
       <section className="docs-section" id="numeric">

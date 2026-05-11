@@ -1,6 +1,6 @@
 import { Card } from "@sunghoon_lee/akron-ui";
 import { useToast } from "@sunghoon_lee/akron-ui";
-import { CodeBlock } from "../components/CodeBlock";
+import { LiveCodeBlock } from "../components/LiveCodeBlock";
 
 export function CardPage() {
   const toast = useToast();
@@ -19,19 +19,13 @@ export function CardPage() {
         <p className="section-desc">
           기본 Card는 정적 컨테이너로 사용됩니다. 배경, 테두리, 그림자가 적용됩니다.
         </p>
-        <div className="example-label">Editable Example</div>
-        <div className="preview-box left">
-          <Card>
-            <h3 style={{ margin: "0 0 8px", fontSize: 16, fontWeight: 600 }}>프로젝트 현황</h3>
-            <p style={{ margin: 0, color: "var(--docs-text-secondary)", fontSize: 14 }}>
-              진행 중인 프로젝트 3건, 완료 12건
-            </p>
-          </Card>
-        </div>
-        <CodeBlock>{`<Card>
+        <LiveCodeBlock
+          code={`<Card>
   <h3>프로젝트 현황</h3>
   <p>진행 중인 프로젝트 3건, 완료 12건</p>
-</Card>`}</CodeBlock>
+</Card>`}
+          scope={{ Card }}
+        />
       </section>
 
       <section className="docs-section" id="clickable">

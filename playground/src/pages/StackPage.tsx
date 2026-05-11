@@ -1,5 +1,5 @@
 import { Stack, Button, Card } from "@sunghoon_lee/akron-ui";
-import { CodeBlock } from "../components/CodeBlock";
+import { LiveCodeBlock } from "../components/LiveCodeBlock";
 
 export function StackPage() {
   return (
@@ -29,17 +29,14 @@ export function StackPage() {
         </div>
 
         <h3 className="section-subtitle">horizontal</h3>
-        <div className="preview-box left">
-          <Stack direction="horizontal" gap={12}>
-            <Button variant="primary">저장</Button>
-            <Button variant="outline">취소</Button>
-            <Button variant="ghost">초기화</Button>
-          </Stack>
-        </div>
-        <CodeBlock>{`<Stack direction="horizontal" gap={12}>
+        <LiveCodeBlock
+          code={`<Stack direction="horizontal" gap={12}>
   <Button variant="primary">저장</Button>
   <Button variant="outline">취소</Button>
-</Stack>`}</CodeBlock>
+  <Button variant="ghost">초기화</Button>
+</Stack>`}
+          scope={{ Stack, Button }}
+        />
       </section>
 
       <section className="docs-section" id="alignment">
