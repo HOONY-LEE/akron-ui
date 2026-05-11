@@ -1,0 +1,13 @@
+{
+  "name": "akron-ui-monorepo",
+  "private": true,
+  "scripts": {
+    "build": "pnpm --filter @akron/ui build",
+    "dev": "pnpm --filter akron-ui-playground dev",
+    "typecheck": "pnpm --filter @akron/ui typecheck"
+  },
+  "packageManager": "pnpm@10.33.2",
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild"]
+  }
+}

@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Typecheck
+        run: pnpm --filter @akron/ui typecheck
+
+      - name: Build
+        run: pnpm --filter @akron/ui build
+
+      - name: Verify dist contents
+        run: |
+          test -f packages/ui/dist/index.js || (echo "Missing index.js" && exit 1)
+          test -f packages/ui/dist/index.cjs || (echo "Missing index.cjs" && exit 1)
+          test -f packages/ui/dist/index.d.ts || (echo "Missing index.d.ts" && exit 1)
+          test -f packages/ui/dist/index.css || (echo "Missing index.css" && exit 1)
+          test -f packages/ui/dist/tokens.css || (echo "Missing tokens.css" && exit 1)
+          echo "All dist files present"

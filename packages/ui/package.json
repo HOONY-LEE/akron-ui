@@ -27,7 +27,7 @@
     "*.css"
   ],
   "scripts": {
-    "build": "tsup",
+    "build": "tsup && cp src/tokens/tokens.css dist/tokens.css",
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit",
     "clean": "rimraf dist"
@@ -49,8 +49,5 @@
     "tsup": "^8.4.0",
     "rimraf": "^6.0.1"
   },
-  "license": "MIT",
-  "pnpm": {
-    "onlyBuiltDependencies": ["esbuild"]
-  }
+  "license": "MIT"
 }
