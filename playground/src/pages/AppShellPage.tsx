@@ -342,28 +342,18 @@ function DevicePreview({ url }: { url: string }) {
   /* Scale iframe to fit screen area */
   const scale = screenPxW / cfg.iframeW;
 
-  /* Break out of docs-content max-width for PC */
-  const breakout = device === "pc" ? {
-    marginLeft: "calc(-1 * (min(100vw, 1400px) - 100%) / 2)",
-    marginRight: "calc(-1 * (min(100vw, 1400px) - 100%) / 2)",
-    maxWidth: "none",
-  } : {};
-
   return (
-    <div style={{
-      border: "1px solid var(--ark-color-border)",
-      borderRadius: 12,
-      overflow: "hidden",
-      background: "var(--ark-color-bg)",
-      ...breakout,
-    }}>
-      {/* Toolbar */}
+    <div>
+      {/* Toolbar — stays within content width */}
       <div style={{
         padding: "12px 24px",
-        borderBottom: "1px solid var(--ark-color-border)",
+        border: "1px solid var(--ark-color-border)",
+        borderRadius: 12,
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
+        background: "var(--ark-color-bg)",
+        marginBottom: 24,
       }}>
         <div style={{ display: "flex", gap: 4 }}>
           {devices.map((d) => (
