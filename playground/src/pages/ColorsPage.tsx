@@ -132,24 +132,18 @@ function applyPalettes(
   lightPalette: { shade: number; hex: string }[],
   darkPalette: { shade: number; hex: string }[],
 ) {
-  const root = document.documentElement;
-  const isDark = root.getAttribute("data-theme") === "dark";
-  const active = isDark ? darkPalette : lightPalette;
-  active.forEach(({ shade, hex }) => {
-    root.style.setProperty(`--ark-color-primary-${shade}`, hex);
-  });
-
-  // inject a <style> for dark mode overrides so toggling theme applies correctly
+  // Inject a stylesheet — NOT inline styles — so [data-theme="dark"] selector
+  // can override correctly when theme is toggled.
   let styleEl = document.getElementById("akron-dynamic-primary");
   if (!styleEl) {
     styleEl = document.createElement("style");
     styleEl.id = "akron-dynamic-primary";
     document.head.appendChild(styleEl);
   }
-  styleEl.textContent = `
-    :root { ${lightPalette.map(({ shade, hex }) => `--ark-color-primary-${shade}: ${hex};`).join(" ")} }
-    [data-theme="dark"] { ${darkPalette.map(({ shade, hex }) => `--ark-color-primary-${shade}: ${hex};`).join(" ")} }
-  `;
+  styleEl.textContent = [
+    `:root { ${lightPalette.map(({ shade, hex }) => `--ark-color-primary-${shade}: ${hex};`).join(" ")} }`,
+    `[data-theme="dark"] { ${darkPalette.map(({ shade, hex }) => `--ark-color-primary-${shade}: ${hex};`).join(" ")} }`,
+  ].join("\n");
 }
 
 /* ── Figma-style Color Picker ── */
@@ -162,22 +156,27 @@ function FigmaColorPicker({
   onChange: (hex: string) => void;
 }) {
   const [hsv, setHsv] = useState<[number, number, number]>(() => hexToHsv(color));
-  const [hexInput, setHexInput] = useState(color.toUpperCase());
+  // Track the last hex we emitted so the parent→prop→useEffect loop doesn't
+  // overwrite the picker state with a round-tripped (possibly slightly different) value.
+  const lastEmittedRef = useRef(color.toUpperCase());
   const satPanelRef = useRef<HTMLDivElement>(null);
   const hueBarRef = useRef<HTMLDivElement>(null);
   const draggingRef = useRef<"sat" | "hue" | null>(null);
 
   useEffect(() => {
-    const newHsv = hexToHsv(color);
-    setHsv(newHsv);
-    setHexInput(color.toUpperCase());
+    const upper = color.toUpperCase();
+    if (upper !== lastEmittedRef.current) {
+      // Color changed externally (e.g. preset click) — sync picker state.
+      lastEmittedRef.current = upper;
+      setHsv(hexToHsv(color));
+    }
   }, [color]);
 
   const emitColor = useCallback(
     (h: number, s: number, v: number) => {
       const hex = hsvToHex(h, s, v);
+      lastEmittedRef.current = hex;
       setHsv([h, s, v]);
-      setHexInput(hex);
       onChange(hex);
     },
     [onChange],
@@ -219,6 +218,7 @@ function FigmaColorPicker({
   }, [handleSatMove, handleHueMove]);
 
   const [h, s, v] = hsv;
+  const currentHex = hsvToHex(h, s, v);
   const pureHue = hsvToHex(h, 100, 100);
 
   return (
@@ -301,14 +301,14 @@ function FigmaColorPicker({
         />
       </div>
 
-      {/* Hex input + preview */}
+      {/* Hex input + preview — derived directly from HSV, no separate state */}
       <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
         <div
           style={{
             width: 32,
             height: 32,
             borderRadius: 6,
-            backgroundColor: hsvToHex(h, s, v),
+            backgroundColor: currentHex,
             border: "1px solid var(--docs-border)",
             flexShrink: 0,
           }}
@@ -325,15 +325,14 @@ function FigmaColorPicker({
           </span>
           <input
             type="text"
-            value={hexInput.replace("#", "")}
+            value={currentHex.replace("#", "")}
             onChange={(e) => {
               const raw = e.target.value.replace(/[^0-9A-Fa-f]/g, "").slice(0, 6);
-              setHexInput("#" + raw.toUpperCase());
               if (raw.length === 6) {
-                const hex = "#" + raw;
-                const newHsv = hexToHsv(hex);
-                setHsv(newHsv);
-                onChange(hex.toUpperCase());
+                const hex = "#" + raw.toUpperCase();
+                lastEmittedRef.current = hex;
+                setHsv(hexToHsv(hex));
+                onChange(hex);
               }
             }}
             style={{
@@ -377,10 +376,17 @@ const APPLE_PRESETS = [
 
 /* ── Page ── */
 
+const DEFAULT_COLOR = "#FF383C"; // 빨간색 기본 라이트 (Apple HIG)
+
 export function ColorsPage() {
-  const [baseColor, setBaseColor] = useState("#007AFF");
-  const [lightPalette, setLightPalette] = useState(() => generateLightPalette("#007AFF"));
-  const [darkPalette, setDarkPalette] = useState(() => generateDarkPalette("#007AFF"));
+  const [baseColor, setBaseColor] = useState(DEFAULT_COLOR);
+  const [lightPalette, setLightPalette] = useState(() => generateLightPalette(DEFAULT_COLOR));
+  const [darkPalette, setDarkPalette] = useState(() => generateDarkPalette(DEFAULT_COLOR));
+
+  // Apply palette on first render so dark mode works immediately without interaction.
+  useEffect(() => {
+    applyPalettes(generateLightPalette(DEFAULT_COLOR), generateDarkPalette(DEFAULT_COLOR));
+  }, []);
 
   const handleColorChange = useCallback((hex: string) => {
     setBaseColor(hex);
@@ -412,11 +418,11 @@ export function ColorsPage() {
           <FigmaColorPicker color={baseColor} onChange={handleColorChange} />
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
             <span style={{ fontSize: 12, fontWeight: 600, color: "var(--docs-text-tertiary)", letterSpacing: "0.03em" }}>
-              Apple System Colors
+              System Colors
             </span>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: 6 }}>
               {APPLE_PRESETS.map((p) => {
-                const isSelected = baseColor.toUpperCase() === p.light;
+                const isSelected = baseColor.toUpperCase() === p.light.toUpperCase();
                 return (
                   <button
                     key={p.name}

@@ -99,7 +99,9 @@ export function App() {
   }, [darkMode]);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const el = document.querySelector("[data-appshell-body]");
+    if (el) el.scrollTop = 0;
+    else window.scrollTo(0, 0);
   }, [location.pathname]);
 
   if (location.pathname.startsWith("/preview")) {

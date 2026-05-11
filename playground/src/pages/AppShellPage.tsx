@@ -225,14 +225,14 @@ function LayoutWireframe({
         </g>
       )}
 
-      {/* Header */}
+      {/* Header — spans full width after left sidebar, sits above right sidebar */}
       {header && (
         <g>
-          <rect x={contentLeft} y={0} width={w - contentLeft - contentRight} height={headerH} fill="var(--ark-color-bg)" />
-          <line x1={contentLeft} y1={headerH} x2={w - contentRight} y2={headerH} stroke="var(--ark-color-border)" />
+          <rect x={contentLeft} y={0} width={w - contentLeft} height={headerH} fill="var(--ark-color-bg)" />
+          <line x1={contentLeft} y1={headerH} x2={w} y2={headerH} stroke="var(--ark-color-border)" />
           <rect x={contentLeft + 16} y={12} width={60} height={8} rx={3} fill="var(--ark-color-gray-400)" />
-          <circle cx={w - contentRight - 20} cy={16} r={6} fill="var(--ark-color-gray-300)" />
-          <circle cx={w - contentRight - 40} cy={16} r={6} fill="var(--ark-color-gray-300)" />
+          <circle cx={w - 20} cy={16} r={6} fill="var(--ark-color-gray-300)" />
+          <circle cx={w - 40} cy={16} r={6} fill="var(--ark-color-gray-300)" />
           <text x={(contentLeft + w - contentRight) / 2} y={20} textAnchor="middle" fontSize={9} fill="var(--ark-color-text-secondary)" fontWeight={600}>헤더</text>
         </g>
       )}

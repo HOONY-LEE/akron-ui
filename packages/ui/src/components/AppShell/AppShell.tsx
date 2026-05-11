@@ -62,6 +62,7 @@ export const AppShell = forwardRef<HTMLDivElement, AppShellProps>(
         )}
 
         <div
+          data-appshell-body
           className={[
             styles.body,
             sidebar && sidebarCollapsed ? styles.bodyCollapsed : "",
