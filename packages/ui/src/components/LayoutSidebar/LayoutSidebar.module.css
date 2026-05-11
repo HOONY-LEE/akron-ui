@@ -112,12 +112,12 @@
 
 .groupChevron {
   transition: transform var(--ark-transition-fast);
-  transform: rotate(-90deg);
+  transform: rotate(0deg);
   flex-shrink: 0;
 }
 
 .groupChevronOpen {
-  transform: rotate(0deg);
+  transform: rotate(180deg);
 }
 
 .item {
@@ -197,7 +197,8 @@
   display: none;
 }
 
-.sidebarCollapsed .groupLabel {
+.sidebarCollapsed .groupLabel,
+.sidebarCollapsed .groupLabelBtn {
   display: none;
 }
 
