@@ -133,7 +133,7 @@ export function AppShellPage() {
               ))}
             </div>
             <span style={{ fontSize: 11, color: "var(--ark-color-text-disabled)", fontVariantNumeric: "tabular-nums" }}>
-              {device === "pc" ? "1920 × 1080" : device === "tablet" ? "1024 × 1366" : "390 × 844"}
+              {device === "pc" ? "1920 × 1080" : device === "tablet" ? "1024 × 1366" : "393 × 852"}
             </span>
           </div>
 
@@ -273,8 +273,13 @@ function LayoutWireframe({
       viewBox={`0 0 ${w} ${h}`}
       style={{ borderRadius: radius, border: "1px solid var(--ark-color-border)", transition: "width 0.3s ease, height 0.3s ease" }}
     >
-      {/* Background */}
-      <rect width={w} height={h} fill="var(--ark-color-bg-subtle)" rx={radius} />
+      {/* Background — mobile/tablet use bg so bezels match header */}
+      <rect width={w} height={h} fill={device === "pc" ? "var(--ark-color-bg-subtle)" : "var(--ark-color-bg)"} rx={radius} />
+
+      {/* Mobile/Tablet: content area background */}
+      {device !== "pc" && (
+        <rect x={0} y={contentTop} width={w} height={h - contentTop - contentBottom} fill="var(--ark-color-bg-subtle)" />
+      )}
 
       {/* Device bezels — notch / camera / home indicator */}
       {device === "mobile" && (
