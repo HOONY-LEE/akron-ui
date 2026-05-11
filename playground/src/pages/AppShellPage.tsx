@@ -15,10 +15,19 @@ const layoutOptions: ToggleOption[] = [
   { key: "footer", label: "푸터", defaultOn: true },
 ];
 
+type DeviceType = "pc" | "tablet" | "mobile";
+
+const deviceList: { key: DeviceType; label: string; icon: typeof Monitor }[] = [
+  { key: "pc", label: "Desktop", icon: Monitor },
+  { key: "tablet", label: "Tablet", icon: Tablet },
+  { key: "mobile", label: "Mobile", icon: Smartphone },
+];
+
 export function AppShellPage() {
   const [selected, setSelected] = useState<Record<string, boolean>>(() =>
     Object.fromEntries(layoutOptions.map((o) => [o.key, o.defaultOn]))
   );
+  const [device, setDevice] = useState<DeviceType>("pc");
 
   const toggle = (key: string) =>
     setSelected((prev) => ({ ...prev, [key]: !prev[key] }));
@@ -38,7 +47,8 @@ export function AppShellPage() {
       <section className="docs-section" id="builder">
         <h2 className="section-title">레이아웃 빌더</h2>
         <p className="section-desc">
-          원하는 레이아웃 요소를 선택하고 전체 화면 미리보기로 확인하세요.
+          원하는 레이아웃 요소와 디바이스를 선택하고 반응형 미리보기를 확인하세요.
+          PC에서는 전체 사이드바, 태블릿에서는 아이콘 전용, 모바일에서는 오버레이 패턴으로 전환됩니다.
         </p>
 
         <div style={{
@@ -47,7 +57,7 @@ export function AppShellPage() {
           overflow: "hidden",
           background: "var(--ark-color-bg)",
         }}>
-          {/* Toggle controls + preview button */}
+          {/* Toggle controls + device selector + preview button */}
           <div style={{
             padding: "20px 24px",
             borderBottom: "1px solid var(--ark-color-border)",
@@ -92,6 +102,41 @@ export function AppShellPage() {
             </button>
           </div>
 
+          {/* Device selector */}
+          <div style={{
+            padding: "12px 24px",
+            borderBottom: "1px solid var(--ark-color-border)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            background: "var(--ark-color-bg-subtle)",
+          }}>
+            <div style={{ display: "flex", gap: 4 }}>
+              {deviceList.map((d) => (
+                <button
+                  key={d.key}
+                  onClick={() => setDevice(d.key)}
+                  style={{
+                    display: "flex", alignItems: "center", gap: 6,
+                    padding: "5px 12px", fontSize: 12, fontWeight: 500,
+                    border: "1px solid",
+                    borderColor: device === d.key ? "var(--ark-color-primary-500)" : "var(--ark-color-border)",
+                    borderRadius: 6, cursor: "pointer",
+                    background: device === d.key ? "var(--ark-color-primary-50)" : "var(--ark-color-bg)",
+                    color: device === d.key ? "var(--ark-color-primary-600)" : "var(--ark-color-text-secondary)",
+                    transition: "all 150ms ease",
+                  }}
+                >
+                  <d.icon size={13} />
+                  {d.label}
+                </button>
+              ))}
+            </div>
+            <span style={{ fontSize: 11, color: "var(--ark-color-text-disabled)" }}>
+              {device === "pc" ? "사이드바 전체 표시" : device === "tablet" ? "아이콘 전용 사이드바" : "오버레이 사이드바"}
+            </span>
+          </div>
+
           {/* Mini wireframe preview */}
           <div style={{ padding: 24, display: "flex", justifyContent: "center" }}>
             <LayoutWireframe
@@ -99,18 +144,10 @@ export function AppShellPage() {
               leftSidebar={selected.leftSidebar}
               rightSidebar={selected.rightSidebar}
               footer={selected.footer}
+              device={device}
             />
           </div>
         </div>
-      </section>
-
-      <section className="docs-section" id="responsive">
-        <h2 className="section-title">반응형 미리보기</h2>
-        <p className="section-desc">
-          AppShell은 PC · 태블릿 · 모바일 3단계 반응형을 지원합니다.
-          PC에서는 전체 사이드바, 태블릿에서는 아이콘 전용, 모바일에서는 오버레이 패턴으로 전환됩니다.
-        </p>
-        <DevicePreview url={buildPreviewUrl(selected)} />
       </section>
 
       <section className="docs-section" id="usage">
@@ -188,32 +225,51 @@ function ToggleChip({ active, onClick }: { active: boolean; onClick: () => void 
   );
 }
 
-function LayoutWireframe({
-  header, leftSidebar, rightSidebar, footer,
-}: {
-  header: boolean; leftSidebar: boolean; rightSidebar: boolean; footer: boolean;
-}) {
-  const w = 480;
-  const h = 300;
-  const sidebarW = 80;
-  const headerH = 32;
-  const footerH = 28;
+/* ── Responsive-aware Layout Wireframe ── */
 
-  const contentLeft = leftSidebar ? sidebarW : 0;
-  const contentRight = rightSidebar ? sidebarW : 0;
+function LayoutWireframe({
+  header, leftSidebar, rightSidebar, footer, device,
+}: {
+  header: boolean; leftSidebar: boolean; rightSidebar: boolean; footer: boolean; device: DeviceType;
+}) {
+  /* Dimensions per device */
+  const dims = device === "mobile"
+    ? { w: 220, h: 400, sidebarW: 0, collapsedW: 0, headerH: 32, footerH: 24 }
+    : device === "tablet"
+    ? { w: 340, h: 440, sidebarW: 40, collapsedW: 40, headerH: 32, footerH: 26 }
+    : { w: 480, h: 300, sidebarW: 80, collapsedW: 80, headerH: 32, footerH: 28 };
+
+  const { w, h, headerH, footerH } = dims;
+
+  /* Sidebar width depends on device */
+  const leftW = leftSidebar
+    ? device === "mobile" ? 0 : device === "tablet" ? dims.collapsedW : dims.sidebarW
+    : 0;
+  const rightW = rightSidebar
+    ? device === "mobile" ? 0 : device === "tablet" ? 0 : dims.sidebarW
+    : 0;
+
+  const contentLeft = leftW;
+  const contentRight = rightW;
   const contentTop = header ? headerH : 0;
   const contentBottom = footer ? footerH : 0;
+  const contentW = w - contentLeft - contentRight;
 
   return (
-    <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} style={{ borderRadius: 8, border: "1px solid var(--ark-color-border)" }}>
+    <svg
+      width={w}
+      height={h}
+      viewBox={`0 0 ${w} ${h}`}
+      style={{ borderRadius: 8, border: "1px solid var(--ark-color-border)", transition: "width 0.3s ease, height 0.3s ease" }}
+    >
       {/* Background */}
       <rect width={w} height={h} fill="var(--ark-color-bg-subtle)" rx={8} />
 
-      {/* Left Sidebar */}
-      {leftSidebar && (
+      {/* Left Sidebar — full (PC), icon-only (Tablet), hidden (Mobile) */}
+      {leftSidebar && device === "pc" && (
         <g>
-          <rect x={0} y={0} width={sidebarW} height={h} fill="var(--ark-color-bg)" rx={8} />
-          <rect x={0} y={0} width={sidebarW} height={h} fill="none" stroke="var(--ark-color-border)" rx={8} />
+          <rect x={0} y={0} width={leftW} height={h} fill="var(--ark-color-bg)" rx={8} />
+          <rect x={0} y={0} width={leftW} height={h} fill="none" stroke="var(--ark-color-border)" rx={8} />
           <rect x={14} y={16} width={52} height={8} rx={3} fill="var(--ark-color-primary-500)" opacity={0.7} />
           <rect x={14} y={36} width={40} height={5} rx={2} fill="var(--ark-color-gray-300)" />
           <rect x={14} y={48} width={52} height={6} rx={3} fill="var(--ark-color-primary-100)" />
@@ -222,40 +278,77 @@ function LayoutWireframe({
           <rect x={14} y={92} width={40} height={5} rx={2} fill="var(--ark-color-gray-300)" />
           <rect x={14} y={104} width={50} height={6} rx={3} fill="var(--ark-color-gray-200)" />
           <rect x={14} y={116} width={42} height={6} rx={3} fill="var(--ark-color-gray-200)" />
-          <text x={sidebarW / 2} y={h - 20} textAnchor="middle" fontSize={9} fill="var(--ark-color-text-secondary)" fontWeight={600}>사이드바</text>
+          <text x={leftW / 2} y={h - 20} textAnchor="middle" fontSize={9} fill="var(--ark-color-text-secondary)" fontWeight={600}>사이드바</text>
+        </g>
+      )}
+      {leftSidebar && device === "tablet" && (
+        <g>
+          <rect x={0} y={0} width={leftW} height={h} fill="var(--ark-color-bg)" rx={8} />
+          <rect x={0} y={0} width={leftW} height={h} fill="none" stroke="var(--ark-color-border)" rx={8} />
+          {/* Icon placeholders */}
+          <rect x={10} y={14} width={20} height={6} rx={3} fill="var(--ark-color-primary-500)" opacity={0.7} />
+          <rect x={12} y={32} width={16} height={16} rx={4} fill="var(--ark-color-primary-100)" />
+          <rect x={12} y={54} width={16} height={16} rx={4} fill="var(--ark-color-gray-200)" />
+          <rect x={12} y={76} width={16} height={16} rx={4} fill="var(--ark-color-gray-200)" />
+          <rect x={12} y={104} width={16} height={16} rx={4} fill="var(--ark-color-gray-200)" />
+          <rect x={12} y={126} width={16} height={16} rx={4} fill="var(--ark-color-gray-200)" />
         </g>
       )}
 
-      {/* Header — spans full width after left sidebar, sits above right sidebar */}
+      {/* Header */}
       {header && (
         <g>
           <rect x={contentLeft} y={0} width={w - contentLeft} height={headerH} fill="var(--ark-color-bg)" />
           <line x1={contentLeft} y1={headerH} x2={w} y2={headerH} stroke="var(--ark-color-border)" />
-          <rect x={contentLeft + 16} y={12} width={60} height={8} rx={3} fill="var(--ark-color-gray-400)" />
-          <circle cx={w - 20} cy={16} r={6} fill="var(--ark-color-gray-300)" />
-          <circle cx={w - 40} cy={16} r={6} fill="var(--ark-color-gray-300)" />
+          {/* Mobile: show hamburger icon if sidebar is on */}
+          {device === "mobile" && leftSidebar ? (
+            <>
+              <rect x={contentLeft + 12} y={11} width={14} height={2} rx={1} fill="var(--ark-color-gray-500)" />
+              <rect x={contentLeft + 12} y={15} width={14} height={2} rx={1} fill="var(--ark-color-gray-500)" />
+              <rect x={contentLeft + 12} y={19} width={14} height={2} rx={1} fill="var(--ark-color-gray-500)" />
+              <rect x={contentLeft + 34} y={12} width={50} height={8} rx={3} fill="var(--ark-color-gray-400)" />
+            </>
+          ) : (
+            <rect x={contentLeft + 16} y={12} width={60} height={8} rx={3} fill="var(--ark-color-gray-400)" />
+          )}
+          {w - contentRight > contentLeft + 100 && (
+            <>
+              <circle cx={w - contentRight - 20} cy={16} r={6} fill="var(--ark-color-gray-300)" />
+              {w - contentRight - contentLeft > 150 && (
+                <circle cx={w - contentRight - 40} cy={16} r={6} fill="var(--ark-color-gray-300)" />
+              )}
+            </>
+          )}
           <text x={(contentLeft + w - contentRight) / 2} y={20} textAnchor="middle" fontSize={9} fill="var(--ark-color-text-secondary)" fontWeight={600}>헤더</text>
         </g>
       )}
 
       {/* Content area */}
       <g>
-        <rect x={contentLeft + 20} y={contentTop + 20} width={120} height={10} rx={4} fill="var(--ark-color-gray-400)" />
-        <rect x={contentLeft + 20} y={contentTop + 40} width={200} height={7} rx={3} fill="var(--ark-color-gray-200)" />
-        <rect x={contentLeft + 20} y={contentTop + 56} width={w - contentLeft - contentRight - 40} height={50} rx={6} fill="var(--ark-color-bg)" stroke="var(--ark-color-border)" />
-        <rect x={contentLeft + 20} y={contentTop + 116} width={w - contentLeft - contentRight - 40} height={50} rx={6} fill="var(--ark-color-bg)" stroke="var(--ark-color-border)" />
-        <text x={(contentLeft + w - contentRight) / 2} y={(contentTop + h - contentBottom) / 2 + 30} textAnchor="middle" fontSize={10} fill="var(--ark-color-text-disabled)">콘텐츠 영역</text>
+        <rect x={contentLeft + 16} y={contentTop + 16} width={Math.min(120, contentW - 32)} height={10} rx={4} fill="var(--ark-color-gray-400)" />
+        <rect x={contentLeft + 16} y={contentTop + 34} width={Math.min(200, contentW - 32)} height={7} rx={3} fill="var(--ark-color-gray-200)" />
+        <rect x={contentLeft + 16} y={contentTop + 50} width={contentW - 32} height={Math.min(50, (h - contentTop - contentBottom) / 4)} rx={6} fill="var(--ark-color-bg)" stroke="var(--ark-color-border)" />
+        <rect x={contentLeft + 16} y={contentTop + 50 + Math.min(50, (h - contentTop - contentBottom) / 4) + 10} width={contentW - 32} height={Math.min(50, (h - contentTop - contentBottom) / 4)} rx={6} fill="var(--ark-color-bg)" stroke="var(--ark-color-border)" />
+        <text
+          x={(contentLeft + w - contentRight) / 2}
+          y={(contentTop + h - contentBottom) / 2 + 30}
+          textAnchor="middle"
+          fontSize={device === "mobile" ? 9 : 10}
+          fill="var(--ark-color-text-disabled)"
+        >
+          콘텐츠 영역
+        </text>
       </g>
 
-      {/* Right Sidebar */}
-      {rightSidebar && (
+      {/* Right Sidebar — hidden on tablet/mobile */}
+      {rightSidebar && device === "pc" && (
         <g>
-          <rect x={w - sidebarW} y={contentTop} width={sidebarW} height={h - contentTop - contentBottom} fill="var(--ark-color-bg-subtle)" />
-          <line x1={w - sidebarW} y1={contentTop} x2={w - sidebarW} y2={h - contentBottom} stroke="var(--ark-color-border)" />
-          <rect x={w - sidebarW + 12} y={contentTop + 16} width={56} height={7} rx={3} fill="var(--ark-color-gray-400)" />
-          <rect x={w - sidebarW + 12} y={contentTop + 32} width={56} height={24} rx={4} fill="var(--ark-color-bg)" stroke="var(--ark-color-border)" />
-          <rect x={w - sidebarW + 12} y={contentTop + 64} width={56} height={24} rx={4} fill="var(--ark-color-bg)" stroke="var(--ark-color-border)" />
-          <text x={w - sidebarW / 2} y={h - contentBottom - 16} textAnchor="middle" fontSize={8} fill="var(--ark-color-text-secondary)" fontWeight={600}>우측 패널</text>
+          <rect x={w - rightW} y={contentTop} width={rightW} height={h - contentTop - contentBottom} fill="var(--ark-color-bg-subtle)" />
+          <line x1={w - rightW} y1={contentTop} x2={w - rightW} y2={h - contentBottom} stroke="var(--ark-color-border)" />
+          <rect x={w - rightW + 12} y={contentTop + 16} width={56} height={7} rx={3} fill="var(--ark-color-gray-400)" />
+          <rect x={w - rightW + 12} y={contentTop + 32} width={56} height={24} rx={4} fill="var(--ark-color-bg)" stroke="var(--ark-color-border)" />
+          <rect x={w - rightW + 12} y={contentTop + 64} width={56} height={24} rx={4} fill="var(--ark-color-bg)" stroke="var(--ark-color-border)" />
+          <text x={w - rightW / 2} y={h - contentBottom - 16} textAnchor="middle" fontSize={8} fill="var(--ark-color-text-secondary)" fontWeight={600}>우측 패널</text>
         </g>
       )}
 
@@ -264,184 +357,28 @@ function LayoutWireframe({
         <g>
           <rect x={contentLeft} y={h - footerH} width={w - contentLeft - contentRight} height={footerH} fill="var(--ark-color-bg)" />
           <line x1={contentLeft} y1={h - footerH} x2={w - contentRight} y2={h - footerH} stroke="var(--ark-color-border)" />
-          <rect x={contentLeft + 16} y={h - footerH + 10} width={80} height={6} rx={3} fill="var(--ark-color-gray-300)" />
-          <text x={(contentLeft + w - contentRight) / 2} y={h - 8} textAnchor="middle" fontSize={9} fill="var(--ark-color-text-secondary)" fontWeight={600}>푸터</text>
+          <rect x={contentLeft + 12} y={h - footerH + Math.floor(footerH / 2) - 3} width={Math.min(80, contentW - 24)} height={6} rx={3} fill="var(--ark-color-gray-300)" />
+          <text x={(contentLeft + w - contentRight) / 2} y={h - 6} textAnchor="middle" fontSize={device === "mobile" ? 8 : 9} fill="var(--ark-color-text-secondary)" fontWeight={600}>푸터</text>
+        </g>
+      )}
+
+      {/* Mobile overlay sidebar indicator */}
+      {leftSidebar && device === "mobile" && (
+        <g opacity={0.3}>
+          <rect x={0} y={0} width={w} height={h} fill="var(--ark-color-gray-900)" rx={8} />
+          <rect x={0} y={0} width={w * 0.65} height={h} fill="var(--ark-color-bg)" rx={8} />
+          <rect x={12} y={16} width={w * 0.65 - 24} height={8} rx={3} fill="var(--ark-color-primary-500)" opacity={0.7} />
+          <rect x={12} y={36} width={w * 0.65 * 0.6} height={5} rx={2} fill="var(--ark-color-gray-300)" />
+          <rect x={12} y={48} width={w * 0.65 - 24} height={6} rx={3} fill="var(--ark-color-primary-100)" />
+          <rect x={12} y={60} width={w * 0.65 * 0.7} height={6} rx={3} fill="var(--ark-color-gray-200)" />
+          <rect x={12} y={72} width={w * 0.65 * 0.8} height={6} rx={3} fill="var(--ark-color-gray-200)" />
+          <text x={w * 0.65 / 2} y={h / 2} textAnchor="middle" fontSize={9} fill="var(--ark-color-text-secondary)" fontWeight={600}>오버레이 사이드바</text>
         </g>
       )}
 
       {/* Border */}
       <rect width={w} height={h} fill="none" stroke="var(--ark-color-border)" rx={8} />
     </svg>
-  );
-}
-
-/* ── Device configs ── */
-/* Image dimensions: macbook 2170×1430, ipad 1145×1480, iphone 467×900 */
-/* Screen insets are percentages of the image dimensions */
-
-const deviceConfigs = {
-  pc: {
-    iframeW: 1280,
-    iframeH: 800,
-    image: "/devices/macbook.png",
-    imageW: 2170,
-    imageH: 1430,
-    /* Screen area within image (%) — matches actual MacBook screen edges */
-    screen: { top: 7.5, left: 6.8, width: 86.4, height: 80.8 },
-    screenRadius: 8,
-    displayW: 1300,
-  },
-  tablet: {
-    iframeW: 900,
-    iframeH: 1200,
-    image: "/devices/ipad.png",
-    imageW: 1145,
-    imageH: 1480,
-    screen: { top: 4.4, left: 5.0, width: 90.0, height: 91.2 },
-    screenRadius: 6,
-    displayW: 560,
-  },
-  mobile: {
-    iframeW: 375,
-    iframeH: 812,
-    image: "/devices/iphone.png",
-    imageW: 467,
-    imageH: 900,
-    screen: { top: 3.0, left: 5.5, width: 89.0, height: 94.0 },
-    screenRadius: 24,
-    displayW: 300,
-  },
-};
-
-const devices = [
-  { key: "pc" as const, label: "Desktop", icon: Monitor },
-  { key: "tablet" as const, label: "Tablet", icon: Tablet },
-  { key: "mobile" as const, label: "Mobile", icon: Smartphone },
-];
-
-/* ── Image-based Device Frame ── */
-
-function DeviceFrame({ device }: { device: "pc" | "tablet" | "mobile"; url: string }) {
-  return null; // placeholder, actual rendering is inline in DevicePreview
-}
-
-function DevicePreview({ url }: { url: string }) {
-  const [device, setDevice] = useState<"pc" | "tablet" | "mobile">("pc");
-  const cfg = deviceConfigs[device];
-
-  const embedUrl = url + (url.includes("?") ? "&" : "?") + "embed=1";
-
-  /* Calculate display dimensions */
-  const displayW = cfg.displayW;
-  const displayH = displayW * (cfg.imageH / cfg.imageW);
-
-  /* Screen area in display pixels */
-  const screenPxW = displayW * cfg.screen.width / 100;
-  const screenPxH = displayH * cfg.screen.height / 100;
-
-  /* Scale iframe to fit screen area — use smaller scale so it fits both directions */
-  const fitScale = Math.min(screenPxW / cfg.iframeW, screenPxH / cfg.iframeH);
-  /* PC: shrink content to 80% so it sits with visible margin inside the bezel */
-  const contentShrink = device === "pc" ? 0.80 : 1;
-  const scale = fitScale * contentShrink;
-
-  /* Center the shrunken content within the screen area */
-  const renderedW = cfg.iframeW * scale;
-  const renderedH = cfg.iframeH * scale;
-  const offsetX = (screenPxW - renderedW) / 2;
-  const offsetY = (screenPxH - renderedH) / 2;
-
-  return (
-    <div>
-      {/* Toolbar — stays within content width */}
-      <div style={{
-        padding: "12px 24px",
-        border: "1px solid var(--ark-color-border)",
-        borderRadius: 12,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        background: "var(--ark-color-bg)",
-        marginBottom: 24,
-      }}>
-        <div style={{ display: "flex", gap: 4 }}>
-          {devices.map((d) => (
-            <button
-              key={d.key}
-              onClick={() => setDevice(d.key)}
-              style={{
-                display: "flex", alignItems: "center", gap: 6,
-                padding: "6px 14px", fontSize: 13, fontWeight: 500,
-                border: "1px solid",
-                borderColor: device === d.key ? "var(--ark-color-primary-500)" : "var(--ark-color-border)",
-                borderRadius: 8, cursor: "pointer",
-                background: device === d.key ? "var(--ark-color-primary-50)" : "var(--ark-color-bg)",
-                color: device === d.key ? "var(--ark-color-primary-600)" : "var(--ark-color-text-secondary)",
-                transition: "all 150ms ease",
-              }}
-            >
-              <d.icon size={14} />
-              {d.label}
-            </button>
-          ))}
-        </div>
-        <span style={{ fontSize: 12, color: "var(--ark-color-text-secondary)" }}>
-          {cfg.iframeW} × {cfg.iframeH}
-        </span>
-      </div>
-
-      {/* Device frame area */}
-      <div style={{
-        padding: device === "pc" ? "24px 0 32px" : device === "mobile" ? "56px 24px 32px" : "32px 24px",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "flex-start",
-      }}>
-        <div style={{
-          position: "relative",
-          width: displayW,
-          maxWidth: "100%",
-        }}>
-          {/* Device mockup image — determines container height via natural aspect ratio */}
-          <img
-            src={cfg.image}
-            alt={`${device} frame`}
-            style={{
-              width: "100%",
-              height: "auto",
-              display: "block",
-              pointerEvents: "none",
-              position: "relative",
-              zIndex: 2,
-            }}
-          />
-          {/* iframe positioned inside the screen area, overflow clipped */}
-          <div style={{
-            position: "absolute",
-            top: `${cfg.screen.top}%`,
-            left: `${cfg.screen.left}%`,
-            width: `${cfg.screen.width}%`,
-            height: `${cfg.screen.height}%`,
-            overflow: "hidden",
-            borderRadius: cfg.screenRadius,
-            zIndex: 1,
-            background: "#111",
-          }}>
-            <iframe
-              src={embedUrl}
-              title={`${device} preview`}
-              style={{
-                width: cfg.iframeW,
-                height: cfg.iframeH,
-                border: "none",
-                transform: `translate(${offsetX}px, ${offsetY}px) scale(${scale})`,
-                transformOrigin: "top left",
-              }}
-            />
-          </div>
-        </div>
-      </div>
-    </div>
   );
 }
 
