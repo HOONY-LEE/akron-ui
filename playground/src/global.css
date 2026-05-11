@@ -169,7 +169,8 @@ body {
 
 /* ── Code Block ── */
 .code-block {
-  background-color: var(--docs-code-bg);
+  position: relative;
+  background-color: #1e1e1e;
   border-radius: 10px;
   padding: 16px 20px;
   font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
@@ -177,11 +178,45 @@ body {
   line-height: 1.7;
   overflow-x: auto;
   margin-bottom: 24px;
-  color: var(--docs-text-secondary);
+}
+
+.code-block pre {
+  margin: 0;
 }
 
 .code-block code {
-  color: var(--docs-text);
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.code-copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-family: var(--ark-font-family, sans-serif);
+  color: #a0a0a0;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 150ms ease, color 150ms ease;
+  z-index: 1;
+}
+
+.code-copy-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #e0e0e0;
+}
+
+.code-copy-btn:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
 }
 
 /* ── Inline Code ── */

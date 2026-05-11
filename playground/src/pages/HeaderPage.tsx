@@ -1,5 +1,6 @@
 import { Header, Button } from "@akron/ui";
 import { Bell, Search, User, ExternalLink } from "lucide-react";
+import { CodeBlock } from "../components/CodeBlock";
 
 export function HeaderPage() {
   return (
@@ -36,8 +37,7 @@ export function HeaderPage() {
             }
           />
         </div>
-        <div className="code-block">
-          <code>{`<Header
+        <CodeBlock>{`<Header
   logo={<span>Akron ERP</span>}
   sticky
   actions={
@@ -46,8 +46,7 @@ export function HeaderPage() {
       <Button variant="ghost" size="sm"><User /></Button>
     </>
   }
-/>`}</code>
-        </div>
+/>`}</CodeBlock>
       </section>
 
       <section className="docs-section" id="sticky">

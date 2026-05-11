@@ -1,5 +1,6 @@
 import { Button } from "@akron/ui";
 import { Mail, ArrowRight } from "lucide-react";
+import { CodeBlock } from "../components/CodeBlock";
 
 export function ButtonPage() {
   return (
@@ -23,11 +24,9 @@ export function ButtonPage() {
           <Button variant="secondary">취소</Button>
           <Button variant="outline">더보기</Button>
         </div>
-        <div className="code-block">
-          <code>{`<Button variant="primary">확인</Button>
+        <CodeBlock>{`<Button variant="primary">확인</Button>
 <Button variant="secondary">취소</Button>
-<Button variant="outline">더보기</Button>`}</code>
-        </div>
+<Button variant="outline">더보기</Button>`}</CodeBlock>
       </section>
 
       <section className="docs-section" id="sizes">

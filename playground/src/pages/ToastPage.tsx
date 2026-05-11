@@ -1,4 +1,5 @@
 import { Button, useToast } from "@akron/ui";
+import { CodeBlock } from "../components/CodeBlock";
 
 export function ToastPage() {
   const toast = useToast();
@@ -28,15 +29,13 @@ export function ToastPage() {
             토스트 띄우기
           </Button>
         </div>
-        <div className="code-block">
-          <code>{`const toast = useToast();
+        <CodeBlock>{`const toast = useToast();
 
 toast({
   type: "success",
   title: "저장 완료",
   message: "변경사항이 저장되었습니다.",
-});`}</code>
-        </div>
+});`}</CodeBlock>
       </section>
 
       <section className="docs-section" id="types">

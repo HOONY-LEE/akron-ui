@@ -1,5 +1,6 @@
 import { PageContainer, Card } from "@akron/ui";
 import { ExternalLink } from "lucide-react";
+import { CodeBlock } from "../components/CodeBlock";
 
 export function PageContainerPage() {
   return (
@@ -35,12 +36,10 @@ export function PageContainerPage() {
             </PageContainer>
           ))}
         </div>
-        <div className="code-block">
-          <code>{`<PageContainer size="lg">
+        <CodeBlock>{`<PageContainer size="lg">
   {/* 최대 1200px, 좌우 패딩 24px */}
   <Card>콘텐츠</Card>
-</PageContainer>`}</code>
-        </div>
+</PageContainer>`}</CodeBlock>
       </section>
 
       <section className="docs-section" id="interface">

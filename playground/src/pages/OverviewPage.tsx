@@ -1,4 +1,5 @@
 import { Button, Card, Input, Stack } from "@akron/ui";
+import { CodeBlock } from "../components/CodeBlock";
 
 export function OverviewPage() {
   return (
@@ -55,9 +56,7 @@ export function OverviewPage() {
 
       <section className="docs-section" id="install">
         <h2 className="section-title">설치</h2>
-        <div className="code-block">
-          <code>pnpm add @akron/ui</code>
-        </div>
+        <CodeBlock>{`pnpm add @akron/ui`}</CodeBlock>
         <p className="section-desc" style={{ marginTop: 12 }}>
           피어 의존성으로 <code className="inline-code">react</code>와{" "}
           <code className="inline-code">react-dom</code> 18 이상이 필요합니다.
@@ -69,8 +68,7 @@ export function OverviewPage() {
         <p className="section-desc">
           토큰 CSS를 임포트하고 컴포넌트를 사용하세요.
         </p>
-        <div className="code-block">
-          <code>{`import "@akron/ui/tokens.css";
+        <CodeBlock>{`import "@akron/ui/tokens.css";
 import { Button, Input, Card } from "@akron/ui";
 
 function App() {
@@ -80,8 +78,7 @@ function App() {
       <Button variant="primary">제출</Button>
     </Card>
   );
-}`}</code>
-        </div>
+}`}</CodeBlock>
         <div className="example-label" style={{ marginTop: 24 }}>미리보기</div>
         <div className="preview-box left">
           <Card>
@@ -102,13 +99,11 @@ function App() {
           루트 요소에 <code className="inline-code">data-theme</code> 속성을 설정하면
           모든 토큰이 자동으로 전환됩니다.
         </p>
-        <div className="code-block">
-          <code>{`// 다크모드 활성화
+        <CodeBlock>{`// 다크모드 활성화
 document.documentElement.setAttribute("data-theme", "dark");
 
 // 라이트모드 복원
-document.documentElement.setAttribute("data-theme", "light");`}</code>
-        </div>
+document.documentElement.setAttribute("data-theme", "light");`}</CodeBlock>
       </section>
 
       <section className="docs-section" id="structure">

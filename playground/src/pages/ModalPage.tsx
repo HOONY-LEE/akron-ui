@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button, Modal } from "@akron/ui";
+import { CodeBlock } from "../components/CodeBlock";
 
 export function ModalPage() {
   const [smOpen, setSmOpen] = useState(false);
@@ -38,8 +39,7 @@ export function ModalPage() {
             <Button variant="primary" onClick={() => setMdOpen(false)}>저장</Button>
           </div>
         </Modal>
-        <div className="code-block">
-          <code>{`const [open, setOpen] = useState(false);
+        <CodeBlock>{`const [open, setOpen] = useState(false);
 
 <Button onClick={() => setOpen(true)}>모달 열기</Button>
 <Modal
@@ -49,8 +49,7 @@ export function ModalPage() {
   description="수정한 내용은 즉시 반영됩니다."
 >
   <Button onClick={() => setOpen(false)}>저장</Button>
-</Modal>`}</code>
-        </div>
+</Modal>`}</CodeBlock>
       </section>
 
       <section className="docs-section" id="sizes">

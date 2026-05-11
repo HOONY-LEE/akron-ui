@@ -1,4 +1,5 @@
 import { Stack, Button, Card } from "@akron/ui";
+import { CodeBlock } from "../components/CodeBlock";
 
 export function StackPage() {
   return (
@@ -35,12 +36,10 @@ export function StackPage() {
             <Button variant="ghost">초기화</Button>
           </Stack>
         </div>
-        <div className="code-block">
-          <code>{`<Stack direction="horizontal" gap={12}>
+        <CodeBlock>{`<Stack direction="horizontal" gap={12}>
   <Button variant="primary">저장</Button>
   <Button variant="outline">취소</Button>
-</Stack>`}</code>
-        </div>
+</Stack>`}</CodeBlock>
       </section>
 
       <section className="docs-section" id="alignment">

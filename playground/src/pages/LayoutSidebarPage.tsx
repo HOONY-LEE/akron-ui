@@ -1,5 +1,6 @@
 import { LayoutSidebar, SidebarGroup, SidebarItem } from "@akron/ui";
 import { ExternalLink, BarChart3, Bell, Users, Building2, Clock, CreditCard, FileText } from "lucide-react";
+import { CodeBlock } from "../components/CodeBlock";
 
 export function LayoutSidebarPage() {
   return (
@@ -47,8 +48,7 @@ export function LayoutSidebarPage() {
             </LayoutSidebar>
           </div>
         </div>
-        <div className="code-block">
-          <code>{`<LayoutSidebar
+        <CodeBlock>{`<LayoutSidebar
   header={<Logo />}
   footer={<Version />}
 >
@@ -60,8 +60,7 @@ export function LayoutSidebarPage() {
       조직도
     </SidebarItem>
   </SidebarGroup>
-</LayoutSidebar>`}</code>
-        </div>
+</LayoutSidebar>`}</CodeBlock>
       </section>
 
       <section className="docs-section" id="interface">
