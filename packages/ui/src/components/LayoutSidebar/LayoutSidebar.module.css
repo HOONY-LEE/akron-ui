@@ -190,7 +190,8 @@
 
 .sidebarCollapsed .sidebarContent {
   padding: var(--ark-spacing-4) 0;
-  overflow: visible;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .sidebarCollapsed .sidebarFooter {
@@ -220,11 +221,8 @@
   display: none;
 }
 
-.sidebarCollapsed .item[data-tooltip]:hover::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  left: calc(100% + var(--ark-spacing-2));
-  top: 50%;
+.tooltipPortal {
+  position: fixed;
   transform: translateY(-50%);
   padding: var(--ark-spacing-1) var(--ark-spacing-2);
   font-size: var(--ark-font-size-xs);
@@ -235,6 +233,7 @@
   white-space: nowrap;
   z-index: var(--ark-z-tooltip);
   pointer-events: none;
+  font-family: var(--ark-font-family);
 }
 
 .sidebarCollapsed .group {

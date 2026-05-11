@@ -1,4 +1,5 @@
-import { forwardRef, useState, type HTMLAttributes, type ReactNode } from "react";
+import { forwardRef, useState, useCallback, type HTMLAttributes, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 import { ChevronsLeft, ChevronsRight, ChevronDown } from "lucide-react";
 import styles from "./LayoutSidebar.module.css";
 
@@ -94,20 +95,38 @@ export interface SidebarItemProps extends HTMLAttributes<HTMLButtonElement> {
 }
 
 export const SidebarItem = forwardRef<HTMLButtonElement, SidebarItemProps>(
-  ({ active = false, icon, tooltip, className, children, ...rest }, ref) => (
-    <button
-      ref={ref}
-      className={[styles.item, active ? styles.itemActive : "", className ?? ""]
-        .filter(Boolean)
-        .join(" ")}
-      data-tooltip={tooltip}
-      {...rest}
-    >
-      <span className={styles.itemContent}>
-        {icon && <span className={styles.itemIcon}>{icon}</span>}
-        <span className={styles.itemLabel}>{children}</span>
-      </span>
-    </button>
-  ),
+  ({ active = false, icon, tooltip, className, children, ...rest }, ref) => {
+    const [tipPos, setTipPos] = useState<{ top: number; left: number } | null>(null);
+
+    const handleMouseEnter = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      setTipPos({ top: rect.top + rect.height / 2, left: rect.right + 8 });
+    }, []);
+
+    const handleMouseLeave = useCallback(() => setTipPos(null), []);
+
+    return (
+      <button
+        ref={ref}
+        className={[styles.item, active ? styles.itemActive : "", className ?? ""]
+          .filter(Boolean)
+          .join(" ")}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        {...rest}
+      >
+        <span className={styles.itemContent}>
+          {icon && <span className={styles.itemIcon}>{icon}</span>}
+          <span className={styles.itemLabel}>{children}</span>
+        </span>
+        {tooltip && tipPos && createPortal(
+          <div className={styles.tooltipPortal} style={{ top: tipPos.top, left: tipPos.left }}>
+            {tooltip}
+          </div>,
+          document.body,
+        )}
+      </button>
+    );
+  },
 );
 SidebarItem.displayName = "SidebarItem";

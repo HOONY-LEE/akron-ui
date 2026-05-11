@@ -20,7 +20,6 @@
 
 .asideCollapsed {
   width: var(--ark-layout-sidebar-collapsed-width);
-  overflow: visible;
 }
 
 .body {
