@@ -354,21 +354,25 @@ function FigmaColorPicker({
   );
 }
 
-/* ── Apple System Color Presets ── */
+/* ── Apple System Color Presets (HIG 공식 자료) ── */
+
+function rgbHex(r: number, g: number, b: number): string {
+  return "#" + [r, g, b].map((v) => v.toString(16).padStart(2, "0")).join("").toUpperCase();
+}
 
 const APPLE_PRESETS = [
-  { name: "Blue",    hex: "#007AFF" },
-  { name: "Purple",  hex: "#AF52DE" },
-  { name: "Pink",    hex: "#FF2D55" },
-  { name: "Red",     hex: "#FF3B30" },
-  { name: "Orange",  hex: "#FF9500" },
-  { name: "Yellow",  hex: "#FFCC00" },
-  { name: "Green",   hex: "#34C759" },
-  { name: "Teal",    hex: "#5AC8FA" },
-  { name: "Indigo",  hex: "#5856D6" },
-  { name: "Brown",   hex: "#A2845E" },
-  { name: "Mint",    hex: "#00C7BE" },
-  { name: "Cyan",    hex: "#32ADE6" },
+  { name: "red",    label: "빨간색",  light: rgbHex(255,56,60),   dark: rgbHex(255,66,69),   lightHC: rgbHex(233,21,45),  darkHC: rgbHex(255,97,101)  },
+  { name: "orange", label: "주황색",  light: rgbHex(255,141,40),  dark: rgbHex(255,146,48),  lightHC: rgbHex(197,83,0),   darkHC: rgbHex(255,160,86)  },
+  { name: "yellow", label: "노란색",  light: rgbHex(255,204,0),   dark: rgbHex(255,214,0),   lightHC: rgbHex(161,106,0),  darkHC: rgbHex(254,223,67)  },
+  { name: "green",  label: "초록색",  light: rgbHex(52,199,89),   dark: rgbHex(48,209,88),   lightHC: rgbHex(0,137,50),   darkHC: rgbHex(74,217,104)  },
+  { name: "mint",   label: "민트색",  light: rgbHex(0,200,179),   dark: rgbHex(0,218,195),   lightHC: rgbHex(0,133,117),  darkHC: rgbHex(84,223,203)  },
+  { name: "teal",   label: "청록색",  light: rgbHex(0,195,208),   dark: rgbHex(0,210,224),   lightHC: rgbHex(0,129,152),  darkHC: rgbHex(59,221,236)  },
+  { name: "cyan",   label: "사이안색", light: rgbHex(0,192,232),   dark: rgbHex(60,211,254),  lightHC: rgbHex(0,126,174),  darkHC: rgbHex(109,217,255) },
+  { name: "blue",   label: "파란색",  light: rgbHex(0,136,255),   dark: rgbHex(0,145,255),   lightHC: rgbHex(30,110,244), darkHC: rgbHex(92,184,255)  },
+  { name: "indigo", label: "남색",    light: rgbHex(97,85,245),   dark: rgbHex(109,124,255), lightHC: rgbHex(86,74,222),  darkHC: rgbHex(167,170,255) },
+  { name: "purple", label: "보라색",  light: rgbHex(203,48,224),  dark: rgbHex(219,52,242),  lightHC: rgbHex(176,47,194), darkHC: rgbHex(234,141,255) },
+  { name: "pink",   label: "분홍색",  light: rgbHex(255,45,85),   dark: rgbHex(255,55,95),   lightHC: rgbHex(231,18,77),  darkHC: rgbHex(255,138,196) },
+  { name: "brown",  label: "갈색",    light: rgbHex(172,127,94),  dark: rgbHex(183,138,102), lightHC: rgbHex(149,109,81), darkHC: rgbHex(219,166,121) },
 ];
 
 /* ── Page ── */
@@ -408,28 +412,31 @@ export function ColorsPage() {
           <FigmaColorPicker color={baseColor} onChange={handleColorChange} />
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
             <span style={{ fontSize: 12, fontWeight: 600, color: "var(--docs-text-tertiary)", letterSpacing: "0.03em" }}>
-              Presets
+              Apple System Colors
             </span>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: 6 }}>
-              {APPLE_PRESETS.map((p) => (
-                <button
-                  key={p.name}
-                  title={p.name}
-                  onClick={() => handleColorChange(p.hex)}
-                  style={{
-                    width: 28,
-                    height: 28,
-                    borderRadius: 6,
-                    backgroundColor: p.hex,
-                    border: baseColor.toUpperCase() === p.hex ? "2px solid var(--docs-text)" : "1px solid var(--docs-border)",
-                    cursor: "pointer",
-                    padding: 0,
-                    transition: "transform 150ms ease, box-shadow 150ms ease",
-                    transform: baseColor.toUpperCase() === p.hex ? "scale(1.15)" : "scale(1)",
-                    boxShadow: baseColor.toUpperCase() === p.hex ? "0 0 0 2px var(--docs-bg), 0 0 0 4px var(--docs-text)" : "none",
-                  }}
-                />
-              ))}
+              {APPLE_PRESETS.map((p) => {
+                const isSelected = baseColor.toUpperCase() === p.light;
+                return (
+                  <button
+                    key={p.name}
+                    title={`${p.label} (${p.name})`}
+                    onClick={() => handleColorChange(p.light)}
+                    style={{
+                      width: 28,
+                      height: 28,
+                      borderRadius: 6,
+                      backgroundColor: p.light,
+                      border: isSelected ? "2px solid var(--docs-text)" : "1px solid var(--docs-border)",
+                      cursor: "pointer",
+                      padding: 0,
+                      transition: "transform 150ms ease, box-shadow 150ms ease",
+                      transform: isSelected ? "scale(1.15)" : "scale(1)",
+                      boxShadow: isSelected ? "0 0 0 2px var(--docs-bg), 0 0 0 4px var(--docs-text)" : "none",
+                    }}
+                  />
+                );
+              })}
             </div>
           </div>
         </div>
