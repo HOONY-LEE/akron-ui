@@ -170,7 +170,7 @@ body {
 /* ── Code Block ── */
 .code-block {
   position: relative;
-  background-color: #1e1e1e;
+  background-color: var(--docs-code-bg);
   border-radius: 10px;
   padding: 16px 20px;
   font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
@@ -192,26 +192,31 @@ body {
 
 .code-copy-btn {
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: 12px;
+  right: 12px;
   display: flex;
   align-items: center;
-  gap: 4px;
-  padding: 4px 10px;
-  font-size: 12px;
-  font-family: var(--ark-font-family, sans-serif);
-  color: #a0a0a0;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  color: var(--docs-text-tertiary);
+  background: transparent;
+  border: 1px solid var(--docs-border);
   border-radius: 6px;
   cursor: pointer;
-  transition: background 150ms ease, color 150ms ease;
+  transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
   z-index: 1;
 }
 
 .code-copy-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
-  color: #e0e0e0;
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--docs-text-secondary);
+  border-color: var(--docs-text-tertiary);
+}
+
+[data-theme="dark"] .code-copy-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .code-copy-btn:focus-visible {

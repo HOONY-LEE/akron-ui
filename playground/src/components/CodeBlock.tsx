@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Highlight, themes } from "prism-react-renderer";
 import { Check, Copy } from "lucide-react";
 
@@ -7,8 +7,23 @@ interface CodeBlockProps {
   language?: string;
 }
 
+function useIsDark() {
+  const [dark, setDark] = useState(
+    () => document.documentElement.getAttribute("data-theme") === "dark"
+  );
+  useEffect(() => {
+    const obs = new MutationObserver(() => {
+      setDark(document.documentElement.getAttribute("data-theme") === "dark");
+    });
+    obs.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+    return () => obs.disconnect();
+  }, []);
+  return dark;
+}
+
 export function CodeBlock({ children, language = "tsx" }: CodeBlockProps) {
   const [copied, setCopied] = useState(false);
+  const isDark = useIsDark();
 
   const code = children.trim();
 
@@ -18,17 +33,18 @@ export function CodeBlock({ children, language = "tsx" }: CodeBlockProps) {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const theme = isDark ? themes.vsDark : themes.github;
+
   return (
     <div className="code-block">
       <button
         className="code-copy-btn"
         onClick={handleCopy}
-        aria-label="코드 복사"
+        aria-label={copied ? "복사됨" : "코드 복사"}
       >
-        {copied ? <Check size={14} /> : <Copy size={14} />}
-        <span>{copied ? "복사됨" : "복사"}</span>
+        {copied ? <Check size={16} /> : <Copy size={16} />}
       </button>
-      <Highlight theme={themes.vsDark} code={code} language={language}>
+      <Highlight theme={theme} code={code} language={language}>
         {({ tokens, getLineProps, getTokenProps }) => (
           <pre>
             <code>
