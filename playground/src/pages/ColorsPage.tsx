@@ -354,12 +354,29 @@ function FigmaColorPicker({
   );
 }
 
+/* ── Apple System Color Presets ── */
+
+const APPLE_PRESETS = [
+  { name: "Blue",    hex: "#007AFF" },
+  { name: "Purple",  hex: "#AF52DE" },
+  { name: "Pink",    hex: "#FF2D55" },
+  { name: "Red",     hex: "#FF3B30" },
+  { name: "Orange",  hex: "#FF9500" },
+  { name: "Yellow",  hex: "#FFCC00" },
+  { name: "Green",   hex: "#34C759" },
+  { name: "Teal",    hex: "#5AC8FA" },
+  { name: "Indigo",  hex: "#5856D6" },
+  { name: "Brown",   hex: "#A2845E" },
+  { name: "Mint",    hex: "#00C7BE" },
+  { name: "Cyan",    hex: "#32ADE6" },
+];
+
 /* ── Page ── */
 
 export function ColorsPage() {
-  const [baseColor, setBaseColor] = useState("#4F46E5");
-  const [lightPalette, setLightPalette] = useState(() => generateLightPalette("#4F46E5"));
-  const [darkPalette, setDarkPalette] = useState(() => generateDarkPalette("#4F46E5"));
+  const [baseColor, setBaseColor] = useState("#007AFF");
+  const [lightPalette, setLightPalette] = useState(() => generateLightPalette("#007AFF"));
+  const [darkPalette, setDarkPalette] = useState(() => generateDarkPalette("#007AFF"));
 
   const handleColorChange = useCallback((hex: string) => {
     setBaseColor(hex);
@@ -387,8 +404,34 @@ export function ColorsPage() {
           다크모드에서는 명도와 채도를 보정하여 어두운 배경에서도 가시성을 확보합니다.
         </p>
 
-        <div style={{ display: "flex", gap: 24, flexWrap: "wrap", marginBottom: 28 }}>
+        <div style={{ display: "flex", gap: 20, flexWrap: "wrap", marginBottom: 28, alignItems: "flex-start" }}>
           <FigmaColorPicker color={baseColor} onChange={handleColorChange} />
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            <span style={{ fontSize: 12, fontWeight: 600, color: "var(--docs-text-tertiary)", letterSpacing: "0.03em" }}>
+              Presets
+            </span>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: 6 }}>
+              {APPLE_PRESETS.map((p) => (
+                <button
+                  key={p.name}
+                  title={p.name}
+                  onClick={() => handleColorChange(p.hex)}
+                  style={{
+                    width: 28,
+                    height: 28,
+                    borderRadius: 6,
+                    backgroundColor: p.hex,
+                    border: baseColor.toUpperCase() === p.hex ? "2px solid var(--docs-text)" : "1px solid var(--docs-border)",
+                    cursor: "pointer",
+                    padding: 0,
+                    transition: "transform 150ms ease, box-shadow 150ms ease",
+                    transform: baseColor.toUpperCase() === p.hex ? "scale(1.15)" : "scale(1)",
+                    boxShadow: baseColor.toUpperCase() === p.hex ? "0 0 0 2px var(--docs-bg), 0 0 0 4px var(--docs-text)" : "none",
+                  }}
+                />
+              ))}
+            </div>
+          </div>
         </div>
 
         <h3 className="section-subtitle" style={{ marginTop: 0 }}>Light Mode</h3>
