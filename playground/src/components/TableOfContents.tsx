@@ -65,7 +65,6 @@ const tocData: Record<string, { label: string; id: string; indent?: boolean }[]>
   ],
   "app-shell": [
     { label: "레이아웃 빌더", id: "builder" },
-    { label: "반응형 미리보기", id: "responsive" },
     { label: "사용법", id: "usage" },
     { label: "인터페이스", id: "interface" },
   ],

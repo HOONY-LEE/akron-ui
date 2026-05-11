@@ -420,7 +420,7 @@ export function ColorsPage() {
             <span style={{ fontSize: 12, fontWeight: 600, color: "var(--docs-text-tertiary)", letterSpacing: "0.03em" }}>
               System Colors
             </span>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: 8 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: 14 }}>
               {APPLE_PRESETS.map((p) => {
                 const isSelected = baseColor.toUpperCase() === p.light.toUpperCase();
                 return (
