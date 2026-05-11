@@ -133,7 +133,7 @@ export function AppShellPage() {
               ))}
             </div>
             <span style={{ fontSize: 11, color: "var(--ark-color-text-disabled)" }}>
-              {device === "pc" ? "사이드바 전체 표시" : device === "tablet" ? "아이콘 전용 사이드바" : "오버레이 사이드바"}
+              {device === "pc" ? "사이드바 패널 표시" : device === "tablet" ? "사이드바 → 햄버거 메뉴" : "좌측 → 탭 바 · 우측 → 햄버거"}
             </span>
           </div>
 
@@ -226,34 +226,45 @@ function ToggleChip({ active, onClick }: { active: boolean; onClick: () => void 
 }
 
 /* ── Responsive-aware Layout Wireframe ── */
+/*
+ * PC:     좌측 사이드바 패널 + 우측 사이드바 패널 + 헤더 + 푸터
+ * Tablet: 사이드바 → 헤더 햄버거 메뉴 (좌=왼쪽, 우=오른쪽) + 푸터
+ * Mobile: 좌측 사이드바 → 하단 탭 바 (푸터 대체), 우측 사이드바 → 헤더 좌측 햄버거
+ */
 
 function LayoutWireframe({
   header, leftSidebar, rightSidebar, footer, device,
 }: {
   header: boolean; leftSidebar: boolean; rightSidebar: boolean; footer: boolean; device: DeviceType;
 }) {
-  /* Dimensions per device */
   const dims = device === "mobile"
-    ? { w: 220, h: 400, sidebarW: 0, collapsedW: 0, headerH: 32, footerH: 24 }
+    ? { w: 220, h: 400, headerH: 32, footerH: 24, tabBarH: 44 }
     : device === "tablet"
-    ? { w: 340, h: 440, sidebarW: 40, collapsedW: 40, headerH: 32, footerH: 26 }
-    : { w: 480, h: 300, sidebarW: 80, collapsedW: 80, headerH: 32, footerH: 28 };
+    ? { w: 340, h: 440, headerH: 32, footerH: 26, tabBarH: 0 }
+    : { w: 480, h: 300, headerH: 32, footerH: 28, tabBarH: 0 };
 
-  const { w, h, headerH, footerH } = dims;
+  const { w, h, headerH, footerH, tabBarH } = dims;
 
-  /* Sidebar width depends on device */
-  const leftW = leftSidebar
-    ? device === "mobile" ? 0 : device === "tablet" ? dims.collapsedW : dims.sidebarW
-    : 0;
-  const rightW = rightSidebar
-    ? device === "mobile" ? 0 : device === "tablet" ? 0 : dims.sidebarW
-    : 0;
+  /* PC only: sidebar panels */
+  const leftW = leftSidebar && device === "pc" ? 80 : 0;
+  const rightW = rightSidebar && device === "pc" ? 80 : 0;
 
-  const contentLeft = leftW;
-  const contentRight = rightW;
   const contentTop = header ? headerH : 0;
-  const contentBottom = footer ? footerH : 0;
-  const contentW = w - contentLeft - contentRight;
+  /* Mobile: 하단 탭 바가 푸터를 대체 */
+  const hasTabBar = device === "mobile" && leftSidebar;
+  const showFooter = device === "mobile" ? (footer && !hasTabBar) : footer;
+  const contentBottom = hasTabBar ? tabBarH : (showFooter ? footerH : 0);
+
+  const contentW = w - leftW - rightW;
+
+  /* Hamburger icon helper (3 lines) */
+  const Hamburger = ({ x, y }: { x: number; y: number }) => (
+    <>
+      <rect x={x} y={y} width={14} height={2} rx={1} fill="var(--ark-color-gray-500)" />
+      <rect x={x} y={y + 4} width={14} height={2} rx={1} fill="var(--ark-color-gray-500)" />
+      <rect x={x} y={y + 8} width={14} height={2} rx={1} fill="var(--ark-color-gray-500)" />
+    </>
+  );
 
   return (
     <svg
@@ -265,7 +276,7 @@ function LayoutWireframe({
       {/* Background */}
       <rect width={w} height={h} fill="var(--ark-color-bg-subtle)" rx={8} />
 
-      {/* Left Sidebar — full (PC), icon-only (Tablet), hidden (Mobile) */}
+      {/* ── PC: Left Sidebar panel ── */}
       {leftSidebar && device === "pc" && (
         <g>
           <rect x={0} y={0} width={leftW} height={h} fill="var(--ark-color-bg)" rx={8} />
@@ -281,56 +292,67 @@ function LayoutWireframe({
           <text x={leftW / 2} y={h - 20} textAnchor="middle" fontSize={9} fill="var(--ark-color-text-secondary)" fontWeight={600}>사이드바</text>
         </g>
       )}
-      {leftSidebar && device === "tablet" && (
+
+      {/* ── PC: Right Sidebar panel ── */}
+      {rightSidebar && device === "pc" && (
         <g>
-          <rect x={0} y={0} width={leftW} height={h} fill="var(--ark-color-bg)" rx={8} />
-          <rect x={0} y={0} width={leftW} height={h} fill="none" stroke="var(--ark-color-border)" rx={8} />
-          {/* Icon placeholders */}
-          <rect x={10} y={14} width={20} height={6} rx={3} fill="var(--ark-color-primary-500)" opacity={0.7} />
-          <rect x={12} y={32} width={16} height={16} rx={4} fill="var(--ark-color-primary-100)" />
-          <rect x={12} y={54} width={16} height={16} rx={4} fill="var(--ark-color-gray-200)" />
-          <rect x={12} y={76} width={16} height={16} rx={4} fill="var(--ark-color-gray-200)" />
-          <rect x={12} y={104} width={16} height={16} rx={4} fill="var(--ark-color-gray-200)" />
-          <rect x={12} y={126} width={16} height={16} rx={4} fill="var(--ark-color-gray-200)" />
+          <rect x={w - rightW} y={contentTop} width={rightW} height={h - contentTop - (showFooter ? footerH : 0)} fill="var(--ark-color-bg-subtle)" />
+          <line x1={w - rightW} y1={contentTop} x2={w - rightW} y2={h - (showFooter ? footerH : 0)} stroke="var(--ark-color-border)" />
+          <rect x={w - rightW + 12} y={contentTop + 16} width={56} height={7} rx={3} fill="var(--ark-color-gray-400)" />
+          <rect x={w - rightW + 12} y={contentTop + 32} width={56} height={24} rx={4} fill="var(--ark-color-bg)" stroke="var(--ark-color-border)" />
+          <rect x={w - rightW + 12} y={contentTop + 64} width={56} height={24} rx={4} fill="var(--ark-color-bg)" stroke="var(--ark-color-border)" />
+          <text x={w - rightW / 2} y={h - (showFooter ? footerH : 0) - 16} textAnchor="middle" fontSize={8} fill="var(--ark-color-text-secondary)" fontWeight={600}>우측 패널</text>
         </g>
       )}
 
-      {/* Header */}
+      {/* ── Header ── */}
       {header && (
         <g>
-          <rect x={contentLeft} y={0} width={w - contentLeft} height={headerH} fill="var(--ark-color-bg)" />
-          <line x1={contentLeft} y1={headerH} x2={w} y2={headerH} stroke="var(--ark-color-border)" />
-          {/* Mobile: show hamburger icon if sidebar is on */}
-          {device === "mobile" && leftSidebar ? (
+          <rect x={leftW} y={0} width={w - leftW} height={headerH} fill="var(--ark-color-bg)" />
+          <line x1={leftW} y1={headerH} x2={w} y2={headerH} stroke="var(--ark-color-border)" />
+
+          {/* Tablet: leftSidebar → 좌측 햄버거 */}
+          {device === "tablet" && leftSidebar && <Hamburger x={leftW + 10} y={11} />}
+          {/* Mobile: rightSidebar → 좌측 햄버거 */}
+          {device === "mobile" && rightSidebar && <Hamburger x={leftW + 10} y={11} />}
+
+          {/* Logo / title placeholder */}
+          {(() => {
+            const hasLeftHamburger = (device === "tablet" && leftSidebar) || (device === "mobile" && rightSidebar);
+            const logoX = leftW + (hasLeftHamburger ? 30 : 12);
+            return <rect x={logoX} y={12} width={Math.min(60, w - leftW - 40)} height={8} rx={3} fill="var(--ark-color-gray-400)" />;
+          })()}
+
+          {/* Tablet: rightSidebar → 우측 햄버거 */}
+          {device === "tablet" && rightSidebar && <Hamburger x={w - 24} y={11} />}
+
+          {/* PC: action icons on right */}
+          {device === "pc" && (
             <>
-              <rect x={contentLeft + 12} y={11} width={14} height={2} rx={1} fill="var(--ark-color-gray-500)" />
-              <rect x={contentLeft + 12} y={15} width={14} height={2} rx={1} fill="var(--ark-color-gray-500)" />
-              <rect x={contentLeft + 12} y={19} width={14} height={2} rx={1} fill="var(--ark-color-gray-500)" />
-              <rect x={contentLeft + 34} y={12} width={50} height={8} rx={3} fill="var(--ark-color-gray-400)" />
-            </>
-          ) : (
-            <rect x={contentLeft + 16} y={12} width={60} height={8} rx={3} fill="var(--ark-color-gray-400)" />
-          )}
-          {w - contentRight > contentLeft + 100 && (
-            <>
-              <circle cx={w - contentRight - 20} cy={16} r={6} fill="var(--ark-color-gray-300)" />
-              {w - contentRight - contentLeft > 150 && (
-                <circle cx={w - contentRight - 40} cy={16} r={6} fill="var(--ark-color-gray-300)" />
-              )}
+              <circle cx={w - rightW - 20} cy={16} r={6} fill="var(--ark-color-gray-300)" />
+              <circle cx={w - rightW - 40} cy={16} r={6} fill="var(--ark-color-gray-300)" />
             </>
           )}
-          <text x={(contentLeft + w - contentRight) / 2} y={20} textAnchor="middle" fontSize={9} fill="var(--ark-color-text-secondary)" fontWeight={600}>헤더</text>
+
+          <text x={(leftW + w - rightW) / 2} y={20} textAnchor="middle" fontSize={9} fill="var(--ark-color-text-secondary)" fontWeight={600}>헤더</text>
         </g>
       )}
 
-      {/* Content area */}
+      {/* ── Content area ── */}
       <g>
-        <rect x={contentLeft + 16} y={contentTop + 16} width={Math.min(120, contentW - 32)} height={10} rx={4} fill="var(--ark-color-gray-400)" />
-        <rect x={contentLeft + 16} y={contentTop + 34} width={Math.min(200, contentW - 32)} height={7} rx={3} fill="var(--ark-color-gray-200)" />
-        <rect x={contentLeft + 16} y={contentTop + 50} width={contentW - 32} height={Math.min(50, (h - contentTop - contentBottom) / 4)} rx={6} fill="var(--ark-color-bg)" stroke="var(--ark-color-border)" />
-        <rect x={contentLeft + 16} y={contentTop + 50 + Math.min(50, (h - contentTop - contentBottom) / 4) + 10} width={contentW - 32} height={Math.min(50, (h - contentTop - contentBottom) / 4)} rx={6} fill="var(--ark-color-bg)" stroke="var(--ark-color-border)" />
+        <rect x={leftW + 16} y={contentTop + 16} width={Math.min(120, contentW - 32)} height={10} rx={4} fill="var(--ark-color-gray-400)" />
+        <rect x={leftW + 16} y={contentTop + 34} width={Math.min(200, contentW - 32)} height={7} rx={3} fill="var(--ark-color-gray-200)" />
+        {(() => {
+          const cardH = Math.min(50, (h - contentTop - contentBottom) / 4);
+          return (
+            <>
+              <rect x={leftW + 16} y={contentTop + 50} width={contentW - 32} height={cardH} rx={6} fill="var(--ark-color-bg)" stroke="var(--ark-color-border)" />
+              <rect x={leftW + 16} y={contentTop + 50 + cardH + 10} width={contentW - 32} height={cardH} rx={6} fill="var(--ark-color-bg)" stroke="var(--ark-color-border)" />
+            </>
+          );
+        })()}
         <text
-          x={(contentLeft + w - contentRight) / 2}
+          x={(leftW + w - rightW) / 2}
           y={(contentTop + h - contentBottom) / 2 + 30}
           textAnchor="middle"
           fontSize={device === "mobile" ? 9 : 10}
@@ -340,39 +362,36 @@ function LayoutWireframe({
         </text>
       </g>
 
-      {/* Right Sidebar — hidden on tablet/mobile */}
-      {rightSidebar && device === "pc" && (
+      {/* ── Footer (PC / Tablet, Mobile only if no tab bar) ── */}
+      {showFooter && (
         <g>
-          <rect x={w - rightW} y={contentTop} width={rightW} height={h - contentTop - contentBottom} fill="var(--ark-color-bg-subtle)" />
-          <line x1={w - rightW} y1={contentTop} x2={w - rightW} y2={h - contentBottom} stroke="var(--ark-color-border)" />
-          <rect x={w - rightW + 12} y={contentTop + 16} width={56} height={7} rx={3} fill="var(--ark-color-gray-400)" />
-          <rect x={w - rightW + 12} y={contentTop + 32} width={56} height={24} rx={4} fill="var(--ark-color-bg)" stroke="var(--ark-color-border)" />
-          <rect x={w - rightW + 12} y={contentTop + 64} width={56} height={24} rx={4} fill="var(--ark-color-bg)" stroke="var(--ark-color-border)" />
-          <text x={w - rightW / 2} y={h - contentBottom - 16} textAnchor="middle" fontSize={8} fill="var(--ark-color-text-secondary)" fontWeight={600}>우측 패널</text>
+          <rect x={leftW} y={h - footerH} width={w - leftW - rightW} height={footerH} fill="var(--ark-color-bg)" />
+          <line x1={leftW} y1={h - footerH} x2={w - rightW} y2={h - footerH} stroke="var(--ark-color-border)" />
+          <rect x={leftW + 12} y={h - footerH + Math.floor(footerH / 2) - 3} width={Math.min(80, contentW - 24)} height={6} rx={3} fill="var(--ark-color-gray-300)" />
+          <text x={(leftW + w - rightW) / 2} y={h - 6} textAnchor="middle" fontSize={device === "mobile" ? 8 : 9} fill="var(--ark-color-text-secondary)" fontWeight={600}>푸터</text>
         </g>
       )}
 
-      {/* Footer */}
-      {footer && (
+      {/* ── Mobile: Bottom Tab Bar (좌측 사이드바 → 하단 탭 전환) ── */}
+      {hasTabBar && (
         <g>
-          <rect x={contentLeft} y={h - footerH} width={w - contentLeft - contentRight} height={footerH} fill="var(--ark-color-bg)" />
-          <line x1={contentLeft} y1={h - footerH} x2={w - contentRight} y2={h - footerH} stroke="var(--ark-color-border)" />
-          <rect x={contentLeft + 12} y={h - footerH + Math.floor(footerH / 2) - 3} width={Math.min(80, contentW - 24)} height={6} rx={3} fill="var(--ark-color-gray-300)" />
-          <text x={(contentLeft + w - contentRight) / 2} y={h - 6} textAnchor="middle" fontSize={device === "mobile" ? 8 : 9} fill="var(--ark-color-text-secondary)" fontWeight={600}>푸터</text>
-        </g>
-      )}
-
-      {/* Mobile overlay sidebar indicator */}
-      {leftSidebar && device === "mobile" && (
-        <g opacity={0.3}>
-          <rect x={0} y={0} width={w} height={h} fill="var(--ark-color-gray-900)" rx={8} />
-          <rect x={0} y={0} width={w * 0.65} height={h} fill="var(--ark-color-bg)" rx={8} />
-          <rect x={12} y={16} width={w * 0.65 - 24} height={8} rx={3} fill="var(--ark-color-primary-500)" opacity={0.7} />
-          <rect x={12} y={36} width={w * 0.65 * 0.6} height={5} rx={2} fill="var(--ark-color-gray-300)" />
-          <rect x={12} y={48} width={w * 0.65 - 24} height={6} rx={3} fill="var(--ark-color-primary-100)" />
-          <rect x={12} y={60} width={w * 0.65 * 0.7} height={6} rx={3} fill="var(--ark-color-gray-200)" />
-          <rect x={12} y={72} width={w * 0.65 * 0.8} height={6} rx={3} fill="var(--ark-color-gray-200)" />
-          <text x={w * 0.65 / 2} y={h / 2} textAnchor="middle" fontSize={9} fill="var(--ark-color-text-secondary)" fontWeight={600}>오버레이 사이드바</text>
+          <rect x={0} y={h - tabBarH} width={w} height={tabBarH} fill="var(--ark-color-bg)" rx={0} />
+          <line x1={0} y1={h - tabBarH} x2={w} y2={h - tabBarH} stroke="var(--ark-color-border)" />
+          {/* 5 tab icons evenly spaced */}
+          {[0, 1, 2, 3, 4].map((i) => {
+            const tabX = (w / 5) * i + (w / 5) / 2;
+            const tabY = h - tabBarH + 12;
+            const isActive = i === 0;
+            return (
+              <g key={i}>
+                <rect x={tabX - 8} y={tabY} width={16} height={16} rx={4}
+                  fill={isActive ? "var(--ark-color-primary-100)" : "var(--ark-color-gray-200)"} />
+                <rect x={tabX - 6} y={tabY + 20} width={12} height={4} rx={2}
+                  fill={isActive ? "var(--ark-color-primary-500)" : "var(--ark-color-gray-300)"} opacity={isActive ? 0.7 : 1} />
+              </g>
+            );
+          })}
+          <text x={w / 2} y={h - 3} textAnchor="middle" fontSize={7} fill="var(--ark-color-text-disabled)" fontWeight={600}>탭 바</text>
         </g>
       )}
 
