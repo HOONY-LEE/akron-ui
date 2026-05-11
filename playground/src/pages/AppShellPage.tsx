@@ -286,9 +286,9 @@ const deviceConfigs = {
     image: "/devices/macbook.png",
     imageW: 2170,
     imageH: 1430,
-    /* Screen area within image (%) — tightened to stay inside bezel */
-    screen: { top: 10.5, left: 9.6, width: 80.8, height: 77.0 },
-    screenRadius: 6,
+    /* Screen area within image (%) — matches actual MacBook screen edges, overflow clips bottom */
+    screen: { top: 7.5, left: 6.8, width: 86.4, height: 80.8 },
+    screenRadius: 8,
     displayW: 1300,
   },
   tablet: {
