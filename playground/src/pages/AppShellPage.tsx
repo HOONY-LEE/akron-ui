@@ -238,22 +238,22 @@ function LayoutWireframe({
   header: boolean; leftSidebar: boolean; rightSidebar: boolean; footer: boolean; device: DeviceType;
 }) {
   const dims = device === "mobile"
-    ? { w: 220, h: 400, headerH: 32, footerH: 24, tabBarH: 44, radius: 28 }
+    ? { w: 220, h: 400, headerH: 32, footerH: 24, tabBarH: 44, radius: 20, padTop: 14, padBot: 10 }
     : device === "tablet"
-    ? { w: 320, h: 400, headerH: 32, footerH: 26, tabBarH: 0, radius: 20 }
-    : { w: 640, h: 380, headerH: 36, footerH: 30, tabBarH: 0, radius: 8 };
+    ? { w: 320, h: 400, headerH: 32, footerH: 26, tabBarH: 0, radius: 14, padTop: 10, padBot: 8 }
+    : { w: 640, h: 380, headerH: 36, footerH: 30, tabBarH: 0, radius: 8, padTop: 0, padBot: 0 };
 
-  const { w, h, headerH, footerH, tabBarH, radius } = dims;
+  const { w, h, headerH, footerH, tabBarH, radius, padTop, padBot } = dims;
 
   /* PC only: sidebar panels */
   const leftW = leftSidebar && device === "pc" ? 110 : 0;
   const rightW = rightSidebar && device === "pc" ? 100 : 0;
 
-  const contentTop = header ? headerH : 0;
+  const contentTop = padTop + (header ? headerH : 0);
   /* Mobile: 하단 탭 바가 푸터를 대체 */
   const hasTabBar = device === "mobile" && leftSidebar;
   const showFooter = device === "mobile" ? (footer && !hasTabBar) : footer;
-  const contentBottom = hasTabBar ? tabBarH : (showFooter ? footerH : 0);
+  const contentBottom = padBot + (hasTabBar ? tabBarH : (showFooter ? footerH : 0));
 
   const contentW = w - leftW - rightW;
 
@@ -275,6 +275,20 @@ function LayoutWireframe({
     >
       {/* Background */}
       <rect width={w} height={h} fill="var(--ark-color-bg-subtle)" rx={radius} />
+
+      {/* Device bezels — notch / camera / home indicator */}
+      {device === "mobile" && (
+        <>
+          <rect x={w / 2 - 20} y={4} width={40} height={6} rx={3} fill="var(--ark-color-gray-400)" opacity={0.3} />
+          <rect x={w / 2 - 24} y={h - 6} width={48} height={3} rx={1.5} fill="var(--ark-color-gray-400)" opacity={0.25} />
+        </>
+      )}
+      {device === "tablet" && (
+        <>
+          <circle cx={w / 2} cy={5} r={2.5} fill="var(--ark-color-gray-400)" opacity={0.3} />
+          <rect x={w / 2 - 20} y={h - 5} width={40} height={3} rx={1.5} fill="var(--ark-color-gray-400)" opacity={0.25} />
+        </>
+      )}
 
       {/* ── PC: Left Sidebar panel ── */}
       {leftSidebar && device === "pc" && (
@@ -308,33 +322,33 @@ function LayoutWireframe({
       {/* ── Header ── */}
       {header && (
         <g>
-          <rect x={leftW} y={0} width={w - leftW} height={headerH} fill="var(--ark-color-bg)" />
-          <line x1={leftW} y1={headerH} x2={w} y2={headerH} stroke="var(--ark-color-border)" />
+          <rect x={leftW} y={padTop} width={w - leftW} height={headerH} fill="var(--ark-color-bg)" />
+          <line x1={leftW} y1={padTop + headerH} x2={w} y2={padTop + headerH} stroke="var(--ark-color-border)" />
 
           {/* Tablet: leftSidebar → 좌측 햄버거 */}
-          {device === "tablet" && leftSidebar && <Hamburger x={leftW + 10} y={11} />}
+          {device === "tablet" && leftSidebar && <Hamburger x={leftW + 10} y={padTop + 11} />}
           {/* Mobile: rightSidebar → 좌측 햄버거 */}
-          {device === "mobile" && rightSidebar && <Hamburger x={leftW + 10} y={11} />}
+          {device === "mobile" && rightSidebar && <Hamburger x={leftW + 10} y={padTop + 11} />}
 
           {/* Logo / title placeholder */}
           {(() => {
             const hasLeftHamburger = (device === "tablet" && leftSidebar) || (device === "mobile" && rightSidebar);
             const logoX = leftW + (hasLeftHamburger ? 30 : 12);
-            return <rect x={logoX} y={12} width={Math.min(60, w - leftW - 40)} height={8} rx={3} fill="var(--ark-color-gray-400)" />;
+            return <rect x={logoX} y={padTop + 12} width={Math.min(60, w - leftW - 40)} height={8} rx={3} fill="var(--ark-color-gray-400)" />;
           })()}
 
           {/* Tablet: rightSidebar → 우측 햄버거 */}
-          {device === "tablet" && rightSidebar && <Hamburger x={w - 24} y={11} />}
+          {device === "tablet" && rightSidebar && <Hamburger x={w - 24} y={padTop + 11} />}
 
           {/* PC: action icons on right */}
           {device === "pc" && (
             <>
-              <circle cx={w - rightW - 20} cy={16} r={6} fill="var(--ark-color-gray-300)" />
-              <circle cx={w - rightW - 40} cy={16} r={6} fill="var(--ark-color-gray-300)" />
+              <circle cx={w - rightW - 20} cy={padTop + 16} r={6} fill="var(--ark-color-gray-300)" />
+              <circle cx={w - rightW - 40} cy={padTop + 16} r={6} fill="var(--ark-color-gray-300)" />
             </>
           )}
 
-          <text x={(leftW + w - rightW) / 2} y={20} textAnchor="middle" fontSize={9} fill="var(--ark-color-text-secondary)" fontWeight={600}>헤더</text>
+          <text x={(leftW + w - rightW) / 2} y={padTop + 20} textAnchor="middle" fontSize={9} fill="var(--ark-color-text-secondary)" fontWeight={600}>헤더</text>
         </g>
       )}
 
@@ -365,22 +379,22 @@ function LayoutWireframe({
       {/* ── Footer (PC / Tablet, Mobile only if no tab bar) ── */}
       {showFooter && (
         <g>
-          <rect x={leftW} y={h - footerH} width={w - leftW - rightW} height={footerH} fill="var(--ark-color-bg)" />
-          <line x1={leftW} y1={h - footerH} x2={w - rightW} y2={h - footerH} stroke="var(--ark-color-border)" />
-          <rect x={leftW + 12} y={h - footerH + Math.floor(footerH / 2) - 3} width={Math.min(80, contentW - 24)} height={6} rx={3} fill="var(--ark-color-gray-300)" />
-          <text x={(leftW + w - rightW) / 2} y={h - 6} textAnchor="middle" fontSize={device === "mobile" ? 8 : 9} fill="var(--ark-color-text-secondary)" fontWeight={600}>푸터</text>
+          <rect x={leftW} y={h - padBot - footerH} width={w - leftW - rightW} height={footerH} fill="var(--ark-color-bg)" />
+          <line x1={leftW} y1={h - padBot - footerH} x2={w - rightW} y2={h - padBot - footerH} stroke="var(--ark-color-border)" />
+          <rect x={leftW + 12} y={h - padBot - footerH + Math.floor(footerH / 2) - 3} width={Math.min(80, contentW - 24)} height={6} rx={3} fill="var(--ark-color-gray-300)" />
+          <text x={(leftW + w - rightW) / 2} y={h - padBot - 6} textAnchor="middle" fontSize={device === "mobile" ? 8 : 9} fill="var(--ark-color-text-secondary)" fontWeight={600}>푸터</text>
         </g>
       )}
 
       {/* ── Mobile: Bottom Tab Bar (좌측 사이드바 → 하단 탭 전환) ── */}
       {hasTabBar && (
         <g>
-          <rect x={0} y={h - tabBarH} width={w} height={tabBarH} fill="var(--ark-color-bg)" rx={0} />
-          <line x1={0} y1={h - tabBarH} x2={w} y2={h - tabBarH} stroke="var(--ark-color-border)" />
+          <rect x={0} y={h - padBot - tabBarH} width={w} height={tabBarH} fill="var(--ark-color-bg)" rx={0} />
+          <line x1={0} y1={h - padBot - tabBarH} x2={w} y2={h - padBot - tabBarH} stroke="var(--ark-color-border)" />
           {/* 5 tab icons evenly spaced */}
           {[0, 1, 2, 3, 4].map((i) => {
             const tabX = (w / 5) * i + (w / 5) / 2;
-            const tabY = h - tabBarH + 12;
+            const tabY = h - padBot - tabBarH + 12;
             const isActive = i === 0;
             return (
               <g key={i}>
@@ -391,7 +405,7 @@ function LayoutWireframe({
               </g>
             );
           })}
-          <text x={w / 2} y={h - 3} textAnchor="middle" fontSize={7} fill="var(--ark-color-text-disabled)" fontWeight={600}>탭 바</text>
+          <text x={w / 2} y={h - padBot - 3} textAnchor="middle" fontSize={7} fill="var(--ark-color-text-disabled)" fontWeight={600}>탭 바</text>
         </g>
       )}
 
