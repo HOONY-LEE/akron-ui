@@ -286,7 +286,7 @@ const deviceConfigs = {
     image: "/devices/macbook.png",
     imageW: 2170,
     imageH: 1430,
-    /* Screen area within image (%) — matches actual MacBook screen edges, overflow clips bottom */
+    /* Screen area within image (%) — matches actual MacBook screen edges */
     screen: { top: 7.5, left: 6.8, width: 86.4, height: 80.8 },
     screenRadius: 8,
     displayW: 1300,
@@ -340,7 +340,16 @@ function DevicePreview({ url }: { url: string }) {
   const screenPxH = displayH * cfg.screen.height / 100;
 
   /* Scale iframe to fit screen area — use smaller scale so it fits both directions */
-  const scale = Math.min(screenPxW / cfg.iframeW, screenPxH / cfg.iframeH);
+  const fitScale = Math.min(screenPxW / cfg.iframeW, screenPxH / cfg.iframeH);
+  /* PC: shrink content to 80% so it sits with visible margin inside the bezel */
+  const contentShrink = device === "pc" ? 0.80 : 1;
+  const scale = fitScale * contentShrink;
+
+  /* Center the shrunken content within the screen area */
+  const renderedW = cfg.iframeW * scale;
+  const renderedH = cfg.iframeH * scale;
+  const offsetX = (screenPxW - renderedW) / 2;
+  const offsetY = (screenPxH - renderedH) / 2;
 
   return (
     <div>
@@ -416,6 +425,7 @@ function DevicePreview({ url }: { url: string }) {
             overflow: "hidden",
             borderRadius: cfg.screenRadius,
             zIndex: 1,
+            background: "#111",
           }}>
             <iframe
               src={embedUrl}
@@ -424,7 +434,7 @@ function DevicePreview({ url }: { url: string }) {
                 width: cfg.iframeW,
                 height: cfg.iframeH,
                 border: "none",
-                transform: `scale(${scale})`,
+                transform: `translate(${offsetX}px, ${offsetY}px) scale(${scale})`,
                 transformOrigin: "top left",
               }}
             />
