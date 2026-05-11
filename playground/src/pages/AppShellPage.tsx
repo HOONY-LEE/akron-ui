@@ -138,7 +138,7 @@ export function AppShellPage() {
           </div>
 
           {/* Mini wireframe preview — fixed height container */}
-          <div style={{ padding: 24, display: "flex", justifyContent: "center", alignItems: "center", minHeight: 420 }}>
+          <div style={{ padding: 24, display: "flex", justifyContent: "center", alignItems: "center", height: 448 }}>
             <LayoutWireframe
               header={selected.header}
               leftSidebar={selected.leftSidebar}
