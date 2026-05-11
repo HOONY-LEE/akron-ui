@@ -49,5 +49,8 @@
     "tsup": "^8.4.0",
     "rimraf": "^6.0.1"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild"]
+  }
 }
