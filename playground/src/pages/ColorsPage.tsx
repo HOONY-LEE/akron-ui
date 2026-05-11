@@ -1,4 +1,80 @@
+import { useState, useCallback } from "react";
+import { CodeBlock } from "../components/CodeBlock";
+
+const SHADE_KEYS = [50, 100, 200, 300, 400, 500, 600, 700] as const;
+
+const LIGHTNESS_MAP: Record<number, number> = {
+  50: 95, 100: 90, 200: 82, 300: 70, 400: 55, 500: 0, 600: -12, 700: -22,
+};
+
+const SATURATION_MAP: Record<number, number> = {
+  50: -40, 100: -30, 200: -15, 300: -5, 400: 5, 500: 0, 600: 5, 700: 5,
+};
+
+function hexToHsl(hex: string): [number, number, number] {
+  const r = parseInt(hex.slice(1, 3), 16) / 255;
+  const g = parseInt(hex.slice(3, 5), 16) / 255;
+  const b = parseInt(hex.slice(5, 7), 16) / 255;
+  const max = Math.max(r, g, b), min = Math.min(r, g, b);
+  const l = (max + min) / 2;
+  if (max === min) return [0, 0, l * 100];
+  const d = max - min;
+  const s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+  let h = 0;
+  if (max === r) h = ((g - b) / d + (g < b ? 6 : 0)) / 6;
+  else if (max === g) h = ((b - r) / d + 2) / 6;
+  else h = ((r - g) / d + 4) / 6;
+  return [h * 360, s * 100, l * 100];
+}
+
+function hslToHex(h: number, s: number, l: number): string {
+  s = Math.max(0, Math.min(100, s));
+  l = Math.max(0, Math.min(100, l));
+  const s1 = s / 100, l1 = l / 100;
+  const c = (1 - Math.abs(2 * l1 - 1)) * s1;
+  const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
+  const m = l1 - c / 2;
+  let r = 0, g = 0, b = 0;
+  if (h < 60) { r = c; g = x; }
+  else if (h < 120) { r = x; g = c; }
+  else if (h < 180) { g = c; b = x; }
+  else if (h < 240) { g = x; b = c; }
+  else if (h < 300) { r = x; b = c; }
+  else { r = c; b = x; }
+  const toHex = (v: number) => Math.round((v + m) * 255).toString(16).padStart(2, "0");
+  return `#${toHex(r)}${toHex(g)}${toHex(b)}`.toUpperCase();
+}
+
+function generatePalette(baseHex: string): { shade: number; hex: string }[] {
+  const [h, s, l] = hexToHsl(baseHex);
+  return SHADE_KEYS.map((shade) => {
+    if (shade === 500) return { shade, hex: baseHex.toUpperCase() };
+    const lOffset = LIGHTNESS_MAP[shade];
+    const sOffset = SATURATION_MAP[shade];
+    const newL = shade < 500 ? l + (lOffset / 100) * (100 - l) : l + (lOffset / 100) * l;
+    const newS = s + sOffset;
+    return { shade, hex: hslToHex(h, newS, Math.max(0, Math.min(100, newL))) };
+  });
+}
+
+function applyPalette(palette: { shade: number; hex: string }[]) {
+  const root = document.documentElement;
+  palette.forEach(({ shade, hex }) => {
+    root.style.setProperty(`--ark-color-primary-${shade}`, hex);
+  });
+}
+
 export function ColorsPage() {
+  const [baseColor, setBaseColor] = useState("#4F46E5");
+  const [palette, setPalette] = useState(() => generatePalette("#4F46E5"));
+
+  const handleColorChange = useCallback((hex: string) => {
+    setBaseColor(hex);
+    const newPalette = generatePalette(hex);
+    setPalette(newPalette);
+    applyPalette(newPalette);
+  }, []);
+
   return (
     <>
       <header className="page-header">
@@ -12,20 +88,56 @@ export function ColorsPage() {
       <section className="docs-section" id="primary">
         <h2 className="section-title">Primary</h2>
         <p className="section-desc">
-          브랜드 색상입니다. 주요 액션 버튼, 링크, 강조 요소에 사용합니다.
+          브랜드 색상입니다. Primary-500 색상을 선택하면 나머지 팔레트가 자동으로 생성됩니다.
         </p>
+        <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
+          <label
+            htmlFor="primary-picker"
+            style={{ fontSize: 14, fontWeight: 600, color: "var(--docs-text-secondary)" }}
+          >
+            Primary-500
+          </label>
+          <input
+            id="primary-picker"
+            type="color"
+            value={baseColor}
+            onChange={(e) => handleColorChange(e.target.value)}
+            style={{
+              width: 40,
+              height: 40,
+              border: "2px solid var(--docs-border)",
+              borderRadius: 8,
+              cursor: "pointer",
+              padding: 2,
+              backgroundColor: "transparent",
+            }}
+          />
+          <input
+            type="text"
+            value={baseColor.toUpperCase()}
+            onChange={(e) => {
+              const v = e.target.value;
+              if (/^#[0-9A-Fa-f]{6}$/.test(v)) handleColorChange(v);
+              else setBaseColor(v);
+            }}
+            onBlur={() => {
+              if (!/^#[0-9A-Fa-f]{6}$/.test(baseColor)) setBaseColor("#4F46E5");
+            }}
+            style={{
+              width: 90,
+              padding: "6px 10px",
+              fontSize: 13,
+              fontFamily: "'SF Mono', 'Fira Code', 'Consolas', monospace",
+              border: "1px solid var(--docs-border)",
+              borderRadius: 6,
+              backgroundColor: "var(--docs-bg-subtle)",
+              color: "var(--docs-text)",
+            }}
+          />
+        </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(120px, 1fr))", gap: 12 }}>
-          {([
-            { token: "primary-50", value: "#EEF2FF" },
-            { token: "primary-100", value: "#E0E7FF" },
-            { token: "primary-200", value: "#C7D2FE" },
-            { token: "primary-300", value: "#A5B4FC" },
-            { token: "primary-400", value: "#818CF8" },
-            { token: "primary-500", value: "#4F46E5" },
-            { token: "primary-600", value: "#4338CA" },
-            { token: "primary-700", value: "#3730A3" },
-          ] as const).map((c) => (
-            <ColorSwatch key={c.token} token={c.token} value={c.value} />
+          {palette.map((c) => (
+            <ColorSwatch key={c.shade} token={`primary-${c.shade}`} value={c.hex} />
           ))}
         </div>
       </section>
@@ -99,31 +211,31 @@ export function ColorsPage() {
               <tr>
                 <td>--ark-color-bg</td>
                 <td><span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><span style={dotStyle("#FFFFFF")} /> #FFFFFF</span></td>
-                <td><span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><span style={dotStyle("#0F172A")} /> #0F172A</span></td>
+                <td><span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><span style={dotStyle("#1E1E1E")} /> #1E1E1E</span></td>
                 <td>기본 배경</td>
               </tr>
               <tr>
                 <td>--ark-color-bg-subtle</td>
                 <td><span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><span style={dotStyle("#F9FAFB")} /> #F9FAFB</span></td>
-                <td><span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><span style={dotStyle("#1E293B")} /> #1E293B</span></td>
+                <td><span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><span style={dotStyle("#262626")} /> #262626</span></td>
                 <td>보조 배경</td>
               </tr>
               <tr>
                 <td>--ark-color-text</td>
                 <td><span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><span style={dotStyle("#111827")} /> #111827</span></td>
-                <td><span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><span style={dotStyle("#F9FAFB")} /> #F9FAFB</span></td>
+                <td><span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><span style={dotStyle("#E0E0E0")} /> #E0E0E0</span></td>
                 <td>기본 텍스트</td>
               </tr>
               <tr>
                 <td>--ark-color-text-secondary</td>
                 <td><span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><span style={dotStyle("#6B7280")} /> #6B7280</span></td>
-                <td><span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><span style={dotStyle("#9CA3AF")} /> #9CA3AF</span></td>
+                <td><span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><span style={dotStyle("#A0A0A0")} /> #A0A0A0</span></td>
                 <td>보조 텍스트</td>
               </tr>
               <tr>
                 <td>--ark-color-border</td>
                 <td><span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><span style={dotStyle("#E5E7EB")} /> #E5E7EB</span></td>
-                <td><span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><span style={dotStyle("#334155")} /> #334155</span></td>
+                <td><span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><span style={dotStyle("#383838")} /> #383838</span></td>
                 <td>기본 보더</td>
               </tr>
             </tbody>
@@ -136,8 +248,7 @@ export function ColorsPage() {
         <p className="section-desc">
           CSS 변수를 직접 참조하여 사용합니다.
         </p>
-        <div className="code-block">
-          <code>{`.my-component {
+        <CodeBlock>{`.my-component {
   color: var(--ark-color-text);
   background: var(--ark-color-bg);
   border: 1px solid var(--ark-color-border);
@@ -146,8 +257,7 @@ export function ColorsPage() {
 .my-button {
   background: var(--ark-color-primary-500);
   color: var(--ark-color-text-inverse);
-}`}</code>
-        </div>
+}`}</CodeBlock>
       </section>
     </>
   );
