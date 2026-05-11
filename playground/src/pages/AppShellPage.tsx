@@ -132,13 +132,13 @@ export function AppShellPage() {
                 </button>
               ))}
             </div>
-            <span style={{ fontSize: 11, color: "var(--ark-color-text-disabled)" }}>
-              {device === "pc" ? "사이드바 패널 표시" : device === "tablet" ? "사이드바 → 햄버거 메뉴" : "좌측 → 탭 바 · 우측 → 햄버거"}
+            <span style={{ fontSize: 11, color: "var(--ark-color-text-disabled)", fontVariantNumeric: "tabular-nums" }}>
+              {device === "pc" ? "1920 × 1080" : device === "tablet" ? "1024 × 1366" : "390 × 844"}
             </span>
           </div>
 
-          {/* Mini wireframe preview */}
-          <div style={{ padding: 24, display: "flex", justifyContent: "center" }}>
+          {/* Mini wireframe preview — fixed height container */}
+          <div style={{ padding: 24, display: "flex", justifyContent: "center", alignItems: "center", minHeight: 420 }}>
             <LayoutWireframe
               header={selected.header}
               leftSidebar={selected.leftSidebar}
@@ -238,16 +238,16 @@ function LayoutWireframe({
   header: boolean; leftSidebar: boolean; rightSidebar: boolean; footer: boolean; device: DeviceType;
 }) {
   const dims = device === "mobile"
-    ? { w: 220, h: 400, headerH: 32, footerH: 24, tabBarH: 44 }
+    ? { w: 220, h: 400, headerH: 32, footerH: 24, tabBarH: 44, radius: 28 }
     : device === "tablet"
-    ? { w: 340, h: 440, headerH: 32, footerH: 26, tabBarH: 0 }
-    : { w: 480, h: 300, headerH: 32, footerH: 28, tabBarH: 0 };
+    ? { w: 320, h: 400, headerH: 32, footerH: 26, tabBarH: 0, radius: 20 }
+    : { w: 640, h: 380, headerH: 36, footerH: 30, tabBarH: 0, radius: 8 };
 
-  const { w, h, headerH, footerH, tabBarH } = dims;
+  const { w, h, headerH, footerH, tabBarH, radius } = dims;
 
   /* PC only: sidebar panels */
-  const leftW = leftSidebar && device === "pc" ? 80 : 0;
-  const rightW = rightSidebar && device === "pc" ? 80 : 0;
+  const leftW = leftSidebar && device === "pc" ? 110 : 0;
+  const rightW = rightSidebar && device === "pc" ? 100 : 0;
 
   const contentTop = header ? headerH : 0;
   /* Mobile: 하단 탭 바가 푸터를 대체 */
@@ -271,24 +271,24 @@ function LayoutWireframe({
       width={w}
       height={h}
       viewBox={`0 0 ${w} ${h}`}
-      style={{ borderRadius: 8, border: "1px solid var(--ark-color-border)", transition: "width 0.3s ease, height 0.3s ease" }}
+      style={{ borderRadius: radius, border: "1px solid var(--ark-color-border)", transition: "width 0.3s ease, height 0.3s ease" }}
     >
       {/* Background */}
-      <rect width={w} height={h} fill="var(--ark-color-bg-subtle)" rx={8} />
+      <rect width={w} height={h} fill="var(--ark-color-bg-subtle)" rx={radius} />
 
       {/* ── PC: Left Sidebar panel ── */}
       {leftSidebar && device === "pc" && (
         <g>
-          <rect x={0} y={0} width={leftW} height={h} fill="var(--ark-color-bg)" rx={8} />
-          <rect x={0} y={0} width={leftW} height={h} fill="none" stroke="var(--ark-color-border)" rx={8} />
-          <rect x={14} y={16} width={52} height={8} rx={3} fill="var(--ark-color-primary-500)" opacity={0.7} />
-          <rect x={14} y={36} width={40} height={5} rx={2} fill="var(--ark-color-gray-300)" />
-          <rect x={14} y={48} width={52} height={6} rx={3} fill="var(--ark-color-primary-100)" />
-          <rect x={14} y={60} width={44} height={6} rx={3} fill="var(--ark-color-gray-200)" />
-          <rect x={14} y={72} width={48} height={6} rx={3} fill="var(--ark-color-gray-200)" />
-          <rect x={14} y={92} width={40} height={5} rx={2} fill="var(--ark-color-gray-300)" />
-          <rect x={14} y={104} width={50} height={6} rx={3} fill="var(--ark-color-gray-200)" />
-          <rect x={14} y={116} width={42} height={6} rx={3} fill="var(--ark-color-gray-200)" />
+          <rect x={0} y={0} width={leftW} height={h} fill="var(--ark-color-bg)" rx={radius} />
+          <rect x={0} y={0} width={leftW} height={h} fill="none" stroke="var(--ark-color-border)" rx={radius} />
+          <rect x={16} y={18} width={leftW - 32} height={8} rx={3} fill="var(--ark-color-primary-500)" opacity={0.7} />
+          <rect x={16} y={40} width={leftW * 0.5} height={5} rx={2} fill="var(--ark-color-gray-300)" />
+          <rect x={16} y={52} width={leftW - 32} height={6} rx={3} fill="var(--ark-color-primary-100)" />
+          <rect x={16} y={64} width={leftW * 0.6} height={6} rx={3} fill="var(--ark-color-gray-200)" />
+          <rect x={16} y={76} width={leftW * 0.7} height={6} rx={3} fill="var(--ark-color-gray-200)" />
+          <rect x={16} y={96} width={leftW * 0.5} height={5} rx={2} fill="var(--ark-color-gray-300)" />
+          <rect x={16} y={108} width={leftW - 32} height={6} rx={3} fill="var(--ark-color-gray-200)" />
+          <rect x={16} y={120} width={leftW * 0.55} height={6} rx={3} fill="var(--ark-color-gray-200)" />
           <text x={leftW / 2} y={h - 20} textAnchor="middle" fontSize={9} fill="var(--ark-color-text-secondary)" fontWeight={600}>사이드바</text>
         </g>
       )}
@@ -396,7 +396,7 @@ function LayoutWireframe({
       )}
 
       {/* Border */}
-      <rect width={w} height={h} fill="none" stroke="var(--ark-color-border)" rx={8} />
+      <rect width={w} height={h} fill="none" stroke="var(--ark-color-border)" rx={radius} />
     </svg>
   );
 }
