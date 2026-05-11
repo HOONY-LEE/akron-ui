@@ -333,12 +333,14 @@ function DevicePreview({ url }: { url: string }) {
 
   /* Calculate display dimensions */
   const displayW = cfg.displayW;
+  const displayH = displayW * (cfg.imageH / cfg.imageW);
 
   /* Screen area in display pixels */
   const screenPxW = displayW * cfg.screen.width / 100;
+  const screenPxH = displayH * cfg.screen.height / 100;
 
-  /* Scale iframe to fit screen area */
-  const scale = screenPxW / cfg.iframeW;
+  /* Scale iframe to fit screen area — use smaller scale so it fits both directions */
+  const scale = Math.min(screenPxW / cfg.iframeW, screenPxH / cfg.iframeH);
 
   return (
     <div>
