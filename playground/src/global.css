@@ -25,17 +25,17 @@
 }
 
 [data-theme="dark"] {
-  --docs-bg: #17171c;
-  --docs-bg-subtle: #1e1e24;
-  --docs-bg-preview: #25252c;
-  --docs-text: #ececec;
-  --docs-text-secondary: #8b8b9a;
-  --docs-text-tertiary: #6b6b7a;
-  --docs-border: #2c2c35;
-  --docs-accent: #4c94ff;
-  --docs-sidebar-active-bg: #25252c;
-  --docs-sidebar-hover: #20202a;
-  --docs-code-bg: #25252c;
+  --docs-bg: #1e1e1e;
+  --docs-bg-subtle: #262626;
+  --docs-bg-preview: #2d2d2d;
+  --docs-text: #e0e0e0;
+  --docs-text-secondary: #a0a0a0;
+  --docs-text-tertiary: #737373;
+  --docs-border: #383838;
+  --docs-accent: #818CF8;
+  --docs-sidebar-active-bg: #2d2d2d;
+  --docs-sidebar-hover: #282828;
+  --docs-code-bg: #2d2d2d;
 }
 
 html {
