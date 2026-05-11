@@ -1,5 +1,6 @@
 import { Card } from "@akron/ui";
 import { useToast } from "@akron/ui";
+import { CodeBlock } from "../components/CodeBlock";
 
 export function CardPage() {
   const toast = useToast();
@@ -27,12 +28,10 @@ export function CardPage() {
             </p>
           </Card>
         </div>
-        <div className="code-block">
-          <code>{`<Card>
+        <CodeBlock>{`<Card>
   <h3>프로젝트 현황</h3>
   <p>진행 중인 프로젝트 3건, 완료 12건</p>
-</Card>`}</code>
-        </div>
+</Card>`}</CodeBlock>
       </section>
 
       <section className="docs-section" id="clickable">

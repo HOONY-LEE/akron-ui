@@ -6,6 +6,7 @@ import {
   TableHead,
   TableCell,
 } from "@akron/ui";
+import { CodeBlock } from "../components/CodeBlock";
 
 export function TablePage() {
   return (
@@ -72,8 +73,7 @@ export function TablePage() {
             </TableBody>
           </Table>
         </div>
-        <div className="code-block">
-          <code>{`<Table>
+        <CodeBlock>{`<Table>
   <TableHeader>
     <TableRow>
       <TableHead>사원명</TableHead>
@@ -86,8 +86,7 @@ export function TablePage() {
       <TableCell numeric>6,500</TableCell>
     </TableRow>
   </TableBody>
-</Table>`}</code>
-        </div>
+</Table>`}</CodeBlock>
       </section>
 
       <section className="docs-section" id="numeric">

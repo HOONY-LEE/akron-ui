@@ -1,3 +1,5 @@
+import { CodeBlock } from "../components/CodeBlock";
+
 export function SpacingPage() {
   return (
     <>
@@ -179,8 +181,7 @@ export function SpacingPage() {
 
       <section className="docs-section" id="usage">
         <h2 className="section-title">사용법</h2>
-        <div className="code-block">
-          <code>{`.my-card {
+        <CodeBlock>{`.my-card {
   padding: var(--ark-spacing-5);
   border-radius: var(--ark-radius-lg);
   box-shadow: var(--ark-shadow-md);
@@ -193,8 +194,7 @@ export function SpacingPage() {
 .inline-items {
   display: flex;
   gap: var(--ark-spacing-2);
-}`}</code>
-        </div>
+}`}</CodeBlock>
       </section>
     </>
   );

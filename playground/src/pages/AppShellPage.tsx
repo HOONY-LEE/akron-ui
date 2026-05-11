@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ExternalLink } from "lucide-react";
+import { CodeBlock } from "../components/CodeBlock";
 
 interface ToggleOption {
   key: string;
@@ -117,8 +118,7 @@ export function AppShellPage() {
           <code className="inline-code">sidebar</code> prop에 사이드바 콘텐츠를 전달하면 좌측 고정 사이드바가 생성되고,
           <code className="inline-code">children</code>은 우측 본문 영역에 배치됩니다.
         </p>
-        <div className="code-block">
-          <code>{`<AppShell
+        <CodeBlock>{`<AppShell
   sidebarWidth={260}
   sidebar={
     <LayoutSidebar header={<Logo />}>
@@ -134,8 +134,7 @@ export function AppShellPage() {
     {/* 콘텐츠 */}
   </PageContainer>
   <Footer>© 2026 Akron Corp.</Footer>
-</AppShell>`}</code>
-        </div>
+</AppShell>`}</CodeBlock>
       </section>
 
       <section className="docs-section" id="interface">

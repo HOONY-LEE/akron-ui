@@ -1,4 +1,5 @@
 import { Input } from "@akron/ui";
+import { CodeBlock } from "../components/CodeBlock";
 
 export function InputPage() {
   return (
@@ -21,10 +22,8 @@ export function InputPage() {
           <Input label="이름" placeholder="홍길동" />
           <Input label="이메일" type="email" placeholder="name@company.com" />
         </div>
-        <div className="code-block">
-          <code>{`<Input label="이름" placeholder="홍길동" />
-<Input label="이메일" type="email" placeholder="name@company.com" />`}</code>
-        </div>
+        <CodeBlock>{`<Input label="이름" placeholder="홍길동" />
+<Input label="이메일" type="email" placeholder="name@company.com" />`}</CodeBlock>
       </section>
 
       <section className="docs-section" id="sizes">

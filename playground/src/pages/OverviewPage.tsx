@@ -1,4 +1,6 @@
 import { Button, Card, Input, Stack } from "@akron/ui";
+import { CodeBlock } from "../components/CodeBlock";
+import { Palette, Moon, Accessibility, Package, LayoutGrid, Settings } from "lucide-react";
 
 export function OverviewPage() {
   return (
@@ -16,7 +18,7 @@ export function OverviewPage() {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 16 }}>
           <Card>
             <div style={{ padding: 20 }}>
-              <div style={{ fontSize: 20, marginBottom: 8 }}>🎨</div>
+              <div style={{ marginBottom: 10, color: "var(--ark-color-primary-500)" }}><Palette size={22} /></div>
               <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 4 }}>디자인 토큰</div>
               <div style={{ fontSize: 13, color: "var(--ark-color-text-secondary)", lineHeight: 1.6 }}>
                 CSS 변수 기반 토큰으로 색상, 타이포그래피, 간격을 체계적으로 관리합니다.
@@ -25,7 +27,7 @@ export function OverviewPage() {
           </Card>
           <Card>
             <div style={{ padding: 20 }}>
-              <div style={{ fontSize: 20, marginBottom: 8 }}>🌙</div>
+              <div style={{ marginBottom: 10, color: "var(--ark-color-primary-500)" }}><Moon size={22} /></div>
               <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 4 }}>다크모드</div>
               <div style={{ fontSize: 13, color: "var(--ark-color-text-secondary)", lineHeight: 1.6 }}>
                 <code className="inline-code">data-theme="dark"</code> 속성만으로 전체 테마를 전환합니다.
@@ -34,7 +36,7 @@ export function OverviewPage() {
           </Card>
           <Card>
             <div style={{ padding: 20 }}>
-              <div style={{ fontSize: 20, marginBottom: 8 }}>♿</div>
+              <div style={{ marginBottom: 10, color: "var(--ark-color-primary-500)" }}><Accessibility size={22} /></div>
               <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 4 }}>접근성</div>
               <div style={{ fontSize: 13, color: "var(--ark-color-text-secondary)", lineHeight: 1.6 }}>
                 Radix UI 기반의 접근성 지원과 focus-visible 상태를 기본 제공합니다.
@@ -43,10 +45,28 @@ export function OverviewPage() {
           </Card>
           <Card>
             <div style={{ padding: 20 }}>
-              <div style={{ fontSize: 20, marginBottom: 8 }}>📦</div>
+              <div style={{ marginBottom: 10, color: "var(--ark-color-primary-500)" }}><Package size={22} /></div>
               <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 4 }}>트리셰이킹</div>
               <div style={{ fontSize: 13, color: "var(--ark-color-text-secondary)", lineHeight: 1.6 }}>
                 ESM + CJS 듀얼 빌드로 사용하지 않는 코드를 자동 제거합니다.
+              </div>
+            </div>
+          </Card>
+          <Card>
+            <div style={{ padding: 20 }}>
+              <div style={{ marginBottom: 10, color: "var(--ark-color-primary-500)" }}><LayoutGrid size={22} /></div>
+              <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 4 }}>레이아웃 시스템</div>
+              <div style={{ fontSize: 13, color: "var(--ark-color-text-secondary)", lineHeight: 1.6 }}>
+                AppShell, Header, Sidebar 등 그룹웨어에 최적화된 레이아웃 컴포넌트를 제공합니다.
+              </div>
+            </div>
+          </Card>
+          <Card>
+            <div style={{ padding: 20 }}>
+              <div style={{ marginBottom: 10, color: "var(--ark-color-primary-500)" }}><Settings size={22} /></div>
+              <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 4 }}>커스터마이징</div>
+              <div style={{ fontSize: 13, color: "var(--ark-color-text-secondary)", lineHeight: 1.6 }}>
+                컴포넌트별 CSS 변수를 오버라이드하여 디자인을 자유롭게 조정할 수 있습니다.
               </div>
             </div>
           </Card>
@@ -55,9 +75,7 @@ export function OverviewPage() {
 
       <section className="docs-section" id="install">
         <h2 className="section-title">설치</h2>
-        <div className="code-block">
-          <code>pnpm add @akron/ui</code>
-        </div>
+        <CodeBlock>{`pnpm add @akron/ui`}</CodeBlock>
         <p className="section-desc" style={{ marginTop: 12 }}>
           피어 의존성으로 <code className="inline-code">react</code>와{" "}
           <code className="inline-code">react-dom</code> 18 이상이 필요합니다.
@@ -69,8 +87,7 @@ export function OverviewPage() {
         <p className="section-desc">
           토큰 CSS를 임포트하고 컴포넌트를 사용하세요.
         </p>
-        <div className="code-block">
-          <code>{`import "@akron/ui/tokens.css";
+        <CodeBlock>{`import "@akron/ui/tokens.css";
 import { Button, Input, Card } from "@akron/ui";
 
 function App() {
@@ -80,8 +97,7 @@ function App() {
       <Button variant="primary">제출</Button>
     </Card>
   );
-}`}</code>
-        </div>
+}`}</CodeBlock>
         <div className="example-label" style={{ marginTop: 24 }}>미리보기</div>
         <div className="preview-box left">
           <Card>
@@ -102,13 +118,11 @@ function App() {
           루트 요소에 <code className="inline-code">data-theme</code> 속성을 설정하면
           모든 토큰이 자동으로 전환됩니다.
         </p>
-        <div className="code-block">
-          <code>{`// 다크모드 활성화
+        <CodeBlock>{`// 다크모드 활성화
 document.documentElement.setAttribute("data-theme", "dark");
 
 // 라이트모드 복원
-document.documentElement.setAttribute("data-theme", "light");`}</code>
-        </div>
+document.documentElement.setAttribute("data-theme", "light");`}</CodeBlock>
       </section>
 
       <section className="docs-section" id="structure">

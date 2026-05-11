@@ -1,3 +1,5 @@
+import { CodeBlock } from "../components/CodeBlock";
+
 export function TypographyPage() {
   return (
     <>
@@ -15,10 +17,8 @@ export function TypographyPage() {
           Pretendard를 기본 폰트로 사용합니다. 시스템 폰트를 폴백으로 지정하여
           로딩 실패 시에도 일관된 경험을 제공합니다.
         </p>
-        <div className="code-block">
-          <code>{`--ark-font-family: 'Pretendard', -apple-system, BlinkMacSystemFont,
-  'Segoe UI', Roboto, sans-serif;`}</code>
-        </div>
+        <CodeBlock>{`--ark-font-family: 'Pretendard', -apple-system, BlinkMacSystemFont,
+  'Segoe UI', Roboto, sans-serif;`}</CodeBlock>
       </section>
 
       <section className="docs-section" id="font-size">
@@ -158,8 +158,7 @@ export function TypographyPage() {
 
       <section className="docs-section" id="usage">
         <h2 className="section-title">사용법</h2>
-        <div className="code-block">
-          <code>{`.page-title {
+        <CodeBlock>{`.page-title {
   font-size: var(--ark-font-size-2xl);
   font-weight: var(--ark-font-weight-bold);
   line-height: var(--ark-line-height-tight);
@@ -174,8 +173,7 @@ export function TypographyPage() {
 .caption {
   font-size: var(--ark-font-size-xs);
   color: var(--ark-color-text-secondary);
-}`}</code>
-        </div>
+}`}</CodeBlock>
       </section>
     </>
   );

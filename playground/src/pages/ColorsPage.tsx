@@ -1,3 +1,5 @@
+import { CodeBlock } from "../components/CodeBlock";
+
 export function ColorsPage() {
   return (
     <>
@@ -136,8 +138,7 @@ export function ColorsPage() {
         <p className="section-desc">
           CSS 변수를 직접 참조하여 사용합니다.
         </p>
-        <div className="code-block">
-          <code>{`.my-component {
+        <CodeBlock>{`.my-component {
   color: var(--ark-color-text);
   background: var(--ark-color-bg);
   border: 1px solid var(--ark-color-border);
@@ -146,8 +147,7 @@ export function ColorsPage() {
 .my-button {
   background: var(--ark-color-primary-500);
   color: var(--ark-color-text-inverse);
-}`}</code>
-        </div>
+}`}</CodeBlock>
       </section>
     </>
   );

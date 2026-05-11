@@ -169,6 +169,7 @@ body {
 
 /* ── Code Block ── */
 .code-block {
+  position: relative;
   background-color: var(--docs-code-bg);
   border-radius: 10px;
   padding: 16px 20px;
@@ -177,11 +178,50 @@ body {
   line-height: 1.7;
   overflow-x: auto;
   margin-bottom: 24px;
-  color: var(--docs-text-secondary);
+}
+
+.code-block pre {
+  margin: 0;
 }
 
 .code-block code {
-  color: var(--docs-text);
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.code-copy-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  color: var(--docs-text-tertiary);
+  background: transparent;
+  border: 1px solid var(--docs-border);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+  z-index: 1;
+}
+
+.code-copy-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--docs-text-secondary);
+  border-color: var(--docs-text-tertiary);
+}
+
+[data-theme="dark"] .code-copy-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.code-copy-btn:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
 }
 
 /* ── Inline Code ── */

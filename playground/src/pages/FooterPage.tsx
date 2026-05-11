@@ -1,5 +1,6 @@
 import { Footer, Button } from "@akron/ui";
 import { ExternalLink } from "lucide-react";
+import { CodeBlock } from "../components/CodeBlock";
 
 export function FooterPage() {
   return (
@@ -31,15 +32,13 @@ export function FooterPage() {
             </div>
           </Footer>
         </div>
-        <div className="code-block">
-          <code>{`<Footer>
+        <CodeBlock>{`<Footer>
   <span>© 2026 Akron Corp.</span>
   <div>
     <Button variant="ghost" size="sm">이용약관</Button>
     <Button variant="ghost" size="sm">개인정보처리방침</Button>
   </div>
-</Footer>`}</code>
-        </div>
+</Footer>`}</CodeBlock>
       </section>
 
       <section className="docs-section" id="interface">
