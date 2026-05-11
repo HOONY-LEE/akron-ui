@@ -471,6 +471,8 @@ export function ColorsPage() {
             <DarkSwatchPreview key={c.shade} shade={c.shade} hex={c.hex} />
           ))}
         </div>
+
+        <PaletteCopyBlock lightPalette={lightPalette} darkPalette={darkPalette} />
       </section>
 
       <section className="docs-section" id="gray">
@@ -576,18 +578,56 @@ export function ColorsPage() {
 
       <section className="docs-section" id="usage">
         <h2 className="section-title">사용법</h2>
+
+        <h3 className="section-subtitle" style={{ marginTop: 0 }}>1. 토큰 CSS 가져오기</h3>
         <p className="section-desc">
-          CSS 변수를 직접 참조하여 사용합니다.
+          패키지 설치 후 글로벌 진입점에서 토큰 CSS를 한 번만 import합니다.
         </p>
-        <CodeBlock>{`.my-component {
-  color: var(--ark-color-text);
-  background: var(--ark-color-bg);
-  border: 1px solid var(--ark-color-border);
+        <CodeBlock>{`// main.tsx (또는 App.tsx)
+import "@akron/ui/tokens";`}</CodeBlock>
+
+        <h3 className="section-subtitle">2. Primary 색상 커스터마이징</h3>
+        <p className="section-desc">
+          위 <strong>Primary 색상 빌더</strong>에서 색상을 선택하고 "CSS 복사"를 눌러
+          글로벌 스타일시트에 붙여넣으면 끝입니다.
+          <code className="inline-code">--ark-color-primary-500</code> 하나만 바꿔도 되지만,
+          50~700 전체를 오버라이드해야 버튼·배지·포커스링 등 모든 컴포넌트에 일관되게 적용됩니다.
+        </p>
+        <CodeBlock>{`/* global.css */
+:root {
+  --ark-color-primary-50:  #FFF0F0;
+  --ark-color-primary-100: #FFD6D7;
+  --ark-color-primary-200: #FFACAE;
+  --ark-color-primary-300: #FF7D80;
+  --ark-color-primary-400: #FF5457;
+  --ark-color-primary-500: #FF383C;  /* 브랜드 대표 색상 */
+  --ark-color-primary-600: #E01F23;
+  --ark-color-primary-700: #B51518;
 }
 
-.my-button {
+[data-theme="dark"] {
+  /* 다크모드용 — 명도 보정된 값 */
+  --ark-color-primary-500: #FF8587;
+  /* … 나머지 shade */
+}`}</CodeBlock>
+
+        <h3 className="section-subtitle">3. 컴포넌트에서 변수 직접 사용</h3>
+        <p className="section-desc">
+          커스텀 컴포넌트에서도 동일한 토큰을 참조하면 테마 전환이 자동으로 적용됩니다.
+        </p>
+        <CodeBlock>{`.my-button {
   background: var(--ark-color-primary-500);
   color: var(--ark-color-text-inverse);
+}
+
+.my-button:hover {
+  background: var(--ark-color-primary-600);
+}
+
+.my-card {
+  background: var(--ark-color-bg);
+  border: 1px solid var(--ark-color-border);
+  color: var(--ark-color-text);
 }`}</CodeBlock>
       </section>
     </>
@@ -653,6 +693,113 @@ function DarkSwatchPreview({ shade, hex }: { shade: number; hex: string }) {
       <div style={{ padding: "8px 10px", fontSize: 12, color: "var(--ark-color-text-secondary)", backgroundColor: "var(--docs-bg)" }}>
         primary-{shade}
       </div>
+    </div>
+  );
+}
+
+function PaletteCopyBlock({
+  lightPalette,
+  darkPalette,
+}: {
+  lightPalette: { shade: number; hex: string }[];
+  darkPalette: { shade: number; hex: string }[];
+}) {
+  const [copied, setCopied] = useState(false);
+
+  const cssCode = [
+    `/* 프로젝트의 글로벌 CSS 파일에 추가하세요 */`,
+    `:root {`,
+    ...lightPalette.map(({ shade, hex }) => `  --ark-color-primary-${shade}: ${hex};`),
+    `}`,
+    ``,
+    `[data-theme="dark"] {`,
+    ...darkPalette.map(({ shade, hex }) => `  --ark-color-primary-${shade}: ${hex};`),
+    `}`,
+  ].join("\n");
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(cssCode).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
+
+  return (
+    <div style={{ marginTop: 32 }}>
+      <div style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        marginBottom: 12,
+      }}>
+        <div>
+          <h3 className="section-subtitle" style={{ margin: 0 }}>내 프로젝트에 적용하기</h3>
+          <p style={{ fontSize: 13, color: "var(--docs-text-secondary)", marginTop: 6 }}>
+            아래 CSS를 프로젝트의 글로벌 스타일시트에 붙여넣으면 됩니다.
+            컴포넌트는 이 변수를 자동으로 참조합니다.
+          </p>
+        </div>
+      </div>
+
+      <div style={{ position: "relative" }}>
+        <div style={{
+          background: "var(--docs-code-bg)",
+          borderRadius: 10,
+          padding: "16px 20px",
+          fontFamily: "'SF Mono', 'Fira Code', 'Consolas', monospace",
+          fontSize: 13,
+          lineHeight: 1.7,
+          overflowX: "auto",
+          border: "1px solid var(--docs-border)",
+        }}>
+          <pre style={{ margin: 0 }}>
+            {lightPalette.map(({ shade, hex }) => {
+              const hexColor = getLuminance(hex) > 0.6 ? "var(--docs-text-secondary)" : hex;
+              return (
+                <div key={shade}>
+                  <span style={{ color: "var(--docs-text-tertiary)" }}>{"  "}--ark-color-primary-</span>
+                  <span style={{ color: "var(--docs-accent)" }}>{shade}</span>
+                  <span style={{ color: "var(--docs-text-tertiary)" }}>: </span>
+                  <span style={{ color: hexColor, fontWeight: 500 }}>{hex}</span>
+                  <span style={{ color: "var(--docs-text-tertiary)" }}>;</span>
+                </div>
+              );
+            })}
+          </pre>
+        </div>
+
+        <button
+          onClick={handleCopy}
+          style={{
+            position: "absolute",
+            top: 10,
+            right: 10,
+            display: "flex",
+            alignItems: "center",
+            gap: 6,
+            padding: "6px 12px",
+            fontSize: 12,
+            fontWeight: 600,
+            color: copied ? "var(--ark-color-success-600)" : "var(--docs-text-secondary)",
+            background: "var(--docs-bg)",
+            border: "1px solid var(--docs-border)",
+            borderRadius: 6,
+            cursor: "pointer",
+            transition: "all 150ms ease",
+          }}
+        >
+          {copied ? "✓ 복사됨" : "CSS 복사"}
+        </button>
+      </div>
+
+      <p style={{ fontSize: 13, color: "var(--docs-text-tertiary)", marginTop: 10 }}>
+        라이트/다크 모드 변수가 모두 포함됩니다.
+        <code style={{
+          background: "var(--docs-code-bg)", padding: "1px 5px",
+          borderRadius: 3, fontSize: 12, marginLeft: 4,
+        }}>tokens.css</code>
+        {" "}import 이후 이 CSS를 추가하면 됩니다.
+      </p>
     </div>
   );
 }
