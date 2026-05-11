@@ -420,7 +420,7 @@ export function ColorsPage() {
             <span style={{ fontSize: 12, fontWeight: 600, color: "var(--docs-text-tertiary)", letterSpacing: "0.03em" }}>
               System Colors
             </span>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: 6 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: 8 }}>
               {APPLE_PRESETS.map((p) => {
                 const isSelected = baseColor.toUpperCase() === p.light.toUpperCase();
                 return (
@@ -429,16 +429,24 @@ export function ColorsPage() {
                     title={`${p.label} (${p.name})`}
                     onClick={() => handleColorChange(p.light)}
                     style={{
-                      width: 28,
-                      height: 28,
-                      borderRadius: 6,
+                      width: 40,
+                      height: 40,
+                      borderRadius: 10,
                       backgroundColor: p.light,
-                      border: isSelected ? "2px solid var(--docs-text)" : "1px solid var(--docs-border)",
+                      border: "none",
                       cursor: "pointer",
                       padding: 0,
                       transition: "transform 150ms ease, box-shadow 150ms ease",
-                      transform: isSelected ? "scale(1.15)" : "scale(1)",
-                      boxShadow: isSelected ? "0 0 0 2px var(--docs-bg), 0 0 0 4px var(--docs-text)" : "none",
+                      transform: isSelected ? "scale(1.1)" : "scale(1)",
+                      boxShadow: isSelected
+                        ? `0 0 0 2.5px var(--docs-bg), 0 0 0 5px ${p.light}`
+                        : "0 1px 3px rgba(0,0,0,0.15)",
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!isSelected) e.currentTarget.style.transform = "scale(1.08)";
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isSelected) e.currentTarget.style.transform = "scale(1)";
                     }}
                   />
                 );
