@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Monitor, Tablet, Smartphone } from "lucide-react";
 import { CodeBlock } from "../components/CodeBlock";
 
 interface ToggleOption {
@@ -47,7 +47,7 @@ export function AppShellPage() {
           overflow: "hidden",
           background: "var(--ark-color-bg)",
         }}>
-          {/* Toggle controls */}
+          {/* Toggle controls + preview button */}
           <div style={{
             padding: "20px 24px",
             borderBottom: "1px solid var(--ark-color-border)",
@@ -71,6 +71,25 @@ export function AppShellPage() {
                 {opt.label}
               </label>
             ))}
+            <button
+              onClick={() => window.open(previewUrl, "_blank", "noopener")}
+              style={{
+                display: "inline-flex", alignItems: "center", gap: 6,
+                padding: "7px 14px",
+                fontSize: 13, fontWeight: 600,
+                marginLeft: "auto",
+                color: "var(--ark-color-text-inverse)",
+                backgroundColor: "var(--ark-color-primary-500)",
+                border: "none", borderRadius: 8, cursor: "pointer",
+                transition: "background-color 0.15s ease",
+                whiteSpace: "nowrap",
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = "var(--ark-color-primary-600)"}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = "var(--ark-color-primary-500)"}
+            >
+              <ExternalLink size={14} />
+              새 창에서 미리보기
+            </button>
           </div>
 
           {/* Mini wireframe preview */}
@@ -82,34 +101,16 @@ export function AppShellPage() {
               footer={selected.footer}
             />
           </div>
-
-          {/* Open preview button */}
-          <div style={{
-            padding: "16px 24px",
-            borderTop: "1px solid var(--ark-color-border)",
-            background: "var(--ark-color-bg-subtle)",
-            display: "flex",
-            justifyContent: "flex-end",
-          }}>
-            <button
-              onClick={() => window.open(previewUrl, "_blank", "noopener")}
-              style={{
-                display: "inline-flex", alignItems: "center", gap: 8,
-                padding: "10px 20px",
-                fontSize: 14, fontWeight: 600,
-                color: "var(--ark-color-text-inverse)",
-                backgroundColor: "var(--ark-color-primary-500)",
-                border: "none", borderRadius: 8, cursor: "pointer",
-                transition: "background-color 0.15s ease",
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = "var(--ark-color-primary-600)"}
-              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = "var(--ark-color-primary-500)"}
-            >
-              <ExternalLink size={15} />
-              새 창에서 미리보기
-            </button>
-          </div>
         </div>
+      </section>
+
+      <section className="docs-section" id="responsive">
+        <h2 className="section-title">반응형 미리보기</h2>
+        <p className="section-desc">
+          AppShell은 PC · 태블릿 · 모바일 3단계 반응형을 지원합니다.
+          PC에서는 전체 사이드바, 태블릿에서는 아이콘 전용, 모바일에서는 오버레이 패턴으로 전환됩니다.
+        </p>
+        <DevicePreview url={buildPreviewUrl(selected)} />
       </section>
 
       <section className="docs-section" id="usage">
@@ -271,6 +272,177 @@ function LayoutWireframe({
       {/* Border */}
       <rect width={w} height={h} fill="none" stroke="var(--ark-color-border)" rx={8} />
     </svg>
+  );
+}
+
+/* ── Device configs ── */
+/* Image dimensions: macbook 2170×1430, ipad 1145×1480, iphone 467×900 */
+/* Screen insets are percentages of the image dimensions */
+
+const deviceConfigs = {
+  pc: {
+    iframeW: 1280,
+    iframeH: 800,
+    image: "/devices/macbook.png",
+    imageW: 2170,
+    imageH: 1430,
+    /* Screen area within image (%) — tightened to stay inside bezel */
+    screen: { top: 6.8, left: 8.5, width: 83.0, height: 81.5 },
+    screenRadius: 6,
+    displayW: 1260,
+  },
+  tablet: {
+    iframeW: 900,
+    iframeH: 1200,
+    image: "/devices/ipad.png",
+    imageW: 1145,
+    imageH: 1480,
+    screen: { top: 4.4, left: 5.0, width: 90.0, height: 91.2 },
+    screenRadius: 6,
+    displayW: 560,
+  },
+  mobile: {
+    iframeW: 375,
+    iframeH: 812,
+    image: "/devices/iphone.png",
+    imageW: 467,
+    imageH: 900,
+    screen: { top: 3.0, left: 5.5, width: 89.0, height: 94.0 },
+    screenRadius: 24,
+    displayW: 300,
+  },
+};
+
+const devices = [
+  { key: "pc" as const, label: "Desktop", icon: Monitor },
+  { key: "tablet" as const, label: "Tablet", icon: Tablet },
+  { key: "mobile" as const, label: "Mobile", icon: Smartphone },
+];
+
+/* ── Image-based Device Frame ── */
+
+function DeviceFrame({ device }: { device: "pc" | "tablet" | "mobile"; url: string }) {
+  return null; // placeholder, actual rendering is inline in DevicePreview
+}
+
+function DevicePreview({ url }: { url: string }) {
+  const [device, setDevice] = useState<"pc" | "tablet" | "mobile">("pc");
+  const cfg = deviceConfigs[device];
+
+  const embedUrl = url + (url.includes("?") ? "&" : "?") + "embed=1";
+
+  /* Calculate display dimensions */
+  const displayW = cfg.displayW;
+  const displayH = displayW * (cfg.imageH / cfg.imageW);
+
+  /* Screen area in display pixels */
+  const screenPxW = displayW * cfg.screen.width / 100;
+  const screenPxH = displayH * cfg.screen.height / 100;
+
+  /* Scale iframe to fit screen area */
+  const scale = screenPxW / cfg.iframeW;
+
+  /* Break out of docs-content max-width for PC */
+  const breakout = device === "pc" ? {
+    marginLeft: "calc(-1 * (min(100vw, 1400px) - 100%) / 2)",
+    marginRight: "calc(-1 * (min(100vw, 1400px) - 100%) / 2)",
+    maxWidth: "none",
+  } : {};
+
+  return (
+    <div style={{
+      border: "1px solid var(--ark-color-border)",
+      borderRadius: 12,
+      overflow: "hidden",
+      background: "var(--ark-color-bg)",
+      ...breakout,
+    }}>
+      {/* Toolbar */}
+      <div style={{
+        padding: "12px 24px",
+        borderBottom: "1px solid var(--ark-color-border)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+      }}>
+        <div style={{ display: "flex", gap: 4 }}>
+          {devices.map((d) => (
+            <button
+              key={d.key}
+              onClick={() => setDevice(d.key)}
+              style={{
+                display: "flex", alignItems: "center", gap: 6,
+                padding: "6px 14px", fontSize: 13, fontWeight: 500,
+                border: "1px solid",
+                borderColor: device === d.key ? "var(--ark-color-primary-500)" : "var(--ark-color-border)",
+                borderRadius: 8, cursor: "pointer",
+                background: device === d.key ? "var(--ark-color-primary-50)" : "var(--ark-color-bg)",
+                color: device === d.key ? "var(--ark-color-primary-600)" : "var(--ark-color-text-secondary)",
+                transition: "all 150ms ease",
+              }}
+            >
+              <d.icon size={14} />
+              {d.label}
+            </button>
+          ))}
+        </div>
+        <span style={{ fontSize: 12, color: "var(--ark-color-text-secondary)" }}>
+          {cfg.iframeW} × {cfg.iframeH}
+        </span>
+      </div>
+
+      {/* Device frame area */}
+      <div style={{
+        padding: device === "pc" ? "24px 0 32px" : device === "mobile" ? "56px 24px 32px" : "32px 24px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        background: "var(--ark-color-bg-subtle)",
+        minHeight: device === "pc" ? 480 : 560,
+      }}>
+        <div style={{
+          position: "relative",
+          width: displayW,
+          height: displayH,
+        }}>
+          {/* iframe positioned inside the screen area — rendered FIRST (below) */}
+          <div style={{
+            position: "absolute",
+            top: `${cfg.screen.top}%`,
+            left: `${cfg.screen.left}%`,
+            width: `${cfg.screen.width}%`,
+            height: `${cfg.screen.height}%`,
+            overflow: "hidden",
+            borderRadius: cfg.screenRadius,
+          }}>
+            <iframe
+              src={embedUrl}
+              title={`${device} preview`}
+              style={{
+                width: cfg.iframeW,
+                height: cfg.iframeH,
+                border: "none",
+                transform: `scale(${scale})`,
+                transformOrigin: "top left",
+              }}
+            />
+          </div>
+          {/* Device mockup image — rendered LAST (on top, masks overflow) */}
+          <img
+            src={cfg.image}
+            alt={`${device} frame`}
+            style={{
+              width: "100%",
+              height: "100%",
+              display: "block",
+              pointerEvents: "none",
+              position: "relative",
+              zIndex: 2,
+            }}
+          />
+        </div>
+      </div>
+    </div>
   );
 }
 

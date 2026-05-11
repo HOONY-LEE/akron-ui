@@ -7,12 +7,12 @@ import {
   SidebarGroup,
   SidebarItem,
   ToastProvider,
-} from "@akron/ui";
+} from "@sunghoon_lee/akron-ui";
 import {
   BookOpen, Palette, Type, Ruler,
   LayoutGrid, PanelTop, PanelLeft, PanelBottom, Box, Layers,
   MousePointerClick, TextCursorInput, CreditCard, Table, Maximize2, Bell,
-  Moon, Sun,
+  Moon, Sun, Menu,
   CheckSquare, Circle, ToggleLeft, ChevronDown, AlignLeft, CalendarDays,
   Phone, Mail, Upload,
   Tag, Hash, UserCircle, Info, AlertTriangle, Loader, Activity, RotateCw,
@@ -91,6 +91,7 @@ const pageIcons: Record<string, ReactNode> = {
 export function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -102,6 +103,7 @@ export function App() {
     const el = document.querySelector("[data-appshell-body]");
     if (el) el.scrollTop = 0;
     else window.scrollTo(0, 0);
+    setSidebarOpen(false);
   }, [location.pathname]);
 
   if (location.pathname.startsWith("/preview")) {
@@ -170,9 +172,9 @@ export function App() {
                   {item.status === "planned" && (
                     <span style={{
                       fontSize: 9,
-                      fontWeight: 700,
-                      color: "var(--ark-color-warning-700)",
-                      backgroundColor: "var(--ark-color-warning-50)",
+                      fontWeight: 600,
+                      color: "var(--ark-color-text-disabled)",
+                      backgroundColor: "var(--ark-color-bg-muted)",
                       padding: "1px 5px",
                       borderRadius: 4,
                       lineHeight: "14px",
@@ -197,9 +199,25 @@ export function App() {
         sidebar={sidebar}
         sidebarWidth={260}
         sidebarCollapsed={collapsed}
+        sidebarOpen={sidebarOpen}
+        onSidebarClose={() => setSidebarOpen(false)}
       >
         <Header
           sticky
+          menuButton={
+            <button
+              onClick={() => setSidebarOpen(true)}
+              aria-label="메뉴 열기"
+              style={{
+                width: 36, height: 36, display: "flex", alignItems: "center", justifyContent: "center",
+                border: "1px solid var(--ark-color-border)", borderRadius: 8,
+                background: "var(--ark-color-bg)", color: "var(--ark-color-text-secondary)",
+                cursor: "pointer",
+              }}
+            >
+              <Menu size={18} />
+            </button>
+          }
           logo={
             currentPage ? (
               <div className="docs-breadcrumb">

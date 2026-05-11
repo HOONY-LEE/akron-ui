@@ -1,4 +1,4 @@
-import { PageContainer, Card } from "@akron/ui";
+import { PageContainer, Card } from "@sunghoon_lee/akron-ui";
 import { ExternalLink } from "lucide-react";
 import { CodeBlock } from "../components/CodeBlock";
 

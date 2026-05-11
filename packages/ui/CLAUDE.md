@@ -1,4 +1,4 @@
-# @akron/ui — AI 작업 규칙
+# @sunghoon_lee/akron-ui — AI 작업 규칙
 
 ## 컴포넌트 구조
 - 새 컴포넌트 추가 시 기존 컴포넌트와 동일한 폴더 구조를 따를 것: `ComponentName/ComponentName.tsx`, `ComponentName.module.css`, `index.ts`

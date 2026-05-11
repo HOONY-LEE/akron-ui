@@ -2,7 +2,7 @@
 
 ## 프로젝트 구조
 
-- `packages/ui/` — 컴포넌트 라이브러리 (`@akron/ui`)
+- `packages/ui/` — 컴포넌트 라이브러리 (`@sunghoon_lee/akron-ui`)
 - `playground/` — Vite 기반 문서/데모 사이트
 
 ## 주요 레퍼런스

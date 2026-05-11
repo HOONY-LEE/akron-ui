@@ -1,4 +1,4 @@
-import { Button, useToast } from "@akron/ui";
+import { Button, useToast } from "@sunghoon_lee/akron-ui";
 import { CodeBlock } from "../components/CodeBlock";
 
 export function ToastPage() {

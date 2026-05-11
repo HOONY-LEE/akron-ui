@@ -1,4 +1,4 @@
-import { LayoutSidebar, SidebarGroup, SidebarItem } from "@akron/ui";
+import { LayoutSidebar, SidebarGroup, SidebarItem } from "@sunghoon_lee/akron-ui";
 import { ExternalLink, BarChart3, Bell, Users, Building2, Clock, CreditCard, FileText } from "lucide-react";
 import { CodeBlock } from "../components/CodeBlock";
 

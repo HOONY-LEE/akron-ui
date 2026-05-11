@@ -1,4 +1,4 @@
-import { Input } from "@akron/ui";
+import { Input } from "@sunghoon_lee/akron-ui";
 import { CodeBlock } from "../components/CodeBlock";
 
 export function InputPage() {

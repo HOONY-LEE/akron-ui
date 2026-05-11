@@ -1,4 +1,4 @@
-import { Footer, Button } from "@akron/ui";
+import { Footer, Button } from "@sunghoon_lee/akron-ui";
 import { ExternalLink } from "lucide-react";
 import { CodeBlock } from "../components/CodeBlock";
 

@@ -5,7 +5,7 @@ import {
   TableRow,
   TableHead,
   TableCell,
-} from "@akron/ui";
+} from "@sunghoon_lee/akron-ui";
 import { CodeBlock } from "../components/CodeBlock";
 
 export function TablePage() {

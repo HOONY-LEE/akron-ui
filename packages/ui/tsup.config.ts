@@ -1,4 +1,5 @@
 import { defineConfig } from "tsup";
+import CssModulesPlugin from "esbuild-css-modules-plugin";
 
 export default defineConfig({
   entry: ["src/index.ts"],
@@ -9,4 +10,9 @@ export default defineConfig({
   clean: true,
   external: ["react", "react-dom"],
   injectStyle: false,
+  esbuildPlugins: [
+    CssModulesPlugin({
+      inject: false,
+    }),
+  ],
 });

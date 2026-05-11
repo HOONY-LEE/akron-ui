@@ -239,3 +239,51 @@
 .sidebarCollapsed .group {
   margin-bottom: var(--ark-spacing-3);
 }
+
+/* ── Tablet: force collapsed appearance ── */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .sidebarHeader {
+    justify-content: center;
+    padding: 0;
+  }
+
+  .headerContent {
+    display: none;
+  }
+
+  .sidebarContent {
+    padding: var(--ark-spacing-4) 0;
+    overflow-x: hidden;
+  }
+
+  .sidebarFooter {
+    display: none;
+  }
+
+  .groupLabel,
+  .groupLabelBtn {
+    display: none;
+  }
+
+  .item {
+    width: auto;
+    height: calc(var(--ark-font-size-sm) * var(--ark-line-height-normal) + var(--ark-sidebar-item-padding-y) * 2);
+    aspect-ratio: 1;
+    padding: 0;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .itemContent {
+    width: auto;
+    gap: 0;
+  }
+
+  .itemLabel {
+    display: none;
+  }
+
+  .group {
+    margin-bottom: var(--ark-spacing-3);
+  }
+}

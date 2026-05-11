@@ -1,4 +1,4 @@
-import { Stack, Button, Card } from "@akron/ui";
+import { Stack, Button, Card } from "@sunghoon_lee/akron-ui";
 import { CodeBlock } from "../components/CodeBlock";
 
 export function StackPage() {

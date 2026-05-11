@@ -1,4 +1,4 @@
-import { Button } from "@akron/ui";
+import { Button } from "@sunghoon_lee/akron-ui";
 import { Mail, ArrowRight } from "lucide-react";
 import { CodeBlock } from "../components/CodeBlock";
 

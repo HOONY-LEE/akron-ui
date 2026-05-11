@@ -1,0 +1,9 @@
+{
+  "buildCommand": "cd playground && pnpm install && pnpm build",
+  "outputDirectory": "playground/dist",
+  "installCommand": "npm install -g pnpm && pnpm install",
+  "framework": "vite",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}

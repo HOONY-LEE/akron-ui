@@ -1,4 +1,4 @@
-import { Header, Button, Card, PageContainer } from "@akron/ui";
+import { Header, Button, Card, PageContainer } from "@sunghoon_lee/akron-ui";
 import { Bell, Search, User, Menu } from "lucide-react";
 
 export function HeaderPreview() {

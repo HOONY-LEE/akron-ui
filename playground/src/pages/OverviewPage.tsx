@@ -1,4 +1,4 @@
-import { Button, Card, Input, Stack } from "@akron/ui";
+import { Button, Card, Input, Stack } from "@sunghoon_lee/akron-ui";
 import { CodeBlock } from "../components/CodeBlock";
 import { Palette, Moon, Accessibility, Package, LayoutGrid, Settings } from "lucide-react";
 
@@ -75,7 +75,7 @@ export function OverviewPage() {
 
       <section className="docs-section" id="install">
         <h2 className="section-title">설치</h2>
-        <CodeBlock>{`pnpm add @akron/ui`}</CodeBlock>
+        <CodeBlock>{`pnpm add @sunghoon_lee/akron-ui`}</CodeBlock>
         <p className="section-desc" style={{ marginTop: 12 }}>
           피어 의존성으로 <code className="inline-code">react</code>와{" "}
           <code className="inline-code">react-dom</code> 18 이상이 필요합니다.
@@ -87,8 +87,8 @@ export function OverviewPage() {
         <p className="section-desc">
           토큰 CSS를 임포트하고 컴포넌트를 사용하세요.
         </p>
-        <CodeBlock>{`import "@akron/ui/tokens.css";
-import { Button, Input, Card } from "@akron/ui";
+        <CodeBlock>{`import "@sunghoon_lee/akron-ui/tokens.css";
+import { Button, Input, Card } from "@sunghoon_lee/akron-ui";
 
 function App() {
   return (

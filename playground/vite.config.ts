@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      "@akron/ui": path.resolve(__dirname, "../packages/ui/src"),
+      "@sunghoon_lee/akron-ui": path.resolve(__dirname, "../packages/ui/src"),
     },
   },
 });

@@ -1,5 +1,5 @@
-import { Card } from "@akron/ui";
-import { useToast } from "@akron/ui";
+import { Card } from "@sunghoon_lee/akron-ui";
+import { useToast } from "@sunghoon_lee/akron-ui";
 import { CodeBlock } from "../components/CodeBlock";
 
 export function CardPage() {

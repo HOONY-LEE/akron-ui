@@ -1,6 +1,6 @@
 {
-  "name": "@akron/ui",
-  "version": "0.1.0",
+  "name": "@sunghoon_lee/akron-ui",
+  "version": "0.1.1",
   "description": "Enterprise groupware/ERP UI component library",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -13,12 +13,11 @@
         "default": "./dist/index.js"
       },
       "require": {
-        "types": "./dist/index.d.cts",
+        "types": "./dist/index.d.ts",
         "default": "./dist/index.cjs"
       }
     },
-    "./tokens": "./dist/tokens.css",
-    "./styles.css": "./dist/index.css"
+    "./tokens": "./dist/tokens.css"
   },
   "files": [
     "dist"
@@ -27,8 +26,8 @@
     "*.css"
   ],
   "scripts": {
-    "build": "tsup && cp src/tokens/tokens.css dist/tokens.css",
-    "dev": "tsup --watch",
+    "build": "vite build && tsc --emitDeclarationOnly --declaration --outDir dist && cp src/tokens/tokens.css dist/tokens.css",
+    "dev": "vite build --watch",
     "typecheck": "tsc --noEmit",
     "clean": "rimraf dist"
   },
@@ -43,11 +42,14 @@
   "devDependencies": {
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.7.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "typescript": "^5.7.3",
+    "rimraf": "^6.0.1",
     "tsup": "^8.4.0",
-    "rimraf": "^6.0.1"
+    "typescript": "^5.7.3",
+    "vite": "^6.4.2",
+    "vite-plugin-lib-inject-css": "^2.2.2"
   },
   "license": "MIT"
 }

@@ -584,7 +584,7 @@ export function ColorsPage() {
           패키지 설치 후 글로벌 진입점에서 토큰 CSS를 한 번만 import합니다.
         </p>
         <CodeBlock>{`// main.tsx (또는 App.tsx)
-import "@akron/ui/tokens";`}</CodeBlock>
+import "@sunghoon_lee/akron-ui/tokens";`}</CodeBlock>
 
         <h3 className="section-subtitle">2. Primary 색상 커스터마이징</h3>
         <p className="section-desc">

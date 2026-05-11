@@ -1,6 +1,6 @@
-# @akron/ui API Reference (for AI Agents)
+# @sunghoon_lee/akron-ui API Reference (for AI Agents)
 
-이 문서는 AI 코딩 도구(Claude, Cursor, Copilot 등)가 `@akron/ui` 라이브러리를 사용하여 코드를 생성할 때 참조하는 레퍼런스입니다. 컴포넌트의 props, 사용 패턴, 커스터마이징 방법을 구조화하여 제공합니다.
+이 문서는 AI 코딩 도구(Claude, Cursor, Copilot 등)가 `@sunghoon_lee/akron-ui` 라이브러리를 사용하여 코드를 생성할 때 참조하는 레퍼런스입니다. 컴포넌트의 props, 사용 패턴, 커스터마이징 방법을 구조화하여 제공합니다.
 
 > **이 파일은 컴포넌트가 추가/변경/삭제될 때 반드시 함께 업데이트해야 합니다.**
 
@@ -9,12 +9,12 @@
 ## 설치 및 설정
 
 ```bash
-pnpm add @akron/ui
+pnpm add @sunghoon_lee/akron-ui
 ```
 
 ```tsx
 // main.tsx 또는 App.tsx — 토큰 CSS를 한 번만 import
-import "@akron/ui/tokens";
+import "@sunghoon_lee/akron-ui/tokens";
 ```
 
 ---
@@ -26,7 +26,7 @@ import "@akron/ui/tokens";
 최상위 레이아웃 셸. 사이드바 + 본문 구조를 잡아준다.
 
 ```tsx
-import { AppShell } from "@akron/ui";
+import { AppShell } from "@sunghoon_lee/akron-ui";
 
 <AppShell
   sidebar={<LayoutSidebar>...</LayoutSidebar>}
@@ -58,7 +58,7 @@ import { AppShell } from "@akron/ui";
 상단 고정 헤더. AppShell 안에서 사용.
 
 ```tsx
-import { Header } from "@akron/ui";
+import { Header } from "@sunghoon_lee/akron-ui";
 
 <Header
   logo={<span>My App</span>}   // 좌측 로고/타이틀 영역
@@ -86,7 +86,7 @@ import { Header } from "@akron/ui";
 사이드바 내부 구조. AppShell의 `sidebar` prop에 전달.
 
 ```tsx
-import { LayoutSidebar, SidebarGroup, SidebarItem } from "@akron/ui";
+import { LayoutSidebar, SidebarGroup, SidebarItem } from "@sunghoon_lee/akron-ui";
 
 <LayoutSidebar
   header={<div>로고</div>}     // 사이드바 상단 (헤더 높이와 정렬됨)
@@ -143,7 +143,7 @@ import { LayoutSidebar, SidebarGroup, SidebarItem } from "@akron/ui";
 하단 푸터. AppShell 안에서 사용.
 
 ```tsx
-import { Footer } from "@akron/ui";
+import { Footer } from "@sunghoon_lee/akron-ui";
 
 <Footer>
   <span>© 2026 My Company</span>
@@ -159,7 +159,7 @@ Props는 표준 HTML `<footer>` 속성만 지원. 커스텀 토큰: `--ark-foote
 본문 콘텐츠의 최대 너비를 제한하는 컨테이너.
 
 ```tsx
-import { PageContainer } from "@akron/ui";
+import { PageContainer } from "@sunghoon_lee/akron-ui";
 
 <PageContainer size="lg">  {/* sm | md | lg | xl | full */}
   {/* 콘텐츠 */}
@@ -181,7 +181,7 @@ import { PageContainer } from "@akron/ui";
 Flexbox 기반 레이아웃 유틸리티.
 
 ```tsx
-import { Stack } from "@akron/ui";
+import { Stack } from "@sunghoon_lee/akron-ui";
 
 <Stack direction="horizontal" gap={12} align="center" justify="between" wrap>
   <div>A</div>
@@ -204,7 +204,7 @@ import { Stack } from "@akron/ui";
 ### Button
 
 ```tsx
-import { Button } from "@akron/ui";
+import { Button } from "@sunghoon_lee/akron-ui";
 
 <Button
   variant="primary"            // primary | secondary | outline | ghost | danger
@@ -236,7 +236,7 @@ import { Button } from "@akron/ui";
 ### Input
 
 ```tsx
-import { Input } from "@akron/ui";
+import { Input } from "@sunghoon_lee/akron-ui";
 
 <Input
   label="이메일"               // 상단 라벨
@@ -263,7 +263,7 @@ import { Input } from "@akron/ui";
 ### Card
 
 ```tsx
-import { Card } from "@akron/ui";
+import { Card } from "@sunghoon_lee/akron-ui";
 
 <Card clickable onClick={() => navigate("/detail")}>
   <h3>제목</h3>
@@ -282,7 +282,7 @@ import { Card } from "@akron/ui";
 ### Table / TableHeader / TableBody / TableRow / TableHead / TableCell
 
 ```tsx
-import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@akron/ui";
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@sunghoon_lee/akron-ui";
 
 <Table>
   <TableHeader>
@@ -313,7 +313,7 @@ import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@
 Radix Dialog 기반. 접근성(키보드, 포커스 트랩) 자동 지원.
 
 ```tsx
-import { Modal } from "@akron/ui";
+import { Modal } from "@sunghoon_lee/akron-ui";
 
 const [open, setOpen] = useState(false);
 
@@ -349,14 +349,14 @@ Context 기반. 앱 최상위에 `ToastProvider`를 감싸고, 하위에서 `use
 
 ```tsx
 // App.tsx
-import { ToastProvider } from "@akron/ui";
+import { ToastProvider } from "@sunghoon_lee/akron-ui";
 
 <ToastProvider>
   <App />
 </ToastProvider>
 
 // 하위 컴포넌트
-import { useToast } from "@akron/ui";
+import { useToast } from "@sunghoon_lee/akron-ui";
 
 function MyComponent() {
   const toast = useToast();
@@ -506,7 +506,7 @@ tokens.css에서 자동 적용:
 import {
   AppShell, Header, LayoutSidebar, SidebarGroup, SidebarItem,
   Footer, PageContainer, Button, Card, Stack, ToastProvider, useToast,
-} from "@akron/ui";
+} from "@sunghoon_lee/akron-ui";
 import { Home, Users, Settings } from "lucide-react";
 
 function App() {

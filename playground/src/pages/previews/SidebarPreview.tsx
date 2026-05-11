@@ -6,7 +6,7 @@ import {
   SidebarItem,
   Card,
   PageContainer,
-} from "@akron/ui";
+} from "@sunghoon_lee/akron-ui";
 import {
   BarChart3, Bell, Users, Building2,
   CreditCard, FileText, Calendar, Settings,

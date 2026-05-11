@@ -42,11 +42,27 @@
   margin-left: 0;
 }
 
-/* ── Mobile overlay ── */
+/* ── Overlay (mobile & tablet) ── */
 .overlay {
   display: none;
 }
 
+/* ── Tablet: auto-collapse to icon-only ── */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .aside {
+    width: var(--ark-layout-sidebar-collapsed-width);
+  }
+
+  .body {
+    margin-left: var(--ark-layout-sidebar-collapsed-width);
+  }
+
+  .bodyCollapsed {
+    margin-left: var(--ark-layout-sidebar-collapsed-width);
+  }
+}
+
+/* ── Mobile: hide sidebar, overlay pattern ── */
 @media (max-width: 768px) {
   .aside {
     transform: translateX(-100%);

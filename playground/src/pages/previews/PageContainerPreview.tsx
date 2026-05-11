@@ -1,4 +1,4 @@
-import { PageContainer, Card } from "@akron/ui";
+import { PageContainer, Card } from "@sunghoon_lee/akron-ui";
 
 const sizes = [
   { size: "sm" as const, max: "640px" },

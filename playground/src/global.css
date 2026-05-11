@@ -8,9 +8,19 @@
 }
 
 :root {
+  /* Playground default primary — Apple HIG Red */
+  --ark-color-primary-50:  #FFF0F0;
+  --ark-color-primary-100: #FFD6D7;
+  --ark-color-primary-200: #FFACAE;
+  --ark-color-primary-300: #FF7D80;
+  --ark-color-primary-400: #FF5457;
+  --ark-color-primary-500: #FF383C;
+  --ark-color-primary-600: #E01F23;
+  --ark-color-primary-700: #B51518;
+
   --docs-sidebar-width: 260px;
   --docs-toc-width: 200px;
-  --docs-content-max: 960px;
+  --docs-content-max: 1080px;
   --docs-bg: #ffffff;
   --docs-bg-subtle: #f7f8fa;
   --docs-bg-preview: #f4f5f7;
@@ -25,6 +35,16 @@
 }
 
 [data-theme="dark"] {
+  /* Playground default primary — Apple HIG Red (dark) */
+  --ark-color-primary-50:  #330B0C;
+  --ark-color-primary-100: #4D1011;
+  --ark-color-primary-200: #801B1D;
+  --ark-color-primary-300: #B32629;
+  --ark-color-primary-400: #E63135;
+  --ark-color-primary-500: #FF585B;
+  --ark-color-primary-600: #FF8587;
+  --ark-color-primary-700: #FFB3B4;
+
   --docs-bg: #1e1e1e;
   --docs-bg-subtle: #262626;
   --docs-bg-preview: #2d2d2d;
@@ -68,7 +88,7 @@ body {
 .docs-content {
   width: 100%;
   max-width: var(--docs-content-max);
-  padding: 40px 32px 80px;
+  padding: 40px 24px 80px;
 }
 
 /* ── Breadcrumb ── */

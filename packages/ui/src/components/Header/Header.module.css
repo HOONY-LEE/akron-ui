@@ -29,9 +29,22 @@
   gap: var(--ark-spacing-2);
 }
 
+.menuButton {
+  display: none;
+  align-items: center;
+  margin-right: var(--ark-spacing-2);
+}
+
 .actions {
   display: flex;
   align-items: center;
   gap: var(--ark-spacing-2);
   margin-left: auto;
+}
+
+/* ── Mobile: show menu button ── */
+@media (max-width: 768px) {
+  .menuButton {
+    display: flex;
+  }
 }

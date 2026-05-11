@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Modal } from "@akron/ui";
+import { Button, Modal } from "@sunghoon_lee/akron-ui";
 import { CodeBlock } from "../components/CodeBlock";
 
 export function ModalPage() {

@@ -1,4 +1,4 @@
-import { Footer, Button, Card, PageContainer } from "@akron/ui";
+import { Footer, Button, Card, PageContainer } from "@sunghoon_lee/akron-ui";
 
 export function FooterPreview() {
   return (

@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 const tocData: Record<string, { label: string; id: string; indent?: boolean }[]> = {
   overview: [
     { label: "특징", id: "features" },
@@ -63,6 +65,7 @@ const tocData: Record<string, { label: string; id: string; indent?: boolean }[]>
   ],
   "app-shell": [
     { label: "레이아웃 빌더", id: "builder" },
+    { label: "반응형 미리보기", id: "responsive" },
     { label: "사용법", id: "usage" },
     { label: "인터페이스", id: "interface" },
   ],
@@ -96,6 +99,34 @@ const tocData: Record<string, { label: string; id: string; indent?: boolean }[]>
 
 export function TableOfContents({ currentPage }: { currentPage: string }) {
   const items = tocData[currentPage] ?? [];
+  const [activeId, setActiveId] = useState<string>("");
+
+  useEffect(() => {
+    if (items.length === 0) return;
+
+    const scrollRoot = document.querySelector("[data-appshell-body]") ?? undefined;
+    const ids = items.map((i) => i.id);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((e) => e.isIntersecting);
+        if (visible.length > 0) {
+          const topmost = visible.reduce((a, b) =>
+            a.boundingClientRect.top < b.boundingClientRect.top ? a : b,
+          );
+          setActiveId(topmost.target.id);
+        }
+      },
+      { root: scrollRoot, rootMargin: "-80px 0px -60% 0px", threshold: 0 },
+    );
+
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, [items, currentPage]);
 
   return (
     <aside className="toc">
@@ -105,7 +136,11 @@ export function TableOfContents({ currentPage }: { currentPage: string }) {
           <li key={item.id}>
             <a
               href={`#${item.id}`}
-              className={`toc-link ${item.indent ? "indent" : ""}`}
+              className={[
+                "toc-link",
+                item.indent ? "indent" : "",
+                activeId === item.id ? "active" : "",
+              ].filter(Boolean).join(" ")}
             >
               {item.label}
             </a>
@@ -117,7 +152,7 @@ export function TableOfContents({ currentPage }: { currentPage: string }) {
         .toc {
           position: fixed;
           top: 40px;
-          right: 32px;
+          right: 0px;
           width: var(--docs-toc-width);
           padding: 0;
           display: none;
@@ -135,21 +170,30 @@ export function TableOfContents({ currentPage }: { currentPage: string }) {
         }
         .toc-list {
           list-style: none;
+          border-left: 2px solid var(--docs-border);
+          padding-left: 0;
         }
         .toc-link {
           display: block;
           font-size: 13px;
           color: var(--docs-text-tertiary);
           text-decoration: none;
-          padding: 4px 0;
-          transition: color 0.12s ease;
+          padding: 4px 0 4px 12px;
+          margin-left: -2px;
+          border-left: 2px solid transparent;
+          transition: color 0.15s ease, border-color 0.15s ease, font-weight 0.15s ease;
           line-height: 1.5;
         }
         .toc-link:hover {
           color: var(--docs-text);
         }
         .toc-link.indent {
-          padding-left: 12px;
+          padding-left: 24px;
+        }
+        .toc-link.active {
+          color: var(--ark-color-primary-500);
+          font-weight: 600;
+          border-left-color: var(--ark-color-primary-500);
         }
       `}</style>
     </aside>

@@ -1,4 +1,4 @@
-import { Header, Button } from "@akron/ui";
+import { Header, Button } from "@sunghoon_lee/akron-ui";
 import { Bell, Search, User, ExternalLink } from "lucide-react";
 import { CodeBlock } from "../components/CodeBlock";
 

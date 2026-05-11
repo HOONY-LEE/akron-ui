@@ -1,11 +1,11 @@
-# @akron/ui
+# @sunghoon_lee/akron-ui
 
 Enterprise Groupware / ERP를 위한 React UI 컴포넌트 라이브러리.
 
 ## 설치
 
 ```bash
-pnpm add @akron/ui
+pnpm add @sunghoon_lee/akron-ui
 ```
 
 Peer dependencies:
@@ -21,13 +21,13 @@ pnpm add react react-dom
 앱 진입점에서 스타일을 import합니다:
 
 ```tsx
-import "@akron/ui/styles.css";
+import "@sunghoon_lee/akron-ui/styles.css";
 ```
 
 ### 컴포넌트 사용
 
 ```tsx
-import { Button, Input, Card, Modal, ToastProvider, useToast } from "@akron/ui";
+import { Button, Input, Card, Modal, ToastProvider, useToast } from "@sunghoon_lee/akron-ui";
 
 function App() {
   return (
@@ -46,7 +46,7 @@ function App() {
 ### Table
 
 ```tsx
-import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@akron/ui";
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@sunghoon_lee/akron-ui";
 
 <Table>
   <TableHeader>
@@ -67,7 +67,7 @@ import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@
 ### Modal
 
 ```tsx
-import { Modal, Button } from "@akron/ui";
+import { Modal, Button } from "@sunghoon_lee/akron-ui";
 
 function Example() {
   const [open, setOpen] = useState(false);
@@ -86,7 +86,7 @@ function Example() {
 ### Toast
 
 ```tsx
-import { useToast } from "@akron/ui";
+import { useToast } from "@sunghoon_lee/akron-ui";
 
 function SaveButton() {
   const toast = useToast();
