@@ -111,6 +111,8 @@ import { ChecklistPage } from "./pages/ChecklistPage";
 import { FileTreePage } from "./pages/FileTreePage";
 import { MeterGroupPage } from "./pages/MeterGroupPage";
 import { SpotlightPage } from "./pages/SpotlightPage";
+import { BannerAlertPage } from "./pages/BannerAlertPage";
+import { ShortcutMapPage } from "./pages/ShortcutMapPage";
 
 export interface PageMeta {
   component: ComponentType;
@@ -262,6 +264,8 @@ export const pages: PageMeta[] = [
   { path: "file-tree", component: FileTreePage, label: "FileTree", category: "표시" },
   { path: "meter-group", component: MeterGroupPage, label: "MeterGroup", category: "표시" },
   { path: "spotlight", component: SpotlightPage, label: "Spotlight", category: "오버레이" },
+  { path: "banner-alert", component: BannerAlertPage, label: "BannerAlert", category: "표시" },
+  { path: "shortcut-map", component: ShortcutMapPage, label: "ShortcutMap", category: "표시" },
 ];
 
 export function getPageByPath(pathname: string): PageMeta | undefined {

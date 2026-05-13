@@ -4527,3 +4527,94 @@ useEffect(() => {
 | icon | ReactNode | 커스텀 아이콘 |
 | shortcut | string[] | 단축키 힌트 (예: ['⌘', 'K']) |
 | keywords | string[] | 추가 검색 키워드 |
+
+---
+
+## BannerAlert
+
+페이지 상단에 표시되는 배너 알림 컴포넌트. 공지사항, 시스템 점검 안내, 성공/오류 메시지, CTA 버튼을 포함합니다. 닫기 버튼으로 해제할 수 있으며 `sticky` 옵션으로 상단 고정이 가능합니다.
+
+```tsx
+import { BannerAlert } from "@sunghoon_lee/akron-ui";
+
+<BannerAlert variant="info" message="새 버전이 출시되었습니다." />
+
+// 공지사항 + CTA
+<BannerAlert
+  variant="announcement"
+  message="🚀 Akron UI v2.0 출시!"
+  description="50개 이상의 새 컴포넌트"
+  actionLabel="자세히 보기"
+  onAction={() => navigate("/release")}
+  dismissible
+/>
+
+// 에러 + sticky
+<BannerAlert variant="error" message="결제 처리 실패" sticky />
+```
+
+### BannerAlertProps
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| message | ReactNode | 필수 | 메인 메시지 |
+| variant | 'info' \| 'success' \| 'warning' \| 'error' \| 'announcement' | 'info' | 변형 |
+| description | ReactNode | - | 부가 설명 |
+| dismissible | boolean | true | 닫기 버튼 표시 |
+| onDismiss | () => void | - | 닫힘 콜백 |
+| actionLabel | string | - | CTA 버튼 레이블 |
+| onAction | () => void | - | CTA 클릭 콜백 |
+| hideIcon | boolean | false | 아이콘 숨김 |
+| icon | ReactNode | - | 커스텀 아이콘 |
+| sticky | boolean | false | position: sticky top:0 적용 |
+
+---
+
+## ShortcutMap
+
+키보드 단축키 레퍼런스 컴포넌트. 앱의 단축키 목록을 그룹별로 테이블, 그리드, 리스트 형태로 표시합니다. 도움말 페이지, 모달, 온보딩에 활용합니다.
+
+```tsx
+import { ShortcutMap } from "@sunghoon_lee/akron-ui";
+
+<ShortcutMap
+  groups={[
+    {
+      title: "일반",
+      shortcuts: [
+        { label: "검색 열기", keys: ["⌘", "K"] },
+        { label: "저장", keys: ["⌘", "S"] },
+      ],
+    },
+  ]}
+/>
+
+// 그리드 레이아웃
+<ShortcutMap layout="grid" groups={groups} />
+
+// 리스트 레이아웃
+<ShortcutMap layout="list" size="sm" groups={groups} />
+```
+
+### ShortcutMapProps
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| groups | ShortcutGroup[] | 필수 | 단축키 그룹 목록 |
+| layout | 'table' \| 'grid' \| 'list' | 'table' | 레이아웃 |
+| size | 'sm' \| 'md' | 'md' | 크기 |
+
+### ShortcutGroup / ShortcutEntry
+
+```ts
+interface ShortcutGroup {
+  title: string;           // 그룹 제목
+  shortcuts: ShortcutEntry[];
+}
+
+interface ShortcutEntry {
+  label: string;         // 액션 이름
+  keys: string[];        // 단축키 조합 (예: ['⌘', 'K'])
+  description?: string;  // 부가 설명
+}
+```
