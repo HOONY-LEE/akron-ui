@@ -401,3 +401,9 @@ export type { ApprovalFlowProps, ApprovalStep, ApprovalStatus, ApprovalFlowDirec
 
 export { SearchHighlight } from "./components/SearchHighlight";
 export type { SearchHighlightProps, SearchHighlightColor } from "./components/SearchHighlight";
+
+export { StatusDot } from "./components/StatusDot";
+export type { StatusDotProps, StatusDotColor, StatusDotSize } from "./components/StatusDot";
+
+export { BarList } from "./components/BarList";
+export type { BarListProps, BarListItem, BarListSize } from "./components/BarList";

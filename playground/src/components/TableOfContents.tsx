@@ -866,6 +866,19 @@ const tocData: Record<string, { label: string; id: string; indent?: boolean }[]>
     { label: "상태", id: "states" },
     { label: "인터페이스", id: "interface" },
   ],
+  "status-dot": [
+    { label: "색상", id: "colors" },
+    { label: "크기", id: "sizes" },
+    { label: "펄스 애니메이션", id: "pulse" },
+    { label: "인터페이스", id: "interface" },
+  ],
+  "bar-list": [
+    { label: "기본 사용", id: "basic" },
+    { label: "커스텀 색상", id: "colored" },
+    { label: "값 포맷터", id: "formatter" },
+    { label: "크기", id: "sizes" },
+    { label: "인터페이스", id: "interface" },
+  ],
   "data-table": [
     { label: "기본 사용", id: "basic" },
     { label: "커스텀 셀 렌더러", id: "custom-cell" },

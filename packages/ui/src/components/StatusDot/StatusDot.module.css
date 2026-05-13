@@ -1,0 +1,54 @@
+/* ── Root ── */
+.root {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ark-spacing-1-5);
+}
+
+/* ── Dot ── */
+.dot {
+  display: inline-block;
+  border-radius: var(--ark-radius-full);
+  flex-shrink: 0;
+}
+
+/* ── Size ── */
+.xs { width: 6px; height: 6px; }
+.sm { width: 8px; height: 8px; }
+.md { width: 10px; height: 10px; }
+.lg { width: 14px; height: 14px; }
+
+/* ── Color ── */
+.success { background: var(--ark-color-success-500); }
+.warning { background: var(--ark-color-warning-500); }
+.error { background: var(--ark-color-error-500); }
+.info { background: var(--ark-color-info-500); }
+.gray { background: var(--ark-color-gray-400); }
+.primary { background: var(--ark-color-primary-500); }
+
+/* ── Pulse ── */
+.pulse {
+  position: relative;
+}
+
+.pulse::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--ark-radius-full);
+  background: inherit;
+  animation: statusPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(2); opacity: 0; }
+  100% { transform: scale(1); opacity: 0; }
+}
+
+/* ── Label ── */
+.label {
+  font-size: var(--ark-font-size-sm);
+  color: var(--ark-color-text);
+  line-height: 1;
+}

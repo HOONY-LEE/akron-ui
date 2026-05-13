@@ -1,0 +1,111 @@
+/* ── Root ── */
+.root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* ── Item ── */
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--ark-spacing-3);
+  text-decoration: none;
+  color: inherit;
+  outline: none;
+  border-radius: var(--ark-radius-md);
+  transition: background var(--ark-transition-fast);
+}
+
+.item.clickable {
+  cursor: pointer;
+}
+
+.item.clickable:hover {
+  background: var(--ark-color-bg-subtle);
+}
+
+.item:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+/* ── Size ── */
+.sm .item {
+  padding: var(--ark-spacing-1) var(--ark-spacing-1);
+  font-size: var(--ark-font-size-xs);
+}
+.sm .barTrack { height: 24px; }
+
+.md .item {
+  padding: var(--ark-spacing-1-5) var(--ark-spacing-1);
+  font-size: var(--ark-font-size-sm);
+}
+.md .barTrack { height: 32px; }
+
+.lg .item {
+  padding: var(--ark-spacing-2) var(--ark-spacing-1);
+  font-size: var(--ark-font-size-md);
+}
+.lg .barTrack { height: 40px; }
+
+/* ── Bar track ── */
+.barTrack {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  border-radius: var(--ark-radius-md);
+  overflow: hidden;
+  background: var(--ark-color-bg-muted);
+}
+
+/* ── Bar fill ── */
+.barFill {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--ark-radius-md);
+  opacity: 0.15;
+  transition: width 0.6s ease;
+}
+
+/* ── Label row ── */
+.labelRow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--ark-spacing-1-5);
+  padding: 0 var(--ark-spacing-2);
+  height: 100%;
+  z-index: 1;
+}
+
+/* ── Icon ── */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  color: var(--ark-color-text-secondary);
+  flex-shrink: 0;
+}
+
+.icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ── Name ── */
+.name {
+  font-weight: var(--ark-font-weight-medium);
+  color: var(--ark-color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Value ── */
+.value {
+  font-weight: var(--ark-font-weight-semibold);
+  color: var(--ark-color-text);
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}

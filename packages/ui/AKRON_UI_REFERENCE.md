@@ -5154,3 +5154,66 @@ import { SearchHighlight } from "@sunghoon_lee/akron-ui";
 | caseSensitive | boolean | false | 대소문자 구분 |
 | disabled | boolean | false | 비활성화 |
 | as | 'span' \| 'p' \| 'div' | 'span' | 렌더링 태그 |
+
+---
+
+## StatusDot
+
+상태 표시 점 컴포넌트. 온라인/오프라인, 서비스 상태 등을 색상 점으로 표시합니다.
+
+```tsx
+import { StatusDot } from "@sunghoon_lee/akron-ui";
+
+<StatusDot color="success" label="온라인" />
+<StatusDot color="error" pulse label="장애 발생" />
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| color | 'success' \| 'warning' \| 'error' \| 'info' \| 'gray' \| 'primary' | 'gray' | 색상 |
+| size | 'xs' \| 'sm' \| 'md' \| 'lg' | 'md' | 크기 |
+| pulse | boolean | false | 펄스 애니메이션 |
+| label | string | - | 라벨 텍스트 |
+
+---
+
+## BarList
+
+수평 바 차트 리스트. 항목별 값을 시각적으로 비교할 수 있습니다.
+
+```tsx
+import { BarList } from "@sunghoon_lee/akron-ui";
+
+<BarList
+  data={[
+    { name: "Google", value: 45600 },
+    { name: "직접 방문", value: 32100 },
+    { name: "네이버", value: 28300 },
+  ]}
+  valueFormatter={(v) => "₩" + v.toLocaleString()}
+/>
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| data | BarListItem[] | 필수 | 항목 목록 |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 크기 |
+| valueFormatter | (value: number) => string | toLocaleString | 값 포맷터 |
+| sortOrder | 'ascending' \| 'descending' \| 'none' | 'descending' | 정렬 |
+| maxValue | number | 자동 | 최대값 |
+| onItemClick | (item: BarListItem) => void | - | 클릭 콜백 |
+| color | string | primary-500 | 기본 색상 |
+
+### BarListItem
+
+| 필드 | 타입 | 설명 |
+|------|------|------|
+| name | string | 라벨 (필수) |
+| value | number | 값 (필수) |
+| color | string | 개별 색상 |
+| icon | ReactNode | 아이콘 |
+| href | string | 링크 URL |
