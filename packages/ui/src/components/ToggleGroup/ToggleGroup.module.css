@@ -1,0 +1,159 @@
+/* ── Root ── */
+.root {
+  display: inline-flex;
+  border-radius: var(--ark-radius-lg);
+  overflow: hidden;
+}
+
+.root.fullWidth {
+  display: flex;
+}
+
+.root.fullWidth .button {
+  flex: 1;
+}
+
+.root.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ── Button ── */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ark-spacing-1);
+  border: none;
+  cursor: pointer;
+  font-weight: var(--ark-font-weight-medium);
+  transition: background var(--ark-transition-fast),
+    color var(--ark-transition-fast),
+    box-shadow var(--ark-transition-fast);
+  outline: none;
+  white-space: nowrap;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+  z-index: 1;
+}
+
+.button.buttonDisabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ── Variant: default ── */
+.default .button {
+  background: var(--ark-color-bg-muted);
+  color: var(--ark-color-text-secondary);
+}
+
+.default .button:hover:not(.buttonDisabled) {
+  background: var(--ark-color-gray-200);
+  color: var(--ark-color-text);
+}
+
+.default .button:active:not(.buttonDisabled) {
+  background: var(--ark-color-gray-300);
+}
+
+.default .button.active {
+  background: var(--ark-color-primary-500);
+  color: var(--ark-color-text-inverse);
+}
+
+.default .button.active:hover:not(.buttonDisabled) {
+  background: var(--ark-color-primary-600);
+}
+
+/* ── Variant: outline ── */
+.outline {
+  border: 1px solid var(--ark-color-border);
+}
+
+.outline .button {
+  background: var(--ark-color-bg);
+  color: var(--ark-color-text-secondary);
+  border-right: 1px solid var(--ark-color-border);
+}
+
+.outline .button:last-child {
+  border-right: none;
+}
+
+.outline .button:hover:not(.buttonDisabled) {
+  background: var(--ark-color-bg-subtle);
+  color: var(--ark-color-text);
+}
+
+.outline .button:active:not(.buttonDisabled) {
+  background: var(--ark-color-bg-muted);
+}
+
+.outline .button.active {
+  background: var(--ark-color-primary-50);
+  color: var(--ark-color-primary-600);
+}
+
+/* ── Variant: ghost ── */
+.ghost .button {
+  background: transparent;
+  color: var(--ark-color-text-secondary);
+}
+
+.ghost .button:hover:not(.buttonDisabled) {
+  background: var(--ark-color-bg-muted);
+  color: var(--ark-color-text);
+}
+
+.ghost .button:active:not(.buttonDisabled) {
+  background: var(--ark-color-gray-200);
+}
+
+.ghost .button.active {
+  background: var(--ark-color-primary-50);
+  color: var(--ark-color-primary-600);
+  font-weight: var(--ark-font-weight-semibold);
+}
+
+/* ── Size: sm ── */
+.sm .button {
+  padding: var(--ark-spacing-1) var(--ark-spacing-2);
+  font-size: var(--ark-font-size-xs);
+  min-height: 28px;
+}
+.sm .icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ── Size: md ── */
+.md .button {
+  padding: var(--ark-spacing-1-5) var(--ark-spacing-3);
+  font-size: var(--ark-font-size-sm);
+  min-height: 36px;
+}
+.md .icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ── Size: lg ── */
+.lg .button {
+  padding: var(--ark-spacing-2) var(--ark-spacing-4);
+  font-size: var(--ark-font-size-md);
+  min-height: 44px;
+}
+.lg .icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ── Icon ── */
+.icon {
+  display: inline-flex;
+  align-items: center;
+}

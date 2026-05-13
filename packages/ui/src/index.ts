@@ -359,3 +359,21 @@ export type { BannerAlertProps, BannerAlertVariant } from "./components/BannerAl
 
 export { ShortcutMap } from "./components/ShortcutMap";
 export type { ShortcutMapProps, ShortcutGroup, ShortcutEntry, ShortcutMapLayout } from "./components/ShortcutMap";
+
+export { SortableList } from "./components/SortableList";
+export type { SortableListProps, SortableItem, SortableListSize, SortableListVariant } from "./components/SortableList";
+
+export { CurrencyInput } from "./components/CurrencyInput";
+export type { CurrencyInputProps, CurrencyInputSize, CurrencyInputCode, CurrencyConfig } from "./components/CurrencyInput";
+
+export { KanbanBoard } from "./components/KanbanBoard";
+export type { KanbanBoardProps, KanbanColumn, KanbanCard, KanbanLabel } from "./components/KanbanBoard";
+
+export { ColorSwatch } from "./components/ColorSwatch";
+export type { ColorSwatchProps, ColorSwatchItem, ColorSwatchSize, ColorSwatchShape } from "./components/ColorSwatch";
+
+export { DescriptionList } from "./components/DescriptionList";
+export type { DescriptionListProps, DescriptionItem, DescriptionListSize, DescriptionListLayout } from "./components/DescriptionList";
+
+export { ToggleGroup } from "./components/ToggleGroup";
+export type { ToggleGroupProps, ToggleGroupItem, ToggleGroupSize, ToggleGroupVariant, ToggleGroupType } from "./components/ToggleGroup";

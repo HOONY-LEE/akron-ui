@@ -4618,3 +4618,244 @@ interface ShortcutEntry {
   description?: string;  // 부가 설명
 }
 ```
+
+---
+
+## SortableList
+
+드래그 앤 드롭 정렬 리스트. HTML5 Drag & Drop API 기반. 키보드 방향키로도 순서 변경 가능.
+
+```tsx
+import { SortableList } from "@sunghoon_lee/akron-ui";
+
+const [items, setItems] = useState([
+  { id: "1", label: "항목 A", description: "설명" },
+  { id: "2", label: "항목 B" },
+  { id: "3", label: "항목 C" },
+]);
+
+<SortableList items={items} onChange={setItems} variant="card" size="md" />
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| items | SortableItem[] | 필수 | 항목 목록 |
+| onChange | (items: SortableItem[]) => void | - | 순서 변경 콜백 |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 크기 |
+| variant | 'default' \| 'card' \| 'minimal' | 'default' | 변형 |
+| showHandle | boolean | true | 드래그 핸들 표시 |
+| disabled | boolean | false | 전체 비활성화 |
+| renderItem | (item, index, handleProps) => ReactNode | - | 커스텀 렌더 |
+
+### SortableItem
+
+```ts
+interface SortableItem {
+  id: string | number;
+  label: string;
+  description?: string;
+  disabled?: boolean;
+}
+```
+
+---
+
+## CurrencyInput
+
+통화 형식 숫자 입력. 포커스 시 원시 숫자 편집, 블러 시 자동 포맷팅. 6개 통화 지원 (KRW, USD, EUR, JPY, GBP, CNY).
+
+```tsx
+import { CurrencyInput } from "@sunghoon_lee/akron-ui";
+
+<CurrencyInput
+  value={value}
+  onChange={setValue}
+  currency="KRW"
+  min={0}
+  max={10000000}
+/>
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| value | number \| null | - | 숫자 값 (controlled) |
+| defaultValue | number \| null | null | 기본 값 |
+| onChange | (value: number \| null) => void | - | 값 변경 콜백 |
+| currency | 'KRW' \| 'USD' \| 'EUR' \| 'JPY' \| 'GBP' \| 'CNY' | 'KRW' | 통화 코드 |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 크기 |
+| min | number | - | 최솟값 |
+| max | number | - | 최댓값 |
+| error | boolean | false | 에러 상태 |
+| symbolPosition | 'prefix' \| 'suffix' | 'prefix' | 통화 기호 위치 |
+
+---
+
+## KanbanBoard
+
+칸반 보드. 컬럼 간 드래그 앤 드롭 카드 이동. 라벨, 색상 바, 카드 추가 버튼 지원.
+
+```tsx
+import { KanbanBoard } from "@sunghoon_lee/akron-ui";
+
+const [columns, setColumns] = useState([
+  {
+    id: "todo",
+    title: "할 일",
+    color: "var(--ark-color-gray-400)",
+    cards: [
+      { id: "1", title: "기획서 작성", labels: [{ text: "기획" }] },
+    ],
+  },
+  {
+    id: "done",
+    title: "완료",
+    color: "var(--ark-color-success-500)",
+    cards: [],
+  },
+]);
+
+<KanbanBoard columns={columns} onChange={setColumns} />
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| columns | KanbanColumn[] | 필수 | 컬럼 목록 |
+| onChange | (columns: KanbanColumn[]) => void | - | 카드 이동 콜백 |
+| onCardClick | (card, columnId) => void | - | 카드 클릭 콜백 |
+| onAddCard | (columnId) => void | - | 카드 추가 클릭 |
+| columnMinWidth | number | 280 | 컬럼 최소 너비(px) |
+| showAddButton | boolean | true | 카드 추가 버튼 표시 |
+
+### KanbanColumn / KanbanCard / KanbanLabel
+
+```ts
+interface KanbanColumn {
+  id: string;
+  title: string;
+  cards: KanbanCard[];
+  color?: string;        // 헤더 색상 바
+}
+
+interface KanbanCard {
+  id: string;
+  title: string;
+  description?: string;
+  labels?: KanbanLabel[];
+  footer?: ReactNode;
+}
+
+interface KanbanLabel {
+  text: string;
+  color?: string;
+}
+```
+
+---
+
+## ColorSwatch
+
+색상 팔레트 표시. 클릭 시 색상 코드 복사. 선택 상태 지원.
+
+```tsx
+import { ColorSwatch } from "@sunghoon_lee/akron-ui";
+
+<ColorSwatch
+  colors={["#EF4444", "#F59E0B", "#22C55E", "#3B82F6"]}
+  shape="circle"
+  size="md"
+  onSelect={(color) => console.log(color)}
+/>
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| colors | (string \| ColorSwatchItem)[] | 필수 | 색상 목록 |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 크기 |
+| shape | 'square' \| 'circle' | 'square' | 모양 |
+| copyOnClick | boolean | true | 클릭 시 복사 |
+| showLabel | boolean | true | 라벨 표시 |
+| onSelect | (color: string) => void | - | 선택 콜백 |
+| selected | string | - | 선택된 색상 |
+| columns | number | auto-fill | 컬럼 수 |
+
+---
+
+## DescriptionList
+
+키-값 쌍 정의 목록. 수직, 수평, 그리드 레이아웃 지원.
+
+```tsx
+import { DescriptionList } from "@sunghoon_lee/akron-ui";
+
+<DescriptionList
+  layout="horizontal"
+  divider
+  items={[
+    { term: "이름", detail: "김서연" },
+    { term: "부서", detail: "개발팀" },
+  ]}
+/>
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| items | DescriptionItem[] | 필수 | 항목 목록 |
+| layout | 'vertical' \| 'horizontal' \| 'grid' | 'vertical' | 레이아웃 |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 크기 |
+| divider | boolean | false | 구분선 |
+| columns | number | 2 | 그리드 컬럼 수 |
+
+### DescriptionItem
+
+```ts
+interface DescriptionItem {
+  term: string;         // 키
+  detail: ReactNode;    // 값
+  icon?: ReactNode;     // 부가 아이콘
+}
+```
+
+---
+
+## ToggleGroup
+
+토글 버튼 그룹. 단일 선택 / 다중 선택 모드 지원.
+
+```tsx
+import { ToggleGroup } from "@sunghoon_lee/akron-ui";
+
+<ToggleGroup
+  value={value}
+  onChange={setValue}
+  variant="outline"
+  items={[
+    { value: "left", label: "왼쪽" },
+    { value: "center", label: "가운데" },
+    { value: "right", label: "오른쪽" },
+  ]}
+/>
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| items | ToggleGroupItem[] | 필수 | 토글 항목 |
+| type | 'single' \| 'multiple' | 'single' | 선택 타입 |
+| value | string \| string[] | - | 선택 값 (controlled) |
+| defaultValue | string \| string[] | - | 기본 선택 값 |
+| onChange | (value) => void | - | 변경 콜백 |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 크기 |
+| variant | 'default' \| 'outline' \| 'ghost' | 'default' | 변형 |
+| disabled | boolean | false | 전체 비활성화 |
+| fullWidth | boolean | false | 전체 너비 채우기 |

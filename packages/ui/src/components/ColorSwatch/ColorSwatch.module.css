@@ -1,0 +1,122 @@
+/* ── Root ── */
+.root {
+  display: grid;
+  grid-template-columns: repeat(var(--swatch-columns, auto-fill), minmax(0, 1fr));
+  gap: var(--ark-spacing-2);
+  width: 100%;
+}
+
+/* ── Swatch ── */
+.swatch {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform var(--ark-transition-fast),
+    border-color var(--ark-transition-fast),
+    box-shadow var(--ark-transition-fast);
+  outline: none;
+  overflow: hidden;
+}
+
+.swatch:hover {
+  transform: scale(1.05);
+  box-shadow: var(--ark-shadow-md);
+}
+
+.swatch:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.swatch:active {
+  transform: scale(0.97);
+}
+
+.swatch.selected {
+  border-color: var(--ark-color-text);
+  box-shadow: var(--ark-shadow-md);
+}
+
+/* ── Shape ── */
+.square .swatch {
+  border-radius: var(--ark-radius-lg);
+}
+
+.circle .swatch {
+  border-radius: var(--ark-radius-full);
+}
+
+/* ── Size ── */
+.sm .swatch {
+  width: 32px;
+  height: 32px;
+}
+
+.md .swatch {
+  width: 48px;
+  height: 48px;
+}
+
+.lg .swatch {
+  width: 64px;
+  height: 64px;
+}
+
+/* When label shown, make it taller */
+.sm .swatch:has(.info) {
+  height: auto;
+  min-height: 52px;
+  padding-bottom: var(--ark-spacing-1);
+}
+
+.md .swatch:has(.info) {
+  height: auto;
+  min-height: 72px;
+  padding-bottom: var(--ark-spacing-1);
+}
+
+.lg .swatch:has(.info) {
+  height: auto;
+  min-height: 92px;
+  padding-bottom: var(--ark-spacing-1-5);
+}
+
+/* ── Icon ── */
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+/* ── Info ── */
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  width: 100%;
+  padding: 0 var(--ark-spacing-0-5);
+}
+
+.label {
+  font-size: 9px;
+  font-weight: var(--ark-font-weight-semibold);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.description {
+  font-size: 8px;
+  opacity: 0.7;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 100%;
+}

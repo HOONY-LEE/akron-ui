@@ -113,6 +113,12 @@ import { MeterGroupPage } from "./pages/MeterGroupPage";
 import { SpotlightPage } from "./pages/SpotlightPage";
 import { BannerAlertPage } from "./pages/BannerAlertPage";
 import { ShortcutMapPage } from "./pages/ShortcutMapPage";
+import { SortableListPage } from "./pages/SortableListPage";
+import { CurrencyInputPage } from "./pages/CurrencyInputPage";
+import { KanbanBoardPage } from "./pages/KanbanBoardPage";
+import { ColorSwatchPage } from "./pages/ColorSwatchPage";
+import { DescriptionListPage } from "./pages/DescriptionListPage";
+import { ToggleGroupPage } from "./pages/ToggleGroupPage";
 
 export interface PageMeta {
   component: ComponentType;
@@ -266,6 +272,12 @@ export const pages: PageMeta[] = [
   { path: "spotlight", component: SpotlightPage, label: "Spotlight", category: "오버레이" },
   { path: "banner-alert", component: BannerAlertPage, label: "BannerAlert", category: "표시" },
   { path: "shortcut-map", component: ShortcutMapPage, label: "ShortcutMap", category: "표시" },
+  { path: "sortable-list", component: SortableListPage, label: "SortableList", category: "입력" },
+  { path: "currency-input", component: CurrencyInputPage, label: "CurrencyInput", category: "입력" },
+  { path: "kanban-board", component: KanbanBoardPage, label: "KanbanBoard", category: "데이터 표시" },
+  { path: "color-swatch", component: ColorSwatchPage, label: "ColorSwatch", category: "표시" },
+  { path: "description-list", component: DescriptionListPage, label: "DescriptionList", category: "데이터 표시" },
+  { path: "toggle-group", component: ToggleGroupPage, label: "ToggleGroup", category: "입력" },
 ];
 
 export function getPageByPath(pathname: string): PageMeta | undefined {

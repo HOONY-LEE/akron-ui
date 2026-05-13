@@ -1,0 +1,127 @@
+/* ── Root ── */
+.root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* ── Item ── */
+.item {
+  display: flex;
+}
+
+/* ── Term ── */
+.term {
+  display: flex;
+  align-items: center;
+  gap: var(--ark-spacing-1-5);
+  font-weight: var(--ark-font-weight-medium);
+  color: var(--ark-color-text-secondary);
+  flex-shrink: 0;
+}
+
+/* ── Detail ── */
+.detail {
+  margin: 0;
+  color: var(--ark-color-text);
+  font-weight: var(--ark-font-weight-regular);
+}
+
+/* ── Icon ── */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  color: var(--ark-color-text-disabled);
+}
+
+/* ── Layout: vertical ── */
+.vertical {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-4);
+}
+
+.vertical .item {
+  flex-direction: column;
+  gap: var(--ark-spacing-1);
+}
+
+/* ── Layout: horizontal ── */
+.horizontal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-3);
+}
+
+.horizontal .item {
+  flex-direction: row;
+  align-items: baseline;
+  gap: var(--ark-spacing-4);
+}
+
+.horizontal .term {
+  min-width: 120px;
+}
+
+.horizontal .detail {
+  flex: 1;
+}
+
+/* ── Layout: grid ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--dl-columns, 2), 1fr);
+  gap: var(--ark-spacing-4);
+}
+
+.grid .item {
+  flex-direction: column;
+  gap: var(--ark-spacing-1);
+}
+
+/* ── Divider ── */
+.divider .item {
+  padding-bottom: var(--ark-spacing-3);
+  border-bottom: 1px solid var(--ark-color-border);
+}
+
+.divider .item:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+/* ── Size: sm ── */
+.sm .term {
+  font-size: var(--ark-font-size-xs);
+}
+.sm .detail {
+  font-size: var(--ark-font-size-sm);
+}
+.sm .icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ── Size: md ── */
+.md .term {
+  font-size: var(--ark-font-size-sm);
+}
+.md .detail {
+  font-size: var(--ark-font-size-md);
+}
+.md .icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ── Size: lg ── */
+.lg .term {
+  font-size: var(--ark-font-size-md);
+}
+.lg .detail {
+  font-size: var(--ark-font-size-lg);
+}
+.lg .icon svg {
+  width: 18px;
+  height: 18px;
+}

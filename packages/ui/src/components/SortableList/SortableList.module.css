@@ -1,0 +1,150 @@
+/* ── Root ── */
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-1);
+  width: 100%;
+}
+
+.root.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ── Size ── */
+.sm .item {
+  padding: var(--ark-spacing-1-5) var(--ark-spacing-2);
+  font-size: var(--ark-font-size-xs);
+  min-height: 32px;
+}
+.sm .handle svg {
+  width: 14px;
+  height: 14px;
+}
+
+.md .item {
+  padding: var(--ark-spacing-2) var(--ark-spacing-3);
+  font-size: var(--ark-font-size-sm);
+  min-height: 40px;
+}
+.md .handle svg {
+  width: 16px;
+  height: 16px;
+}
+
+.lg .item {
+  padding: var(--ark-spacing-3) var(--ark-spacing-4);
+  font-size: var(--ark-font-size-md);
+  min-height: 48px;
+}
+.lg .handle svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ── Item ── */
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--ark-spacing-2);
+  border-radius: var(--ark-radius-md);
+  cursor: grab;
+  transition: background var(--ark-transition-fast),
+    box-shadow var(--ark-transition-fast),
+    transform var(--ark-transition-fast);
+  user-select: none;
+  outline: none;
+  background: var(--ark-color-bg);
+  border: 1px solid transparent;
+}
+
+.item:hover {
+  background: var(--ark-color-bg-subtle);
+}
+
+.item:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.item:active {
+  cursor: grabbing;
+}
+
+.item.dragging {
+  opacity: 0.4;
+  transform: scale(0.98);
+}
+
+.item.over {
+  border-color: var(--ark-color-primary-400);
+  background: var(--ark-color-primary-50);
+  box-shadow: 0 0 0 1px var(--ark-color-primary-300);
+}
+
+.item.itemDisabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+/* ── Variant: card ── */
+.card .item {
+  border: 1px solid var(--ark-color-border);
+  box-shadow: var(--ark-shadow-sm);
+}
+.card .item:hover {
+  box-shadow: var(--ark-shadow-md);
+}
+.card .item.over {
+  border-color: var(--ark-color-primary-400);
+}
+
+/* ── Variant: minimal ── */
+.minimal .item {
+  border-radius: 0;
+  border-bottom: 1px solid var(--ark-color-border);
+}
+.minimal .item:last-child {
+  border-bottom: none;
+}
+.minimal .item.over {
+  border-bottom-color: var(--ark-color-primary-400);
+  background: var(--ark-color-primary-50);
+}
+
+/* ── Handle ── */
+.handle {
+  display: flex;
+  align-items: center;
+  color: var(--ark-color-text-disabled);
+  flex-shrink: 0;
+  transition: color var(--ark-transition-fast);
+}
+.item:hover .handle {
+  color: var(--ark-color-text-secondary);
+}
+
+/* ── Content ── */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-0-5);
+  min-width: 0;
+  flex: 1;
+}
+
+.label {
+  font-weight: var(--ark-font-weight-medium);
+  color: var(--ark-color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.description {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
