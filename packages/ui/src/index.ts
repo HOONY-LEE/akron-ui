@@ -377,3 +377,9 @@ export type { DescriptionListProps, DescriptionItem, DescriptionListSize, Descri
 
 export { ToggleGroup } from "./components/ToggleGroup";
 export type { ToggleGroupProps, ToggleGroupItem, ToggleGroupSize, ToggleGroupVariant, ToggleGroupType } from "./components/ToggleGroup";
+
+export { Watermark } from "./components/Watermark";
+export type { WatermarkProps } from "./components/Watermark";
+
+export { ImageComparison } from "./components/ImageComparison";
+export type { ImageComparisonProps, ImageComparisonOrientation } from "./components/ImageComparison";

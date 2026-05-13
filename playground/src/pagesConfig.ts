@@ -119,6 +119,8 @@ import { KanbanBoardPage } from "./pages/KanbanBoardPage";
 import { ColorSwatchPage } from "./pages/ColorSwatchPage";
 import { DescriptionListPage } from "./pages/DescriptionListPage";
 import { ToggleGroupPage } from "./pages/ToggleGroupPage";
+import { WatermarkPage } from "./pages/WatermarkPage";
+import { ImageComparisonPage } from "./pages/ImageComparisonPage";
 
 export interface PageMeta {
   component: ComponentType;
@@ -278,6 +280,8 @@ export const pages: PageMeta[] = [
   { path: "color-swatch", component: ColorSwatchPage, label: "ColorSwatch", category: "표시" },
   { path: "description-list", component: DescriptionListPage, label: "DescriptionList", category: "데이터 표시" },
   { path: "toggle-group", component: ToggleGroupPage, label: "ToggleGroup", category: "입력" },
+  { path: "watermark", component: WatermarkPage, label: "Watermark", category: "표시" },
+  { path: "image-comparison", component: ImageComparisonPage, label: "ImageComparison", category: "표시" },
 ];
 
 export function getPageByPath(pathname: string): PageMeta | undefined {

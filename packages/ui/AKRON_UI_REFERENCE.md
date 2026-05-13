@@ -4859,3 +4859,62 @@ import { ToggleGroup } from "@sunghoon_lee/akron-ui";
 | variant | 'default' \| 'outline' \| 'ghost' | 'default' | 변형 |
 | disabled | boolean | false | 전체 비활성화 |
 | fullWidth | boolean | false | 전체 너비 채우기 |
+
+---
+
+## Watermark
+
+페이지 워터마크 오버레이. SVG 기반 반복 패턴으로 콘텐츠 위에 텍스트 워터마크 표시.
+
+```tsx
+import { Watermark } from "@sunghoon_lee/akron-ui";
+
+<Watermark text="사내 기밀" subText="2026-05-14">
+  <div>보호할 콘텐츠</div>
+</Watermark>
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| text | string | 필수 | 워터마크 텍스트 |
+| subText | string | - | 부가 텍스트 (두 번째 줄) |
+| fontSize | number | 16 | 폰트 크기(px) |
+| rotate | number | -22 | 회전 각도(deg) |
+| gap | number | 100 | 간격(px) |
+| opacity | number | 0.08 | 투명도 (0~1) |
+| color | string | currentColor | 색상 |
+| disabled | boolean | false | 비활성화 |
+
+---
+
+## ImageComparison
+
+Before/After 이미지 비교 슬라이더. 드래그/터치/키보드로 위치 조절.
+
+```tsx
+import { ImageComparison } from "@sunghoon_lee/akron-ui";
+
+<ImageComparison
+  before="/before.jpg"
+  after="/after.jpg"
+  beforeLabel="원본"
+  afterLabel="편집됨"
+  height={400}
+/>
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| before | string | 필수 | Before 이미지 URL |
+| after | string | 필수 | After 이미지 URL |
+| beforeLabel | string | 'Before' | Before 라벨 |
+| afterLabel | string | 'After' | After 라벨 |
+| defaultPosition | number | 50 | 초기 위치 (0~100) |
+| position | number | - | 위치 (controlled) |
+| onChange | (pos: number) => void | - | 위치 변경 콜백 |
+| orientation | 'horizontal' \| 'vertical' | 'horizontal' | 방향 |
+| height | number \| string | 400 | 높이 |

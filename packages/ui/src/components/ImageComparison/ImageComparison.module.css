@@ -1,0 +1,114 @@
+/* ── Root ── */
+.root {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--ark-radius-lg);
+  cursor: ew-resize;
+  user-select: none;
+  background: var(--ark-color-gray-100);
+  outline: none;
+}
+
+.root:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.vertical {
+  cursor: ns-resize;
+}
+
+/* ── Images ── */
+.image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* ── Divider ── */
+.divider {
+  position: absolute;
+  z-index: 2;
+}
+
+.horizontal .divider {
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  transform: translateX(-50%);
+  background: var(--ark-color-bg);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+}
+
+.vertical .divider {
+  left: 0;
+  right: 0;
+  height: 3px;
+  transform: translateY(-50%);
+  background: var(--ark-color-bg);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+}
+
+/* ── Handle ── */
+.handle {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--ark-radius-full);
+  background: var(--ark-color-bg);
+  box-shadow: var(--ark-shadow-md);
+  color: var(--ark-color-text-secondary);
+  z-index: 3;
+}
+
+.horizontal .handle {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.vertical .handle {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+/* ── Labels ── */
+.label {
+  position: absolute;
+  z-index: 2;
+  padding: var(--ark-spacing-1) var(--ark-spacing-2);
+  border-radius: var(--ark-radius-sm);
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: var(--ark-font-size-xs);
+  font-weight: var(--ark-font-weight-medium);
+  pointer-events: none;
+  user-select: none;
+}
+
+.horizontal .labelBefore {
+  top: var(--ark-spacing-3);
+  left: var(--ark-spacing-3);
+}
+
+.horizontal .labelAfter {
+  top: var(--ark-spacing-3);
+  right: var(--ark-spacing-3);
+}
+
+.vertical .labelBefore {
+  top: var(--ark-spacing-3);
+  left: var(--ark-spacing-3);
+}
+
+.vertical .labelAfter {
+  bottom: var(--ark-spacing-3);
+  left: var(--ark-spacing-3);
+}

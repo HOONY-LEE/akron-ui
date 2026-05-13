@@ -1,0 +1,14 @@
+/* ── Root ── */
+.root {
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Overlay ── */
+.overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-repeat: repeat;
+}
