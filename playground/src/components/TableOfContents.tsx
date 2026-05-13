@@ -758,6 +758,16 @@ const tocData: Record<string, { label: string; id: string; indent?: boolean }[]>
     { label: "Controlled", id: "controlled" },
     { label: "인터페이스", id: "interface" },
   ],
+  "signature-pad": [
+    { label: "기본 사용", id: "basic" },
+    { label: "Ref API", id: "ref" },
+    { label: "인터페이스", id: "interface" },
+  ],
+  "org-chart": [
+    { label: "기본 사용", id: "basic" },
+    { label: "수평 레이아웃", id: "horizontal" },
+    { label: "인터페이스", id: "interface" },
+  ],
   "command-palette": [
     { label: "기본 사용", id: "basic" },
     { label: "단축키 힌트", id: "shortcuts" },

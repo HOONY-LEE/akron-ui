@@ -383,3 +383,9 @@ export type { WatermarkProps } from "./components/Watermark";
 
 export { ImageComparison } from "./components/ImageComparison";
 export type { ImageComparisonProps, ImageComparisonOrientation } from "./components/ImageComparison";
+
+export { SignaturePad } from "./components/SignaturePad";
+export type { SignaturePadProps, SignaturePadRef } from "./components/SignaturePad";
+
+export { OrgChart } from "./components/OrgChart";
+export type { OrgChartProps, OrgNode, OrgChartDirection } from "./components/OrgChart";

@@ -1,0 +1,204 @@
+/* ── Root ── */
+.root {
+  overflow: auto;
+  padding: var(--ark-spacing-4);
+}
+
+/* ── Lists ── */
+.rootList,
+.childrenList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Vertical layout ── */
+.vertical .rootList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.childrenVertical {
+  display: flex;
+  gap: var(--ark-spacing-4);
+  justify-content: center;
+  padding-top: var(--ark-spacing-6);
+  position: relative;
+}
+
+.childrenVertical::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: var(--ark-spacing-3);
+  background: var(--ark-color-border-strong);
+}
+
+.childrenVertical > .treeNode {
+  position: relative;
+}
+
+.childrenVertical > .treeNode::before {
+  content: "";
+  position: absolute;
+  top: calc(-1 * var(--ark-spacing-3));
+  left: 50%;
+  width: 1px;
+  height: var(--ark-spacing-3);
+  background: var(--ark-color-border-strong);
+}
+
+/* ── Horizontal layout ── */
+.horizontal .rootList {
+  display: flex;
+  align-items: flex-start;
+}
+
+.childrenHorizontal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-2);
+  padding-left: var(--ark-spacing-6);
+  position: relative;
+  margin-top: var(--ark-spacing-2);
+}
+
+.childrenHorizontal::before {
+  content: "";
+  position: absolute;
+  left: var(--ark-spacing-3);
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--ark-color-border-strong);
+}
+
+.childrenHorizontal > .treeNode {
+  position: relative;
+}
+
+.childrenHorizontal > .treeNode::before {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--ark-spacing-3));
+  top: 50%;
+  width: var(--ark-spacing-3);
+  height: 1px;
+  background: var(--ark-color-border-strong);
+}
+
+/* ── Tree node ── */
+.treeNode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.horizontal .treeNode {
+  align-items: flex-start;
+}
+
+/* ── Node card ── */
+.nodeCard {
+  display: flex;
+  align-items: center;
+  gap: var(--ark-spacing-2);
+  padding: var(--ark-spacing-2) var(--ark-spacing-3);
+  border: 1px solid var(--ark-color-border);
+  border-radius: var(--ark-radius-lg);
+  background: var(--ark-color-bg);
+  cursor: pointer;
+  transition: box-shadow var(--ark-transition-fast),
+    border-color var(--ark-transition-fast);
+  min-width: 140px;
+  outline: none;
+}
+
+.nodeCard:hover {
+  box-shadow: var(--ark-shadow-md);
+  border-color: var(--ark-color-primary-300);
+}
+
+.nodeCard:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.nodeCard:active {
+  background: var(--ark-color-bg-subtle);
+}
+
+/* ── Avatar ── */
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--ark-radius-full);
+  background: var(--ark-color-primary-50);
+  color: var(--ark-color-primary-500);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.avatarImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── Node info ── */
+.nodeInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+  flex: 1;
+}
+
+.nodeName {
+  font-size: var(--ark-font-size-sm);
+  font-weight: var(--ark-font-weight-semibold);
+  color: var(--ark-color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nodeTitle {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Toggle button ── */
+.toggleBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--ark-color-border);
+  border-radius: var(--ark-radius-full);
+  background: var(--ark-color-bg);
+  color: var(--ark-color-text-secondary);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background var(--ark-transition-fast);
+  padding: 0;
+}
+
+.toggleBtn:hover {
+  background: var(--ark-color-bg-muted);
+}
+
+.toggleBtn:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}

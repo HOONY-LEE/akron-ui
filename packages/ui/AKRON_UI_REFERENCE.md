@@ -4918,3 +4918,84 @@ import { ImageComparison } from "@sunghoon_lee/akron-ui";
 | onChange | (pos: number) => void | - | 위치 변경 콜백 |
 | orientation | 'horizontal' \| 'vertical' | 'horizontal' | 방향 |
 | height | number \| string | 400 | 높이 |
+
+---
+
+## SignaturePad
+
+디지털 서명 패드. Canvas 기반 드로잉. 실행 취소, 초기화, PNG 내보내기 지원. Ref API로 제어.
+
+```tsx
+import { SignaturePad } from "@sunghoon_lee/akron-ui";
+
+const padRef = useRef<SignaturePadRef>(null);
+<SignaturePad ref={padRef} width={400} height={200} />
+// padRef.current.toDataURL() → PNG data URL
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| width | number | 400 | 캔버스 너비 |
+| height | number | 200 | 캔버스 높이 |
+| penColor | string | - | 펜 색상 |
+| penWidth | number | 2 | 펜 두께 |
+| backgroundColor | string | - | 배경색 |
+| onChange | (isEmpty: boolean) => void | - | 변경 콜백 |
+| disabled | boolean | false | 비활성화 |
+| placeholder | string | '여기에 서명하세요' | 플레이스홀더 |
+| showToolbar | boolean | true | 툴바 표시 |
+
+### Ref API
+
+| 메서드 | 설명 |
+|--------|------|
+| clear() | 캔버스 초기화 |
+| isEmpty() | 빈 캔버스 여부 |
+| toDataURL(type?, quality?) | PNG data URL 반환 |
+| undo() | 마지막 획 실행 취소 |
+
+---
+
+## OrgChart
+
+조직도. 트리 구조로 조직 계층을 수직/수평 표시. 노드 접기/펼치기 지원.
+
+```tsx
+import { OrgChart } from "@sunghoon_lee/akron-ui";
+
+<OrgChart
+  data={{
+    id: "ceo", name: "김대표", title: "CEO",
+    children: [
+      { id: "cto", name: "이기술", title: "CTO" },
+      { id: "coo", name: "정운영", title: "COO" },
+    ],
+  }}
+  onNodeClick={(node) => console.log(node)}
+/>
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| data | OrgNode | 필수 | 루트 노드 |
+| direction | 'vertical' \| 'horizontal' | 'vertical' | 방향 |
+| onNodeClick | (node: OrgNode) => void | - | 노드 클릭 콜백 |
+| renderNode | (node: OrgNode) => ReactNode | - | 커스텀 노드 렌더 |
+| showAvatar | boolean | true | 아바타 표시 |
+
+### OrgNode
+
+```ts
+interface OrgNode {
+  id: string;
+  name: string;
+  title?: string;
+  avatar?: string;
+  children?: OrgNode[];
+  expanded?: boolean;   // 기본 true
+}
+```

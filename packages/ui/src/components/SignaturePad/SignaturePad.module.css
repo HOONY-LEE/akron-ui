@@ -1,0 +1,84 @@
+/* ── Root ── */
+.root {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-2);
+}
+
+.root.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ── Canvas wrapper ── */
+.canvasWrapper {
+  position: relative;
+  border: 1px solid var(--ark-color-border);
+  border-radius: var(--ark-radius-lg);
+  overflow: hidden;
+  background: var(--ark-color-bg);
+}
+
+/* ── Canvas ── */
+.canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  cursor: crosshair;
+  touch-action: none;
+}
+
+/* ── Placeholder ── */
+.placeholder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--ark-color-text-disabled);
+  font-size: var(--ark-font-size-sm);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── Toolbar ── */
+.toolbar {
+  display: flex;
+  gap: var(--ark-spacing-1);
+}
+
+/* ── Tool button ── */
+.toolButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--ark-color-border);
+  border-radius: var(--ark-radius-md);
+  background: var(--ark-color-bg);
+  color: var(--ark-color-text-secondary);
+  cursor: pointer;
+  transition: background var(--ark-transition-fast),
+    color var(--ark-transition-fast),
+    border-color var(--ark-transition-fast);
+}
+
+.toolButton:hover:not(:disabled) {
+  background: var(--ark-color-bg-subtle);
+  color: var(--ark-color-text);
+  border-color: var(--ark-color-border-strong);
+}
+
+.toolButton:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.toolButton:active:not(:disabled) {
+  background: var(--ark-color-bg-muted);
+}
+
+.toolButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

@@ -121,6 +121,8 @@ import { DescriptionListPage } from "./pages/DescriptionListPage";
 import { ToggleGroupPage } from "./pages/ToggleGroupPage";
 import { WatermarkPage } from "./pages/WatermarkPage";
 import { ImageComparisonPage } from "./pages/ImageComparisonPage";
+import { SignaturePadPage } from "./pages/SignaturePadPage";
+import { OrgChartPage } from "./pages/OrgChartPage";
 
 export interface PageMeta {
   component: ComponentType;
@@ -282,6 +284,8 @@ export const pages: PageMeta[] = [
   { path: "toggle-group", component: ToggleGroupPage, label: "ToggleGroup", category: "입력" },
   { path: "watermark", component: WatermarkPage, label: "Watermark", category: "표시" },
   { path: "image-comparison", component: ImageComparisonPage, label: "ImageComparison", category: "표시" },
+  { path: "signature-pad", component: SignaturePadPage, label: "SignaturePad", category: "입력" },
+  { path: "org-chart", component: OrgChartPage, label: "OrgChart", category: "데이터 표시" },
 ];
 
 export function getPageByPath(pathname: string): PageMeta | undefined {
