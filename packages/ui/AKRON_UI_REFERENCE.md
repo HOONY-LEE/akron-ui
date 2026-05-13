@@ -5086,3 +5086,71 @@ interface DataCardField {
   icon?: ReactNode;
 }
 ```
+
+---
+
+## ApprovalFlow
+
+결재 흐름 표시. 각 단계의 승인/반려/대기/진행/건너뜀 상태를 시각적으로 표시.
+
+```tsx
+import { ApprovalFlow } from "@sunghoon_lee/akron-ui";
+
+<ApprovalFlow
+  steps={[
+    { id: "1", name: "김기획", title: "기획팀장", status: "approved", date: "05/12" },
+    { id: "2", name: "이개발", title: "개발팀장", status: "current" },
+    { id: "3", name: "최대표", title: "대표", status: "pending" },
+  ]}
+/>
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| steps | ApprovalStep[] | 필수 | 결재 단계 목록 |
+| direction | 'horizontal' \| 'vertical' | 'horizontal' | 방향 |
+| onStepClick | (step) => void | - | 단계 클릭 콜백 |
+| compact | boolean | false | 컴팩트 모드 |
+
+### ApprovalStep
+
+```ts
+interface ApprovalStep {
+  id: string;
+  name: string;
+  title?: string;
+  status: "approved" | "rejected" | "pending" | "current" | "skipped";
+  date?: string;
+  comment?: string;
+  avatar?: string;
+}
+```
+
+---
+
+## SearchHighlight
+
+텍스트 내 검색어 하이라이트. 5가지 색상, 대소문자 구분 옵션.
+
+```tsx
+import { SearchHighlight } from "@sunghoon_lee/akron-ui";
+
+<SearchHighlight
+  text="Akron UI는 React 컴포넌트 라이브러리입니다."
+  query="React"
+  color="blue"
+/>
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| text | string | 필수 | 전체 텍스트 |
+| query | string | 필수 | 검색어 |
+| color | 'yellow' \| 'blue' \| 'green' \| 'red' \| 'purple' | 'yellow' | 하이라이트 색상 |
+| caseSensitive | boolean | false | 대소문자 구분 |
+| disabled | boolean | false | 비활성화 |
+| as | 'span' \| 'p' \| 'div' | 'span' | 렌더링 태그 |

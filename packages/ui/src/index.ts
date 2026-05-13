@@ -395,3 +395,9 @@ export type { FilterBarProps, FilterField, FilterOption, FilterValues } from "./
 
 export { DataCard } from "./components/DataCard";
 export type { DataCardProps, DataCardField, DataCardSize, DataCardVariant } from "./components/DataCard";
+
+export { ApprovalFlow } from "./components/ApprovalFlow";
+export type { ApprovalFlowProps, ApprovalStep, ApprovalStatus, ApprovalFlowDirection } from "./components/ApprovalFlow";
+
+export { SearchHighlight } from "./components/SearchHighlight";
+export type { SearchHighlightProps, SearchHighlightColor } from "./components/SearchHighlight";

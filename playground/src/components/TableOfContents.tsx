@@ -779,6 +779,18 @@ const tocData: Record<string, { label: string; id: string; indent?: boolean }[]>
     { label: "구분선", id: "divider" },
     { label: "인터페이스", id: "interface" },
   ],
+  "approval-flow": [
+    { label: "수평 레이아웃", id: "horizontal" },
+    { label: "수직 레이아웃", id: "vertical" },
+    { label: "컴팩트 모드", id: "compact" },
+    { label: "인터페이스", id: "interface" },
+  ],
+  "search-highlight": [
+    { label: "기본 사용", id: "basic" },
+    { label: "색상", id: "colors" },
+    { label: "인터랙티브 검색", id: "interactive" },
+    { label: "인터페이스", id: "interface" },
+  ],
   "command-palette": [
     { label: "기본 사용", id: "basic" },
     { label: "단축키 힌트", id: "shortcuts" },

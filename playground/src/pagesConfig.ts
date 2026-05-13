@@ -125,6 +125,8 @@ import { SignaturePadPage } from "./pages/SignaturePadPage";
 import { OrgChartPage } from "./pages/OrgChartPage";
 import { FilterBarPage } from "./pages/FilterBarPage";
 import { DataCardPage } from "./pages/DataCardPage";
+import { ApprovalFlowPage } from "./pages/ApprovalFlowPage";
+import { SearchHighlightPage } from "./pages/SearchHighlightPage";
 
 export interface PageMeta {
   component: ComponentType;
@@ -290,6 +292,8 @@ export const pages: PageMeta[] = [
   { path: "org-chart", component: OrgChartPage, label: "OrgChart", category: "데이터 표시" },
   { path: "filter-bar", component: FilterBarPage, label: "FilterBar", category: "입력" },
   { path: "data-card", component: DataCardPage, label: "DataCard", category: "데이터 표시" },
+  { path: "approval-flow", component: ApprovalFlowPage, label: "ApprovalFlow", category: "데이터 표시" },
+  { path: "search-highlight", component: SearchHighlightPage, label: "SearchHighlight", category: "표시" },
 ];
 
 export function getPageByPath(pathname: string): PageMeta | undefined {

@@ -1,0 +1,37 @@
+/* ── Root ── */
+.root {
+  font: inherit;
+  color: inherit;
+}
+
+/* ── Mark ── */
+.mark {
+  border-radius: var(--ark-radius-sm);
+  padding: 0 2px;
+  font-weight: var(--ark-font-weight-semibold);
+}
+
+.yellow {
+  background: var(--ark-color-warning-50);
+  color: var(--ark-color-warning-600);
+}
+
+.blue {
+  background: var(--ark-color-info-50);
+  color: var(--ark-color-info-600);
+}
+
+.green {
+  background: var(--ark-color-success-50);
+  color: var(--ark-color-success-600);
+}
+
+.red {
+  background: var(--ark-color-error-50);
+  color: var(--ark-color-error-600);
+}
+
+.purple {
+  background: var(--ark-color-primary-50);
+  color: var(--ark-color-primary-600);
+}

@@ -1,0 +1,189 @@
+/* ── Root ── */
+.root {
+  display: flex;
+  align-items: flex-start;
+}
+
+.horizontal {
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.vertical {
+  flex-direction: column;
+}
+
+.compact .info {
+  gap: 0;
+}
+
+/* ── Connector ── */
+.connector {
+  flex-shrink: 0;
+}
+
+.horizontal .connector {
+  width: 40px;
+  height: 2px;
+  background: var(--ark-color-border-strong);
+  align-self: center;
+  margin-top: 18px;
+}
+
+.vertical .connector {
+  width: 2px;
+  height: 24px;
+  background: var(--ark-color-border-strong);
+  margin-left: 19px;
+}
+
+/* ── Step ── */
+.step {
+  display: flex;
+  gap: var(--ark-spacing-2);
+  padding: var(--ark-spacing-2);
+  border-radius: var(--ark-radius-lg);
+  transition: background var(--ark-transition-fast);
+  cursor: default;
+  outline: none;
+  min-width: 120px;
+}
+
+.step[tabindex="0"] {
+  cursor: pointer;
+}
+
+.step[tabindex="0"]:hover {
+  background: var(--ark-color-bg-subtle);
+}
+
+.step:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+/* ── Avatar wrapper ── */
+.avatarWrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.avatarImg {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--ark-radius-full);
+  object-fit: cover;
+}
+
+.avatarFallback {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--ark-radius-full);
+  background: var(--ark-color-gray-100);
+  color: var(--ark-color-gray-400);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.compact .avatarImg,
+.compact .avatarFallback {
+  width: 32px;
+  height: 32px;
+}
+
+/* ── Status badge ── */
+.statusBadge {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--ark-radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--ark-color-bg);
+}
+
+.compact .statusBadge {
+  width: 18px;
+  height: 18px;
+}
+
+.status_approved .statusBadge {
+  background: var(--ark-color-success-500);
+  color: var(--ark-color-text-inverse);
+}
+
+.status_rejected .statusBadge {
+  background: var(--ark-color-error-500);
+  color: var(--ark-color-text-inverse);
+}
+
+.status_pending .statusBadge {
+  background: var(--ark-color-gray-300);
+  color: var(--ark-color-text-inverse);
+}
+
+.status_current .statusBadge {
+  background: var(--ark-color-primary-500);
+  color: var(--ark-color-text-inverse);
+}
+
+.status_skipped .statusBadge {
+  background: var(--ark-color-gray-200);
+  color: var(--ark-color-text-secondary);
+}
+
+/* ── Info ── */
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-0-5);
+  min-width: 0;
+}
+
+.name {
+  font-size: var(--ark-font-size-sm);
+  font-weight: var(--ark-font-weight-semibold);
+  color: var(--ark-color-text);
+}
+
+.title {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-secondary);
+}
+
+.statusText {
+  font-size: var(--ark-font-size-xs);
+  font-weight: var(--ark-font-weight-medium);
+}
+
+.status_approved .statusText {
+  color: var(--ark-color-success-600);
+}
+
+.status_rejected .statusText {
+  color: var(--ark-color-error-600);
+}
+
+.status_pending .statusText {
+  color: var(--ark-color-text-disabled);
+}
+
+.status_current .statusText {
+  color: var(--ark-color-primary-600);
+}
+
+.status_skipped .statusText {
+  color: var(--ark-color-text-disabled);
+}
+
+/* ── Comment ── */
+.comment {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-secondary);
+  font-style: italic;
+  margin-top: var(--ark-spacing-0-5);
+}
