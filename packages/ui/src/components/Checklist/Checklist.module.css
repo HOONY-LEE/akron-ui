@@ -1,0 +1,185 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-3);
+}
+
+/* Progress */
+.progress {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-1);
+}
+
+.progressHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.progressLabel {
+  font-size: var(--ark-font-size-sm);
+  color: var(--ark-color-text-secondary);
+}
+
+.progressPct {
+  font-size: var(--ark-font-size-sm);
+  font-weight: var(--ark-font-weight-semibold);
+  color: var(--ark-color-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.progressBar {
+  height: 6px;
+  background: var(--ark-color-border);
+  border-radius: var(--ark-radius-full);
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--ark-color-primary-500);
+  border-radius: var(--ark-radius-full);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progressDone {
+  background: var(--ark-color-success-500);
+}
+
+/* List */
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-1);
+}
+
+/* Item — default */
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ark-spacing-3);
+  padding: var(--ark-spacing-2) var(--ark-spacing-2);
+  border-radius: var(--ark-radius-md);
+  cursor: pointer;
+  transition: background 0.15s;
+  outline: none;
+  user-select: none;
+}
+
+.item:hover:not(.itemDisabled) {
+  background: var(--ark-color-gray-50);
+}
+
+.item:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 1px;
+}
+
+.itemChecked .label {
+  text-decoration: line-through;
+  color: var(--ark-color-text-secondary);
+}
+
+.itemDisabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Card variant */
+.variant-card .item {
+  border: 1px solid var(--ark-color-border);
+  padding: var(--ark-spacing-3) var(--ark-spacing-4);
+  background: var(--ark-color-gray-50);
+}
+
+.variant-card .itemChecked {
+  background: color-mix(in srgb, var(--ark-color-success-500) 8%, transparent);
+  border-color: color-mix(in srgb, var(--ark-color-success-500) 30%, transparent);
+}
+
+.variant-card .item:hover:not(.itemDisabled) {
+  background: var(--ark-color-gray-100);
+}
+
+/* Minimal variant */
+.variant-minimal .item {
+  padding: var(--ark-spacing-1) 0;
+  border-radius: 0;
+}
+
+.variant-minimal .item:hover:not(.itemDisabled) {
+  background: transparent;
+}
+
+.variant-minimal .item:hover:not(.itemDisabled) .label {
+  color: var(--ark-color-primary-500);
+}
+
+/* Checkbox */
+.checkbox {
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  border: 2px solid var(--ark-color-border-strong);
+  border-radius: var(--ark-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  transition: border-color 0.15s, background 0.15s;
+  margin-top: 1px;
+  color: white;
+}
+
+.checkboxChecked {
+  background: var(--ark-color-success-500);
+  border-color: var(--ark-color-success-500);
+}
+
+/* Content */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-0-5);
+  flex: 1;
+  min-width: 0;
+}
+
+.label {
+  color: var(--ark-color-text);
+  transition: color 0.15s, text-decoration 0.15s;
+}
+
+.description {
+  color: var(--ark-color-text-secondary);
+}
+
+/* Sizes */
+.size-sm .label       { font-size: var(--ark-font-size-sm); }
+.size-sm .description { font-size: var(--ark-font-size-xs); }
+.size-sm .checkbox    { width: 14px; height: 14px; min-width: 14px; }
+
+.size-md .label       { font-size: var(--ark-font-size-md); }
+.size-md .description { font-size: var(--ark-font-size-sm); }
+.size-md .checkbox    { width: 18px; height: 18px; min-width: 18px; }
+
+.size-lg .label       { font-size: var(--ark-font-size-lg); }
+.size-lg .description { font-size: var(--ark-font-size-md); }
+.size-lg .checkbox    { width: 22px; height: 22px; min-width: 22px; }
+
+/* Dark mode */
+[data-theme="dark"] .item:hover:not(.itemDisabled) {
+  background: var(--ark-color-gray-800);
+}
+
+[data-theme="dark"] .variant-card .item {
+  background: var(--ark-color-gray-800);
+}
+
+[data-theme="dark"] .variant-card .item:hover:not(.itemDisabled) {
+  background: var(--ark-color-gray-700);
+}

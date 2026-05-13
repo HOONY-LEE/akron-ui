@@ -1,0 +1,106 @@
+/* ─── Group container ──────────────────────────────────────────────────────── */
+
+.group {
+  display: inline-flex;
+  align-items: stretch;
+  border: 1px solid var(--ark-color-border);
+  border-radius: var(--ark-radius-md);
+  background: var(--ark-color-bg-surface);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  overflow: hidden;
+}
+
+/* Propagate focus ring from child input */
+.group:focus-within {
+  border-color: var(--ark-color-primary-500);
+  box-shadow: 0 0 0 3px var(--ark-color-primary-100);
+}
+
+[data-theme="dark"] .group:focus-within {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ark-color-primary-500) 20%, transparent);
+}
+
+.errorState {
+  border-color: var(--ark-color-error-500);
+}
+
+.errorState:focus-within {
+  border-color: var(--ark-color-error-500);
+  box-shadow: 0 0 0 3px var(--ark-color-error-100);
+}
+
+[data-theme="dark"] .errorState:focus-within {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ark-color-error-500) 20%, transparent);
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  background: var(--ark-color-bg-muted);
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+/* sizes */
+.sm { border-radius: var(--ark-radius-sm); }
+.md { border-radius: var(--ark-radius-md); }
+.lg { border-radius: var(--ark-radius-lg); }
+
+/* ─── Input slot ───────────────────────────────────────────────────────────── */
+
+.inputSlot {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  min-width: 0;
+}
+
+/* Strip inner input's border so the group provides it */
+.inputSlot > input,
+.inputSlot > [class*="input"],
+.inputSlot > [data-ark-input] {
+  border: none !important;
+  border-radius: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  flex: 1;
+}
+
+/* ─── Addon ────────────────────────────────────────────────────────────────── */
+
+.addon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  border-right: 1px solid var(--ark-color-border);
+  background: var(--ark-color-bg-muted);
+}
+
+.addonAppend {
+  border-right: none;
+  border-left: 1px solid var(--ark-color-border);
+}
+
+/* Buttons inside addon lose their own border/radius */
+.addon > button,
+.addon > [role="button"] {
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  height: 100% !important;
+}
+
+/* ─── InputGroupAddon text ─────────────────────────────────────────────────── */
+
+.addonText {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 var(--ark-spacing-3);
+  font-size: var(--ark-font-size-sm);
+  color: var(--ark-color-text-secondary);
+  white-space: nowrap;
+  user-select: none;
+}

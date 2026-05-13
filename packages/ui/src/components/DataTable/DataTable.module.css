@@ -1,0 +1,293 @@
+/* ── Wrapper ── */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  font-family: var(--ark-font-family);
+  border: 1px solid var(--ark-color-border);
+  border-radius: var(--ark-radius-lg);
+  overflow: hidden;
+  background-color: var(--ark-color-bg);
+}
+
+/* ── Toolbar ── */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--ark-spacing-3);
+  padding: var(--ark-spacing-3) var(--ark-spacing-4);
+  border-bottom: 1px solid var(--ark-color-border);
+  background-color: var(--ark-color-bg-subtle);
+}
+
+.searchWrap {
+  position: relative;
+  flex: 1;
+  max-width: 320px;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ark-color-text-secondary);
+  pointer-events: none;
+}
+
+.searchInput {
+  width: 100%;
+  height: 34px;
+  padding: 0 var(--ark-spacing-3) 0 32px;
+  border: 1px solid var(--ark-input-border-color);
+  border-radius: var(--ark-input-radius);
+  background-color: var(--ark-input-bg);
+  color: var(--ark-color-text);
+  font-family: var(--ark-font-family);
+  font-size: var(--ark-font-size-sm);
+  outline: none;
+  transition: border-color var(--ark-transition-fast), box-shadow var(--ark-transition-fast);
+}
+
+.searchInput:focus {
+  border-color: var(--ark-color-primary-500);
+  box-shadow: 0 0 0 1px var(--ark-color-primary-500);
+}
+
+.searchInput::placeholder {
+  color: var(--ark-color-text-disabled);
+}
+
+.selectionInfo {
+  font-size: var(--ark-font-size-sm);
+  color: var(--ark-color-primary-500);
+  font-weight: var(--ark-font-weight-medium);
+}
+
+/* ── Table wrap ── */
+.tableWrap {
+  overflow-x: auto;
+}
+
+/* ── Table ── */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--ark-font-size-sm);
+}
+
+/* ── thead ── */
+.thead {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background-color: var(--ark-color-bg-subtle);
+}
+
+.th {
+  padding: var(--ark-spacing-2-5) var(--ark-spacing-4);
+  text-align: left;
+  font-size: var(--ark-font-size-xs);
+  font-weight: var(--ark-font-weight-semibold);
+  color: var(--ark-color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--ark-color-border);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.thContent {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.sortable {
+  cursor: pointer;
+}
+
+.sortable:hover {
+  color: var(--ark-color-text);
+}
+
+.sortIcon {
+  display: flex;
+  align-items: center;
+  color: var(--ark-color-primary-500);
+}
+
+.sortIconInactive {
+  color: var(--ark-color-text-secondary);
+  opacity: 0.5;
+}
+
+/* Alignment */
+.align-left   { text-align: left; }
+.align-center { text-align: center; }
+.align-right  { text-align: right; }
+
+.checkboxTh,
+.checkboxTd {
+  width: 40px;
+  padding-right: 0;
+}
+
+/* ── tbody ── */
+.tr {
+  border-bottom: 1px solid var(--ark-color-border);
+  transition: background-color var(--ark-transition-fast);
+}
+
+.tr:last-child {
+  border-bottom: none;
+}
+
+.hoverable .tr:hover {
+  background-color: var(--ark-color-bg-subtle);
+}
+
+.striped .tr:nth-child(even) {
+  background-color: var(--ark-color-bg-subtle);
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.selectedRow {
+  background-color: color-mix(in srgb, var(--ark-color-primary-500) 6%, transparent) !important;
+}
+
+.td {
+  padding: var(--ark-spacing-3) var(--ark-spacing-4);
+  color: var(--ark-color-text);
+  vertical-align: middle;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dense .td {
+  padding: var(--ark-spacing-1-5) var(--ark-spacing-4);
+}
+
+/* ── Checkbox ── */
+.checkbox {
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  accent-color: var(--ark-color-primary-500);
+}
+
+/* ── Empty / Loading ── */
+.emptyCell {
+  text-align: center;
+  padding: var(--ark-spacing-12) var(--ark-spacing-4);
+  color: var(--ark-color-text-secondary);
+  font-size: var(--ark-font-size-sm);
+}
+
+.loadingSpinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid var(--ark-color-bg-muted);
+  border-top-color: var(--ark-color-primary-500);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Pagination ── */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ark-spacing-2-5) var(--ark-spacing-4);
+  border-top: 1px solid var(--ark-color-border);
+  background-color: var(--ark-color-bg-subtle);
+  gap: var(--ark-spacing-3);
+  flex-wrap: wrap;
+}
+
+.paginationInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--ark-spacing-3);
+}
+
+.totalInfo {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-secondary);
+}
+
+.pageSizeSelect {
+  height: 28px;
+  padding: 0 var(--ark-spacing-2);
+  border: 1px solid var(--ark-input-border-color);
+  border-radius: var(--ark-radius-md);
+  background-color: var(--ark-input-bg);
+  color: var(--ark-color-text);
+  font-size: var(--ark-font-size-xs);
+  font-family: var(--ark-font-family);
+  cursor: pointer;
+  outline: none;
+}
+
+.pageSizeSelect:focus {
+  border-color: var(--ark-color-primary-500);
+}
+
+.paginationNav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.pageBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 6px;
+  border: 1px solid var(--ark-color-border);
+  border-radius: var(--ark-radius-md);
+  background-color: var(--ark-color-bg);
+  color: var(--ark-color-text-secondary);
+  font-size: var(--ark-font-size-xs);
+  cursor: pointer;
+  transition: background-color var(--ark-transition-fast), color var(--ark-transition-fast);
+  font-family: var(--ark-font-family);
+}
+
+.pageBtn:hover:not(:disabled) {
+  background-color: var(--ark-color-bg-muted);
+  color: var(--ark-color-text);
+}
+
+.pageBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pageBtn:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.activePageBtn {
+  background-color: var(--ark-color-primary-500);
+  border-color: var(--ark-color-primary-500);
+  color: #fff;
+  font-weight: var(--ark-font-weight-semibold);
+}
+
+.activePageBtn:hover:not(:disabled) {
+  background-color: var(--ark-color-primary-600);
+}

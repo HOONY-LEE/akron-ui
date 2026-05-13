@@ -1,0 +1,108 @@
+.root {
+  background: #0d1117;
+  border-radius: var(--ark-radius-lg);
+  border: 1px solid #30363d;
+  overflow: hidden;
+  font-family: "SFMono-Regular", "Consolas", "Liberation Mono", "Menlo", monospace;
+  max-height: var(--diff-max-height, 480px);
+  overflow-y: auto;
+}
+
+.root::-webkit-scrollbar {
+  width: 6px;
+}
+.root::-webkit-scrollbar-track { background: transparent; }
+.root::-webkit-scrollbar-thumb {
+  background: #30363d;
+  border-radius: var(--ark-radius-full);
+}
+
+/* Font sizes */
+.font-xs { font-size: 11px; line-height: 1.5; }
+.font-sm { font-size: var(--ark-font-size-xs); line-height: 1.5; }
+.font-md { font-size: var(--ark-font-size-sm); line-height: 1.5; }
+
+/* File block */
+.file + .file {
+  border-top: 1px solid #30363d;
+}
+
+/* File header */
+.fileHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ark-spacing-2) var(--ark-spacing-4);
+  background: #161b22;
+  border-bottom: 1px solid #30363d;
+}
+
+.fileName {
+  color: #c9d1d9;
+  font-weight: var(--ark-font-weight-semibold);
+  font-family: inherit;
+}
+
+.fileStats {
+  display: flex;
+  gap: var(--ark-spacing-3);
+}
+
+.added   { color: #3fb950; font-weight: var(--ark-font-weight-semibold); }
+.removed { color: #f85149; font-weight: var(--ark-font-weight-semibold); }
+
+/* Lines container */
+.lines {
+  overflow-x: auto;
+}
+
+/* Single line */
+.line {
+  display: flex;
+  align-items: baseline;
+  white-space: pre;
+}
+
+.line:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* Line type backgrounds */
+.line-added    { background: rgba(46, 160, 67, 0.15); }
+.line-removed  { background: rgba(248, 81, 73, 0.15); }
+.line-header   { background: rgba(56, 139, 253, 0.08); color: #388bfd; }
+.line-unchanged { }
+
+/* Line numbers */
+.lineNum {
+  min-width: 3.5ch;
+  padding: 0 var(--ark-spacing-2);
+  color: #6e7681;
+  text-align: right;
+  user-select: none;
+  border-right: 1px solid #30363d;
+  flex-shrink: 0;
+}
+
+/* Gutter +/- */
+.gutter {
+  width: 1.5ch;
+  padding: 0 var(--ark-spacing-1);
+  flex-shrink: 0;
+  text-align: center;
+  user-select: none;
+}
+
+.line-added   .gutter { color: #3fb950; }
+.line-removed .gutter { color: #f85149; }
+
+/* Content */
+.content {
+  padding: 0 var(--ark-spacing-4) 0 var(--ark-spacing-2);
+  flex: 1;
+  color: #c9d1d9;
+}
+
+.line-added   .content { color: #aff5b4; }
+.line-removed .content { color: #ffdcd7; }
+.line-header  .content { color: #388bfd; }

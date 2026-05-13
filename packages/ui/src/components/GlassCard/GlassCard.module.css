@@ -1,0 +1,64 @@
+/* ─── Root ─────────────────────────────────────────────────────────────────── */
+
+.root {
+  border-radius: var(--ark-radius-xl);
+  padding: var(--ark-space-5);
+  background: color-mix(in srgb, white var(--glass-opacity, 15%), transparent);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Dark mode */
+[data-theme="dark"] .root {
+  background: color-mix(in srgb, white calc(var(--glass-opacity, 15%) * 0.5), transparent);
+}
+
+/* ─── Blur ─────────────────────────────────────────────────────────────────── */
+
+.blur-sm  { backdrop-filter: blur(4px);  -webkit-backdrop-filter: blur(4px); }
+.blur-md  { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.blur-lg  { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+.blur-xl  { backdrop-filter: blur(32px); -webkit-backdrop-filter: blur(32px); }
+
+/* ─── Border ───────────────────────────────────────────────────────────────── */
+
+.border-none    { border: none; }
+.border-subtle  { border: 1px solid rgba(255, 255, 255, 0.2); }
+.border-visible { border: 1px solid rgba(255, 255, 255, 0.4); }
+
+[data-theme="dark"] .border-subtle  { border-color: rgba(255, 255, 255, 0.1); }
+[data-theme="dark"] .border-visible { border-color: rgba(255, 255, 255, 0.2); }
+
+/* ─── Shadow ───────────────────────────────────────────────────────────────── */
+
+.shadow {
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* ─── Hoverable ────────────────────────────────────────────────────────────── */
+
+.hoverable {
+  cursor: pointer;
+  transition: transform 200ms ease, box-shadow 200ms ease, background 200ms;
+}
+
+.hoverable:hover {
+  transform: translateY(-2px);
+  background: color-mix(in srgb, white calc(var(--glass-opacity, 15%) * 1.5), transparent);
+  box-shadow:
+    0 10px 25px -5px rgba(0, 0, 0, 0.15),
+    0 4px 10px -6px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.hoverable:active {
+  transform: translateY(0);
+}
+
+.hoverable:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}

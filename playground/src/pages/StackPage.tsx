@@ -20,13 +20,14 @@ export function StackPage() {
         </p>
 
         <h3 className="section-subtitle">vertical</h3>
-        <div className="preview-box left">
-          <Stack gap={12} style={{ width: "100%" }}>
-            <Card><div style={{ padding: 8, fontSize: 14 }}>항목 1</div></Card>
-            <Card><div style={{ padding: 8, fontSize: 14 }}>항목 2</div></Card>
-            <Card><div style={{ padding: 8, fontSize: 14 }}>항목 3</div></Card>
-          </Stack>
-        </div>
+        <LiveCodeBlock
+          code={`<Stack gap={12} style={{ width: "100%" }}>
+  <Card><div style={{ padding: 8, fontSize: 14 }}>항목 1</div></Card>
+  <Card><div style={{ padding: 8, fontSize: 14 }}>항목 2</div></Card>
+  <Card><div style={{ padding: 8, fontSize: 14 }}>항목 3</div></Card>
+</Stack>`}
+          scope={{ Stack, Card }}
+        />
 
         <h3 className="section-subtitle">horizontal</h3>
         <LiveCodeBlock
@@ -45,15 +46,16 @@ export function StackPage() {
           <code className="inline-code">align</code>과{" "}
           <code className="inline-code">justify</code> prop으로 정렬을 제어합니다.
         </p>
-        <div className="preview-box" style={{ height: 120 }}>
-          <Stack direction="horizontal" gap={12} justify="between" align="center" style={{ width: "100%" }}>
-            <span style={{ fontSize: 14, fontWeight: 600 }}>좌측 콘텐츠</span>
-            <Stack direction="horizontal" gap={8}>
-              <Button variant="outline" size="sm">취소</Button>
-              <Button variant="primary" size="sm">확인</Button>
-            </Stack>
-          </Stack>
-        </div>
+        <LiveCodeBlock
+          code={`<Stack direction="horizontal" gap={12} justify="between" align="center" style={{ width: "100%", padding: "16px 0" }}>
+  <span style={{ fontSize: 14, fontWeight: 600 }}>좌측 콘텐츠</span>
+  <Stack direction="horizontal" gap={8}>
+    <Button variant="outline" size="sm">취소</Button>
+    <Button variant="primary" size="sm">확인</Button>
+  </Stack>
+</Stack>`}
+          scope={{ Stack, Button }}
+        />
       </section>
 
       <section className="docs-section" id="interface">

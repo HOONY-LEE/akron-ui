@@ -1,0 +1,215 @@
+/* ─── Backdrop ─────────────────────────────────────────────────────────────── */
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--ark-z-overlay, 1000);
+  background: rgba(0, 0, 0, 0.5);
+  pointer-events: auto;
+}
+
+/* Spotlight cutout — uses box-shadow trick */
+.spotlight {
+  position: absolute;
+  border-radius: var(--ark-radius-md);
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  transition:
+    top 0.25s ease,
+    left 0.25s ease,
+    width 0.25s ease,
+    height 0.25s ease;
+}
+
+/* ─── Tooltip ──────────────────────────────────────────────────────────────── */
+
+.tooltip {
+  position: fixed;
+  z-index: calc(var(--ark-z-overlay, 1000) + 1);
+  width: 320px;
+  background: var(--ark-color-surface-overlay);
+  border: 1px solid var(--ark-color-border);
+  border-radius: var(--ark-radius-lg);
+  box-shadow: var(--ark-shadow-xl);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow: hidden;
+  animation: tourFadeIn 0.18s ease;
+}
+
+@keyframes tourFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── Header ───────────────────────────────────────────────────────────────── */
+
+.tooltipHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ark-space-3) var(--ark-space-4);
+  border-bottom: 1px solid var(--ark-color-border);
+}
+
+.stepPill {
+  font-size: var(--ark-font-size-xs);
+  font-weight: var(--ark-font-weight-medium);
+  color: var(--ark-color-text-secondary);
+  line-height: 1;
+}
+
+.closeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  color: var(--ark-color-text-tertiary);
+  border-radius: var(--ark-radius-sm);
+  cursor: pointer;
+  transition: background var(--ark-duration-fast) ease, color var(--ark-duration-fast) ease;
+  padding: 0;
+}
+
+.closeBtn:hover {
+  background: var(--ark-color-surface-hover);
+  color: var(--ark-color-text-primary);
+}
+
+/* ─── Body ─────────────────────────────────────────────────────────────────── */
+
+.tooltipBody {
+  padding: var(--ark-space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-space-2);
+}
+
+.tooltipTitle {
+  font-size: var(--ark-font-size-sm);
+  font-weight: var(--ark-font-weight-semibold);
+  color: var(--ark-color-text-primary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.tooltipDesc {
+  font-size: var(--ark-font-size-sm);
+  color: var(--ark-color-text-secondary);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ─── Footer ───────────────────────────────────────────────────────────────── */
+
+.tooltipFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ark-space-3) var(--ark-space-4);
+  border-top: 1px solid var(--ark-color-border);
+  gap: var(--ark-space-2);
+}
+
+.footerLeft {
+  min-width: 60px;
+}
+
+.footerDots {
+  display: flex;
+  align-items: center;
+  gap: var(--ark-space-1-5);
+  flex: 1;
+  justify-content: center;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ark-color-border-strong);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background var(--ark-duration-fast) ease, transform var(--ark-duration-fast) ease;
+}
+
+.dot:hover {
+  background: var(--ark-color-text-tertiary);
+}
+
+.dotActive {
+  background: var(--ark-color-primary);
+  transform: scale(1.25);
+}
+
+.footerNav {
+  display: flex;
+  align-items: center;
+  gap: var(--ark-space-2);
+  min-width: 60px;
+  justify-content: flex-end;
+}
+
+/* ─── Buttons ──────────────────────────────────────────────────────────────── */
+
+.skipBtn {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-tertiary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: var(--ark-space-1) 0;
+  transition: color var(--ark-duration-fast) ease;
+  white-space: nowrap;
+}
+
+.skipBtn:hover {
+  color: var(--ark-color-text-secondary);
+}
+
+.navBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ark-space-1);
+  font-size: var(--ark-font-size-xs);
+  font-weight: var(--ark-font-weight-medium);
+  color: var(--ark-color-text-secondary);
+  background: var(--ark-color-surface);
+  border: 1px solid var(--ark-color-border);
+  border-radius: var(--ark-radius-md);
+  padding: var(--ark-space-1-5) var(--ark-space-3);
+  cursor: pointer;
+  transition:
+    background var(--ark-duration-fast) ease,
+    color var(--ark-duration-fast) ease,
+    border-color var(--ark-duration-fast) ease;
+  white-space: nowrap;
+}
+
+.navBtn:hover {
+  background: var(--ark-color-surface-hover);
+  color: var(--ark-color-text-primary);
+}
+
+.navBtnPrimary {
+  background: var(--ark-color-primary);
+  color: var(--ark-color-primary-foreground);
+  border-color: var(--ark-color-primary);
+}
+
+.navBtnPrimary:hover {
+  background: var(--ark-color-primary-hover);
+  border-color: var(--ark-color-primary-hover);
+  color: var(--ark-color-primary-foreground);
+}

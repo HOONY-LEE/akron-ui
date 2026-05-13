@@ -1,5 +1,6 @@
 import { Button, Card, Input, Stack } from "@sunghoon_lee/akron-ui";
 import { CodeBlock } from "../components/CodeBlock";
+import { LiveCodeBlock } from "../components/LiveCodeBlock";
 import { Palette, Moon, Accessibility, Package, LayoutGrid, Settings } from "lucide-react";
 
 export function OverviewPage() {
@@ -87,29 +88,18 @@ export function OverviewPage() {
         <p className="section-desc">
           토큰 CSS를 임포트하고 컴포넌트를 사용하세요.
         </p>
-        <CodeBlock>{`import "@sunghoon_lee/akron-ui/tokens.css";
-import { Button, Input, Card } from "@sunghoon_lee/akron-ui";
-
-function App() {
-  return (
-    <Card>
-      <Input label="이름" placeholder="이름을 입력하세요" />
+        <LiveCodeBlock
+          code={`<Card>
+  <div style={{ padding: 20, display: "flex", flexDirection: "column", gap: 16, width: 320 }}>
+    <Input label="이름" placeholder="이름을 입력하세요" />
+    <Stack direction="horizontal" gap={8} justify="end">
+      <Button variant="outline">취소</Button>
       <Button variant="primary">제출</Button>
-    </Card>
-  );
-}`}</CodeBlock>
-        <div className="example-label" style={{ marginTop: 24 }}>미리보기</div>
-        <div className="preview-box left">
-          <Card>
-            <div style={{ padding: 20, display: "flex", flexDirection: "column", gap: 16, width: 320 }}>
-              <Input label="이름" placeholder="이름을 입력하세요" />
-              <Stack direction="horizontal" gap={8} justify="end">
-                <Button variant="outline">취소</Button>
-                <Button variant="primary">제출</Button>
-              </Stack>
-            </div>
-          </Card>
-        </div>
+    </Stack>
+  </div>
+</Card>`}
+          scope={{ Button, Card, Input, Stack }}
+        />
       </section>
 
       <section className="docs-section" id="darkmode">

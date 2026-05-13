@@ -1,0 +1,160 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-6);
+}
+
+/* Group */
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-2);
+}
+
+.groupTitle {
+  font-size: var(--ark-font-size-sm);
+  font-weight: var(--ark-font-weight-semibold);
+  color: var(--ark-color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 var(--ark-spacing-1);
+  padding-bottom: var(--ark-spacing-2);
+  border-bottom: 1px solid var(--ark-color-border);
+}
+
+/* ── Table layout ───────────────────────── */
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.row:not(:last-child) td {
+  border-bottom: 1px solid var(--ark-color-border);
+}
+
+.labelCell {
+  padding: var(--ark-spacing-2) var(--ark-spacing-3) var(--ark-spacing-2) 0;
+  vertical-align: top;
+  width: 100%;
+}
+
+.keysCell {
+  padding: var(--ark-spacing-2) 0;
+  white-space: nowrap;
+  text-align: right;
+  vertical-align: middle;
+}
+
+.label {
+  display: block;
+  color: var(--ark-color-text);
+}
+
+.desc {
+  display: block;
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-secondary);
+  margin-top: 1px;
+}
+
+/* ── Grid layout ────────────────────────── */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: var(--ark-spacing-3);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ark-spacing-2);
+  padding: var(--ark-spacing-4);
+  border: 1px solid var(--ark-color-border);
+  border-radius: var(--ark-radius-lg);
+  background: var(--ark-color-gray-50);
+}
+
+.cardLabel {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-secondary);
+  text-align: center;
+}
+
+/* ── List layout ────────────────────────── */
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-1);
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  gap: var(--ark-spacing-2);
+  padding: var(--ark-spacing-1-5) 0;
+}
+
+.dots {
+  flex: 1;
+  border-bottom: 1px dotted var(--ark-color-border-strong);
+  margin-bottom: 3px;
+}
+
+/* ── Kbd ────────────────────────────────── */
+
+.combo {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  background: var(--ark-color-gray-100);
+  color: var(--ark-color-text);
+  border: 1px solid var(--ark-color-border-strong);
+  border-bottom-width: 2px;
+  border-radius: var(--ark-radius-sm);
+  padding: 1px 6px;
+  font-weight: var(--ark-font-weight-medium);
+  white-space: nowrap;
+  box-shadow: 0 1px 0 var(--ark-color-border-strong);
+  min-width: 22px;
+}
+
+.plus {
+  color: var(--ark-color-text-secondary);
+  font-size: var(--ark-font-size-xs);
+  padding: 0 1px;
+}
+
+/* Sizes */
+.size-sm .kbd        { font-size: 11px; min-width: 18px; }
+.size-sm .label      { font-size: var(--ark-font-size-sm); }
+.size-sm .cardLabel  { font-size: 11px; }
+.size-sm .groupTitle { font-size: var(--ark-font-size-xs); }
+
+.size-md .kbd        { font-size: var(--ark-font-size-xs); }
+.size-md .label      { font-size: var(--ark-font-size-md); }
+.size-md .cardLabel  { font-size: var(--ark-font-size-xs); }
+.size-md .groupTitle { font-size: var(--ark-font-size-sm); }
+
+/* Dark mode */
+[data-theme="dark"] .kbd {
+  background: var(--ark-color-gray-700);
+  border-color: var(--ark-color-border);
+}
+
+[data-theme="dark"] .card {
+  background: var(--ark-color-gray-800);
+}

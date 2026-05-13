@@ -1,0 +1,106 @@
+.wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-1);
+  font-family: var(--ark-font-family);
+}
+
+.label {
+  font-size: var(--ark-font-size-sm);
+  font-weight: var(--ark-font-weight-medium);
+  color: var(--ark-color-text);
+}
+
+/* ── Stars row ── */
+.stars {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ark-spacing-1);
+  outline: none;
+}
+
+.stars:focus-visible {
+  border-radius: var(--ark-radius-sm);
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+/* ── Individual star ── */
+.starWrap {
+  position: relative;
+  display: inline-flex;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.starFull {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+}
+
+/* Left-half overlay */
+.starHalf {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50%;
+  height: 100%;
+}
+
+/* ── Icon states ── */
+.starIcon {
+  transition: color var(--ark-transition-fast), transform var(--ark-transition-fast);
+  stroke-width: 1.5;
+}
+
+.filled {
+  color: var(--ark-color-warning-400);
+  fill: var(--ark-color-warning-400);
+}
+
+.halfFilled {
+  color: var(--ark-color-warning-400);
+  /* clip to left half */
+  clip-path: inset(0 50% 0 0);
+  fill: var(--ark-color-warning-400);
+}
+
+.empty {
+  color: var(--ark-color-gray-300);
+  fill: transparent;
+}
+
+.starWrap:hover .starIcon {
+  transform: scale(1.15);
+}
+
+/* ── Sizes ── */
+.sm .stars { gap: 2px; }
+.md .stars { gap: var(--ark-spacing-1); }
+.lg .stars { gap: var(--ark-spacing-2); }
+
+/* ── Disabled ── */
+.disabled .starWrap {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.disabled .stars {
+  pointer-events: none;
+}
+
+/* ── Read only ── */
+.readOnly .starWrap {
+  cursor: default;
+}
+
+.readOnly .starIcon {
+  transform: none !important;
+}
+
+/* ── Dark mode ── */
+[data-theme="dark"] .empty {
+  color: var(--ark-color-gray-600);
+}

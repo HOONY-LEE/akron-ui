@@ -1,0 +1,81 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-3);
+}
+
+/* Bar */
+.bar {
+  display: flex;
+  border-radius: var(--ark-radius-full);
+  overflow: hidden;
+  background: var(--ark-color-border);
+}
+
+.barAnimated .segment {
+  animation: meterIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes meterIn {
+  from { opacity: 0; transform: scaleX(0); transform-origin: left; }
+  to   { opacity: 1; transform: scaleX(1); }
+}
+
+.emptyBar {
+  height: 100%;
+  width: 100%;
+  background: var(--ark-color-border);
+}
+
+/* Segment */
+.segment {
+  height: 100%;
+  transition: opacity 0.15s;
+  cursor: default;
+}
+
+.segment:hover {
+  opacity: 0.85;
+}
+
+/* Sizes */
+.size-sm .bar { height: 6px; }
+.size-md .bar { height: 10px; }
+.size-lg .bar { height: 16px; }
+
+/* Legend */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ark-spacing-3) var(--ark-spacing-5);
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: var(--ark-spacing-2);
+}
+
+.legendDot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--ark-radius-full);
+  flex-shrink: 0;
+}
+
+.legendLabel {
+  font-size: var(--ark-font-size-sm);
+  color: var(--ark-color-text);
+}
+
+.legendValue {
+  font-size: var(--ark-font-size-sm);
+  color: var(--ark-color-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* right layout — bar + legend side by side, legend column */
+.root[style*="flex"] .legend {
+  flex-direction: column;
+  gap: var(--ark-spacing-2);
+}

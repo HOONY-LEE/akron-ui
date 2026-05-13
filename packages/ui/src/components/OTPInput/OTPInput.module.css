@@ -1,0 +1,107 @@
+.wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-1);
+  font-family: var(--ark-font-family);
+}
+
+.label {
+  font-size: var(--ark-font-size-sm);
+  font-weight: var(--ark-font-weight-medium);
+  color: var(--ark-color-text);
+}
+
+/* ── Fields row ── */
+.fields {
+  display: flex;
+  align-items: center;
+  gap: var(--ark-spacing-2);
+}
+
+/* ── Cell ── */
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 1.5px solid var(--ark-input-border-color);
+  border-radius: var(--ark-input-radius);
+  background-color: var(--ark-input-bg);
+  color: var(--ark-color-text);
+  font-family: var(--ark-font-family);
+  font-weight: var(--ark-font-weight-semibold);
+  font-variant-numeric: tabular-nums;
+  transition: border-color var(--ark-transition-fast),
+              box-shadow var(--ark-transition-fast);
+  outline: none;
+}
+
+.cell:hover:not(:disabled) {
+  border-color: var(--ark-color-gray-400);
+}
+
+.cell:focus {
+  border-color: var(--ark-color-primary-500);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ark-color-primary-500) 15%, transparent);
+}
+
+/* ── Sizes ── */
+.sm .cell {
+  width: 36px;
+  height: 40px;
+  font-size: var(--ark-font-size-base);
+}
+
+.md .cell {
+  width: 44px;
+  height: 52px;
+  font-size: var(--ark-font-size-lg);
+}
+
+.lg .cell {
+  width: 56px;
+  height: 64px;
+  font-size: var(--ark-font-size-xl);
+}
+
+/* ── Separator ── */
+.sep {
+  font-size: var(--ark-font-size-lg);
+  color: var(--ark-color-text-secondary);
+  font-weight: var(--ark-font-weight-medium);
+  user-select: none;
+  margin: 0 var(--ark-spacing-1);
+}
+
+/* ── Error state ── */
+.error .cell {
+  border-color: var(--ark-color-error-500);
+}
+
+.error .cell:focus {
+  border-color: var(--ark-color-error-500);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ark-color-error-500) 15%, transparent);
+}
+
+/* ── Disabled ── */
+.disabled .cell {
+  background-color: var(--ark-color-gray-50);
+  color: var(--ark-color-text-disabled);
+  cursor: not-allowed;
+}
+
+/* ── Helper / Error text ── */
+.helperText {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-secondary);
+}
+
+.errorMessage {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-error-500);
+}
+
+/* ── Dark mode ── */
+[data-theme="dark"] .disabled .cell {
+  background-color: var(--ark-color-gray-900);
+}

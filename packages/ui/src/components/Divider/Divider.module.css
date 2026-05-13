@@ -1,0 +1,84 @@
+/* ── Base ── */
+.divider {
+  flex-shrink: 0;
+  border: none;
+  background: none;
+}
+
+/* ── Horizontal ── */
+.horizontal {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: var(--ark-color-border);
+}
+
+.horizontal.dashed {
+  background: none;
+  border-top: 1px dashed var(--ark-color-border);
+}
+
+.horizontal.dotted {
+  background: none;
+  border-top: 1px dotted var(--ark-color-border-strong);
+}
+
+/* ── Vertical ── */
+.vertical {
+  display: inline-block;
+  width: 1px;
+  height: 1em;
+  background-color: var(--ark-color-border);
+  margin: 0 var(--ark-spacing-2);
+  vertical-align: middle;
+}
+
+.vertical.dashed {
+  background: none;
+  border-left: 1px dashed var(--ark-color-border);
+}
+
+.vertical.dotted {
+  background: none;
+  border-left: 1px dotted var(--ark-color-border-strong);
+}
+
+/* ── With label ── */
+.hasLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--ark-spacing-3);
+  background: none;
+  height: auto;
+}
+
+.hasLabel::before,
+.hasLabel::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: var(--ark-color-border);
+}
+
+.hasLabel.dashed::before,
+.hasLabel.dashed::after {
+  background: none;
+  border-top: 1px dashed var(--ark-color-border);
+}
+
+.hasLabel.dotted::before,
+.hasLabel.dotted::after {
+  background: none;
+  border-top: 1px dotted var(--ark-color-border-strong);
+}
+
+/* Label position */
+.label-start::before { flex: 0; width: var(--ark-spacing-4); }
+.label-end::after   { flex: 0; width: var(--ark-spacing-4); }
+
+.label {
+  font-size: 13px;
+  color: var(--ark-color-text-secondary);
+  white-space: nowrap;
+  flex-shrink: 0;
+}

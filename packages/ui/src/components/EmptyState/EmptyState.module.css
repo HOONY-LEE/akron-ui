@@ -1,0 +1,110 @@
+/* ─── Root ─────────────────────────────────────────────────────────────────── */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--ark-spacing-8) var(--ark-spacing-4);
+  gap: var(--ark-spacing-3);
+  border-radius: var(--ark-radius-xl);
+}
+
+.bordered {
+  border: 1.5px dashed var(--ark-color-border);
+}
+
+/* ─── Sizes ────────────────────────────────────────────────────────────────── */
+
+.sm {
+  padding: var(--ark-spacing-6) var(--ark-spacing-4);
+  gap: var(--ark-spacing-2);
+}
+
+.md {
+  padding: var(--ark-spacing-10) var(--ark-spacing-6);
+  gap: var(--ark-spacing-3);
+}
+
+.lg {
+  padding: var(--ark-spacing-16) var(--ark-spacing-8);
+  gap: var(--ark-spacing-4);
+}
+
+/* ─── Icon ─────────────────────────────────────────────────────────────────── */
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ark-color-text-tertiary);
+}
+
+.sm .iconWrapper {
+  font-size: 32px;
+  width: 40px;
+  height: 40px;
+}
+
+.sm .iconWrapper svg {
+  width: 32px;
+  height: 32px;
+}
+
+.md .iconWrapper {
+  font-size: 48px;
+  width: 56px;
+  height: 56px;
+}
+
+.md .iconWrapper svg {
+  width: 48px;
+  height: 48px;
+}
+
+.lg .iconWrapper {
+  font-size: 64px;
+  width: 72px;
+  height: 72px;
+}
+
+.lg .iconWrapper svg {
+  width: 64px;
+  height: 64px;
+}
+
+/* ─── Text ─────────────────────────────────────────────────────────────────── */
+
+.title {
+  font-size: var(--ark-font-size-base);
+  font-weight: var(--ark-font-weight-semibold);
+  color: var(--ark-color-text-primary);
+  margin: 0;
+}
+
+.sm .title {
+  font-size: var(--ark-font-size-sm);
+}
+
+.lg .title {
+  font-size: var(--ark-font-size-lg);
+}
+
+.description {
+  font-size: var(--ark-font-size-sm);
+  color: var(--ark-color-text-secondary);
+  margin: 0;
+  max-width: 360px;
+  line-height: 1.6;
+}
+
+.sm .description {
+  font-size: var(--ark-font-size-xs);
+}
+
+/* ─── Action ───────────────────────────────────────────────────────────────── */
+
+.action {
+  margin-top: var(--ark-spacing-1);
+}

@@ -1,0 +1,177 @@
+/* ── Group Wrapper ── */
+.groupWrapper {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-1);
+  font-family: var(--ark-font-family);
+}
+
+.group {
+  display: flex;
+}
+
+.group.vertical {
+  flex-direction: column;
+  gap: var(--ark-spacing-2);
+}
+
+.group.horizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--ark-spacing-4);
+}
+
+/* ── Item ── */
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ark-spacing-2);
+}
+
+/* ── Radio Root ── */
+.radio {
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 2px solid var(--ark-radio-border-color, var(--ark-color-border-strong));
+  background-color: var(--ark-radio-bg, var(--ark-color-bg));
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  outline: none;
+  transition:
+    border-color var(--ark-transition-fast),
+    background-color var(--ark-transition-fast),
+    box-shadow var(--ark-transition-fast);
+}
+
+/* ── Sizes ── */
+.sm .radio {
+  width: var(--ark-radio-size-sm, 14px);
+  height: var(--ark-radio-size-sm, 14px);
+  margin-top: 2px;
+}
+
+.md .radio {
+  width: var(--ark-radio-size-md, 16px);
+  height: var(--ark-radio-size-md, 16px);
+  margin-top: 2px;
+}
+
+.lg .radio {
+  width: var(--ark-radio-size-lg, 20px);
+  height: var(--ark-radio-size-lg, 20px);
+  margin-top: 1px;
+}
+
+/* ── Indicator (dot) ── */
+.indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.indicator::after {
+  content: "";
+  display: block;
+  border-radius: 50%;
+  background-color: var(--ark-color-text-inverse);
+}
+
+.sm .indicator::after {
+  width: 5px;
+  height: 5px;
+}
+
+.md .indicator::after {
+  width: 6px;
+  height: 6px;
+}
+
+.lg .indicator::after {
+  width: 8px;
+  height: 8px;
+}
+
+/* ── Content ── */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.label {
+  font-size: var(--ark-font-size-sm);
+  font-weight: var(--ark-font-weight-medium);
+  color: var(--ark-color-text);
+  line-height: var(--ark-line-height-normal);
+  cursor: pointer;
+  user-select: none;
+}
+
+.description {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-secondary);
+  line-height: var(--ark-line-height-normal);
+}
+
+/* ── States ── */
+.radio:hover:not([data-disabled]) {
+  border-color: var(--ark-color-primary-400);
+  background-color: var(--ark-color-primary-50);
+}
+
+.radio:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.radio[data-state="checked"] {
+  border-color: var(--ark-color-primary-500);
+  background-color: var(--ark-color-primary-500);
+}
+
+.radio[data-state="checked"]:hover:not([data-disabled]) {
+  border-color: var(--ark-color-primary-600);
+  background-color: var(--ark-color-primary-600);
+}
+
+/* ── Disabled ── */
+.disabled .radio {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.disabled .label,
+.disabled .description {
+  cursor: not-allowed;
+  color: var(--ark-color-text-disabled);
+}
+
+/* ── Error ── */
+.error .radio,
+.errorItem .radio {
+  border-color: var(--ark-color-error-500);
+}
+
+.error .radio:hover:not([data-disabled]),
+.errorItem .radio:hover:not([data-disabled]) {
+  border-color: var(--ark-color-error-600);
+  background-color: var(--ark-color-error-50);
+}
+
+.error .radio[data-state="checked"],
+.errorItem .radio[data-state="checked"] {
+  background-color: var(--ark-color-error-500);
+  border-color: var(--ark-color-error-500);
+}
+
+.errorMessage {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-error-500);
+  line-height: var(--ark-line-height-normal);
+}

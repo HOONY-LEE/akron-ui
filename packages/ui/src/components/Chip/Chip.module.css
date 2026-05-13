@@ -1,0 +1,168 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ark-spacing-1);
+  border-radius: var(--ark-radius-full);
+  border: 1px solid var(--ark-color-border-strong);
+  background-color: var(--ark-color-bg);
+  color: var(--ark-color-text);
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  user-select: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.label {
+  line-height: 1;
+}
+
+/* ── Sizes ── */
+.sm {
+  font-size: 11px;
+  padding: var(--ark-spacing-0-5) var(--ark-spacing-2);
+}
+
+.md {
+  font-size: 13px;
+  padding: var(--ark-spacing-1) var(--ark-spacing-3);
+}
+
+.lg {
+  font-size: 14px;
+  padding: var(--ark-spacing-1-5) var(--ark-spacing-4);
+}
+
+/* ── Clickable ── */
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover {
+  background-color: var(--ark-color-bg-muted);
+}
+
+.clickable:active {
+  background-color: var(--ark-color-bg-subtle);
+}
+
+.clickable:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+/* ── Delete button ── */
+.deleteBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1px;
+  background: transparent;
+  border: none;
+  border-radius: var(--ark-radius-full);
+  cursor: pointer;
+  color: inherit;
+  opacity: 0.6;
+  transition: opacity 0.15s ease, background-color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.deleteBtn:hover {
+  opacity: 1;
+  background-color: var(--ark-color-gray-200);
+}
+
+.deleteBtn:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 1px;
+  opacity: 1;
+}
+
+/* ── Disabled ── */
+.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── Colors (unselected) ── */
+.neutral {
+  border-color: var(--ark-color-border-strong);
+  color: var(--ark-color-text);
+}
+
+.primary {
+  border-color: var(--ark-color-primary-300);
+  color: var(--ark-color-primary-600);
+  background-color: var(--ark-color-primary-50);
+}
+
+.success {
+  border-color: var(--ark-color-success-500);
+  color: var(--ark-color-success-600);
+  background-color: var(--ark-color-success-50);
+}
+
+.warning {
+  border-color: var(--ark-color-warning-500);
+  color: var(--ark-color-warning-600);
+  background-color: var(--ark-color-warning-50);
+}
+
+.error {
+  border-color: var(--ark-color-error-500);
+  color: var(--ark-color-error-600);
+  background-color: var(--ark-color-error-50);
+}
+
+/* ── Selected state ── */
+.neutral.selected {
+  background-color: var(--ark-color-gray-800);
+  border-color: var(--ark-color-gray-800);
+  color: var(--ark-color-text-inverse);
+}
+
+.primary.selected {
+  background-color: var(--ark-color-primary-500);
+  border-color: var(--ark-color-primary-500);
+  color: var(--ark-color-text-inverse);
+}
+
+.success.selected {
+  background-color: var(--ark-color-success-500);
+  border-color: var(--ark-color-success-500);
+  color: var(--ark-color-text-inverse);
+}
+
+.warning.selected {
+  background-color: var(--ark-color-warning-500);
+  border-color: var(--ark-color-warning-500);
+  color: var(--ark-color-text-inverse);
+}
+
+.error.selected {
+  background-color: var(--ark-color-error-500);
+  border-color: var(--ark-color-error-500);
+  color: var(--ark-color-text-inverse);
+}
+
+/* ── Dark mode ── */
+[data-theme="dark"] .chip {
+  background-color: var(--ark-color-gray-800);
+  border-color: var(--ark-color-gray-600);
+  color: var(--ark-color-gray-100);
+}
+
+[data-theme="dark"] .clickable:hover {
+  background-color: var(--ark-color-gray-700);
+}
+
+[data-theme="dark"] .neutral.selected {
+  background-color: var(--ark-color-gray-100);
+  border-color: var(--ark-color-gray-100);
+  color: var(--ark-color-gray-900);
+}
+
+[data-theme="dark"] .deleteBtn:hover {
+  background-color: var(--ark-color-gray-600);
+}

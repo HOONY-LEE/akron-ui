@@ -1,0 +1,74 @@
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Base ── */
+.spinner {
+  display: inline-block;
+  border-radius: 50%;
+  border-style: solid;
+  border-top-color: transparent;
+  animation: spin var(--ark-spinner-duration, 700ms) linear infinite;
+  flex-shrink: 0;
+}
+
+/* ── Sizes ── */
+.xs {
+  width: var(--ark-spinner-size-xs, 12px);
+  height: var(--ark-spinner-size-xs, 12px);
+  border-width: 1.5px;
+}
+
+.sm {
+  width: var(--ark-spinner-size-sm, 16px);
+  height: var(--ark-spinner-size-sm, 16px);
+  border-width: 2px;
+}
+
+.md {
+  width: var(--ark-spinner-size-md, 24px);
+  height: var(--ark-spinner-size-md, 24px);
+  border-width: 2.5px;
+}
+
+.lg {
+  width: var(--ark-spinner-size-lg, 36px);
+  height: var(--ark-spinner-size-lg, 36px);
+  border-width: 3px;
+}
+
+.xl {
+  width: var(--ark-spinner-size-xl, 48px);
+  height: var(--ark-spinner-size-xl, 48px);
+  border-width: 4px;
+}
+
+/* ── Colors ── */
+.primary {
+  border-color: var(--ark-color-primary-200);
+  border-top-color: var(--ark-color-primary-500);
+}
+
+.current {
+  border-color: currentColor;
+  border-top-color: transparent;
+  opacity: 0.6;
+}
+
+.white {
+  border-color: rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+}
+
+/* ── Screen reader only ── */
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

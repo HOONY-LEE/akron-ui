@@ -1,0 +1,114 @@
+/* ─── Root ─────────────────────────────────────────────────────────────────── */
+
+.root {
+  position: relative;
+  padding: var(--ark-space-4);
+  border-radius: var(--ark-radius-sm) var(--ark-radius-sm) var(--ark-radius-sm) 0;
+  font-family: var(--ark-font-sans);
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--ark-space-2);
+}
+
+/* ─── Shadow ───────────────────────────────────────────────────────────────── */
+
+.shadow {
+  box-shadow:
+    2px 2px 0 rgba(0, 0, 0, 0.05),
+    4px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ─── Colors ───────────────────────────────────────────────────────────────── */
+
+.color-yellow  { background: #fef9c3; color: #854d0e; }
+.color-pink    { background: #fce7f3; color: #9d174d; }
+.color-blue    { background: #dbeafe; color: #1e40af; }
+.color-green   { background: #dcfce7; color: #166534; }
+.color-purple  { background: #ede9fe; color: #5b21b6; }
+.color-orange  { background: #ffedd5; color: #c2410c; }
+
+/* ─── Sizes ────────────────────────────────────────────────────────────────── */
+
+.size-sm {
+  padding: var(--ark-space-3);
+  min-width: 120px;
+  font-size: var(--ark-font-size-xs);
+}
+
+.size-md {
+  padding: var(--ark-space-4);
+  min-width: 180px;
+  font-size: var(--ark-font-size-sm);
+}
+
+.size-lg {
+  padding: var(--ark-space-6);
+  min-width: 240px;
+  font-size: var(--ark-font-size-base);
+}
+
+/* ─── Title ────────────────────────────────────────────────────────────────── */
+
+.title {
+  font-weight: var(--ark-font-weight-bold);
+  margin-bottom: var(--ark-space-1);
+  font-size: 1.05em;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: var(--ark-space-1);
+  opacity: 0.85;
+}
+
+/* ─── Body ─────────────────────────────────────────────────────────────────── */
+
+.body {
+  line-height: 1.6;
+}
+
+/* ─── Folded corner ────────────────────────────────────────────────────────── */
+
+.folded {
+  border-bottom-left-radius: 0;
+}
+
+.corner {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Triangle using border trick */
+.color-yellow .corner {
+  border-left: 16px solid #fbbf24;
+  border-top: 16px solid transparent;
+}
+
+.color-pink .corner {
+  border-left: 16px solid #f9a8d4;
+  border-top: 16px solid transparent;
+}
+
+.color-blue .corner {
+  border-left: 16px solid #93c5fd;
+  border-top: 16px solid transparent;
+}
+
+.color-green .corner {
+  border-left: 16px solid #86efac;
+  border-top: 16px solid transparent;
+}
+
+.color-purple .corner {
+  border-left: 16px solid #c4b5fd;
+  border-top: 16px solid transparent;
+}
+
+.color-orange .corner {
+  border-left: 16px solid #fdba74;
+  border-top: 16px solid transparent;
+}
+
+/* size adjustments for corner */
+.size-sm .corner { border-left-width: 12px; border-top-width: 12px; }
+.size-lg .corner { border-left-width: 20px; border-top-width: 20px; }

@@ -216,43 +216,52 @@ body {
   line-height: inherit;
 }
 
-.code-copy-btn {
+.code-action-btns {
   position: absolute;
   top: 12px;
   right: 12px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  padding: 0;
-  color: var(--docs-text-tertiary);
-  background: transparent;
-  border: 1px solid var(--docs-border);
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+  gap: 4px;
   z-index: 1;
 }
 
-.code-copy-btn:hover {
-  background: rgba(0, 0, 0, 0.05);
-  color: var(--docs-text-secondary);
-  border-color: var(--docs-text-tertiary);
+.code-copy-btn,
+.code-reset-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  color: var(--docs-text-tertiary);
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 150ms ease, color 150ms ease;
 }
 
-[data-theme="dark"] .code-copy-btn:hover {
+.code-copy-btn:hover,
+.code-reset-btn:hover {
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--docs-text-secondary);
+}
+
+[data-theme="dark"] .code-copy-btn:hover,
+[data-theme="dark"] .code-reset-btn:hover {
   background: rgba(255, 255, 255, 0.1);
 }
 
-.code-copy-btn:focus-visible {
+.code-copy-btn:focus-visible,
+.code-reset-btn:focus-visible {
   outline: 2px solid var(--ark-color-primary-500);
   outline-offset: 2px;
 }
 
 /* ── Live Code Block ── */
 .live-preview {
-  background-color: var(--docs-bg-preview);
+  background-color: transparent;
   border-radius: 12px 12px 0 0;
   border: 1px solid var(--docs-border);
   border-bottom: none;
@@ -272,6 +281,12 @@ body {
   border-top: 1px dashed var(--docs-border);
   overflow: hidden;
   margin-bottom: 24px;
+}
+
+/* editor-only: 프리뷰 없이 에디터만 표시 */
+.live-editor-wrap.editor-only {
+  border-radius: 10px;
+  border-top: 1px solid var(--docs-border);
 }
 
 .live-editor-wrap textarea,

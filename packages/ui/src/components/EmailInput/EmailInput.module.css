@@ -1,0 +1,109 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-1-5);
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ark-color-text);
+}
+
+/* ── Input wrapper ── */
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--ark-color-border-strong);
+  border-radius: var(--ark-radius-md);
+  background-color: var(--ark-color-bg);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  overflow: hidden;
+}
+
+.inputWrapper:focus-within {
+  border-color: var(--ark-color-primary-500);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+}
+
+.error {
+  border-color: var(--ark-color-error-500);
+}
+
+.error:focus-within {
+  border-color: var(--ark-color-error-500);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12);
+}
+
+.valid {
+  border-color: var(--ark-color-success-500);
+}
+
+.valid:focus-within {
+  border-color: var(--ark-color-success-500);
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.12);
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--ark-color-bg-muted);
+}
+
+/* ── Sizes ── */
+.sm { padding: 0 var(--ark-spacing-2); }
+.md { padding: 0 var(--ark-spacing-3); }
+.lg { padding: 0 var(--ark-spacing-4); }
+
+/* ── Input ── */
+.input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--ark-color-text);
+  font-family: inherit;
+  min-width: 0;
+  padding: 0 var(--ark-spacing-2);
+}
+
+.input::placeholder {
+  color: var(--ark-color-text-disabled);
+}
+
+.input:disabled {
+  cursor: not-allowed;
+}
+
+/* ── Icons ── */
+.leadingIcon,
+.trailingIcon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.leadingIcon {
+  color: var(--ark-color-text-secondary);
+}
+
+.validIcon {
+  color: var(--ark-color-success-500);
+}
+
+.errorIcon {
+  color: var(--ark-color-error-500);
+}
+
+/* ── Helper/Error text ── */
+.helperText {
+  font-size: 13px;
+  color: var(--ark-color-text-secondary);
+  margin: 0;
+}
+
+.errorText {
+  font-size: 13px;
+  color: var(--ark-color-error-500);
+  margin: 0;
+}

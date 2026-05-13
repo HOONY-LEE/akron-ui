@@ -1,0 +1,103 @@
+@keyframes slideDown {
+  from { height: 0; }
+  to   { height: var(--radix-accordion-content-height); }
+}
+
+@keyframes slideUp {
+  from { height: var(--radix-accordion-content-height); }
+  to   { height: 0; }
+}
+
+/* ── Root ── */
+.root {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--ark-font-family);
+  border: 1px solid var(--ark-color-border);
+  border-radius: var(--ark-radius-lg);
+  overflow: hidden;
+}
+
+/* ── Item ── */
+.item {
+  border-bottom: 1px solid var(--ark-color-border);
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  margin: 0;
+}
+
+/* ── Trigger ── */
+.trigger {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ark-spacing-3);
+  padding: var(--ark-spacing-4) var(--ark-spacing-4);
+  font-size: var(--ark-font-size-sm);
+  font-weight: var(--ark-font-weight-semibold);
+  color: var(--ark-color-text);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color var(--ark-transition-fast);
+  outline: none;
+  font-family: var(--ark-font-family);
+}
+
+.triggerLabel {
+  flex: 1;
+}
+
+.trigger:hover {
+  background-color: var(--ark-color-bg-subtle);
+}
+
+.trigger:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: -2px;
+}
+
+.trigger[data-disabled] {
+  cursor: not-allowed;
+  color: var(--ark-color-text-disabled);
+}
+
+/* ── Chevron ── */
+.chevron {
+  color: var(--ark-color-text-secondary);
+  transition: transform var(--ark-transition-fast);
+  flex-shrink: 0;
+}
+
+.trigger[data-state="open"] .chevron {
+  transform: rotate(180deg);
+}
+
+/* ── Content ── */
+.contentWrapper {
+  overflow: hidden;
+}
+
+.contentWrapper[data-state="open"] {
+  animation: slideDown 200ms ease;
+}
+
+.contentWrapper[data-state="closed"] {
+  animation: slideUp 200ms ease;
+}
+
+.content {
+  padding: 0 var(--ark-spacing-4) var(--ark-spacing-4);
+  font-size: var(--ark-font-size-sm);
+  color: var(--ark-color-text-secondary);
+  line-height: var(--ark-line-height-relaxed);
+}

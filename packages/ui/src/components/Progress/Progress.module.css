@@ -1,0 +1,82 @@
+@keyframes stripes {
+  from { background-position: 0 0; }
+  to   { background-position: 32px 0; }
+}
+
+/* ── Wrapper ── */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-1-5);
+  font-family: var(--ark-font-family);
+  width: 100%;
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.label {
+  font-size: var(--ark-font-size-sm);
+  font-weight: var(--ark-font-weight-medium);
+  color: var(--ark-color-text);
+  line-height: var(--ark-line-height-normal);
+}
+
+.value {
+  font-size: var(--ark-font-size-xs);
+  font-weight: var(--ark-font-weight-semibold);
+  color: var(--ark-color-text-secondary);
+  line-height: var(--ark-line-height-normal);
+}
+
+/* ── Track ── */
+.track {
+  width: 100%;
+  background-color: var(--ark-color-gray-200);
+  border-radius: var(--ark-radius-full);
+  overflow: hidden;
+}
+
+/* ── Sizes ── */
+.xs { height: 2px; }
+.sm { height: 4px; }
+.md { height: 8px; }
+.lg { height: 12px; }
+
+/* ── Bar ── */
+.bar {
+  height: 100%;
+  border-radius: inherit;
+  transition: width 400ms ease;
+}
+
+/* ── Colors ── */
+.primary { background-color: var(--ark-color-primary-500); }
+.success { background-color: var(--ark-color-success-500); }
+.warning { background-color: var(--ark-color-warning-500); }
+.error   { background-color: var(--ark-color-error-500); }
+.info    { background-color: var(--ark-color-info-500); }
+
+/* ── Striped ── */
+.striped {
+  background-image: linear-gradient(
+    45deg,
+    rgba(255,255,255,0.2) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255,255,255,0.2) 50%,
+    rgba(255,255,255,0.2) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 16px 16px;
+}
+
+/* ── Animated ── */
+.animated {
+  animation: stripes 800ms linear infinite;
+}

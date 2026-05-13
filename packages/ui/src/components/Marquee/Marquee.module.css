@@ -1,0 +1,61 @@
+/* ─── Root ─────────────────────────────────────────────────────────────────── */
+
+.root {
+  overflow: hidden;
+  width: 100%;
+  /* Fade edges */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+}
+
+/* ─── Inner track ──────────────────────────────────────────────────────────── */
+
+.inner {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: marqueeScroll var(--marquee-duration, 10s) linear infinite;
+  animation-direction: var(--marquee-direction, normal);
+  gap: var(--marquee-gap, 16px);
+}
+
+.pauseOnHover:hover .inner {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ─── Item ─────────────────────────────────────────────────────────────────── */
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--marquee-gap, 16px);
+  flex-shrink: 0;
+}
+
+/* ─── Screen reader only ───────────────────────────────────────────────────── */
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

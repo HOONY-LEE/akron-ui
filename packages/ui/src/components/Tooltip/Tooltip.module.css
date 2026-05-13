@@ -1,0 +1,59 @@
+/* ── Content ── */
+.content {
+  background-color: var(--ark-tooltip-bg, var(--ark-color-gray-900));
+  color: var(--ark-tooltip-color, var(--ark-color-text-inverse));
+  font-family: var(--ark-font-family);
+  font-size: var(--ark-font-size-xs);
+  font-weight: var(--ark-font-weight-medium);
+  line-height: var(--ark-line-height-normal);
+  padding: var(--ark-spacing-1-5) var(--ark-spacing-2);
+  border-radius: var(--ark-radius-md);
+  max-width: 256px;
+  word-break: break-word;
+  box-shadow: var(--ark-shadow-md);
+  z-index: var(--ark-z-tooltip);
+  user-select: none;
+
+  /* Animation */
+  animation-duration: 150ms;
+  animation-timing-function: ease;
+  will-change: transform, opacity;
+}
+
+.content[data-state="delayed-open"][data-side="top"]    { animation-name: slideDownAndFade; }
+.content[data-state="delayed-open"][data-side="right"]  { animation-name: slideLeftAndFade; }
+.content[data-state="delayed-open"][data-side="bottom"] { animation-name: slideUpAndFade; }
+.content[data-state="delayed-open"][data-side="left"]   { animation-name: slideRightAndFade; }
+
+.content[data-state="closed"] { animation-name: fadeOut; }
+
+/* ── Arrow ── */
+.arrow {
+  fill: var(--ark-tooltip-bg, var(--ark-color-gray-900));
+}
+
+/* ── Animations ── */
+@keyframes slideUpAndFade {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDownAndFade {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideLeftAndFade {
+  from { opacity: 0; transform: translateX(4px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideRightAndFade {
+  from { opacity: 0; transform: translateX(-4px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}

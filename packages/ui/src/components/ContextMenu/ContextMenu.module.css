@@ -1,0 +1,139 @@
+/* ── Trigger ── */
+.trigger {
+  display: contents;
+}
+
+/* ── Content (menu popup) ── */
+.content {
+  min-width: 180px;
+  max-width: 280px;
+  background-color: var(--ark-color-bg);
+  border: 1px solid var(--ark-color-border);
+  border-radius: var(--ark-radius-lg);
+  box-shadow: var(--ark-shadow-lg);
+  padding: var(--ark-spacing-1);
+  z-index: var(--ark-z-popover);
+  font-family: var(--ark-font-family);
+  animation: contentFadeIn 120ms ease;
+}
+
+.content[data-state="closed"] {
+  animation: contentFadeOut 100ms ease;
+}
+
+@keyframes contentFadeIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes contentFadeOut {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(0.97); }
+}
+
+/* ── Item ── */
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--ark-spacing-2);
+  padding: var(--ark-spacing-1-5) var(--ark-spacing-2);
+  border-radius: var(--ark-radius-md);
+  font-size: var(--ark-font-size-sm);
+  color: var(--ark-color-text);
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  transition: background-color var(--ark-transition-fast);
+  position: relative;
+}
+
+.item:hover,
+.item[data-highlighted] {
+  background-color: var(--ark-color-bg-muted);
+  outline: none;
+}
+
+.item:focus-visible {
+  outline: none;
+  background-color: var(--ark-color-bg-muted);
+}
+
+/* ── Icon ── */
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  color: var(--ark-color-text-secondary);
+  flex-shrink: 0;
+}
+
+/* ── Item label ── */
+.itemLabel {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── Right slot (shortcut / chevron) ── */
+.rightSlot {
+  margin-left: auto;
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-secondary);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* ── Indicator (check / radio) ── */
+.indicator {
+  position: absolute;
+  left: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  color: var(--ark-color-primary-500);
+}
+
+/* ── Danger item ── */
+.danger {
+  color: var(--ark-color-error-600);
+}
+
+.danger .icon { color: var(--ark-color-error-500); }
+
+.danger:hover,
+.danger[data-highlighted] {
+  background-color: color-mix(in srgb, var(--ark-color-error-500) 8%, transparent);
+}
+
+/* ── Disabled ── */
+.disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── Separator ── */
+.separator {
+  height: 1px;
+  background-color: var(--ark-color-border);
+  margin: var(--ark-spacing-1) 0;
+}
+
+/* ── Label ── */
+.label {
+  padding: var(--ark-spacing-1) var(--ark-spacing-2);
+  font-size: var(--ark-font-size-xs);
+  font-weight: var(--ark-font-weight-semibold);
+  color: var(--ark-color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ── Dark mode ── */
+[data-theme="dark"] .content {
+  background-color: var(--ark-color-gray-900);
+}

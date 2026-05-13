@@ -1,0 +1,157 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--ark-font-family);
+}
+
+.label {
+  font-size: var(--ark-font-size-sm);
+  font-weight: var(--ark-font-weight-medium);
+  color: var(--ark-color-text);
+  margin-bottom: var(--ark-spacing-1);
+}
+
+/* ── Field ── */
+.field {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ark-spacing-1);
+  border: 1px solid var(--ark-input-border-color);
+  border-radius: var(--ark-input-radius);
+  background-color: var(--ark-input-bg);
+  cursor: text;
+  transition: border-color var(--ark-transition-fast),
+              box-shadow var(--ark-transition-fast);
+}
+
+.field:hover:not(.disabled .field) {
+  border-color: var(--ark-color-gray-400);
+}
+
+.field:focus-within {
+  border-color: var(--ark-color-primary-500);
+  box-shadow: 0 0 0 1px var(--ark-color-primary-500);
+}
+
+/* ── Sizes ── */
+.sm .field  { padding: var(--ark-spacing-1) var(--ark-spacing-2); min-height: var(--ark-input-height-sm); }
+.md .field  { padding: var(--ark-spacing-1) var(--ark-spacing-3); min-height: var(--ark-input-height-md); }
+.lg .field  { padding: var(--ark-spacing-2) var(--ark-spacing-4); min-height: var(--ark-input-height-lg); }
+
+/* ── Input ── */
+.input {
+  flex: 1;
+  min-width: 80px;
+  border: none;
+  background: transparent;
+  outline: none;
+  color: var(--ark-color-text);
+  font-family: var(--ark-font-family);
+}
+
+.sm .input  { font-size: var(--ark-input-font-size-sm); }
+.md .input  { font-size: var(--ark-input-font-size-md); }
+.lg .input  { font-size: var(--ark-input-font-size-lg); }
+
+.input::placeholder {
+  color: var(--ark-color-text-disabled);
+}
+
+/* ── Tag ── */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: var(--ark-radius-full);
+  font-weight: var(--ark-font-weight-medium);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.sm .tag { padding: 1px 8px; font-size: var(--ark-font-size-xs); }
+.md .tag { padding: 2px 10px; font-size: var(--ark-font-size-sm); }
+.lg .tag { padding: 3px 12px; font-size: var(--ark-font-size-base); }
+
+/* Tag color variants */
+.tag-neutral { background: var(--ark-color-gray-100); color: var(--ark-color-gray-700); }
+.tag-primary { background: color-mix(in srgb, var(--ark-color-primary-500) 12%, transparent); color: var(--ark-color-primary-700); }
+.tag-success { background: color-mix(in srgb, var(--ark-color-success-500) 12%, transparent); color: var(--ark-color-success-700); }
+.tag-warning { background: color-mix(in srgb, var(--ark-color-warning-500) 12%, transparent); color: var(--ark-color-warning-700); }
+.tag-error   { background: color-mix(in srgb, var(--ark-color-error-500)   12%, transparent); color: var(--ark-color-error-700);   }
+
+.tagLabel {
+  line-height: 1;
+}
+
+/* ── Remove button ── */
+.tagRemove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 0;
+  opacity: 0.6;
+  color: inherit;
+  transition: opacity var(--ark-transition-fast), background-color var(--ark-transition-fast);
+}
+
+.tagRemove:hover {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* ── Error state ── */
+.error .field {
+  border-color: var(--ark-color-error-500);
+}
+
+.error .field:focus-within {
+  border-color: var(--ark-color-error-500);
+  box-shadow: 0 0 0 1px var(--ark-color-error-500);
+}
+
+/* ── Disabled ── */
+.disabled .field {
+  background-color: var(--ark-color-gray-50);
+  cursor: not-allowed;
+}
+
+.disabled .input {
+  cursor: not-allowed;
+  color: var(--ark-color-text-disabled);
+}
+
+/* ── Read only ── */
+.readOnly .field {
+  cursor: default;
+  background-color: var(--ark-color-bg-subtle);
+}
+
+/* ── Helper / Error text ── */
+.helperText {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-secondary);
+  margin-top: var(--ark-spacing-1);
+}
+
+.errorMessage {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-error-500);
+  margin-top: var(--ark-spacing-1);
+}
+
+/* ── Dark mode ── */
+[data-theme="dark"] .tag-neutral {
+  background: var(--ark-color-gray-700);
+  color: var(--ark-color-gray-200);
+}
+
+[data-theme="dark"] .disabled .field {
+  background-color: var(--ark-color-gray-900);
+}

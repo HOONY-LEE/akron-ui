@@ -1,0 +1,142 @@
+/* ─── Root ─────────────────────────────────────────────────────────────────── */
+
+.root {
+  display: flex;
+  background: var(--ark-color-surface);
+  border: 1px solid var(--ark-color-border);
+  border-radius: var(--ark-radius-lg);
+  overflow: hidden;
+  transition: box-shadow var(--ark-duration-fast) ease, transform var(--ark-duration-fast) ease;
+}
+
+.orientation-vertical {
+  flex-direction: column;
+}
+
+.orientation-horizontal {
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.hoverable:hover,
+.clickable:hover {
+  box-shadow: var(--ark-shadow-lg);
+  transform: translateY(-2px);
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+/* ─── Media ────────────────────────────────────────────────────────────────── */
+
+.mediaWrap {
+  position: relative;
+  overflow: hidden;
+  background: var(--ark-color-surface-strong);
+}
+
+/* Vertical: padding-top trick for aspect ratio */
+.orientation-vertical .mediaWrap {
+  width: 100%;
+}
+
+.mediaInner {
+  position: absolute;
+  inset: 0;
+}
+
+/* Horizontal: fixed width */
+.orientation-horizontal .mediaWrap {
+  flex-shrink: 0;
+}
+
+.size-sm.orientation-horizontal .mediaWrap { width: 100px; }
+.size-md.orientation-horizontal .mediaWrap { width: 140px; }
+.size-lg.orientation-horizontal .mediaWrap { width: 200px; }
+
+.mediaInnerH {
+  position: absolute;
+  inset: 0;
+}
+
+.mediaInner > *,
+.mediaInnerH > * {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ─── Badge overlay ────────────────────────────────────────────────────────── */
+
+.badge {
+  position: absolute;
+  top: var(--ark-space-2);
+  left: var(--ark-space-2);
+  z-index: 1;
+}
+
+/* ─── Content ──────────────────────────────────────────────────────────────── */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.size-sm .content { padding: var(--ark-space-3); gap: var(--ark-space-1); }
+.size-md .content { padding: var(--ark-space-4); gap: var(--ark-space-2); }
+.size-lg .content { padding: var(--ark-space-5); gap: var(--ark-space-2-5); }
+
+/* ─── Meta ─────────────────────────────────────────────────────────────────── */
+
+.meta {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-tertiary);
+  line-height: 1;
+}
+
+/* ─── Title ────────────────────────────────────────────────────────────────── */
+
+.title {
+  font-weight: var(--ark-font-weight-semibold);
+  color: var(--ark-color-text-primary);
+  line-height: 1.4;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.size-sm .title { font-size: var(--ark-font-size-sm); }
+.size-md .title { font-size: var(--ark-font-size-base); }
+.size-lg .title { font-size: var(--ark-font-size-lg); }
+
+/* ─── Description ──────────────────────────────────────────────────────────── */
+
+.description {
+  font-size: var(--ark-font-size-sm);
+  color: var(--ark-color-text-secondary);
+  line-height: 1.6;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  flex: 1;
+}
+
+/* ─── Footer ───────────────────────────────────────────────────────────────── */
+
+.footer {
+  display: flex;
+  align-items: center;
+  gap: var(--ark-space-2);
+  margin-top: auto;
+  padding-top: var(--ark-space-2);
+}

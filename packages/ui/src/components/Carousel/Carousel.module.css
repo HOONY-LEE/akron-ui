@@ -1,0 +1,121 @@
+.carousel {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--ark-radius-lg);
+}
+
+/* ── Track ── */
+.track {
+  overflow: hidden;
+  width: 100%;
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.slide {
+  flex: 0 0 100%;
+  width: 100%;
+}
+
+/* ── Arrows ── */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--ark-radius-full);
+  background-color: var(--ark-color-bg);
+  border: 1px solid var(--ark-color-border);
+  cursor: pointer;
+  color: var(--ark-color-text);
+  box-shadow: var(--ark-shadow-sm);
+  transition: background-color 0.15s ease, opacity 0.15s ease;
+}
+
+.arrow:hover {
+  background-color: var(--ark-color-bg-muted);
+}
+
+.arrow:active {
+  background-color: var(--ark-color-bg-subtle);
+}
+
+.arrow:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.arrowLeft {
+  left: var(--ark-spacing-3);
+}
+
+.arrowRight {
+  right: var(--ark-spacing-3);
+}
+
+/* ── Indicators ── */
+.indicators {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ark-spacing-1-5);
+  padding: var(--ark-spacing-3) 0 var(--ark-spacing-2);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--ark-radius-full);
+  background-color: var(--ark-color-gray-300);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.2s ease, transform 0.2s ease, width 0.2s ease;
+}
+
+.dot:hover {
+  background-color: var(--ark-color-gray-400);
+}
+
+.dot:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.dotActive {
+  background-color: var(--ark-color-primary-500);
+  width: 20px;
+}
+
+/* ── Dark mode ── */
+[data-theme="dark"] .arrow {
+  background-color: var(--ark-color-gray-800);
+  border-color: var(--ark-color-gray-700);
+  color: var(--ark-color-gray-100);
+}
+
+[data-theme="dark"] .arrow:hover {
+  background-color: var(--ark-color-gray-700);
+}
+
+[data-theme="dark"] .dot {
+  background-color: var(--ark-color-gray-600);
+}
+
+[data-theme="dark"] .dot:hover {
+  background-color: var(--ark-color-gray-500);
+}

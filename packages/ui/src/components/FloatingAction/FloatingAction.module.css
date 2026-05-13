@@ -1,0 +1,178 @@
+/* ── Wrapper ── */
+.wrapper {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--ark-spacing-3);
+  z-index: 200;
+}
+
+.bottom-right {
+  bottom: var(--ark-spacing-8);
+  right: var(--ark-spacing-8);
+}
+
+.bottom-left {
+  bottom: var(--ark-spacing-8);
+  left: var(--ark-spacing-8);
+  align-items: flex-start;
+}
+
+.top-right {
+  top: var(--ark-spacing-8);
+  right: var(--ark-spacing-8);
+}
+
+.top-left {
+  top: var(--ark-spacing-8);
+  left: var(--ark-spacing-8);
+  align-items: flex-start;
+}
+
+/* ── Main FAB ── */
+.fab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--ark-radius-full);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  flex-shrink: 0;
+  color: var(--ark-color-text-inverse);
+}
+
+.fab:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.fab:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+/* Main FAB styles */
+.main {
+  background-color: var(--ark-color-primary-500);
+  box-shadow: var(--ark-shadow-lg);
+}
+
+.main:hover {
+  background-color: var(--ark-color-primary-600);
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px -4px rgba(79, 70, 229, 0.5);
+}
+
+.main:active {
+  background-color: var(--ark-color-primary-700);
+  transform: scale(0.97);
+}
+
+.main.open {
+  background-color: var(--ark-color-gray-700);
+}
+
+.main.open:hover {
+  background-color: var(--ark-color-gray-600);
+}
+
+/* ── Sizes ── */
+.sm {
+  width: 40px;
+  height: 40px;
+}
+
+.md {
+  width: 52px;
+  height: 52px;
+}
+
+.lg {
+  width: 64px;
+  height: 64px;
+}
+
+/* ── Action button ── */
+.actionBtn {
+  background-color: var(--ark-color-bg);
+  color: var(--ark-color-text);
+  box-shadow: var(--ark-shadow-md);
+  border: 1px solid var(--ark-color-border);
+  width: 40px;
+  height: 40px;
+}
+
+.actionBtn:hover {
+  background-color: var(--ark-color-bg-muted);
+  transform: scale(1.05);
+}
+
+.actionBtn:active {
+  background-color: var(--ark-color-bg-subtle);
+  transform: scale(0.97);
+}
+
+/* ── Actions list ── */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-2);
+  align-items: flex-end;
+  animation: slideUp 150ms ease;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.bottom-left .actions {
+  align-items: flex-start;
+}
+
+.top-right .actions,
+.top-left .actions {
+  flex-direction: column-reverse;
+}
+
+/* ── Action item (label + button) ── */
+.actionItem {
+  display: flex;
+  align-items: center;
+  gap: var(--ark-spacing-3);
+}
+
+.actionLabel {
+  font-size: 13px;
+  font-weight: 500;
+  background-color: var(--ark-color-bg);
+  color: var(--ark-color-text);
+  padding: var(--ark-spacing-1) var(--ark-spacing-2);
+  border-radius: var(--ark-radius-md);
+  box-shadow: var(--ark-shadow-sm);
+  border: 1px solid var(--ark-color-border);
+  white-space: nowrap;
+}
+
+/* ── Dark mode ── */
+[data-theme="dark"] .actionBtn {
+  background-color: var(--ark-color-gray-800);
+  border-color: var(--ark-color-gray-700);
+  color: var(--ark-color-gray-100);
+}
+
+[data-theme="dark"] .actionBtn:hover {
+  background-color: var(--ark-color-gray-700);
+}
+
+[data-theme="dark"] .actionLabel {
+  background-color: var(--ark-color-gray-800);
+  border-color: var(--ark-color-gray-700);
+  color: var(--ark-color-gray-100);
+}
+
+[data-theme="dark"] .main.open {
+  background-color: var(--ark-color-gray-600);
+}

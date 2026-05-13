@@ -1,0 +1,77 @@
+/* ── FormField ── */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-1-5);
+}
+
+/* ── FormLabel ── */
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ark-color-text);
+  line-height: 1.4;
+  cursor: default;
+}
+
+.labelError {
+  color: var(--ark-color-error-500);
+}
+
+.required {
+  color: var(--ark-color-error-500);
+}
+
+/* ── FormDescription ── */
+.description {
+  font-size: 13px;
+  color: var(--ark-color-text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── FormMessage ── */
+.message {
+  font-size: 13px;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.messageError {
+  color: var(--ark-color-error-500);
+}
+
+.messageHint {
+  color: var(--ark-color-text-secondary);
+}
+
+/* ── FormGroup ── */
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-2);
+}
+
+.groupHorizontal {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--ark-spacing-4);
+}
+
+.groupLegend {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ark-color-text);
+  margin-bottom: var(--ark-spacing-1);
+}
+
+.groupContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-4);
+}
+
+.groupContentHorizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+}

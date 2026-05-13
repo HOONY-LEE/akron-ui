@@ -1,0 +1,20 @@
+/* ─── Root ─────────────────────────────────────────────────────────────────── */
+
+.root {
+  position: fixed;
+  left: 0;
+  right: 0;
+  background: var(--ark-color-border);
+  overflow: hidden;
+}
+
+.placement-top    { top: 0; }
+.placement-bottom { bottom: 0; }
+
+/* ─── Bar ──────────────────────────────────────────────────────────────────── */
+
+.bar {
+  height: 100%;
+  transition: width 100ms linear;
+  transform-origin: left;
+}

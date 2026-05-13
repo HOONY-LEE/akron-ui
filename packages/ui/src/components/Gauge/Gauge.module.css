@@ -1,0 +1,81 @@
+.root {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.svg {
+  display: block;
+  overflow: visible;
+}
+
+/* Animated fill */
+.fill {
+  animation: gaugeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes gaugeIn {
+  from {
+    stroke-dasharray: 0 9999;
+  }
+}
+
+/* Center overlay */
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ark-spacing-0-5);
+  /* Shift up slightly to visually center within the arc */
+  margin-top: -6%;
+}
+
+.value {
+  font-weight: var(--ark-font-weight-bold);
+  color: var(--ark-color-text);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.label {
+  color: var(--ark-color-text-secondary);
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Value font sizes */
+.valueSm  { font-size: var(--ark-font-size-sm); }
+.valueMd  { font-size: var(--ark-font-size-xl); }
+.valueLg  { font-size: var(--ark-font-size-2xl); }
+.valueXl  { font-size: 2rem; }
+
+/* Label font sizes */
+.labelSm  { font-size: 10px; }
+.labelMd  { font-size: var(--ark-font-size-xs); }
+.labelLg  { font-size: var(--ark-font-size-sm); }
+.labelXl  { font-size: var(--ark-font-size-md); }
+
+/* Min/Max row */
+.minMax {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin-top: var(--ark-spacing-1);
+}
+
+.minMaxText {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-secondary);
+}
+
+/* Size wrappers */
+.size-sm  { width: 80px;  height: 80px;  }
+.size-md  { width: 120px; height: 120px; }
+.size-lg  { width: 160px; height: 160px; }
+.size-xl  { width: 200px; height: 200px; }

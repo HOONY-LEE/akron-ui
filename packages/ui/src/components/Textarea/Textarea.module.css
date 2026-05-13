@@ -1,0 +1,107 @@
+/* ── Wrapper ── */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-1);
+  font-family: var(--ark-font-family);
+}
+
+/* ── Label ── */
+.label {
+  font-size: var(--ark-font-size-sm);
+  font-weight: var(--ark-font-weight-medium);
+  color: var(--ark-color-text);
+  line-height: var(--ark-line-height-normal);
+}
+
+/* ── Textarea ── */
+.textarea {
+  width: 100%;
+  border: 1px solid var(--ark-textarea-border-color, var(--ark-color-border-strong));
+  border-radius: var(--ark-textarea-radius, var(--ark-radius-md));
+  background-color: var(--ark-textarea-bg, var(--ark-color-bg));
+  color: var(--ark-color-text);
+  font-family: var(--ark-font-family);
+  font-size: var(--ark-font-size-sm);
+  line-height: var(--ark-line-height-relaxed);
+  padding: var(--ark-spacing-2) var(--ark-spacing-3);
+  transition:
+    border-color var(--ark-transition-fast),
+    box-shadow var(--ark-transition-fast);
+  min-height: 80px;
+}
+
+.textarea::placeholder {
+  color: var(--ark-color-text-disabled);
+}
+
+/* ── States ── */
+.textarea:hover:not(:disabled):not(:focus) {
+  border-color: var(--ark-color-gray-400);
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: var(--ark-color-primary-500);
+  box-shadow: 0 0 0 1px var(--ark-color-primary-500);
+}
+
+.textarea:focus-visible {
+  outline: none;
+  border-color: var(--ark-color-primary-500);
+  box-shadow: 0 0 0 1px var(--ark-color-primary-500);
+}
+
+.textarea:disabled {
+  background-color: var(--ark-color-gray-50);
+  color: var(--ark-color-text-disabled);
+  cursor: not-allowed;
+  resize: none;
+}
+
+/* ── Error ── */
+.error .textarea {
+  border-color: var(--ark-color-error-500);
+}
+
+.error .textarea:focus,
+.error .textarea:focus-visible {
+  border-color: var(--ark-color-error-500);
+  box-shadow: 0 0 0 1px var(--ark-color-error-500);
+}
+
+/* ── Disabled ── */
+.disabled .label {
+  color: var(--ark-color-text-disabled);
+}
+
+/* ── Footer ── */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--ark-spacing-2);
+  min-height: 16px;
+}
+
+.helperText {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-secondary);
+  line-height: var(--ark-line-height-normal);
+  flex: 1;
+}
+
+.error .helperText {
+  color: var(--ark-color-error-500);
+}
+
+.charCount {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-tertiary, var(--ark-color-text-secondary));
+  line-height: var(--ark-line-height-normal);
+  flex-shrink: 0;
+}
+
+.charCountOver {
+  color: var(--ark-color-error-500);
+}

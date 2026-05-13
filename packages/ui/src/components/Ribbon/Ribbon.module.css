@@ -1,0 +1,50 @@
+/* ─── Wrapper ──────────────────────────────────────────────────────────────── */
+
+.wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+/* ─── Ribbon ───────────────────────────────────────────────────────────────── */
+
+.ribbon {
+  position: absolute;
+  width: 120px;
+  padding: var(--ark-space-1) 0;
+  text-align: center;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.placement-top-right {
+  top: 16px;
+  right: -32px;
+  transform: rotate(45deg);
+}
+
+.placement-top-left {
+  top: 16px;
+  left: -32px;
+  transform: rotate(-45deg);
+}
+
+/* ─── Label ────────────────────────────────────────────────────────────────── */
+
+.label {
+  font-size: 11px;
+  font-weight: var(--ark-font-weight-bold);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #fff;
+  white-space: nowrap;
+}
+
+/* ─── Colors ───────────────────────────────────────────────────────────────── */
+
+.color-primary  { background: var(--ark-color-primary); }
+.color-success  { background: #22c55e; }
+.color-warning  { background: #f97316; }
+.color-danger   { background: #ef4444; }
+.color-info     { background: #3b82f6; }
+.color-neutral  { background: var(--ark-color-text-secondary); }

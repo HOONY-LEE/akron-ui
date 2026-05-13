@@ -1,0 +1,5 @@
+.root {
+  display: inline;
+  cursor: default;
+  font-variant-numeric: tabular-nums;
+}

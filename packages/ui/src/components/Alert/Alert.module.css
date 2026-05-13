@@ -1,0 +1,111 @@
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ark-spacing-3);
+  padding: var(--ark-spacing-3) var(--ark-spacing-4);
+  border-radius: var(--ark-radius-lg);
+  border: 1px solid transparent;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ── Icon ── */
+.icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding-top: 1px;
+}
+
+/* ── Body ── */
+.body {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-weight: 600;
+  margin-bottom: var(--ark-spacing-0-5);
+}
+
+.description {
+  color: inherit;
+  opacity: 0.85;
+}
+
+/* ── Close button ── */
+.closeBtn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ark-spacing-0-5);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--ark-radius-sm);
+  color: inherit;
+  opacity: 0.6;
+  transition: opacity 0.15s ease;
+  margin-top: 1px;
+}
+
+.closeBtn:hover {
+  opacity: 1;
+}
+
+.closeBtn:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+  opacity: 1;
+}
+
+/* ── Variants ── */
+.info {
+  background-color: var(--ark-color-info-50);
+  border-color: var(--ark-color-info-500);
+  color: var(--ark-color-info-600);
+}
+
+.success {
+  background-color: var(--ark-color-success-50);
+  border-color: var(--ark-color-success-500);
+  color: var(--ark-color-success-600);
+}
+
+.warning {
+  background-color: var(--ark-color-warning-50);
+  border-color: var(--ark-color-warning-500);
+  color: var(--ark-color-warning-600);
+}
+
+.error {
+  background-color: var(--ark-color-error-50);
+  border-color: var(--ark-color-error-500);
+  color: var(--ark-color-error-600);
+}
+
+/* ── Dark mode ── */
+[data-theme="dark"] .info {
+  background-color: color-mix(in srgb, var(--ark-color-info-500) 15%, transparent);
+  border-color: var(--ark-color-info-500);
+  color: var(--ark-color-info-500);
+}
+
+[data-theme="dark"] .success {
+  background-color: color-mix(in srgb, var(--ark-color-success-500) 15%, transparent);
+  border-color: var(--ark-color-success-500);
+  color: var(--ark-color-success-500);
+}
+
+[data-theme="dark"] .warning {
+  background-color: color-mix(in srgb, var(--ark-color-warning-500) 15%, transparent);
+  border-color: var(--ark-color-warning-500);
+  color: var(--ark-color-warning-500);
+}
+
+[data-theme="dark"] .error {
+  background-color: color-mix(in srgb, var(--ark-color-error-500) 15%, transparent);
+  border-color: var(--ark-color-error-500);
+  color: var(--ark-color-error-500);
+}

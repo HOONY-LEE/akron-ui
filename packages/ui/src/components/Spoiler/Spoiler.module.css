@@ -1,0 +1,91 @@
+/* ─── Wrapper ──────────────────────────────────────────────────────────────── */
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-space-2);
+}
+
+/* ─── Root ─────────────────────────────────────────────────────────────────── */
+
+.root {
+  position: relative;
+  transition: filter 0.25s ease;
+  border-radius: var(--ark-radius-sm);
+  overflow: hidden;
+}
+
+/* ─── Blur states ──────────────────────────────────────────────────────────── */
+
+.blur-sm { filter: blur(4px); }
+.blur-md { filter: blur(8px); }
+.blur-lg { filter: blur(16px); }
+
+.blur-sm,
+.blur-md,
+.blur-lg {
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Hover mode: restore pointer events on root to detect hover */
+.hoverReveal {
+  pointer-events: auto;
+  cursor: default;
+}
+
+.hoverReveal:hover {
+  filter: none;
+}
+
+.open {
+  filter: none;
+  pointer-events: auto;
+  user-select: auto;
+}
+
+/* ─── Reveal button (centered overlay) ──────────────────────────────────────── */
+
+.revealBtn {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ark-space-2);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: var(--ark-font-size-sm);
+  font-weight: var(--ark-font-weight-medium);
+  color: var(--ark-color-text-primary);
+  pointer-events: auto;
+  z-index: 1;
+}
+
+.revealBtn:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+/* ─── Hide button ──────────────────────────────────────────────────────────── */
+
+.hideBtn {
+  align-self: flex-start;
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-tertiary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: color var(--ark-duration-fast) ease;
+}
+
+.hideBtn:hover {
+  color: var(--ark-color-text-secondary);
+}
+
+.hideBtn:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}

@@ -1,0 +1,12 @@
+.root {
+  display: inline;
+}
+
+.mark {
+  background: var(--highlight-bg, #fff3b0);
+  color: inherit;
+  padding: 0.05em 0.1em;
+  border-radius: 2px;
+  font-style: inherit;
+  font-weight: inherit;
+}

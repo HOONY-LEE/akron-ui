@@ -1,0 +1,114 @@
+.root {
+  background: #0d1117;
+  border-radius: var(--ark-radius-lg);
+  border: 1px solid #30363d;
+  overflow: hidden;
+  font-family: "SFMono-Regular", "Consolas", "Liberation Mono", "Menlo", monospace;
+}
+
+.scroll {
+  max-height: var(--log-max-height, 320px);
+  overflow-y: auto;
+  padding: var(--ark-spacing-2) 0;
+}
+
+.scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  background: #30363d;
+  border-radius: var(--ark-radius-full);
+}
+
+/* Font sizes */
+.font-xs { font-size: 11px; line-height: 1.6; }
+.font-sm { font-size: var(--ark-font-size-xs); line-height: 1.6; }
+.font-md { font-size: var(--ark-font-size-sm); line-height: 1.6; }
+
+/* Empty state */
+.empty {
+  padding: var(--ark-spacing-4) var(--ark-spacing-4);
+  color: #6e7681;
+  font-style: italic;
+  font-family: inherit;
+}
+
+/* Log line */
+.line {
+  display: flex;
+  align-items: baseline;
+  gap: var(--ark-spacing-2);
+  padding: 1px var(--ark-spacing-4);
+  transition: background 0.1s;
+}
+
+.line:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* Level-based left border accent */
+.level-error  { border-left: 2px solid #f85149; padding-left: calc(var(--ark-spacing-4) - 2px); }
+.level-warn   { border-left: 2px solid #d29922; padding-left: calc(var(--ark-spacing-4) - 2px); }
+.level-success{ border-left: 2px solid #3fb950; padding-left: calc(var(--ark-spacing-4) - 2px); }
+.level-info   { border-left: 2px solid #388bfd; padding-left: calc(var(--ark-spacing-4) - 2px); }
+.level-debug  { border-left: 2px solid #8b949e; padding-left: calc(var(--ark-spacing-4) - 2px); }
+.level-plain  { border-left: 2px solid transparent; padding-left: calc(var(--ark-spacing-4) - 2px); }
+
+/* Line number */
+.lineNumber {
+  color: #6e7681;
+  min-width: 3ch;
+  text-align: right;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+/* Timestamp */
+.timestamp {
+  color: #6e7681;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* Level badge */
+.badge {
+  font-weight: var(--ark-font-weight-bold);
+  flex-shrink: 0;
+  letter-spacing: 0.02em;
+  white-space: pre;
+}
+
+.badge-info    { color: #388bfd; }
+.badge-warn    { color: #d29922; }
+.badge-error   { color: #f85149; }
+.badge-debug   { color: #8b949e; }
+.badge-success { color: #3fb950; }
+
+/* Message */
+.message {
+  color: #c9d1d9;
+  word-break: break-all;
+  flex: 1;
+}
+
+.level-error .message  { color: #ffa198; }
+.level-warn  .message  { color: #f0c040; }
+.level-success .message{ color: #a8f5a4; }
+.level-debug .message  { color: #8b949e; }
+
+/* Meta */
+.meta {
+  color: #6e7681;
+  font-style: italic;
+  word-break: break-all;
+}
+
+/* Dark mode — already dark by default, ensure border fits light context too */
+[data-theme="dark"] .root {
+  border-color: #30363d;
+}

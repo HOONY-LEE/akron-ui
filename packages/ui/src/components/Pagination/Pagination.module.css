@@ -1,0 +1,132 @@
+/* ── Nav ── */
+.nav {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ark-spacing-1);
+  font-family: var(--ark-font-family);
+}
+
+/* ── Button Base ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--ark-radius-md);
+  font-family: var(--ark-font-family);
+  font-weight: var(--ark-font-weight-medium);
+  cursor: pointer;
+  transition:
+    background-color var(--ark-transition-fast),
+    border-color var(--ark-transition-fast),
+    color var(--ark-transition-fast);
+  outline: none;
+  line-height: 1;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+/* ── Dots ── */
+.dots {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ark-color-text-secondary);
+}
+
+/* ── Arrow ── */
+.arrow svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ═══════════════════════════════════
+   Sizes
+═══════════════════════════════════ */
+.sm .btn, .sm .dots {
+  width: 28px;
+  height: 28px;
+  font-size: var(--ark-font-size-xs);
+}
+.sm .arrow svg, .sm .dots svg { width: 12px; height: 12px; }
+
+.md .btn, .md .dots {
+  width: 36px;
+  height: 36px;
+  font-size: var(--ark-font-size-sm);
+}
+.md .arrow svg, .md .dots svg { width: 14px; height: 14px; }
+
+.lg .btn, .lg .dots {
+  width: 44px;
+  height: 44px;
+  font-size: var(--ark-font-size-md);
+}
+.lg .arrow svg, .lg .dots svg { width: 16px; height: 16px; }
+
+/* ═══════════════════════════════════
+   Variant: outline
+═══════════════════════════════════ */
+.outline .btn {
+  background: var(--ark-color-bg);
+  border: 1px solid var(--ark-color-border);
+  color: var(--ark-color-text-secondary);
+}
+
+.outline .btn:hover:not(:disabled):not(.active) {
+  background: var(--ark-color-bg-subtle);
+  border-color: var(--ark-color-border-strong);
+  color: var(--ark-color-text);
+}
+
+.outline .btn.active {
+  background: var(--ark-color-primary-500);
+  border-color: var(--ark-color-primary-500);
+  color: var(--ark-color-text-inverse);
+}
+
+/* ═══════════════════════════════════
+   Variant: ghost
+═══════════════════════════════════ */
+.ghost .btn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--ark-color-text-secondary);
+}
+
+.ghost .btn:hover:not(:disabled):not(.active) {
+  background: var(--ark-color-bg-muted);
+  color: var(--ark-color-text);
+}
+
+.ghost .btn.active {
+  background: var(--ark-color-primary-50);
+  color: var(--ark-color-primary-600);
+  font-weight: var(--ark-font-weight-semibold);
+}
+
+/* ═══════════════════════════════════
+   Variant: solid
+═══════════════════════════════════ */
+.solid .btn {
+  background: var(--ark-color-bg-muted);
+  border: none;
+  color: var(--ark-color-text-secondary);
+}
+
+.solid .btn:hover:not(:disabled):not(.active) {
+  background: var(--ark-color-bg-subtle);
+  color: var(--ark-color-text);
+}
+
+.solid .btn.active {
+  background: var(--ark-color-primary-500);
+  color: var(--ark-color-text-inverse);
+}

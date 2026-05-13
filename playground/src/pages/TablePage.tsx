@@ -29,7 +29,6 @@ export function TablePage() {
           <code className="inline-code">TableHead</code>,{" "}
           <code className="inline-code">TableCell</code>을 조합하여 사용합니다.
         </p>
-        <div className="example-label">Editable Example</div>
         <LiveCodeBlock
           code={`<Table>
   <TableHeader>
@@ -82,30 +81,30 @@ export function TablePage() {
           <code className="inline-code">numeric</code> prop을 사용하면 셀 내용이 우측 정렬되며
           tabular-nums 폰트 피처가 적용됩니다.
         </p>
-        <div className="example-label">Editable Example</div>
-        <div className="preview-box" style={{ padding: 0, overflow: "hidden" }}>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>항목</TableHead>
-                <TableHead numeric>수량</TableHead>
-                <TableHead numeric>금액</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              <TableRow>
-                <TableCell>사무용품</TableCell>
-                <TableCell numeric>150</TableCell>
-                <TableCell numeric>2,340,000</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>소프트웨어 라이선스</TableCell>
-                <TableCell numeric>25</TableCell>
-                <TableCell numeric>18,750,000</TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </div>
+        <LiveCodeBlock
+          code={`<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead>항목</TableHead>
+      <TableHead numeric>수량</TableHead>
+      <TableHead numeric>금액</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>사무용품</TableCell>
+      <TableCell numeric>150</TableCell>
+      <TableCell numeric>2,340,000</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>소프트웨어 라이선스</TableCell>
+      <TableCell numeric>25</TableCell>
+      <TableCell numeric>18,750,000</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>`}
+          scope={{ Table, TableHeader, TableBody, TableRow, TableHead, TableCell }}
+        />
       </section>
 
       <section className="docs-section" id="interface">

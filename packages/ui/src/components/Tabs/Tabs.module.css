@@ -1,0 +1,180 @@
+/* ── Root ── */
+.root {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--ark-font-family);
+  width: 100%;
+}
+
+/* ── List ── */
+.list {
+  display: flex;
+  flex-shrink: 0;
+}
+
+/* ── Content ── */
+.content {
+  flex: 1;
+  padding-top: var(--ark-spacing-4);
+  outline: none;
+}
+
+.content:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+  border-radius: var(--ark-radius-sm);
+}
+
+/* ═══════════════════════════════════
+   Line Variant
+═══════════════════════════════════ */
+.line .list {
+  border-bottom: 2px solid var(--ark-color-border);
+  gap: 0;
+}
+
+.line .trigger {
+  position: relative;
+  padding: var(--ark-spacing-2) var(--ark-spacing-4);
+  color: var(--ark-color-text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: var(--ark-font-family);
+  font-weight: var(--ark-font-weight-medium);
+  transition: color var(--ark-transition-fast);
+  outline: none;
+  white-space: nowrap;
+  margin-bottom: -2px;
+  border-bottom: 2px solid transparent;
+}
+
+.line .trigger:hover:not([data-disabled]) {
+  color: var(--ark-color-text);
+}
+
+.line .trigger[data-state="active"] {
+  color: var(--ark-color-primary-500);
+  border-bottom-color: var(--ark-color-primary-500);
+}
+
+.line .trigger:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+  border-radius: var(--ark-radius-sm);
+}
+
+.line .trigger[data-disabled] {
+  color: var(--ark-color-text-disabled);
+  cursor: not-allowed;
+}
+
+/* ═══════════════════════════════════
+   Solid Variant
+═══════════════════════════════════ */
+.solid .list {
+  background-color: var(--ark-color-bg-muted);
+  border-radius: var(--ark-radius-lg);
+  padding: var(--ark-spacing-1);
+  gap: var(--ark-spacing-1);
+}
+
+.solid .trigger {
+  padding: var(--ark-spacing-1-5) var(--ark-spacing-3);
+  color: var(--ark-color-text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: var(--ark-font-family);
+  font-weight: var(--ark-font-weight-medium);
+  border-radius: var(--ark-radius-md);
+  transition:
+    background-color var(--ark-transition-fast),
+    color var(--ark-transition-fast),
+    box-shadow var(--ark-transition-fast);
+  outline: none;
+  white-space: nowrap;
+}
+
+.solid .trigger:hover:not([data-disabled]) {
+  color: var(--ark-color-text);
+  background-color: rgba(0,0,0,0.04);
+}
+
+.solid .trigger[data-state="active"] {
+  background-color: var(--ark-color-bg);
+  color: var(--ark-color-text);
+  box-shadow: var(--ark-shadow-sm);
+}
+
+.solid .trigger:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.solid .trigger[data-disabled] {
+  color: var(--ark-color-text-disabled);
+  cursor: not-allowed;
+}
+
+/* ═══════════════════════════════════
+   Pill Variant
+═══════════════════════════════════ */
+.pill .list {
+  gap: var(--ark-spacing-1);
+  flex-wrap: wrap;
+}
+
+.pill .trigger {
+  padding: var(--ark-spacing-1-5) var(--ark-spacing-3);
+  color: var(--ark-color-text-secondary);
+  background: transparent;
+  border: 1px solid var(--ark-color-border);
+  cursor: pointer;
+  font-family: var(--ark-font-family);
+  font-weight: var(--ark-font-weight-medium);
+  border-radius: var(--ark-radius-full);
+  transition:
+    background-color var(--ark-transition-fast),
+    color var(--ark-transition-fast),
+    border-color var(--ark-transition-fast);
+  outline: none;
+  white-space: nowrap;
+}
+
+.pill .trigger:hover:not([data-disabled]) {
+  border-color: var(--ark-color-primary-400);
+  color: var(--ark-color-primary-500);
+}
+
+.pill .trigger[data-state="active"] {
+  background-color: var(--ark-color-primary-500);
+  border-color: var(--ark-color-primary-500);
+  color: var(--ark-color-text-inverse);
+}
+
+.pill .trigger:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.pill .trigger[data-disabled] {
+  color: var(--ark-color-text-disabled);
+  cursor: not-allowed;
+  border-color: var(--ark-color-border);
+}
+
+/* ═══════════════════════════════════
+   Sizes
+═══════════════════════════════════ */
+.sm .trigger {
+  font-size: var(--ark-font-size-xs);
+}
+
+.md .trigger {
+  font-size: var(--ark-font-size-sm);
+}
+
+.lg .trigger {
+  font-size: var(--ark-font-size-md);
+}

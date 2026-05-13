@@ -1,12 +1,7 @@
-import { useState } from "react";
 import { Button, Modal } from "@sunghoon_lee/akron-ui";
-import { CodeBlock } from "../components/CodeBlock";
+import { LiveCodeBlock } from "../components/LiveCodeBlock";
 
 export function ModalPage() {
-  const [smOpen, setSmOpen] = useState(false);
-  const [mdOpen, setMdOpen] = useState(false);
-  const [lgOpen, setLgOpen] = useState(false);
-
   return (
     <>
       <header className="page-header">
@@ -24,32 +19,30 @@ export function ModalPage() {
           <code className="inline-code">onOpenChange</code>로 열림/닫힘을 제어합니다.
           오버레이 클릭 또는 ESC 키로 닫을 수 있습니다.
         </p>
-        <div className="example-label">Editable Example</div>
-        <div className="preview-box">
-          <Button onClick={() => setMdOpen(true)}>모달 열기</Button>
+        <LiveCodeBlock
+          noInline
+          code={`function Demo() {
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>모달 열기</Button>
+      <Modal
+        open={open}
+        onOpenChange={setOpen}
+        title="사원 정보 수정"
+        description="수정한 내용은 즉시 반영됩니다."
+      >
+        <div style={{ display: "flex", justifyContent: "flex-end", gap: 8, marginTop: 24 }}>
+          <Button variant="outline" onClick={() => setOpen(false)}>취소</Button>
+          <Button variant="primary" onClick={() => setOpen(false)}>저장</Button>
         </div>
-        <Modal
-          open={mdOpen}
-          onOpenChange={setMdOpen}
-          title="사원 정보 수정"
-          description="수정한 내용은 즉시 반영됩니다."
-        >
-          <div style={{ display: "flex", justifyContent: "flex-end", gap: 8, marginTop: 24 }}>
-            <Button variant="outline" onClick={() => setMdOpen(false)}>취소</Button>
-            <Button variant="primary" onClick={() => setMdOpen(false)}>저장</Button>
-          </div>
-        </Modal>
-        <CodeBlock>{`const [open, setOpen] = useState(false);
-
-<Button onClick={() => setOpen(true)}>모달 열기</Button>
-<Modal
-  open={open}
-  onOpenChange={setOpen}
-  title="사원 정보 수정"
-  description="수정한 내용은 즉시 반영됩니다."
->
-  <Button onClick={() => setOpen(false)}>저장</Button>
-</Modal>`}</CodeBlock>
+      </Modal>
+    </>
+  );
+}
+render(<Demo />)`}
+          scope={{ Button, Modal }}
+        />
       </section>
 
       <section className="docs-section" id="sizes">
@@ -59,18 +52,34 @@ export function ModalPage() {
           <code className="inline-code">md</code>(560px),{" "}
           <code className="inline-code">lg</code>(720px) 세 가지 크기를 지원합니다.
         </p>
-        <div className="example-label">Editable Example</div>
-        <div className="preview-box">
-          <Button variant="outline" size="sm" onClick={() => setSmOpen(true)}>Small</Button>
-          <Button variant="outline" size="sm" onClick={() => setMdOpen(true)}>Medium</Button>
-          <Button variant="outline" size="sm" onClick={() => setLgOpen(true)}>Large</Button>
-        </div>
-        <Modal open={smOpen} onOpenChange={setSmOpen} title="Small Modal" size="sm">
-          <p style={{ color: "var(--docs-text-secondary)", fontSize: 14 }}>최대 너비 400px의 작은 모달입니다.</p>
-        </Modal>
-        <Modal open={lgOpen} onOpenChange={setLgOpen} title="Large Modal" size="lg">
-          <p style={{ color: "var(--docs-text-secondary)", fontSize: 14 }}>최대 너비 720px의 큰 모달입니다. 복잡한 폼이나 상세 정보 표시에 적합합니다.</p>
-        </Modal>
+        <LiveCodeBlock
+          noInline
+          code={`function Demo() {
+  const [smOpen, setSmOpen] = useState(false);
+  const [mdOpen, setMdOpen] = useState(false);
+  const [lgOpen, setLgOpen] = useState(false);
+  return (
+    <>
+      <div style={{ display: "flex", gap: 8 }}>
+        <Button variant="outline" size="sm" onClick={() => setSmOpen(true)}>Small</Button>
+        <Button variant="outline" size="sm" onClick={() => setMdOpen(true)}>Medium</Button>
+        <Button variant="outline" size="sm" onClick={() => setLgOpen(true)}>Large</Button>
+      </div>
+      <Modal open={smOpen} onOpenChange={setSmOpen} title="Small Modal" size="sm">
+        <p style={{ color: "var(--ark-color-text-secondary)", fontSize: 14 }}>최대 너비 400px의 작은 모달입니다.</p>
+      </Modal>
+      <Modal open={mdOpen} onOpenChange={setMdOpen} title="Medium Modal" size="md">
+        <p style={{ color: "var(--ark-color-text-secondary)", fontSize: 14 }}>최대 너비 560px의 기본 모달입니다.</p>
+      </Modal>
+      <Modal open={lgOpen} onOpenChange={setLgOpen} title="Large Modal" size="lg">
+        <p style={{ color: "var(--ark-color-text-secondary)", fontSize: 14 }}>최대 너비 720px의 큰 모달입니다. 복잡한 폼이나 상세 정보 표시에 적합합니다.</p>
+      </Modal>
+    </>
+  );
+}
+render(<Demo />)`}
+          scope={{ Button, Modal }}
+        />
       </section>
 
       <section className="docs-section" id="interface">

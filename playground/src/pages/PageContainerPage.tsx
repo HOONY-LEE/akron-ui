@@ -1,6 +1,6 @@
 import { PageContainer, Card } from "@sunghoon_lee/akron-ui";
 import { ExternalLink } from "lucide-react";
-import { CodeBlock } from "../components/CodeBlock";
+import { LiveCodeBlock } from "../components/LiveCodeBlock";
 
 export function PageContainerPage() {
   return (
@@ -22,24 +22,18 @@ export function PageContainerPage() {
         <p className="section-desc">
           <code className="inline-code">size</code> prop으로 5가지 최대 너비를 지정합니다.
         </p>
-        <div className="example-label">Editable Example</div>
-        <div className="preview-box" style={{ padding: 0, flexDirection: "column", gap: 12, overflow: "hidden" }}>
-          {(["sm", "md", "lg", "xl", "full"] as const).map((size) => (
-            <PageContainer key={size} size={size}>
-              <Card>
-                <div style={{ fontSize: 13, fontWeight: 600 }}>
-                  size="{size}" — max-width: {
-                    { sm: "640px", md: "960px", lg: "1200px", xl: "1440px", full: "100%" }[size]
-                  }
-                </div>
-              </Card>
-            </PageContainer>
-          ))}
-        </div>
-        <CodeBlock>{`<PageContainer size="lg">
-  {/* 최대 1200px, 좌우 패딩 24px */}
-  <Card>콘텐츠</Card>
-</PageContainer>`}</CodeBlock>
+        <LiveCodeBlock
+          code={`<div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+  {["sm", "md", "lg", "xl", "full"].map((size) => (
+    <PageContainer key={size} size={size}>
+      <Card>
+        <div style={{ fontSize: 13, fontWeight: 600 }}>size="{size}"</div>
+      </Card>
+    </PageContainer>
+  ))}
+</div>`}
+          scope={{ PageContainer, Card }}
+        />
       </section>
 
       <section className="docs-section" id="interface">

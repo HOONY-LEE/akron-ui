@@ -1,0 +1,141 @@
+/* ─── Wrapper ──────────────────────────────────────────────────────────────── */
+
+.wrapper {
+  display: inline-flex;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+/* ─── Track ────────────────────────────────────────────────────────────────── */
+
+.track {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  background: var(--ark-color-bg-muted);
+  border: 1px solid var(--ark-color-border);
+  border-radius: var(--ark-radius-lg);
+  gap: 0;
+  width: 100%;
+}
+
+.trackDisabled {
+  opacity: 0.5;
+}
+
+/* sizes */
+.sm {
+  padding: 2px;
+  border-radius: var(--ark-radius-md);
+}
+
+.md {
+  padding: 3px;
+  border-radius: var(--ark-radius-lg);
+}
+
+.lg {
+  padding: 4px;
+  border-radius: var(--ark-radius-xl);
+}
+
+/* ─── Indicator (animated background) ─────────────────────────────────────── */
+
+.indicator {
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  left: 3px;
+  background: var(--ark-color-bg-surface);
+  border-radius: calc(var(--ark-radius-lg) - 3px);
+  box-shadow: var(--ark-shadow-sm);
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), width 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sm .indicator {
+  top: 2px;
+  bottom: 2px;
+  left: 2px;
+  border-radius: calc(var(--ark-radius-md) - 2px);
+}
+
+.lg .indicator {
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  border-radius: calc(var(--ark-radius-xl) - 4px);
+}
+
+/* ─── Segment button ───────────────────────────────────────────────────────── */
+
+.segment {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ark-spacing-1-5);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: var(--ark-font-weight-medium);
+  color: var(--ark-color-text-secondary);
+  transition: color 0.15s ease;
+  border-radius: calc(var(--ark-radius-lg) - 3px);
+  white-space: nowrap;
+}
+
+.segment:hover:not(.segmentDisabled):not(.selected) {
+  color: var(--ark-color-text-primary);
+}
+
+.segment:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: -2px;
+}
+
+.selected {
+  color: var(--ark-color-text-primary);
+  font-weight: var(--ark-font-weight-semibold);
+}
+
+.segmentDisabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.segmentFull {
+  flex: 1;
+}
+
+/* sizes */
+.sm .segment {
+  font-size: var(--ark-font-size-xs);
+  padding: var(--ark-spacing-1) var(--ark-spacing-2);
+}
+
+.md .segment {
+  font-size: var(--ark-font-size-sm);
+  padding: var(--ark-spacing-1-5) var(--ark-spacing-3);
+}
+
+.lg .segment {
+  font-size: var(--ark-font-size-base);
+  padding: var(--ark-spacing-2) var(--ark-spacing-4);
+}
+
+/* ─── Icon & Label ─────────────────────────────────────────────────────────── */
+
+.icon {
+  display: flex;
+  align-items: center;
+}
+
+.label {
+  line-height: 1;
+}

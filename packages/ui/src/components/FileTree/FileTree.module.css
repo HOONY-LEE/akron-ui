@@ -1,0 +1,107 @@
+.root {
+  font-family: "SFMono-Regular", "Consolas", "Liberation Mono", "Menlo", monospace;
+  user-select: none;
+}
+
+/* Node row */
+.node {
+  display: flex;
+  align-items: center;
+  gap: var(--ark-spacing-1);
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-right: var(--ark-spacing-3);
+  border-radius: var(--ark-radius-sm);
+  cursor: pointer;
+  outline: none;
+  transition: background 0.1s;
+  min-width: 0;
+}
+
+.node:hover {
+  background: var(--ark-color-gray-100);
+}
+
+.node:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: -2px;
+}
+
+.nodeSelected {
+  background: color-mix(in srgb, var(--ark-color-primary-500) 12%, transparent);
+  color: var(--ark-color-primary-500);
+}
+
+.nodeSelected:hover {
+  background: color-mix(in srgb, var(--ark-color-primary-500) 16%, transparent);
+}
+
+/* Chevron */
+.chevron {
+  display: inline-flex;
+  align-items: center;
+  color: var(--ark-color-text-secondary);
+  flex-shrink: 0;
+  width: 16px;
+}
+
+/* Icons */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.iconFolder     { color: #d29922; }
+.iconFolderOpen { color: #d29922; }
+.iconCode       { color: #58a6ff; }
+.iconText       { color: #8b949e; }
+.iconImage      { color: #3fb950; }
+.iconFile       { color: var(--ark-color-text-secondary); }
+
+/* Name */
+.name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--ark-color-text);
+}
+
+.nameDeleted {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* Status badges */
+.status {
+  font-size: 11px;
+  font-weight: var(--ark-font-weight-bold);
+  padding: 0 3px;
+  border-radius: 2px;
+  flex-shrink: 0;
+  font-family: inherit;
+}
+
+.status-modified { color: #d29922; }
+.status-added    { color: #3fb950; }
+.status-deleted  { color: #f85149; }
+.status-renamed  { color: #79c0ff; }
+
+/* Children */
+.children {
+  /* no extra indent — depth * indent in paddingLeft handles it */
+}
+
+/* Sizes */
+.size-sm .node  { font-size: var(--ark-font-size-xs); min-height: 22px; }
+.size-md .node  { font-size: var(--ark-font-size-sm); min-height: 26px; }
+
+/* Dark mode */
+[data-theme="dark"] .node:hover {
+  background: var(--ark-color-gray-800);
+}
+
+[data-theme="dark"] .nodeSelected {
+  background: color-mix(in srgb, var(--ark-color-primary-500) 18%, transparent);
+}

@@ -1,0 +1,236 @@
+/* ─── Root ─────────────────────────────────────────────────────────────────── */
+
+.root {
+  border-radius: var(--ark-radius-lg);
+  overflow: hidden;
+  font-family: "Fira Code", "JetBrains Mono", "Cascadia Code", ui-monospace, monospace;
+  font-size: var(--ark-font-size-sm);
+  position: relative;
+}
+
+/* ─── Variants ─────────────────────────────────────────────────────────────── */
+
+.variant-filled {
+  background: #1e1e2e;
+  color: #cdd6f4;
+}
+
+.variant-outline {
+  background: var(--ark-color-surface);
+  color: var(--ark-color-text-primary);
+  border: 1px solid var(--ark-color-border);
+}
+
+.variant-minimal {
+  background: var(--ark-color-surface-strong);
+  color: var(--ark-color-text-primary);
+}
+
+/* ─── Header ───────────────────────────────────────────────────────────────── */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ark-space-2) var(--ark-space-3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.variant-outline .header,
+.variant-minimal .header {
+  border-bottom-color: var(--ark-color-border);
+  background: var(--ark-color-surface-strong);
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--ark-space-2);
+}
+
+.headerIcon {
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.variant-outline .headerIcon,
+.variant-minimal .headerIcon {
+  color: var(--ark-color-text-tertiary);
+}
+
+.headerText {
+  font-size: var(--ark-font-size-xs);
+  font-family: inherit;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.variant-outline .headerText,
+.variant-minimal .headerText {
+  color: var(--ark-color-text-secondary);
+}
+
+/* ─── Copy button (in header) ──────────────────────────────────────────────── */
+
+.copyBtn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px var(--ark-space-2);
+  border-radius: var(--ark-radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  font-size: 11px;
+  font-family: inherit;
+  transition: background 150ms, color 150ms;
+}
+
+.copyBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.variant-outline .copyBtn,
+.variant-minimal .copyBtn {
+  border-color: var(--ark-color-border);
+  background: transparent;
+  color: var(--ark-color-text-secondary);
+}
+
+.variant-outline .copyBtn:hover,
+.variant-minimal .copyBtn:hover {
+  background: var(--ark-color-surface-hover);
+  color: var(--ark-color-text-primary);
+}
+
+/* ─── Code wrap ────────────────────────────────────────────────────────────── */
+
+.codeWrap {
+  display: flex;
+  position: relative;
+  overflow: auto;
+}
+
+/* ─── Line numbers ─────────────────────────────────────────────────────────── */
+
+.lineNumbers {
+  display: flex;
+  flex-direction: column;
+  padding: var(--ark-space-3) var(--ark-space-2) var(--ark-space-3) var(--ark-space-3);
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  user-select: none;
+  min-width: 40px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.variant-outline .lineNumbers,
+.variant-minimal .lineNumbers {
+  border-right-color: var(--ark-color-border);
+}
+
+.lineNum {
+  font-size: var(--ark-font-size-xs);
+  color: rgba(255, 255, 255, 0.2);
+  line-height: 1.6;
+  display: block;
+}
+
+.variant-outline .lineNum,
+.variant-minimal .lineNum {
+  color: var(--ark-color-text-tertiary);
+}
+
+/* ─── Pre / Code ───────────────────────────────────────────────────────────── */
+
+.pre {
+  flex: 1;
+  margin: 0;
+  padding: var(--ark-space-3);
+  overflow: auto;
+  white-space: pre;
+  min-width: 0;
+}
+
+.code {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: 1.6;
+}
+
+/* ─── Floating copy button (no header) ────────────────────────────────────── */
+
+.floatingCopyBtn {
+  position: sticky;
+  top: var(--ark-space-2);
+  right: var(--ark-space-2);
+  align-self: flex-start;
+  margin-left: auto;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--ark-radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 150ms, background 150ms;
+}
+
+.codeWrap:hover .floatingCopyBtn {
+  opacity: 1;
+}
+
+.floatingCopyBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.variant-outline .floatingCopyBtn,
+.variant-minimal .floatingCopyBtn {
+  border-color: var(--ark-color-border);
+  background: var(--ark-color-surface);
+  color: var(--ark-color-text-secondary);
+}
+
+/* ─── Expand button ────────────────────────────────────────────────────────── */
+
+.expandBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ark-space-1);
+  width: 100%;
+  padding: var(--ark-space-2);
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  font-size: var(--ark-font-size-xs);
+  font-family: inherit;
+  transition: background 150ms, color 150ms;
+}
+
+.expandBtn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.variant-outline .expandBtn,
+.variant-minimal .expandBtn {
+  border-top-color: var(--ark-color-border);
+  background: var(--ark-color-surface-strong);
+  color: var(--ark-color-text-secondary);
+}
+
+.variant-outline .expandBtn:hover,
+.variant-minimal .expandBtn:hover {
+  background: var(--ark-color-surface-hover);
+  color: var(--ark-color-text-primary);
+}

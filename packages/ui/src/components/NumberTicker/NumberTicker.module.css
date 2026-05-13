@@ -1,0 +1,14 @@
+.ticker {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.1em;
+  font-variant-numeric: tabular-nums;
+}
+
+.number {
+  display: inline-block;
+}
+
+.affix {
+  display: inline-block;
+}

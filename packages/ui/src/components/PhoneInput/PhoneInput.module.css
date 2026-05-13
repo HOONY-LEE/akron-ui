@@ -1,0 +1,192 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-1-5);
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ark-color-text);
+}
+
+/* ── Input group ── */
+.inputGroup {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid var(--ark-color-border-strong);
+  border-radius: var(--ark-radius-md);
+  background-color: var(--ark-color-bg);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  overflow: visible;
+  position: relative;
+}
+
+.inputGroup:focus-within {
+  border-color: var(--ark-color-primary-500);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+}
+
+.error {
+  border-color: var(--ark-color-error-500);
+}
+
+.error:focus-within {
+  border-color: var(--ark-color-error-500);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12);
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--ark-color-bg-muted);
+}
+
+/* ── Country selector ── */
+.countrySelector {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.countryBtn {
+  display: flex;
+  align-items: center;
+  gap: var(--ark-spacing-1);
+  padding: 0 var(--ark-spacing-2);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--ark-color-text);
+  white-space: nowrap;
+  transition: background-color 0.15s ease;
+  border-radius: var(--ark-radius-md) 0 0 var(--ark-radius-md);
+}
+
+.countryBtn:hover {
+  background-color: var(--ark-color-bg-muted);
+}
+
+.countryBtn:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: -2px;
+}
+
+.countryBtn:disabled {
+  cursor: not-allowed;
+}
+
+.dial {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ark-color-text-secondary);
+}
+
+.chevron {
+  color: var(--ark-color-text-secondary);
+  transition: transform 0.2s ease;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+/* ── Dropdown ── */
+.dropdown {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 4px);
+  z-index: 100;
+  list-style: none;
+  margin: 0;
+  padding: var(--ark-spacing-1) 0;
+  background-color: var(--ark-color-bg);
+  border: 1px solid var(--ark-color-border);
+  border-radius: var(--ark-radius-lg);
+  box-shadow: var(--ark-shadow-lg);
+  min-width: 140px;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: var(--ark-spacing-2);
+  padding: var(--ark-spacing-1-5) var(--ark-spacing-3);
+  cursor: pointer;
+  font-size: 13px;
+  transition: background-color 0.1s ease;
+}
+
+.option:hover {
+  background-color: var(--ark-color-bg-muted);
+}
+
+.optionSelected {
+  background-color: var(--ark-color-primary-50);
+  color: var(--ark-color-primary-600);
+}
+
+.optionLabel {
+  font-weight: 500;
+  flex: 1;
+}
+
+.optionDial {
+  color: var(--ark-color-text-secondary);
+}
+
+/* ── Divider ── */
+.divider {
+  width: 1px;
+  background-color: var(--ark-color-border);
+  flex-shrink: 0;
+}
+
+/* ── Input ── */
+.input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--ark-color-text);
+  font-family: inherit;
+  min-width: 0;
+  padding: 0 var(--ark-spacing-3);
+  border-radius: 0 var(--ark-radius-md) var(--ark-radius-md) 0;
+}
+
+.input::placeholder {
+  color: var(--ark-color-text-disabled);
+}
+
+.input:disabled {
+  cursor: not-allowed;
+}
+
+/* ── Helper/Error ── */
+.helperText {
+  font-size: 13px;
+  color: var(--ark-color-text-secondary);
+  margin: 0;
+}
+
+.errorText {
+  font-size: 13px;
+  color: var(--ark-color-error-500);
+  margin: 0;
+}
+
+/* ── Dark mode ── */
+[data-theme="dark"] .dropdown {
+  background-color: var(--ark-color-gray-800);
+  border-color: var(--ark-color-gray-700);
+}
+
+[data-theme="dark"] .option:hover {
+  background-color: var(--ark-color-gray-700);
+}
+
+[data-theme="dark"] .optionSelected {
+  background-color: color-mix(in srgb, var(--ark-color-primary-500) 15%, transparent);
+}

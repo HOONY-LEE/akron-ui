@@ -1,0 +1,48 @@
+/* ─── Masonry using CSS columns ────────────────────────────────────────────── */
+
+.grid {
+  columns: var(--masonry-cols, 3);
+  column-gap: var(--masonry-gap, 16px);
+  width: 100%;
+}
+
+/* Each direct child */
+.grid > * {
+  break-inside: avoid;
+  page-break-inside: avoid;
+  margin-bottom: var(--masonry-row-gap, var(--masonry-gap, 16px));
+  display: inline-block;
+  width: 100%;
+}
+
+/* ─── Responsive ───────────────────────────────────────────────────────────── */
+
+@media (max-width: 639px) {
+  .responsive {
+    columns: var(--masonry-cols-sm, var(--masonry-cols, 3));
+  }
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .responsive {
+    columns: var(--masonry-cols-sm, var(--masonry-cols, 3));
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .responsive {
+    columns: var(--masonry-cols-md, var(--masonry-cols, 3));
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .responsive {
+    columns: var(--masonry-cols-lg, var(--masonry-cols, 3));
+  }
+}
+
+@media (min-width: 1280px) {
+  .responsive {
+    columns: var(--masonry-cols-xl, var(--masonry-cols, 3));
+  }
+}

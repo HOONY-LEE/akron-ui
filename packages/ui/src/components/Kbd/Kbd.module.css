@@ -1,0 +1,75 @@
+/* ─── Base ─────────────────────────────────────────────────────────────────── */
+
+.kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--ark-font-family-mono, ui-monospace, "SFMono-Regular", Menlo, monospace);
+  font-weight: var(--ark-font-weight-medium);
+  border-radius: var(--ark-radius-sm);
+  white-space: nowrap;
+  user-select: none;
+  line-height: 1;
+}
+
+/* ─── Sizes ────────────────────────────────────────────────────────────────── */
+
+.size-sm {
+  font-size: 10px;
+  padding: 2px 5px;
+  min-width: 18px;
+  height: 18px;
+}
+
+.size-md {
+  font-size: var(--ark-font-size-xs);
+  padding: var(--ark-space-1) var(--ark-space-2);
+  min-width: 22px;
+  height: 22px;
+}
+
+.size-lg {
+  font-size: var(--ark-font-size-sm);
+  padding: var(--ark-space-1-5) var(--ark-space-2-5);
+  min-width: 28px;
+  height: 28px;
+}
+
+/* ─── Variants ─────────────────────────────────────────────────────────────── */
+
+/* default — subtle shadow like a real keyboard key */
+.variant-default {
+  background: var(--ark-color-surface);
+  color: var(--ark-color-text-primary);
+  border: 1px solid var(--ark-color-border);
+  box-shadow: 0 1px 0 1px var(--ark-color-border);
+}
+
+/* outline */
+.variant-outline {
+  background: transparent;
+  color: var(--ark-color-text-secondary);
+  border: 1px solid var(--ark-color-border);
+}
+
+/* filled */
+.variant-filled {
+  background: var(--ark-color-surface-strong);
+  color: var(--ark-color-text-primary);
+  border: 1px solid var(--ark-color-border);
+}
+
+/* ─── Shortcut wrapper ─────────────────────────────────────────────────────── */
+
+.shortcut {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ark-space-1);
+}
+
+.separator {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-tertiary);
+  font-family: var(--ark-font-family);
+  line-height: 1;
+}

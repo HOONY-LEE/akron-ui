@@ -1,5 +1,4 @@
 import { Input } from "@sunghoon_lee/akron-ui";
-import { CodeBlock } from "../components/CodeBlock";
 import { LiveCodeBlock } from "../components/LiveCodeBlock";
 
 export function InputPage() {
@@ -29,12 +28,10 @@ export function InputPage() {
         <p className="section-desc">
           <code className="inline-code">inputSize</code> prop으로 3가지 크기를 지정할 수 있습니다.
         </p>
-        <div className="example-label">Editable Example</div>
-        <div className="preview-box vertical">
-          <Input inputSize="sm" placeholder="Small" />
-          <Input inputSize="md" placeholder="Medium (기본)" />
-          <Input inputSize="lg" placeholder="Large" />
-        </div>
+        <LiveCodeBlock
+          code={`<Input inputSize="sm" placeholder="Small" />\n<Input inputSize="md" placeholder="Medium (기본)" />\n<Input inputSize="lg" placeholder="Large" />`}
+          scope={{ Input }}
+        />
       </section>
 
       <section className="docs-section" id="states">
@@ -42,12 +39,10 @@ export function InputPage() {
         <p className="section-desc">
           기본, 에러, 비활성 상태를 지원합니다.
         </p>
-        <div className="example-label">Editable Example</div>
-        <div className="preview-box vertical">
-          <Input label="기본" placeholder="기본 상태" />
-          <Input label="에러" errorMessage="필수 입력 항목입니다." />
-          <Input label="비활성" placeholder="수정 불가" disabled />
-        </div>
+        <LiveCodeBlock
+          code={`<Input label="기본" placeholder="기본 상태" />\n<Input label="에러" errorMessage="필수 입력 항목입니다." />\n<Input label="비활성" placeholder="수정 불가" disabled />`}
+          scope={{ Input }}
+        />
       </section>
 
       <section className="docs-section" id="labels">
@@ -57,11 +52,10 @@ export function InputPage() {
           <code className="inline-code">errorMessage</code>로 에러 메시지를 표시합니다.
           에러 메시지가 있으면 도움말 대신 에러가 표시됩니다.
         </p>
-        <div className="example-label">Editable Example</div>
-        <div className="preview-box vertical">
-          <Input label="부서명" helperText="소속 부서를 입력하세요." placeholder="개발팀" />
-          <Input label="사원번호" errorMessage="유효하지 않은 사원번호입니다." />
-        </div>
+        <LiveCodeBlock
+          code={`<Input label="부서명" helperText="소속 부서를 입력하세요." placeholder="개발팀" />\n<Input label="사원번호" errorMessage="유효하지 않은 사원번호입니다." />`}
+          scope={{ Input }}
+        />
       </section>
 
       <section className="docs-section" id="interface">

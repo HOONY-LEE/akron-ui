@@ -1,0 +1,88 @@
+/* ─── Root ─────────────────────────────────────────────────────────────────── */
+
+.root {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ark-space-1);
+}
+
+/* ─── Unit ─────────────────────────────────────────────────────────────────── */
+
+.unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+/* ─── Value ────────────────────────────────────────────────────────────────── */
+
+.value {
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--ark-font-weight-bold);
+  line-height: 1;
+  color: var(--ark-color-text-primary);
+}
+
+/* ─── Label ────────────────────────────────────────────────────────────────── */
+
+.label {
+  font-size: 10px;
+  color: var(--ark-color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+/* ─── Separator ────────────────────────────────────────────────────────────── */
+
+.separator {
+  font-weight: var(--ark-font-weight-bold);
+  color: var(--ark-color-text-secondary);
+  line-height: 1;
+  margin-bottom: 12px; /* offset below label area */
+}
+
+/* ─── Sizes ────────────────────────────────────────────────────────────────── */
+
+.size-sm .value  { font-size: var(--ark-font-size-xl); }
+.size-sm .separator { font-size: var(--ark-font-size-xl); }
+.size-sm .label { font-size: 9px; }
+
+.size-md .value  { font-size: 2rem; }
+.size-md .separator { font-size: 2rem; }
+
+.size-lg .value  { font-size: 3rem; }
+.size-lg .separator { font-size: 3rem; }
+.size-lg .label { font-size: 11px; }
+
+/* ─── Variants ─────────────────────────────────────────────────────────────── */
+
+/* card variant: each unit in a box */
+.variant-card {
+  gap: var(--ark-space-2);
+}
+
+.variant-card .unit {
+  background: var(--ark-color-surface-strong);
+  border: 1px solid var(--ark-color-border);
+  border-radius: var(--ark-radius-lg);
+  padding: var(--ark-space-3) var(--ark-space-4);
+  min-width: 64px;
+}
+
+.size-lg.variant-card .unit {
+  min-width: 80px;
+  padding: var(--ark-space-4) var(--ark-space-5);
+}
+
+/* minimal: just the numbers, no separator box */
+.variant-minimal .separator {
+  color: var(--ark-color-text-tertiary);
+}
+
+/* ─── Completed ────────────────────────────────────────────────────────────── */
+
+.completed .value {
+  color: var(--ark-color-text-tertiary);
+}

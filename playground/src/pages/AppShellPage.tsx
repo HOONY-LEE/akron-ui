@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { ExternalLink, Monitor, Tablet, Smartphone } from "lucide-react";
-import { CodeBlock } from "../components/CodeBlock";
+import { LiveCodeBlock } from "../components/LiveCodeBlock";
 
 interface ToggleOption {
   key: string;
@@ -23,6 +23,119 @@ const deviceList: { key: DeviceType; label: string; icon: typeof Monitor }[] = [
   { key: "mobile", label: "Mobile", icon: Smartphone },
 ];
 
+/* ── 선택 상태에 맞는 AppShell 코드 생성 ── */
+function generateAppShellCode(
+  selected: Record<string, boolean>,
+  device: DeviceType
+): string {
+  const { header, leftSidebar, rightSidebar, footer } = selected;
+  const lines: string[] = [];
+
+  if (device === "mobile") {
+    if (leftSidebar) {
+      lines.push(`const [sidebarOpen, setSidebarOpen] = useState(false);`);
+      lines.push(``);
+    }
+    lines.push(`<AppShell`);
+    if (leftSidebar) {
+      lines.push(`  sidebarOpen={sidebarOpen}`);
+      lines.push(`  onSidebarClose={() => setSidebarOpen(false)}`);
+      lines.push(`  sidebar={`);
+      lines.push(`    <LayoutSidebar header={<span>Akron ERP</span>}>`);
+      lines.push(`      <SidebarGroup label="메뉴">`);
+      lines.push(`        <SidebarItem active>대시보드</SidebarItem>`);
+      lines.push(`        <SidebarItem>인사 관리</SidebarItem>`);
+      lines.push(`      </SidebarGroup>`);
+      lines.push(`    </LayoutSidebar>`);
+      lines.push(`  }`);
+    }
+    lines.push(`>`);
+    if (header) {
+      lines.push(`  <Header`);
+      lines.push(`    logo="Akron ERP"`);
+      lines.push(`    sticky`);
+      if (leftSidebar) {
+        lines.push(`    actions={`);
+        lines.push(`      <Button variant="ghost" size="sm"`);
+        lines.push(`        onClick={() => setSidebarOpen(true)}`);
+        lines.push(`      >☰</Button>`);
+        lines.push(`    }`);
+      }
+      lines.push(`  />`);
+    }
+    lines.push(`  <PageContainer>`);
+    lines.push(`    {/* 본문 콘텐츠 */}`);
+    lines.push(`  </PageContainer>`);
+    if (footer) lines.push(`  <Footer>© 2026 Akron Corp.</Footer>`);
+    lines.push(`</AppShell>`);
+
+  } else if (device === "tablet") {
+    if (leftSidebar) {
+      lines.push(`const [collapsed, setCollapsed] = useState(false);`);
+      lines.push(``);
+    }
+    lines.push(`<AppShell`);
+    if (leftSidebar) {
+      lines.push(`  sidebarWidth={collapsed ? 60 : 240}`);
+      lines.push(`  sidebar={`);
+      lines.push(`    <LayoutSidebar`);
+      lines.push(`      header={collapsed ? null : <span>Akron ERP</span>}`);
+      lines.push(`      collapsed={collapsed}`);
+      lines.push(`      onCollapse={() => setCollapsed(true)}`);
+      lines.push(`      onExpand={() => setCollapsed(false)}`);
+      lines.push(`    >`);
+      lines.push(`      <SidebarGroup label="메뉴">`);
+      lines.push(`        <SidebarItem active>대시보드</SidebarItem>`);
+      lines.push(`        <SidebarItem>인사 관리</SidebarItem>`);
+      lines.push(`      </SidebarGroup>`);
+      lines.push(`    </LayoutSidebar>`);
+      lines.push(`  }`);
+    }
+    lines.push(`>`);
+    if (header) lines.push(`  <Header logo="Akron ERP" sticky />`);
+    lines.push(`  <PageContainer>`);
+    lines.push(`    {/* 본문 콘텐츠 */}`);
+    lines.push(`  </PageContainer>`);
+    if (footer) lines.push(`  <Footer>© 2026 Akron Corp.</Footer>`);
+    lines.push(`</AppShell>`);
+
+  } else {
+    // PC
+    lines.push(`<AppShell`);
+    if (leftSidebar) {
+      lines.push(`  sidebarWidth={260}`);
+      lines.push(`  sidebar={`);
+      lines.push(`    <LayoutSidebar header={<span>Akron ERP</span>}>`);
+      lines.push(`      <SidebarGroup label="메뉴">`);
+      lines.push(`        <SidebarItem active>대시보드</SidebarItem>`);
+      lines.push(`        <SidebarItem>인사 관리</SidebarItem>`);
+      lines.push(`      </SidebarGroup>`);
+      lines.push(`    </LayoutSidebar>`);
+      lines.push(`  }`);
+    }
+    lines.push(`>`);
+    if (header) lines.push(`  <Header logo="Akron ERP" sticky />`);
+    lines.push(`  <PageContainer>`);
+    if (rightSidebar) {
+      lines.push(`    <div style={{ display: "flex", gap: 24 }}>`);
+      lines.push(`      <div style={{ flex: 1 }}>`);
+      lines.push(`        {/* 본문 콘텐츠 */}`);
+      lines.push(`      </div>`);
+      lines.push(`      <div style={{ width: 240 }}>`);
+      lines.push(`        {/* 우측 패널 */}`);
+      lines.push(`      </div>`);
+      lines.push(`    </div>`);
+    } else {
+      lines.push(`    {/* 본문 콘텐츠 */}`);
+    }
+    lines.push(`  </PageContainer>`);
+    if (footer) lines.push(`  <Footer>© 2026 Akron Corp.</Footer>`);
+    lines.push(`</AppShell>`);
+  }
+
+  return lines.join("\n");
+}
+
 export function AppShellPage() {
   const [selected, setSelected] = useState<Record<string, boolean>>(() =>
     Object.fromEntries(layoutOptions.map((o) => [o.key, o.defaultOn]))
@@ -33,6 +146,15 @@ export function AppShellPage() {
     setSelected((prev) => ({ ...prev, [key]: !prev[key] }));
 
   const previewUrl = buildPreviewUrl(selected);
+
+  // 선택 상태가 바뀌면 코드 자동 생성
+  const generatedCode = useMemo(
+    () => generateAppShellCode(selected, device),
+    [selected, device]
+  );
+
+  // key가 바뀌면 LiveCodeBlock 리셋 (수동 편집 내용 초기화)
+  const codeKey = JSON.stringify({ ...selected, device });
 
   return (
     <>
@@ -155,24 +277,14 @@ export function AppShellPage() {
         <p className="section-desc">
           <code className="inline-code">sidebar</code> prop에 사이드바 콘텐츠를 전달하면 좌측 고정 사이드바가 생성되고,
           <code className="inline-code">children</code>은 우측 본문 영역에 배치됩니다.
+          위 빌더에서 구성을 변경하면 코드가 자동으로 업데이트됩니다.
         </p>
-        <CodeBlock>{`<AppShell
-  sidebarWidth={260}
-  sidebar={
-    <LayoutSidebar header={<Logo />}>
-      <SidebarGroup label="메뉴">
-        <SidebarItem active>대시보드</SidebarItem>
-        <SidebarItem>인사 관리</SidebarItem>
-      </SidebarGroup>
-    </LayoutSidebar>
-  }
->
-  <Header logo="대시보드" sticky />
-  <PageContainer>
-    {/* 콘텐츠 */}
-  </PageContainer>
-  <Footer>© 2026 Akron Corp.</Footer>
-</AppShell>`}</CodeBlock>
+        <LiveCodeBlock
+          key={codeKey}
+          code={generatedCode}
+          editorOnly
+          language="tsx"
+        />
       </section>
 
       <section className="docs-section" id="interface">
@@ -226,12 +338,6 @@ function ToggleChip({ active, onClick }: { active: boolean; onClick: () => void 
 }
 
 /* ── Responsive-aware Layout Wireframe ── */
-/*
- * PC:     좌측 사이드바 패널 + 우측 사이드바 패널 + 헤더 + 푸터
- * Tablet: 사이드바 → 헤더 햄버거 메뉴 (좌=왼쪽, 우=오른쪽) + 푸터
- * Mobile: 좌측 사이드바 → 하단 탭 바 (푸터 대체), 우측 사이드바 → 헤더 좌측 햄버거
- */
-
 function LayoutWireframe({
   header, leftSidebar, rightSidebar, footer, device,
 }: {
@@ -245,19 +351,15 @@ function LayoutWireframe({
 
   const { w, h, headerH, footerH, tabBarH, radius, padTop, padBot } = dims;
 
-  /* PC only: sidebar panels */
   const leftW = leftSidebar && device === "pc" ? 110 : 0;
   const rightW = rightSidebar && device === "pc" ? 100 : 0;
 
   const contentTop = padTop + (header ? headerH : 0);
-  /* Mobile: 하단 탭 바가 푸터를 대체 */
   const hasTabBar = device === "mobile" && leftSidebar;
   const showFooter = device === "mobile" ? (footer && !hasTabBar) : footer;
   const contentBottom = padBot + (hasTabBar ? tabBarH : (showFooter ? footerH : 0));
-
   const contentW = w - leftW - rightW;
 
-  /* Hamburger icon helper (3 lines) */
   const Hamburger = ({ x, y }: { x: number; y: number }) => (
     <>
       <rect x={x} y={y} width={14} height={2} rx={1} fill="var(--ark-color-gray-500)" />
@@ -273,15 +375,10 @@ function LayoutWireframe({
       viewBox={`0 0 ${w} ${h}`}
       style={{ borderRadius: radius, border: "1px solid var(--ark-color-border)", transition: "width 0.3s ease, height 0.3s ease" }}
     >
-      {/* Background — mobile/tablet use bg so bezels match header */}
       <rect width={w} height={h} fill={device === "pc" ? "var(--ark-color-bg-subtle)" : "var(--ark-color-bg)"} rx={radius} />
-
-      {/* Mobile/Tablet: content area background */}
       {device !== "pc" && (
         <rect x={0} y={contentTop} width={w} height={h - contentTop - contentBottom} fill="var(--ark-color-bg-subtle)" />
       )}
-
-      {/* Device bezels — notch / camera / home indicator */}
       {device === "mobile" && (
         <>
           <rect x={w / 2 - 20} y={4} width={40} height={6} rx={3} fill="var(--ark-color-gray-400)" opacity={0.3} />
@@ -294,8 +391,6 @@ function LayoutWireframe({
           <rect x={w / 2 - 20} y={h - 5} width={40} height={3} rx={1.5} fill="var(--ark-color-gray-400)" opacity={0.25} />
         </>
       )}
-
-      {/* ── PC: Left Sidebar panel ── */}
       {leftSidebar && device === "pc" && (
         <g>
           <rect x={0} y={0} width={leftW} height={h} fill="var(--ark-color-bg)" rx={radius} />
@@ -311,8 +406,6 @@ function LayoutWireframe({
           <text x={leftW / 2} y={h - 20} textAnchor="middle" fontSize={9} fill="var(--ark-color-text-secondary)" fontWeight={600}>사이드바</text>
         </g>
       )}
-
-      {/* ── PC: Right Sidebar panel ── */}
       {rightSidebar && device === "pc" && (
         <g>
           <rect x={w - rightW} y={contentTop} width={rightW} height={h - contentTop - (showFooter ? footerH : 0)} fill="var(--ark-color-bg-subtle)" />
@@ -323,41 +416,27 @@ function LayoutWireframe({
           <text x={w - rightW / 2} y={h - (showFooter ? footerH : 0) - 16} textAnchor="middle" fontSize={8} fill="var(--ark-color-text-secondary)" fontWeight={600}>우측 패널</text>
         </g>
       )}
-
-      {/* ── Header ── */}
       {header && (
         <g>
           <rect x={leftW} y={padTop} width={w - leftW} height={headerH} fill="var(--ark-color-bg)" />
           <line x1={leftW} y1={padTop + headerH} x2={w} y2={padTop + headerH} stroke="var(--ark-color-border)" />
-
-          {/* Tablet: leftSidebar → 좌측 햄버거 */}
           {device === "tablet" && leftSidebar && <Hamburger x={leftW + 10} y={padTop + 11} />}
-          {/* Mobile: rightSidebar → 좌측 햄버거 */}
           {device === "mobile" && rightSidebar && <Hamburger x={leftW + 10} y={padTop + 11} />}
-
-          {/* Logo / title placeholder */}
           {(() => {
             const hasLeftHamburger = (device === "tablet" && leftSidebar) || (device === "mobile" && rightSidebar);
             const logoX = leftW + (hasLeftHamburger ? 30 : 12);
             return <rect x={logoX} y={padTop + 12} width={Math.min(60, w - leftW - 40)} height={8} rx={3} fill="var(--ark-color-gray-400)" />;
           })()}
-
-          {/* Tablet: rightSidebar → 우측 햄버거 */}
           {device === "tablet" && rightSidebar && <Hamburger x={w - 24} y={padTop + 11} />}
-
-          {/* PC: action icons on right */}
           {device === "pc" && (
             <>
               <circle cx={w - rightW - 20} cy={padTop + 16} r={6} fill="var(--ark-color-gray-300)" />
               <circle cx={w - rightW - 40} cy={padTop + 16} r={6} fill="var(--ark-color-gray-300)" />
             </>
           )}
-
           <text x={(leftW + w - rightW) / 2} y={padTop + 20} textAnchor="middle" fontSize={9} fill="var(--ark-color-text-secondary)" fontWeight={600}>헤더</text>
         </g>
       )}
-
-      {/* ── Content area ── */}
       <g>
         <rect x={leftW + 16} y={contentTop + 16} width={Math.min(120, contentW - 32)} height={10} rx={4} fill="var(--ark-color-gray-400)" />
         <rect x={leftW + 16} y={contentTop + 34} width={Math.min(200, contentW - 32)} height={7} rx={3} fill="var(--ark-color-gray-200)" />
@@ -380,8 +459,6 @@ function LayoutWireframe({
           콘텐츠 영역
         </text>
       </g>
-
-      {/* ── Footer (PC / Tablet, Mobile only if no tab bar) ── */}
       {showFooter && (
         <g>
           <rect x={leftW} y={h - padBot - footerH} width={w - leftW - rightW} height={footerH} fill="var(--ark-color-bg)" />
@@ -390,13 +467,10 @@ function LayoutWireframe({
           <text x={(leftW + w - rightW) / 2} y={h - padBot - 6} textAnchor="middle" fontSize={device === "mobile" ? 8 : 9} fill="var(--ark-color-text-secondary)" fontWeight={600}>푸터</text>
         </g>
       )}
-
-      {/* ── Mobile: Bottom Tab Bar (좌측 사이드바 → 하단 탭 전환) ── */}
       {hasTabBar && (
         <g>
           <rect x={0} y={h - padBot - tabBarH} width={w} height={tabBarH} fill="var(--ark-color-bg)" rx={0} />
           <line x1={0} y1={h - padBot - tabBarH} x2={w} y2={h - padBot - tabBarH} stroke="var(--ark-color-border)" />
-          {/* 5 tab icons evenly spaced */}
           {[0, 1, 2, 3, 4].map((i) => {
             const tabX = (w / 5) * i + (w / 5) / 2;
             const tabY = h - padBot - tabBarH + 12;
@@ -413,8 +487,6 @@ function LayoutWireframe({
           <text x={w / 2} y={h - padBot - 3} textAnchor="middle" fontSize={7} fill="var(--ark-color-text-disabled)" fontWeight={600}>탭 바</text>
         </g>
       )}
-
-      {/* Border */}
       <rect width={w} height={h} fill="none" stroke="var(--ark-color-border)" rx={radius} />
     </svg>
   );

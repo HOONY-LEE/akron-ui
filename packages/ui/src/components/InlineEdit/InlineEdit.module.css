@@ -1,0 +1,166 @@
+/* ─── Root ─────────────────────────────────────────────────────────────────── */
+
+.root {
+  display: inline-block;
+  max-width: 100%;
+}
+
+.root.editing {
+  display: block;
+}
+
+/* ─── Display mode ─────────────────────────────────────────────────────────── */
+
+.displayBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ark-space-1-5);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--ark-radius-md);
+  padding: var(--ark-space-1) var(--ark-space-2);
+  cursor: pointer;
+  text-align: left;
+  color: inherit;
+  font: inherit;
+  transition: background 150ms, border-color 150ms;
+  max-width: 100%;
+}
+
+.displayBtn:hover:not(:disabled) {
+  background: var(--ark-color-surface-hover);
+  border-color: var(--ark-color-border);
+}
+
+.displayBtn:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.displayBtn:disabled {
+  cursor: default;
+}
+
+.displayText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.emptyText {
+  color: var(--ark-color-text-tertiary);
+  font-style: italic;
+}
+
+.editIcon {
+  flex-shrink: 0;
+  color: var(--ark-color-text-tertiary);
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 150ms;
+}
+
+.displayBtn:hover .editIcon {
+  opacity: 1;
+}
+
+/* ─── Edit mode ────────────────────────────────────────────────────────────── */
+
+.editWrap {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ark-space-1);
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  padding: var(--ark-space-1) var(--ark-space-2);
+  border: 1px solid var(--ark-color-primary);
+  border-radius: var(--ark-radius-md);
+  background: var(--ark-color-surface);
+  color: var(--ark-color-text-primary);
+  font: inherit;
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ark-color-primary) 20%, transparent);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 72px;
+}
+
+/* ─── Action buttons ───────────────────────────────────────────────────────── */
+
+.actions {
+  display: flex;
+  gap: var(--ark-space-1);
+  flex-shrink: 0;
+}
+
+.actionBtn {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--ark-radius-sm);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 150ms;
+}
+
+.confirmBtn {
+  background: var(--ark-color-primary);
+  color: var(--ark-color-primary-foreground);
+}
+
+.confirmBtn:hover {
+  background: var(--ark-color-primary-600);
+}
+
+.cancelBtn {
+  background: var(--ark-color-surface-strong);
+  color: var(--ark-color-text-secondary);
+  border: 1px solid var(--ark-color-border);
+}
+
+.cancelBtn:hover {
+  background: var(--ark-color-surface-hover);
+}
+
+/* ─── Sizes ────────────────────────────────────────────────────────────────── */
+
+.size-sm .displayBtn,
+.size-sm .input {
+  font-size: var(--ark-font-size-xs);
+  padding: 2px var(--ark-space-1-5);
+}
+
+.size-sm .actionBtn {
+  width: 22px;
+  height: 22px;
+}
+
+.size-md .displayBtn,
+.size-md .input {
+  font-size: var(--ark-font-size-sm);
+}
+
+.size-lg .displayBtn,
+.size-lg .input {
+  font-size: var(--ark-font-size-lg);
+  padding: var(--ark-space-2) var(--ark-space-3);
+}
+
+.size-lg .actionBtn {
+  width: 36px;
+  height: 36px;
+}
+
+/* ─── Disabled ─────────────────────────────────────────────────────────────── */
+
+.disabled .displayBtn {
+  opacity: 0.5;
+}

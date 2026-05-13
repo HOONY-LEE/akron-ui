@@ -1,0 +1,26 @@
+/* ─── Root ─────────────────────────────────────────────────────────────────── */
+
+.root {
+  display: inline;
+}
+
+/* ─── Cursor ───────────────────────────────────────────────────────────────── */
+
+.cursor {
+  display: inline-block;
+  margin-left: 1px;
+  animation: blink 0.8s step-end infinite;
+  color: currentColor;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.cursorStatic {
+  animation: none;
+  opacity: 1;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}

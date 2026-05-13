@@ -1,5 +1,5 @@
 import { Button, useToast } from "@sunghoon_lee/akron-ui";
-import { CodeBlock } from "../components/CodeBlock";
+import { LiveCodeBlock } from "../components/LiveCodeBlock";
 
 export function ToastPage() {
   const toast = useToast();
@@ -20,22 +20,22 @@ export function ToastPage() {
           앱 루트에 <code className="inline-code">ToastProvider</code>를 감싸고,
           하위 컴포넌트에서 <code className="inline-code">useToast</code> 훅으로 토스트를 호출합니다.
         </p>
-        <div className="example-label">Editable Example</div>
-        <div className="preview-box">
-          <Button
-            variant="primary"
-            onClick={() => toast({ type: "success", title: "저장 완료", message: "변경사항이 저장되었습니다." })}
-          >
-            토스트 띄우기
-          </Button>
-        </div>
-        <CodeBlock>{`const toast = useToast();
-
-toast({
-  type: "success",
-  title: "저장 완료",
-  message: "변경사항이 저장되었습니다.",
-});`}</CodeBlock>
+        <LiveCodeBlock
+          noInline
+          code={`function Demo() {
+  const toast = useToast();
+  return (
+    <Button
+      variant="primary"
+      onClick={() => toast({ type: "success", title: "저장 완료", message: "변경사항이 저장되었습니다." })}
+    >
+      토스트 띄우기
+    </Button>
+  );
+}
+render(<Demo />)`}
+          scope={{ Button, useToast }}
+        />
       </section>
 
       <section className="docs-section" id="types">
@@ -47,47 +47,67 @@ toast({
 
         <h3 className="section-subtitle">success</h3>
         <p className="section-desc">작업 성공 시 사용합니다. 3초 후 자동으로 사라집니다.</p>
-        <div className="preview-box">
-          <Button
-            variant="primary"
-            onClick={() => toast({ type: "success", title: "저장 완료", message: "변경사항이 저장되었습니다." })}
-          >
-            Success
-          </Button>
-        </div>
+        <LiveCodeBlock
+          noInline
+          code={`function Demo() {
+  const toast = useToast();
+  return (
+    <Button variant="primary" onClick={() => toast({ type: "success", title: "저장 완료", message: "변경사항이 저장되었습니다." })}>
+      Success
+    </Button>
+  );
+}
+render(<Demo />)`}
+          scope={{ Button, useToast }}
+        />
 
         <h3 className="section-subtitle">info</h3>
         <p className="section-desc">안내 메시지에 사용합니다. 3초 후 자동으로 사라집니다.</p>
-        <div className="preview-box">
-          <Button
-            variant="outline"
-            onClick={() => toast({ type: "info", title: "안내", message: "새 공지사항이 등록되었습니다." })}
-          >
-            Info
-          </Button>
-        </div>
+        <LiveCodeBlock
+          noInline
+          code={`function Demo() {
+  const toast = useToast();
+  return (
+    <Button variant="outline" onClick={() => toast({ type: "info", title: "안내", message: "새 공지사항이 등록되었습니다." })}>
+      Info
+    </Button>
+  );
+}
+render(<Demo />)`}
+          scope={{ Button, useToast }}
+        />
 
         <h3 className="section-subtitle">warning</h3>
         <p className="section-desc">주의가 필요한 상황에 사용합니다. 4초 후 자동으로 사라집니다.</p>
-        <div className="preview-box">
-          <Button
-            variant="outline"
-            onClick={() => toast({ type: "warning", title: "주의", message: "저장하지 않은 변경사항이 있습니다." })}
-          >
-            Warning
-          </Button>
-        </div>
+        <LiveCodeBlock
+          noInline
+          code={`function Demo() {
+  const toast = useToast();
+  return (
+    <Button variant="outline" onClick={() => toast({ type: "warning", title: "주의", message: "저장하지 않은 변경사항이 있습니다." })}>
+      Warning
+    </Button>
+  );
+}
+render(<Demo />)`}
+          scope={{ Button, useToast }}
+        />
 
         <h3 className="section-subtitle">error</h3>
         <p className="section-desc">오류 발생 시 사용합니다. 5초 후 자동으로 사라집니다.</p>
-        <div className="preview-box">
-          <Button
-            variant="danger"
-            onClick={() => toast({ type: "error", title: "오류 발생", message: "서버 연결에 실패했습니다. 잠시 후 다시 시도해주세요." })}
-          >
-            Error
-          </Button>
-        </div>
+        <LiveCodeBlock
+          noInline
+          code={`function Demo() {
+  const toast = useToast();
+  return (
+    <Button variant="danger" onClick={() => toast({ type: "error", title: "오류 발생", message: "서버 연결에 실패했습니다. 잠시 후 다시 시도해주세요." })}>
+      Error
+    </Button>
+  );
+}
+render(<Demo />)`}
+          scope={{ Button, useToast }}
+        />
       </section>
 
       <section className="docs-section" id="interface">

@@ -1,0 +1,192 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--ark-font-family);
+}
+
+.label {
+  font-size: var(--ark-font-size-sm);
+  font-weight: var(--ark-font-weight-medium);
+  color: var(--ark-color-text);
+  margin-bottom: var(--ark-spacing-1);
+  line-height: var(--ark-line-height-normal);
+}
+
+/* ── Field container ── */
+.field {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid var(--ark-input-border-color);
+  border-radius: var(--ark-input-radius);
+  background-color: var(--ark-input-bg);
+  transition: border-color var(--ark-transition-fast),
+              box-shadow var(--ark-transition-fast);
+  overflow: hidden;
+}
+
+.field:hover:not(.disabled .field) {
+  border-color: var(--ark-color-gray-400);
+}
+
+.field:focus-within {
+  border-color: var(--ark-color-primary-500);
+  box-shadow: 0 0 0 1px var(--ark-color-primary-500);
+}
+
+/* ── Input ── */
+.input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  color: var(--ark-color-text);
+  font-family: var(--ark-font-family);
+  text-align: center;
+  outline: none;
+  line-height: var(--ark-line-height-normal);
+  /* hide browser number arrows */
+  -moz-appearance: textfield;
+}
+
+.input::placeholder {
+  color: var(--ark-color-text-disabled);
+}
+
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* ── Sizes ── */
+.sm .field { height: var(--ark-input-height-sm); }
+.sm .input { font-size: var(--ark-input-font-size-sm); padding: 0 var(--ark-spacing-1); }
+.sm .stepBtn { width: 28px; }
+
+.md .field { height: var(--ark-input-height-md); }
+.md .input { font-size: var(--ark-input-font-size-md); padding: 0 var(--ark-spacing-2); }
+.md .stepBtn { width: 32px; }
+
+.lg .field { height: var(--ark-input-height-lg); }
+.lg .input { font-size: var(--ark-input-font-size-lg); padding: 0 var(--ark-spacing-2); }
+.lg .stepBtn { width: 36px; }
+
+/* ── Step buttons ── */
+.stepBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: none;
+  background: var(--ark-color-bg-subtle);
+  color: var(--ark-color-text-secondary);
+  cursor: pointer;
+  transition: background-color var(--ark-transition-fast), color var(--ark-transition-fast);
+  user-select: none;
+}
+
+.decrBtn {
+  border-right: 1px solid var(--ark-input-border-color);
+}
+
+.incrBtn {
+  border-left: 1px solid var(--ark-input-border-color);
+}
+
+.stepBtn:hover:not(:disabled) {
+  background-color: var(--ark-color-bg-muted);
+  color: var(--ark-color-text);
+}
+
+.stepBtn:active:not(:disabled) {
+  background-color: var(--ark-color-gray-200);
+}
+
+.stepBtn:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: -2px;
+}
+
+.stepBtn:disabled {
+  color: var(--ark-color-text-disabled);
+  cursor: not-allowed;
+}
+
+/* ── Prefix / Suffix ── */
+.prefix,
+.suffix {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--ark-spacing-2);
+  font-size: var(--ark-font-size-sm);
+  color: var(--ark-color-text-secondary);
+  background-color: var(--ark-color-bg-subtle);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.prefix {
+  border-right: 1px solid var(--ark-input-border-color);
+}
+
+.suffix {
+  border-left: 1px solid var(--ark-input-border-color);
+}
+
+/* ── Error state ── */
+.error .field {
+  border-color: var(--ark-color-error-500);
+}
+
+.error .field:focus-within {
+  border-color: var(--ark-color-error-500);
+  box-shadow: 0 0 0 1px var(--ark-color-error-500);
+}
+
+/* ── Disabled state ── */
+.disabled .field {
+  background-color: var(--ark-color-gray-50);
+  cursor: not-allowed;
+}
+
+.disabled .input {
+  color: var(--ark-color-text-disabled);
+  cursor: not-allowed;
+}
+
+/* ── Helper / Error text ── */
+.helperText {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-secondary);
+  margin-top: var(--ark-spacing-1);
+  line-height: var(--ark-line-height-normal);
+}
+
+.errorMessage {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-error-500);
+  margin-top: var(--ark-spacing-1);
+  line-height: var(--ark-line-height-normal);
+}
+
+/* ── Dark mode ── */
+[data-theme="dark"] .stepBtn {
+  background-color: var(--ark-color-gray-800);
+}
+
+[data-theme="dark"] .stepBtn:hover:not(:disabled) {
+  background-color: var(--ark-color-gray-700);
+}
+
+[data-theme="dark"] .stepBtn:active:not(:disabled) {
+  background-color: var(--ark-color-gray-600);
+}
+
+[data-theme="dark"] .prefix,
+[data-theme="dark"] .suffix {
+  background-color: var(--ark-color-gray-800);
+}
+
+[data-theme="dark"] .disabled .field {
+  background-color: var(--ark-color-gray-900);
+}

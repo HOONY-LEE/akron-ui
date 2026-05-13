@@ -1,0 +1,313 @@
+/* ─── Root ─────────────────────────────────────────────────────────────────── */
+
+.root {
+  display: inline-flex;
+  align-items: stretch;
+  position: relative;
+  border-radius: var(--ark-radius-md);
+  overflow: visible;
+}
+
+.root.fullWidth {
+  width: 100%;
+}
+
+/* ─── Base button styles (shared) ───────────────────────────────────────────── */
+
+.mainBtn,
+.caretBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ark-space-2);
+  font-family: var(--ark-font-family);
+  font-weight: var(--ark-font-weight-medium);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition:
+    background var(--ark-duration-fast) ease,
+    border-color var(--ark-duration-fast) ease,
+    color var(--ark-duration-fast) ease,
+    box-shadow var(--ark-duration-fast) ease;
+  outline: none;
+}
+
+.mainBtn {
+  flex: 1;
+  border-radius: var(--ark-radius-md) 0 0 var(--ark-radius-md);
+  white-space: nowrap;
+}
+
+.root.fullWidth .mainBtn {
+  flex: 1;
+}
+
+.caretBtn {
+  flex-shrink: 0;
+  border-radius: 0 var(--ark-radius-md) var(--ark-radius-md) 0;
+}
+
+.mainBtn:focus-visible,
+.caretBtn:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+  z-index: 1;
+}
+
+/* ─── Divider between main and caret ──────────────────────────────────────── */
+
+.divider {
+  width: 1px;
+  flex-shrink: 0;
+  opacity: 0.3;
+}
+
+/* ─── Sizes ────────────────────────────────────────────────────────────────── */
+
+.size-sm .mainBtn {
+  font-size: var(--ark-font-size-xs);
+  padding: var(--ark-space-1-5) var(--ark-space-3);
+  height: 30px;
+}
+
+.size-sm .caretBtn {
+  padding: 0 var(--ark-space-2);
+  height: 30px;
+  width: 28px;
+}
+
+.size-md .mainBtn {
+  font-size: var(--ark-font-size-sm);
+  padding: var(--ark-space-2) var(--ark-space-4);
+  height: 36px;
+}
+
+.size-md .caretBtn {
+  padding: 0 var(--ark-space-2-5);
+  height: 36px;
+  width: 32px;
+}
+
+.size-lg .mainBtn {
+  font-size: var(--ark-font-size-base);
+  padding: var(--ark-space-2-5) var(--ark-space-5);
+  height: 44px;
+}
+
+.size-lg .caretBtn {
+  padding: 0 var(--ark-space-3);
+  height: 44px;
+  width: 40px;
+}
+
+/* ─── Variants ─────────────────────────────────────────────────────────────── */
+
+/* primary */
+.variant-primary .mainBtn,
+.variant-primary .caretBtn {
+  background: var(--ark-color-primary);
+  color: var(--ark-color-primary-foreground);
+  border-color: var(--ark-color-primary);
+}
+
+.variant-primary .divider {
+  background: var(--ark-color-primary-foreground);
+}
+
+.variant-primary .mainBtn:hover,
+.variant-primary .caretBtn:hover {
+  background: var(--ark-color-primary-hover);
+  border-color: var(--ark-color-primary-hover);
+}
+
+.variant-primary .mainBtn:active,
+.variant-primary .caretBtn:active {
+  background: var(--ark-color-primary-active);
+  border-color: var(--ark-color-primary-active);
+}
+
+/* secondary */
+.variant-secondary .mainBtn,
+.variant-secondary .caretBtn {
+  background: var(--ark-color-secondary);
+  color: var(--ark-color-secondary-foreground);
+  border-color: var(--ark-color-secondary);
+}
+
+.variant-secondary .divider {
+  background: var(--ark-color-secondary-foreground);
+}
+
+.variant-secondary .mainBtn:hover,
+.variant-secondary .caretBtn:hover {
+  background: var(--ark-color-secondary-hover);
+  border-color: var(--ark-color-secondary-hover);
+}
+
+/* outline */
+.variant-outline .mainBtn,
+.variant-outline .caretBtn {
+  background: transparent;
+  color: var(--ark-color-text-primary);
+  border-color: var(--ark-color-border);
+}
+
+.variant-outline .divider {
+  background: var(--ark-color-border);
+  opacity: 1;
+}
+
+.variant-outline .mainBtn:hover,
+.variant-outline .caretBtn:hover {
+  background: var(--ark-color-surface-hover);
+}
+
+.variant-outline .mainBtn:active,
+.variant-outline .caretBtn:active {
+  background: var(--ark-color-surface-active);
+}
+
+/* ghost */
+.variant-ghost .mainBtn,
+.variant-ghost .caretBtn {
+  background: transparent;
+  color: var(--ark-color-text-primary);
+  border-color: transparent;
+}
+
+.variant-ghost .divider {
+  background: var(--ark-color-border);
+  opacity: 1;
+}
+
+.variant-ghost .mainBtn:hover,
+.variant-ghost .caretBtn:hover {
+  background: var(--ark-color-surface-hover);
+}
+
+/* danger */
+.variant-danger .mainBtn,
+.variant-danger .caretBtn {
+  background: var(--ark-color-error);
+  color: #fff;
+  border-color: var(--ark-color-error);
+}
+
+.variant-danger .divider {
+  background: #fff;
+}
+
+.variant-danger .mainBtn:hover,
+.variant-danger .caretBtn:hover {
+  background: var(--ark-color-error-hover);
+  border-color: var(--ark-color-error-hover);
+}
+
+/* ─── Disabled ─────────────────────────────────────────────────────────────── */
+
+.disabled .mainBtn,
+.disabled .caretBtn {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ─── Caret icon ───────────────────────────────────────────────────────────── */
+
+.caret {
+  transition: transform var(--ark-duration-fast) ease;
+  flex-shrink: 0;
+}
+
+.caretOpen {
+  transform: rotate(180deg);
+}
+
+/* ─── Spinner ──────────────────────────────────────────────────────────────── */
+
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spinnerRotate 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spinnerRotate {
+  to { transform: rotate(360deg); }
+}
+
+/* ─── Dropdown ─────────────────────────────────────────────────────────────── */
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  min-width: 160px;
+  background: var(--ark-color-surface-overlay);
+  border: 1px solid var(--ark-color-border);
+  border-radius: var(--ark-radius-md);
+  box-shadow: var(--ark-shadow-lg);
+  z-index: var(--ark-z-dropdown, 100);
+  padding: var(--ark-space-1);
+  animation: dropdownIn 0.12s ease;
+}
+
+@keyframes dropdownIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdownStart {
+  left: 0;
+}
+
+.dropdownEnd {
+  right: 0;
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: var(--ark-space-2) var(--ark-space-3);
+  font-size: var(--ark-font-size-sm);
+  color: var(--ark-color-text-primary);
+  background: transparent;
+  border: none;
+  border-radius: var(--ark-radius-sm);
+  cursor: pointer;
+  text-align: left;
+  transition: background var(--ark-duration-fast) ease;
+  white-space: nowrap;
+}
+
+.dropdownItem:hover {
+  background: var(--ark-color-surface-hover);
+}
+
+.dropdownItem:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: -2px;
+}
+
+.dropdownItemDisabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.dropdownItemDanger {
+  color: var(--ark-color-error);
+}
+
+.dropdownItemDanger:hover {
+  background: var(--ark-color-error-subtle);
+}
+
+.dropdownDivider {
+  height: 1px;
+  background: var(--ark-color-border);
+  margin: var(--ark-space-1) 0;
+}

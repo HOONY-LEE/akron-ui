@@ -1,6 +1,6 @@
 import { LayoutSidebar, SidebarGroup, SidebarItem } from "@sunghoon_lee/akron-ui";
 import { ExternalLink, BarChart3, Bell, Users, Building2, Clock, CreditCard, FileText } from "lucide-react";
-import { CodeBlock } from "../components/CodeBlock";
+import { LiveCodeBlock } from "../components/LiveCodeBlock";
 
 export function LayoutSidebarPage() {
   return (
@@ -25,42 +25,29 @@ export function LayoutSidebarPage() {
           <code className="inline-code">SidebarItem</code>을 조합합니다.
           <code className="inline-code">header</code>와 <code className="inline-code">footer</code> 슬롯도 지원합니다.
         </p>
-        <div className="example-label">Editable Example</div>
-        <div className="preview-box" style={{ padding: 0, height: 380, overflow: "hidden", justifyContent: "flex-start" }}>
-          <div style={{ width: 240, height: "100%", borderRight: "1px solid var(--ark-color-border)" }}>
-            <LayoutSidebar
-              header={<div style={{ fontWeight: 700, fontSize: 15 }}>Akron ERP</div>}
-              footer={<div style={{ fontSize: 12, color: "var(--ark-color-text-secondary)" }}>v0.1.0</div>}
-            >
-              <SidebarGroup label="일반">
-                <SidebarItem active icon={<BarChart3 size={16} />}>대시보드</SidebarItem>
-                <SidebarItem icon={<Bell size={16} />}>알림</SidebarItem>
-              </SidebarGroup>
-              <SidebarGroup label="인사">
-                <SidebarItem icon={<Users size={16} />}>사원 관리</SidebarItem>
-                <SidebarItem icon={<Building2 size={16} />}>조직도</SidebarItem>
-                <SidebarItem icon={<Clock size={16} />}>근태 관리</SidebarItem>
-              </SidebarGroup>
-              <SidebarGroup label="재무">
-                <SidebarItem icon={<CreditCard size={16} />}>급여 관리</SidebarItem>
-                <SidebarItem icon={<FileText size={16} />}>경비 청구</SidebarItem>
-              </SidebarGroup>
-            </LayoutSidebar>
-          </div>
-        </div>
-        <CodeBlock>{`<LayoutSidebar
-  header={<Logo />}
-  footer={<Version />}
->
-  <SidebarGroup label="인사">
-    <SidebarItem active icon={<Users />} tooltip="사원 관리">
-      사원 관리
-    </SidebarItem>
-    <SidebarItem icon={<Building2 />} tooltip="조직도">
-      조직도
-    </SidebarItem>
-  </SidebarGroup>
-</LayoutSidebar>`}</CodeBlock>
+        <LiveCodeBlock
+          code={`<div style={{ width: 240, height: 380, borderRadius: 8, overflow: "hidden", border: "1px solid var(--ark-color-border)" }}>
+  <LayoutSidebar
+    header={<div style={{ fontWeight: 700, fontSize: 15 }}>Akron ERP</div>}
+    footer={<div style={{ fontSize: 12, color: "var(--ark-color-text-secondary)" }}>v0.1.0</div>}
+  >
+    <SidebarGroup label="일반">
+      <SidebarItem active icon={<BarChart3 size={16} />}>대시보드</SidebarItem>
+      <SidebarItem icon={<Bell size={16} />}>알림</SidebarItem>
+    </SidebarGroup>
+    <SidebarGroup label="인사">
+      <SidebarItem icon={<Users size={16} />}>사원 관리</SidebarItem>
+      <SidebarItem icon={<Building2 size={16} />}>조직도</SidebarItem>
+      <SidebarItem icon={<Clock size={16} />}>근태 관리</SidebarItem>
+    </SidebarGroup>
+    <SidebarGroup label="재무">
+      <SidebarItem icon={<CreditCard size={16} />}>급여 관리</SidebarItem>
+      <SidebarItem icon={<FileText size={16} />}>경비 청구</SidebarItem>
+    </SidebarGroup>
+  </LayoutSidebar>
+</div>`}
+          scope={{ LayoutSidebar, SidebarGroup, SidebarItem, BarChart3, Bell, Users, Building2, Clock, CreditCard, FileText }}
+        />
       </section>
 
       <section className="docs-section" id="interface">

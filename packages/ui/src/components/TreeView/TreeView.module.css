@@ -1,0 +1,135 @@
+/* ─── Root ─────────────────────────────────────────────────────────────────── */
+
+.root {
+  font-family: inherit;
+  font-size: var(--ark-font-size-sm);
+  color: var(--ark-color-text-primary);
+  user-select: none;
+}
+
+/* ─── Lists ────────────────────────────────────────────────────────────────── */
+
+.rootList,
+.childList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ─── Node item ────────────────────────────────────────────────────────────── */
+
+.nodeItem {
+  display: block;
+}
+
+/* ─── Node row ─────────────────────────────────────────────────────────────── */
+
+.nodeRow {
+  display: flex;
+  align-items: center;
+  gap: var(--ark-spacing-1);
+  cursor: pointer;
+  border-radius: var(--ark-radius-md);
+  transition: background 0.1s ease, color 0.1s ease;
+  outline: none;
+  position: relative;
+}
+
+.nodeRow:hover:not(.nodeDisabled) {
+  background: var(--ark-color-bg-muted);
+}
+
+.nodeRow:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: -2px;
+}
+
+.nodeRow.selected {
+  background: color-mix(in srgb, var(--ark-color-primary-500) 10%, transparent);
+  color: var(--ark-color-primary-600);
+  font-weight: var(--ark-font-weight-medium);
+}
+
+.nodeRow.selected:hover {
+  background: color-mix(in srgb, var(--ark-color-primary-500) 16%, transparent);
+}
+
+[data-theme="dark"] .nodeRow.selected {
+  color: var(--ark-color-primary-300);
+}
+
+.nodeDisabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* sizes */
+.sm {
+  padding-top: var(--ark-spacing-1);
+  padding-bottom: var(--ark-spacing-1);
+  padding-right: var(--ark-spacing-2);
+  font-size: var(--ark-font-size-xs);
+  min-height: 28px;
+}
+
+.md {
+  padding-top: var(--ark-spacing-1-5);
+  padding-bottom: var(--ark-spacing-1-5);
+  padding-right: var(--ark-spacing-2);
+  font-size: var(--ark-font-size-sm);
+  min-height: 34px;
+}
+
+/* ─── Expand icon ──────────────────────────────────────────────────────────── */
+
+.expandIcon {
+  display: flex;
+  align-items: center;
+  color: var(--ark-color-text-tertiary);
+  flex-shrink: 0;
+  transition: color 0.1s ease;
+}
+
+.nodeRow:hover .expandIcon {
+  color: var(--ark-color-text-secondary);
+}
+
+.expandPlaceholder {
+  display: inline-block;
+  width: 14px;
+}
+
+/* ─── Node icon ────────────────────────────────────────────────────────────── */
+
+.nodeIcon {
+  display: flex;
+  align-items: center;
+  color: var(--ark-color-text-secondary);
+  flex-shrink: 0;
+}
+
+/* ─── Label ────────────────────────────────────────────────────────────────── */
+
+.nodeLabel {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.4;
+}
+
+/* ─── Lines ────────────────────────────────────────────────────────────────── */
+
+.line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--ark-color-border);
+}
+
+.lineLast {
+  height: 50%;
+  bottom: unset;
+}

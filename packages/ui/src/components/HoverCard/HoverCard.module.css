@@ -1,0 +1,30 @@
+/* ─── Trigger ──────────────────────────────────────────────────────────────── */
+
+.trigger {
+  display: inline-block;
+  cursor: default;
+}
+
+/* ─── Card ─────────────────────────────────────────────────────────────────── */
+
+.card {
+  position: fixed;
+  z-index: var(--ark-z-tooltip, 200);
+  background: var(--ark-color-surface-overlay);
+  border: 1px solid var(--ark-color-border);
+  border-radius: var(--ark-radius-lg);
+  box-shadow: var(--ark-shadow-xl);
+  animation: hoverCardIn 0.15s ease;
+  overflow: hidden;
+}
+
+@keyframes hoverCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

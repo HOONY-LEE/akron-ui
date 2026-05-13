@@ -1,0 +1,114 @@
+.timeline {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Item ── */
+.item {
+  display: flex;
+  gap: var(--ark-spacing-4);
+  min-height: 40px;
+}
+
+/* ── Track ── */
+.track {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.dot {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--ark-radius-full);
+  border: 2px solid var(--ark-color-border);
+  background-color: var(--ark-color-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  flex-shrink: 0;
+  color: var(--ark-color-text-secondary);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  z-index: 1;
+}
+
+.connector {
+  flex: 1;
+  width: 2px;
+  background-color: var(--ark-color-border);
+  margin: var(--ark-spacing-1) 0;
+  min-height: var(--ark-spacing-6);
+}
+
+/* ── Status ── */
+.pending .dot {
+  border-color: var(--ark-color-border);
+  background-color: var(--ark-color-bg);
+}
+
+.active .dot {
+  border-color: var(--ark-color-primary-500);
+  background-color: var(--ark-color-primary-500);
+  color: var(--ark-color-text-inverse);
+}
+
+.active .connector {
+  background-color: var(--ark-color-border);
+}
+
+.completed .dot {
+  border-color: var(--ark-color-success-500);
+  background-color: var(--ark-color-success-500);
+  color: var(--ark-color-text-inverse);
+}
+
+.completed .connector {
+  background-color: var(--ark-color-success-500);
+}
+
+.error .dot {
+  border-color: var(--ark-color-error-500);
+  background-color: var(--ark-color-error-500);
+  color: var(--ark-color-text-inverse);
+}
+
+/* ── Content ── */
+.content {
+  padding-bottom: var(--ark-spacing-6);
+  flex: 1;
+  min-width: 0;
+  padding-top: var(--ark-spacing-0-5);
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--ark-spacing-3);
+  margin-bottom: var(--ark-spacing-0-5);
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ark-color-text);
+  line-height: 1.5;
+}
+
+.pending .title {
+  color: var(--ark-color-text-secondary);
+}
+
+.time {
+  font-size: 12px;
+  color: var(--ark-color-text-secondary);
+  flex-shrink: 0;
+}
+
+.description {
+  font-size: 13px;
+  color: var(--ark-color-text-secondary);
+  line-height: 1.5;
+}

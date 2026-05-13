@@ -1,0 +1,226 @@
+/* ── Wrapper ── */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--ark-font-family);
+  user-select: none;
+}
+
+.labelRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--ark-spacing-2);
+}
+
+.label {
+  font-size: var(--ark-font-size-sm);
+  font-weight: var(--ark-font-weight-medium);
+  color: var(--ark-color-text);
+}
+
+.valueDisplay {
+  font-size: var(--ark-font-size-sm);
+  font-weight: var(--ark-font-weight-medium);
+  color: var(--ark-color-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Slider area ── */
+.sliderArea {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Horizontal */
+.horizontal .sliderArea {
+  flex-direction: column;
+}
+
+.horizontal .track {
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+}
+
+/* Vertical */
+.vertical .wrapper {
+  flex-direction: row;
+  align-items: center;
+}
+
+.vertical .sliderArea {
+  flex-direction: row;
+}
+
+.vertical .track {
+  position: relative;
+  cursor: pointer;
+}
+
+/* ── Track sizes ── */
+.sm.horizontal .track {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--ark-color-bg-muted);
+}
+
+.md.horizontal .track {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--ark-color-bg-muted);
+}
+
+.lg.horizontal .track {
+  height: 8px;
+  border-radius: 4px;
+  background: var(--ark-color-bg-muted);
+}
+
+.sm.vertical .track {
+  width: 4px;
+  height: 160px;
+  border-radius: 2px;
+  background: var(--ark-color-bg-muted);
+}
+
+.md.vertical .track {
+  width: 6px;
+  height: 200px;
+  border-radius: 3px;
+  background: var(--ark-color-bg-muted);
+}
+
+.lg.vertical .track {
+  width: 8px;
+  height: 240px;
+  border-radius: 4px;
+  background: var(--ark-color-bg-muted);
+}
+
+/* ── Fill ── */
+.fill {
+  position: absolute;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.horizontal .fill {
+  top: 0;
+  bottom: 0;
+}
+
+.vertical .fill {
+  left: 0;
+  right: 0;
+}
+
+/* Color variants */
+.color-primary .fill { background-color: var(--ark-color-primary-500); }
+.color-success .fill { background-color: var(--ark-color-success-500); }
+.color-warning .fill { background-color: var(--ark-color-warning-500); }
+.color-error .fill   { background-color: var(--ark-color-error-500); }
+
+/* ── Thumb ── */
+.thumb {
+  position: absolute;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  cursor: grab;
+  transition: box-shadow var(--ark-transition-fast), transform var(--ark-transition-fast);
+  z-index: 2;
+}
+
+.sm .thumb  { width: 16px; height: 16px; }
+.md .thumb  { width: 20px; height: 20px; }
+.lg .thumb  { width: 24px; height: 24px; }
+
+.thumb:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  transform: translate(-50%, -50%) scale(1.1) !important;
+}
+
+.vertical .thumb:hover {
+  transform: translate(-50%, 50%) scale(1.1) !important;
+}
+
+.color-primary .thumb:focus-visible { outline: 2px solid var(--ark-color-primary-500); outline-offset: 2px; }
+.color-success .thumb:focus-visible { outline: 2px solid var(--ark-color-success-500); outline-offset: 2px; }
+.color-warning .thumb:focus-visible { outline: 2px solid var(--ark-color-warning-500); outline-offset: 2px; }
+.color-error   .thumb:focus-visible { outline: 2px solid var(--ark-color-error-500);   outline-offset: 2px; }
+
+.thumb:active {
+  cursor: grabbing;
+}
+
+/* Color rings on thumb */
+.color-primary .thumb { border: 2px solid var(--ark-color-primary-500); }
+.color-success .thumb { border: 2px solid var(--ark-color-success-500); }
+.color-warning .thumb { border: 2px solid var(--ark-color-warning-500); }
+.color-error   .thumb { border: 2px solid var(--ark-color-error-500); }
+
+/* ── Marks ── */
+.marks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.markWrapper {
+  position: absolute;
+}
+
+.horizontal .markWrapper {
+  top: calc(100% + 6px);
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.vertical .markWrapper {
+  left: calc(100% + 6px);
+  transform: translateY(50%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+.markDot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--ark-color-border);
+  flex-shrink: 0;
+}
+
+.markLabel {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-secondary);
+  white-space: nowrap;
+  margin-top: 2px;
+}
+
+.vertical .markLabel {
+  margin-top: 0;
+}
+
+/* ── Disabled ── */
+.disabled .track { cursor: not-allowed; }
+.disabled .thumb { cursor: not-allowed; opacity: 0.5; }
+.disabled .fill  { opacity: 0.5; }
+
+/* ── Helper text ── */
+.helperText {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-secondary);
+  margin-top: var(--ark-spacing-1);
+}
+
+/* ── Dark mode ── */
+[data-theme="dark"] .thumb {
+  background-color: var(--ark-color-gray-100);
+}

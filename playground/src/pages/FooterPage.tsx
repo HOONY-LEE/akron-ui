@@ -1,6 +1,6 @@
 import { Footer, Button } from "@sunghoon_lee/akron-ui";
 import { ExternalLink } from "lucide-react";
-import { CodeBlock } from "../components/CodeBlock";
+import { LiveCodeBlock } from "../components/LiveCodeBlock";
 
 export function FooterPage() {
   return (
@@ -22,23 +22,18 @@ export function FooterPage() {
         <p className="section-desc">
           AppShell의 children 하단에 배치하면 자동으로 페이지 끝으로 밀려납니다.
         </p>
-        <div className="example-label">Editable Example</div>
-        <div className="preview-box" style={{ padding: 0, overflow: "hidden", flexDirection: "column", gap: 0 }}>
-          <Footer>
-            <span>© 2026 Akron Corp. All rights reserved.</span>
-            <div style={{ display: "flex", gap: 8 }}>
-              <Button variant="ghost" size="sm">이용약관</Button>
-              <Button variant="ghost" size="sm">개인정보처리방침</Button>
-            </div>
-          </Footer>
-        </div>
-        <CodeBlock>{`<Footer>
-  <span>© 2026 Akron Corp.</span>
-  <div>
-    <Button variant="ghost" size="sm">이용약관</Button>
-    <Button variant="ghost" size="sm">개인정보처리방침</Button>
-  </div>
-</Footer>`}</CodeBlock>
+        <LiveCodeBlock
+          code={`<div style={{ overflow: "hidden", borderRadius: 8 }}>
+  <Footer>
+    <span>© 2026 Akron Corp. All rights reserved.</span>
+    <div style={{ display: "flex", gap: 8 }}>
+      <Button variant="ghost" size="sm">이용약관</Button>
+      <Button variant="ghost" size="sm">개인정보처리방침</Button>
+    </div>
+  </Footer>
+</div>`}
+          scope={{ Footer, Button }}
+        />
       </section>
 
       <section className="docs-section" id="interface">

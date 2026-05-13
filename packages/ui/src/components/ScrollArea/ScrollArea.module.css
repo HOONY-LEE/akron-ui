@@ -1,0 +1,65 @@
+/* ─── Base ─────────────────────────────────────────────────────────────────── */
+
+.scrollArea {
+  position: relative;
+  --scrollbar-width: 6px;
+  --scrollbar-track: transparent;
+  --scrollbar-thumb: var(--ark-color-border-strong);
+  --scrollbar-thumb-hover: var(--ark-color-text-tertiary);
+}
+
+/* ─── Scrollbar sizes ──────────────────────────────────────────────────────── */
+
+.scrollbar-sm { --scrollbar-width: 4px; }
+.scrollbar-md { --scrollbar-width: 6px; }
+.scrollbar-lg { --scrollbar-width: 8px; }
+
+/* ─── WebKit custom scrollbar ─────────────────────────────────────────────── */
+
+.scrollArea::-webkit-scrollbar {
+  width: var(--scrollbar-width);
+  height: var(--scrollbar-width);
+}
+
+.scrollArea::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+.scrollArea::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 999px;
+  transition: background 0.2s ease;
+}
+
+/* Show on hover (default) */
+.scrollArea:hover::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+}
+
+.scrollArea::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+.scrollArea::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Always visible */
+.alwaysVisible::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+}
+
+/* ─── Firefox ──────────────────────────────────────────────────────────────── */
+
+.scrollArea {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+.scrollArea:hover {
+  scrollbar-color: var(--scrollbar-thumb) transparent;
+}
+
+.alwaysVisible {
+  scrollbar-color: var(--scrollbar-thumb) transparent;
+}

@@ -1,0 +1,78 @@
+/* ── Base ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--ark-font-family);
+  font-weight: var(--ark-font-weight-medium);
+  white-space: nowrap;
+  border-radius: var(--ark-badge-radius, var(--ark-radius-full));
+  border: 1px solid transparent;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+/* ── Sizes ── */
+.sm {
+  font-size: var(--ark-font-size-xs);
+  padding: 2px var(--ark-spacing-1-5);
+  min-width: 18px;
+  height: 18px;
+}
+
+.md {
+  font-size: var(--ark-font-size-xs);
+  padding: 3px var(--ark-spacing-2);
+  min-width: 20px;
+  height: 20px;
+}
+
+.lg {
+  font-size: var(--ark-font-size-sm);
+  padding: var(--ark-spacing-1) var(--ark-spacing-2-5, 10px);
+  min-width: 24px;
+  height: 24px;
+}
+
+/* ── Dot variant ── */
+.dot {
+  width: 8px;
+  height: 8px;
+  min-width: 8px;
+  border-radius: 50%;
+  padding: 0;
+}
+
+.dot.sm { width: 6px; height: 6px; min-width: 6px; }
+.dot.md { width: 8px; height: 8px; min-width: 8px; }
+.dot.lg { width: 10px; height: 10px; min-width: 10px; }
+
+/* ══════════════════════════════════════
+   Solid
+══════════════════════════════════════ */
+.solid.primary   { background-color: var(--ark-color-primary-500); color: var(--ark-color-text-inverse); }
+.solid.success   { background-color: var(--ark-color-success-500); color: var(--ark-color-text-inverse); }
+.solid.warning   { background-color: var(--ark-color-warning-500); color: var(--ark-color-text-inverse); }
+.solid.error     { background-color: var(--ark-color-error-500);   color: var(--ark-color-text-inverse); }
+.solid.info      { background-color: var(--ark-color-info-500);    color: var(--ark-color-text-inverse); }
+.solid.neutral   { background-color: var(--ark-color-gray-600);    color: var(--ark-color-text-inverse); }
+
+/* ══════════════════════════════════════
+   Subtle
+══════════════════════════════════════ */
+.subtle.primary  { background-color: var(--ark-color-primary-100); color: var(--ark-color-primary-600); }
+.subtle.success  { background-color: var(--ark-color-success-50);  color: var(--ark-color-success-600); }
+.subtle.warning  { background-color: var(--ark-color-warning-50);  color: var(--ark-color-warning-600); }
+.subtle.error    { background-color: var(--ark-color-error-50);    color: var(--ark-color-error-600); }
+.subtle.info     { background-color: var(--ark-color-info-50);     color: var(--ark-color-info-600); }
+.subtle.neutral  { background-color: var(--ark-color-gray-100);    color: var(--ark-color-gray-700); }
+
+/* ══════════════════════════════════════
+   Outline
+══════════════════════════════════════ */
+.outline.primary { border-color: var(--ark-color-primary-400); color: var(--ark-color-primary-500); }
+.outline.success { border-color: var(--ark-color-success-500); color: var(--ark-color-success-600); }
+.outline.warning { border-color: var(--ark-color-warning-500); color: var(--ark-color-warning-600); }
+.outline.error   { border-color: var(--ark-color-error-500);   color: var(--ark-color-error-500); }
+.outline.info    { border-color: var(--ark-color-info-500);    color: var(--ark-color-info-600); }
+.outline.neutral { border-color: var(--ark-color-gray-400);    color: var(--ark-color-gray-600); }

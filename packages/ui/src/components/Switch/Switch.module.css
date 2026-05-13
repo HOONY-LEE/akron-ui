@@ -1,0 +1,135 @@
+/* ── Wrapper ── */
+.wrapper {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--ark-spacing-2);
+  font-family: var(--ark-font-family);
+}
+
+.labelLeft {
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+/* ── Switch Root ── */
+.switch {
+  flex-shrink: 0;
+  border-radius: var(--ark-switch-radius, var(--ark-radius-full));
+  background-color: var(--ark-switch-bg-off, var(--ark-color-gray-300));
+  border: none;
+  cursor: pointer;
+  padding: var(--ark-switch-padding, 2px);
+  transition:
+    background-color var(--ark-transition-fast),
+    box-shadow var(--ark-transition-fast);
+  outline: none;
+  display: flex;
+  align-items: center;
+}
+
+/* ── Sizes ── */
+.sm .switch {
+  width: var(--ark-switch-width-sm, 28px);
+  height: var(--ark-switch-height-sm, 16px);
+  margin-top: 2px;
+}
+
+.md .switch {
+  width: var(--ark-switch-width-md, 36px);
+  height: var(--ark-switch-height-md, 20px);
+  margin-top: 1px;
+}
+
+.lg .switch {
+  width: var(--ark-switch-width-lg, 44px);
+  height: var(--ark-switch-height-lg, 24px);
+}
+
+/* ── Thumb ── */
+.thumb {
+  border-radius: 50%;
+  background-color: var(--ark-switch-thumb-color, var(--ark-color-bg));
+  transition: transform var(--ark-transition-fast);
+  display: block;
+  box-shadow: var(--ark-shadow-sm);
+}
+
+.sm .thumb {
+  width: 12px;
+  height: 12px;
+}
+
+.md .thumb {
+  width: 16px;
+  height: 16px;
+}
+
+.lg .thumb {
+  width: 20px;
+  height: 20px;
+}
+
+/* translate when checked */
+.sm .thumb[data-state="checked"] {
+  transform: translateX(12px);
+}
+
+.md .thumb[data-state="checked"] {
+  transform: translateX(16px);
+}
+
+.lg .thumb[data-state="checked"] {
+  transform: translateX(20px);
+}
+
+/* ── Content ── */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.label {
+  font-size: var(--ark-font-size-sm);
+  font-weight: var(--ark-font-weight-medium);
+  color: var(--ark-color-text);
+  line-height: var(--ark-line-height-normal);
+  cursor: pointer;
+  user-select: none;
+}
+
+.description {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-secondary);
+  line-height: var(--ark-line-height-normal);
+}
+
+/* ── States ── */
+.switch:hover:not([data-disabled]) {
+  background-color: var(--ark-color-gray-400);
+}
+
+.switch[data-state="checked"] {
+  background-color: var(--ark-switch-bg-on, var(--ark-color-primary-500));
+}
+
+.switch[data-state="checked"]:hover:not([data-disabled]) {
+  background-color: var(--ark-color-primary-600);
+}
+
+.switch:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+/* ── Disabled ── */
+.disabled .switch {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.disabled .label,
+.disabled .description {
+  cursor: not-allowed;
+  color: var(--ark-color-text-disabled);
+}

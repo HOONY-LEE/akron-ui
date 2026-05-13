@@ -1,0 +1,129 @@
+/* ─── Root ─────────────────────────────────────────────────────────────────── */
+
+.root {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--ark-space-2);
+  max-width: 100%;
+}
+
+.side-left {
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.side-right {
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+}
+
+/* ─── Avatar ───────────────────────────────────────────────────────────────── */
+
+.avatar {
+  flex-shrink: 0;
+  align-self: flex-end;
+}
+
+/* ─── Content wrap ─────────────────────────────────────────────────────────── */
+
+.contentWrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-space-1);
+  max-width: 75%;
+  min-width: 0;
+}
+
+.side-left .contentWrap {
+  align-items: flex-start;
+}
+
+.side-right .contentWrap {
+  align-items: flex-end;
+}
+
+/* ─── Header (name + timestamp) ──────────────────────────────────────────── */
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--ark-space-2);
+  padding: 0 var(--ark-space-1);
+}
+
+.name {
+  font-size: var(--ark-font-size-xs);
+  font-weight: var(--ark-font-weight-semibold);
+  color: var(--ark-color-text-primary);
+}
+
+.timestamp {
+  font-size: 11px;
+  color: var(--ark-color-text-tertiary);
+  white-space: nowrap;
+}
+
+/* ─── Bubble ───────────────────────────────────────────────────────────────── */
+
+.bubble {
+  padding: var(--ark-space-2-5) var(--ark-space-3-5);
+  border-radius: var(--ark-radius-xl);
+  max-width: 100%;
+  word-break: break-word;
+}
+
+/* Border radius corners — left vs right */
+.bubble-left {
+  border-bottom-left-radius: var(--ark-radius-sm);
+}
+
+.bubble-right {
+  border-bottom-right-radius: var(--ark-radius-sm);
+}
+
+/* ─── Variants ─────────────────────────────────────────────────────────────── */
+
+.variant-filled.bubble-left {
+  background: var(--ark-color-surface-strong);
+  color: var(--ark-color-text-primary);
+}
+
+.variant-filled.bubble-right {
+  background: var(--ark-color-primary);
+  color: var(--ark-color-primary-foreground);
+}
+
+.variant-outline.bubble-left,
+.variant-outline.bubble-right {
+  background: transparent;
+  border: 1px solid var(--ark-color-border);
+  color: var(--ark-color-text-primary);
+}
+
+.variant-ghost.bubble-left,
+.variant-ghost.bubble-right {
+  background: transparent;
+  color: var(--ark-color-text-primary);
+}
+
+/* ─── Message ──────────────────────────────────────────────────────────────── */
+
+.message {
+  font-size: var(--ark-font-size-sm);
+  line-height: 1.6;
+}
+
+/* ─── Footer ───────────────────────────────────────────────────────────────── */
+
+.footer {
+  display: flex;
+  align-items: center;
+  gap: var(--ark-space-1);
+  padding: 0 var(--ark-space-1);
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  color: var(--ark-color-text-tertiary);
+}

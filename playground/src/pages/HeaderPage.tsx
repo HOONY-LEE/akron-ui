@@ -1,6 +1,6 @@
 import { Header, Button } from "@sunghoon_lee/akron-ui";
 import { Bell, Search, User, ExternalLink } from "lucide-react";
-import { CodeBlock } from "../components/CodeBlock";
+import { LiveCodeBlock } from "../components/LiveCodeBlock";
 
 export function HeaderPage() {
   return (
@@ -24,29 +24,21 @@ export function HeaderPage() {
           <code className="inline-code">actions</code> 영역으로 나뉩니다.
           <code className="inline-code">sticky</code> prop으로 스크롤 시 상단 고정할 수 있습니다.
         </p>
-        <div className="example-label">Editable Example</div>
-        <div className="preview-box" style={{ padding: 0, overflow: "hidden", flexDirection: "column", gap: 0 }}>
-          <Header
-            logo={<span style={{ fontWeight: 700, fontSize: 16 }}>Akron ERP</span>}
-            actions={
-              <>
-                <Button variant="ghost" size="sm"><Search size={16} /></Button>
-                <Button variant="ghost" size="sm"><Bell size={16} /></Button>
-                <Button variant="ghost" size="sm"><User size={16} /></Button>
-              </>
-            }
-          />
-        </div>
-        <CodeBlock>{`<Header
-  logo={<span>Akron ERP</span>}
-  sticky
-  actions={
-    <>
-      <Button variant="ghost" size="sm"><Bell /></Button>
-      <Button variant="ghost" size="sm"><User /></Button>
-    </>
-  }
-/>`}</CodeBlock>
+        <LiveCodeBlock
+          code={`<div style={{ overflow: "hidden", borderRadius: 8 }}>
+  <Header
+    logo={<span style={{ fontWeight: 700, fontSize: 16 }}>Akron ERP</span>}
+    actions={
+      <>
+        <Button variant="ghost" size="sm"><Search size={16} /></Button>
+        <Button variant="ghost" size="sm"><Bell size={16} /></Button>
+        <Button variant="ghost" size="sm"><User size={16} /></Button>
+      </>
+    }
+  />
+</div>`}
+          scope={{ Header, Button, Bell, Search, User }}
+        />
       </section>
 
       <section className="docs-section" id="sticky">
@@ -55,13 +47,16 @@ export function HeaderPage() {
           <code className="inline-code">sticky</code> prop을 추가하면 스크롤 시 상단에 고정됩니다.
           <code className="inline-code">height</code>로 높이를 조절할 수 있습니다.
         </p>
-        <div className="preview-box" style={{ padding: 0, overflow: "hidden", flexDirection: "column", gap: 0 }}>
-          <Header
-            logo="높이 48px 헤더"
-            height={48}
-            actions={<Button variant="outline" size="sm">로그아웃</Button>}
-          />
-        </div>
+        <LiveCodeBlock
+          code={`<div style={{ overflow: "hidden", borderRadius: 8 }}>
+  <Header
+    logo="높이 48px 헤더"
+    height={48}
+    actions={<Button variant="outline" size="sm">로그아웃</Button>}
+  />
+</div>`}
+          scope={{ Header, Button }}
+        />
       </section>
 
       <section className="docs-section" id="interface">

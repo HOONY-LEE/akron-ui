@@ -1,0 +1,269 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-1-5);
+  position: relative;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ark-color-text);
+}
+
+/* ── Trigger ── */
+.trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--ark-spacing-2);
+  padding: 0 var(--ark-spacing-3);
+  border: 1px solid var(--ark-color-border-strong);
+  border-radius: var(--ark-radius-md);
+  background-color: var(--ark-color-bg);
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  user-select: none;
+}
+
+.trigger:hover {
+  border-color: var(--ark-color-primary-500);
+}
+
+.focused {
+  border-color: var(--ark-color-primary-500);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+}
+
+.trigger:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.error {
+  border-color: var(--ark-color-error-500);
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--ark-color-bg-muted);
+}
+
+.calIcon {
+  color: var(--ark-color-text-secondary);
+  flex-shrink: 0;
+}
+
+.dateText {
+  flex: 1;
+  color: var(--ark-color-text);
+  font-size: inherit;
+}
+
+.placeholder {
+  flex: 1;
+  color: var(--ark-color-text-disabled);
+  font-size: inherit;
+}
+
+.clearBtn {
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  background: transparent;
+  border: none;
+  border-radius: var(--ark-radius-full);
+  cursor: pointer;
+  color: var(--ark-color-text-secondary);
+  margin-left: auto;
+  transition: background-color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.clearBtn:hover {
+  background-color: var(--ark-color-bg-muted);
+  color: var(--ark-color-text);
+}
+
+/* ── Calendar popup ── */
+.calendar {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 100;
+  background-color: var(--ark-color-bg);
+  border: 1px solid var(--ark-color-border);
+  border-radius: var(--ark-radius-xl);
+  box-shadow: var(--ark-shadow-lg);
+  padding: var(--ark-spacing-4);
+  width: 280px;
+}
+
+/* ── Header ── */
+.calHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--ark-spacing-3);
+}
+
+.navBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--ark-radius-full);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--ark-color-text-secondary);
+  transition: background-color 0.15s ease;
+}
+
+.navBtn:hover {
+  background-color: var(--ark-color-bg-muted);
+  color: var(--ark-color-text);
+}
+
+.navBtn:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.monthLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ark-color-text);
+}
+
+/* ── Day header row ── */
+.dayRow {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: var(--ark-spacing-1);
+}
+
+.dayLabel {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ark-color-text-secondary);
+  padding: var(--ark-spacing-1) 0;
+}
+
+/* ── Days grid ── */
+.daysGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.dayBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  font-size: 13px;
+  border: none;
+  border-radius: var(--ark-radius-full);
+  background: transparent;
+  cursor: pointer;
+  color: var(--ark-color-text);
+  transition: background-color 0.1s ease, color 0.1s ease;
+}
+
+.dayBtn:hover:not(:disabled) {
+  background-color: var(--ark-color-bg-muted);
+}
+
+.dayBtn:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 1px;
+}
+
+.outside {
+  color: var(--ark-color-text-disabled);
+  opacity: 0.4;
+}
+
+.dayDisabled {
+  cursor: not-allowed;
+  opacity: 0.3;
+}
+
+.selected {
+  background-color: var(--ark-color-primary-500) !important;
+  color: var(--ark-color-text-inverse) !important;
+  font-weight: 600;
+}
+
+.today {
+  border: 2px solid var(--ark-color-primary-500);
+  color: var(--ark-color-primary-500);
+  font-weight: 600;
+}
+
+.sun { color: var(--ark-color-error-500); }
+.sat { color: var(--ark-color-info-500); }
+
+/* ── Footer ── */
+.calFooter {
+  margin-top: var(--ark-spacing-3);
+  border-top: 1px solid var(--ark-color-border);
+  padding-top: var(--ark-spacing-2);
+  display: flex;
+  justify-content: center;
+}
+
+.todayBtn {
+  font-size: 13px;
+  color: var(--ark-color-primary-500);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: var(--ark-spacing-1) var(--ark-spacing-3);
+  border-radius: var(--ark-radius-md);
+  transition: background-color 0.15s ease;
+  font-weight: 500;
+}
+
+.todayBtn:hover {
+  background-color: var(--ark-color-primary-50);
+}
+
+.todayBtn:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+/* ── Helper/Error ── */
+.helperText {
+  font-size: 13px;
+  color: var(--ark-color-text-secondary);
+  margin: 0;
+}
+
+.errorText {
+  font-size: 13px;
+  color: var(--ark-color-error-500);
+  margin: 0;
+}
+
+/* ── Dark mode ── */
+[data-theme="dark"] .calendar {
+  background-color: var(--ark-color-gray-800);
+  border-color: var(--ark-color-gray-700);
+}
+
+[data-theme="dark"] .dayBtn:hover:not(:disabled) {
+  background-color: var(--ark-color-gray-700);
+}
+
+[data-theme="dark"] .calFooter {
+  border-color: var(--ark-color-gray-700);
+}
+
+[data-theme="dark"] .todayBtn:hover {
+  background-color: color-mix(in srgb, var(--ark-color-primary-500) 15%, transparent);
+}

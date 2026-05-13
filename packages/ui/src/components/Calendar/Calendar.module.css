@@ -1,0 +1,247 @@
+.calendar {
+  border: 1px solid var(--ark-color-border);
+  border-radius: var(--ark-radius-xl);
+  overflow: hidden;
+  background-color: var(--ark-color-bg);
+}
+
+/* ── Toolbar ── */
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ark-spacing-3) var(--ark-spacing-4);
+  border-bottom: 1px solid var(--ark-color-border);
+}
+
+.navGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--ark-spacing-3);
+}
+
+.navBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--ark-radius-full);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--ark-color-text-secondary);
+  transition: background-color 0.15s ease;
+}
+
+.navBtn:hover {
+  background-color: var(--ark-color-bg-muted);
+  color: var(--ark-color-text);
+}
+
+.navBtn:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.headerLabel {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ark-color-text);
+  min-width: 160px;
+  text-align: center;
+}
+
+.toolbarRight {
+  display: flex;
+  align-items: center;
+  gap: var(--ark-spacing-3);
+}
+
+.todayBtn {
+  padding: var(--ark-spacing-1) var(--ark-spacing-3);
+  border: 1px solid var(--ark-color-border-strong);
+  border-radius: var(--ark-radius-md);
+  background: transparent;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--ark-color-text);
+  transition: background-color 0.15s ease;
+}
+
+.todayBtn:hover {
+  background-color: var(--ark-color-bg-muted);
+}
+
+.todayBtn:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.viewToggle {
+  display: flex;
+  border: 1px solid var(--ark-color-border-strong);
+  border-radius: var(--ark-radius-md);
+  overflow: hidden;
+}
+
+.viewBtn {
+  padding: var(--ark-spacing-1) var(--ark-spacing-3);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--ark-color-text-secondary);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.viewBtn:hover {
+  background-color: var(--ark-color-bg-muted);
+}
+
+.viewBtnActive {
+  background-color: var(--ark-color-primary-500);
+  color: var(--ark-color-text-inverse);
+}
+
+.viewBtnActive:hover {
+  background-color: var(--ark-color-primary-600);
+  color: var(--ark-color-text-inverse);
+}
+
+/* ── Day headers ── */
+.dayHeaders {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border-bottom: 1px solid var(--ark-color-border);
+  background-color: var(--ark-color-bg-subtle);
+}
+
+.dayHeader {
+  padding: var(--ark-spacing-2);
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ark-color-text-secondary);
+}
+
+/* ── Grid ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.weekGrid {
+  grid-template-rows: minmax(120px, 1fr);
+}
+
+.dayCell {
+  border-right: 1px solid var(--ark-color-border);
+  border-bottom: 1px solid var(--ark-color-border);
+  padding: var(--ark-spacing-1-5) var(--ark-spacing-1);
+  min-height: 90px;
+  cursor: pointer;
+  transition: background-color 0.1s ease;
+}
+
+.dayCell:nth-child(7n) {
+  border-right: none;
+}
+
+.grid > .dayCell:nth-last-child(-n+7) {
+  border-bottom: none;
+}
+
+.dayCell:hover {
+  background-color: var(--ark-color-bg-subtle);
+}
+
+.outsideDay {
+  background-color: var(--ark-color-bg-muted);
+  opacity: 0.5;
+}
+
+.todayCell {
+  background-color: var(--ark-color-primary-50);
+}
+
+.dayNum {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--ark-radius-full);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ark-color-text);
+  margin-bottom: var(--ark-spacing-1);
+}
+
+.sun { color: var(--ark-color-error-500); }
+.sat { color: var(--ark-color-info-500); }
+
+.todayNum {
+  background-color: var(--ark-color-primary-500);
+  color: var(--ark-color-text-inverse) !important;
+}
+
+/* ── Events ── */
+.events {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.event {
+  font-size: 11px;
+  color: white;
+  padding: 1px 5px;
+  border-radius: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: opacity 0.1s ease;
+}
+
+.event:hover {
+  opacity: 0.85;
+}
+
+.moreEvents {
+  font-size: 11px;
+  color: var(--ark-color-text-secondary);
+  padding: 1px 5px;
+}
+
+/* ── Dark mode ── */
+[data-theme="dark"] .calendar {
+  border-color: var(--ark-color-gray-700);
+  background-color: var(--ark-color-gray-900);
+}
+
+[data-theme="dark"] .toolbar {
+  border-color: var(--ark-color-gray-700);
+}
+
+[data-theme="dark"] .dayHeaders {
+  background-color: var(--ark-color-gray-800);
+  border-color: var(--ark-color-gray-700);
+}
+
+[data-theme="dark"] .dayCell {
+  border-color: var(--ark-color-gray-700);
+}
+
+[data-theme="dark"] .dayCell:hover {
+  background-color: var(--ark-color-gray-800);
+}
+
+[data-theme="dark"] .outsideDay {
+  background-color: color-mix(in srgb, var(--ark-color-gray-900) 60%, transparent);
+}
+
+[data-theme="dark"] .todayCell {
+  background-color: color-mix(in srgb, var(--ark-color-primary-500) 10%, transparent);
+}

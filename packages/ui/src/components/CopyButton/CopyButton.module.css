@@ -1,0 +1,142 @@
+/* ─── Base ─────────────────────────────────────────────────────────────────── */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ark-space-1-5);
+  font-family: var(--ark-font-family);
+  font-weight: var(--ark-font-weight-medium);
+  border-radius: var(--ark-radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition:
+    background var(--ark-duration-fast) ease,
+    border-color var(--ark-duration-fast) ease,
+    color var(--ark-duration-fast) ease;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ─── Sizes ────────────────────────────────────────────────────────────────── */
+
+.size-sm {
+  font-size: var(--ark-font-size-xs);
+  height: 28px;
+  padding: 0 var(--ark-space-2);
+}
+
+.size-sm.iconOnly {
+  width: 28px;
+  padding: 0;
+  justify-content: center;
+}
+
+.size-md {
+  font-size: var(--ark-font-size-sm);
+  height: 32px;
+  padding: 0 var(--ark-space-2-5);
+}
+
+.size-md.iconOnly {
+  width: 32px;
+  padding: 0;
+  justify-content: center;
+}
+
+.size-lg {
+  font-size: var(--ark-font-size-base);
+  height: 40px;
+  padding: 0 var(--ark-space-3);
+}
+
+.size-lg.iconOnly {
+  width: 40px;
+  padding: 0;
+  justify-content: center;
+}
+
+/* ─── Variants ─────────────────────────────────────────────────────────────── */
+
+.variant-ghost {
+  background: transparent;
+  color: var(--ark-color-text-tertiary);
+  border-color: transparent;
+}
+
+.variant-ghost:hover {
+  background: var(--ark-color-surface-hover);
+  color: var(--ark-color-text-primary);
+}
+
+.variant-ghost.copied {
+  color: var(--ark-color-success);
+}
+
+.variant-outline {
+  background: transparent;
+  color: var(--ark-color-text-secondary);
+  border-color: var(--ark-color-border);
+}
+
+.variant-outline:hover {
+  background: var(--ark-color-surface-hover);
+  color: var(--ark-color-text-primary);
+}
+
+.variant-outline.copied {
+  color: var(--ark-color-success);
+  border-color: var(--ark-color-success);
+}
+
+.variant-filled {
+  background: var(--ark-color-surface-strong);
+  color: var(--ark-color-text-primary);
+  border-color: var(--ark-color-border);
+}
+
+.variant-filled:hover {
+  background: var(--ark-color-surface-hover);
+}
+
+.variant-filled.copied {
+  color: var(--ark-color-success);
+}
+
+/* ─── Icon swap animation ─────────────────────────────────────────────────── */
+
+.iconWrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconDefault,
+.iconCheck {
+  display: inline-flex;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.iconHidden {
+  opacity: 0;
+  transform: scale(0.7);
+  position: absolute;
+}
+
+/* ─── Label ────────────────────────────────────────────────────────────────── */
+
+.label {
+  white-space: nowrap;
+}

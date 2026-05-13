@@ -1,0 +1,80 @@
+.listView {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-4);
+}
+
+/* ── Toolbar ── */
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toolbarLeft {
+  flex: 1;
+}
+
+.toggleGroup {
+  display: flex;
+  border: 1px solid var(--ark-color-border);
+  border-radius: var(--ark-radius-md);
+  overflow: hidden;
+}
+
+.toggleBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ark-spacing-1-5) var(--ark-spacing-2);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--ark-color-text-secondary);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.toggleBtn:hover {
+  background-color: var(--ark-color-bg-muted);
+  color: var(--ark-color-text);
+}
+
+.toggleBtn:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: -2px;
+}
+
+.toggleBtnActive {
+  background-color: var(--ark-color-primary-500);
+  color: var(--ark-color-text-inverse);
+}
+
+.toggleBtnActive:hover {
+  background-color: var(--ark-color-primary-600);
+  color: var(--ark-color-text-inverse);
+}
+
+/* ── Grid ── */
+.grid {
+  display: grid;
+  gap: var(--ark-spacing-4);
+}
+
+.cols2 { grid-template-columns: repeat(2, 1fr); }
+.cols3 { grid-template-columns: repeat(3, 1fr); }
+.cols4 { grid-template-columns: repeat(4, 1fr); }
+
+/* ── List ── */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-2);
+}
+
+/* ── Empty ── */
+.empty {
+  padding: var(--ark-spacing-12) var(--ark-spacing-6);
+  text-align: center;
+  color: var(--ark-color-text-secondary);
+  font-size: 14px;
+}

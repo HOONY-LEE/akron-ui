@@ -1,0 +1,126 @@
+/* ─── Root ─────────────────────────────────────────────────────────────────── */
+
+.root {
+  display: flex;
+  align-items: center;
+}
+
+/* ─── Step ─────────────────────────────────────────────────────────────────── */
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ark-space-1-5);
+  flex-shrink: 0;
+}
+
+/* ─── Dot / button ─────────────────────────────────────────────────────────── */
+
+.dot {
+  border-radius: 50%;
+  border: 2px solid var(--ark-color-border);
+  background: var(--ark-color-surface);
+  color: var(--ark-color-text-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  transition: background 200ms, border-color 200ms, color 200ms;
+  flex-shrink: 0;
+}
+
+.dot:disabled {
+  cursor: default;
+}
+
+.dot.clickable {
+  cursor: pointer;
+}
+
+.dot.clickable:hover:not(:disabled) {
+  border-color: var(--ark-color-primary);
+  color: var(--ark-color-primary);
+}
+
+.dot.clickable:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+/* Active step */
+.dot.active {
+  border-color: var(--ark-color-primary);
+  background: var(--ark-color-primary);
+  color: var(--ark-color-primary-foreground);
+}
+
+/* Completed step */
+.dot.completed {
+  border-color: var(--ark-color-primary);
+  background: var(--ark-color-primary);
+  color: var(--ark-color-primary-foreground);
+}
+
+/* ─── Connector ────────────────────────────────────────────────────────────── */
+
+.connector {
+  flex: 1;
+  height: 2px;
+  background: var(--ark-color-border);
+  transition: background 300ms;
+  min-width: 24px;
+}
+
+.connector.connectorCompleted {
+  background: var(--ark-color-primary);
+}
+
+/* ─── Label ────────────────────────────────────────────────────────────────── */
+
+.label {
+  font-size: 11px;
+  color: var(--ark-color-text-tertiary);
+  white-space: nowrap;
+  text-align: center;
+  transition: color 200ms;
+}
+
+.label.labelActive {
+  color: var(--ark-color-primary);
+  font-weight: var(--ark-font-weight-semibold);
+}
+
+.label.labelCompleted {
+  color: var(--ark-color-text-secondary);
+}
+
+/* ─── Sizes ────────────────────────────────────────────────────────────────── */
+
+.size-sm .dot {
+  width: 20px;
+  height: 20px;
+  font-size: 10px;
+}
+
+.size-sm .dot svg { width: 10px; height: 10px; }
+.size-sm .connector { min-width: 16px; }
+
+.size-md .dot {
+  width: 28px;
+  height: 28px;
+  font-size: 12px;
+}
+
+.size-md .dot svg { width: 12px; height: 12px; }
+.size-md .connector { min-width: 24px; }
+
+.size-lg .dot {
+  width: 36px;
+  height: 36px;
+  font-size: 14px;
+}
+
+.size-lg .dot svg { width: 16px; height: 16px; }
+.size-lg .label { font-size: 12px; }
+.size-lg .connector { min-width: 32px; }

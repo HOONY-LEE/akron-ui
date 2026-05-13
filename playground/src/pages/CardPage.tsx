@@ -1,5 +1,4 @@
-import { Card } from "@sunghoon_lee/akron-ui";
-import { useToast } from "@sunghoon_lee/akron-ui";
+import { Card, useToast } from "@sunghoon_lee/akron-ui";
 import { LiveCodeBlock } from "../components/LiveCodeBlock";
 
 export function CardPage() {
@@ -34,21 +33,31 @@ export function CardPage() {
           <code className="inline-code">clickable</code> prop을 추가하면 hover 시 그림자가 강조되며,
           키보드 접근성(tab, Enter)도 지원됩니다.
         </p>
-        <div className="example-label">Editable Example</div>
-        <div className="preview-box" style={{ gap: 16 }}>
-          <Card clickable onClick={() => toast({ type: "info", title: "카드 1 클릭" })}>
-            <h3 style={{ margin: "0 0 4px", fontSize: 15, fontWeight: 600 }}>인사 관리</h3>
-            <p style={{ margin: 0, color: "var(--docs-text-secondary)", fontSize: 13 }}>사원 정보 조회</p>
-          </Card>
-          <Card clickable onClick={() => toast({ type: "info", title: "카드 2 클릭" })}>
-            <h3 style={{ margin: "0 0 4px", fontSize: 15, fontWeight: 600 }}>급여 관리</h3>
-            <p style={{ margin: 0, color: "var(--docs-text-secondary)", fontSize: 13 }}>급여 명세서 확인</p>
-          </Card>
-          <Card clickable onClick={() => toast({ type: "info", title: "카드 3 클릭" })}>
-            <h3 style={{ margin: "0 0 4px", fontSize: 15, fontWeight: 600 }}>근태 관리</h3>
-            <p style={{ margin: 0, color: "var(--docs-text-secondary)", fontSize: 13 }}>출퇴근 기록 조회</p>
-          </Card>
-        </div>
+        <LiveCodeBlock
+          noInline
+          code={`function Demo() {
+  const [clicked, setClicked] = useState("");
+  return (
+    <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
+      <Card clickable onClick={() => setClicked("인사 관리")}>
+        <h3 style={{ margin: "0 0 4px", fontSize: 15, fontWeight: 600 }}>인사 관리</h3>
+        <p style={{ margin: 0, color: "var(--ark-color-text-secondary)", fontSize: 13 }}>사원 정보 조회</p>
+      </Card>
+      <Card clickable onClick={() => setClicked("급여 관리")}>
+        <h3 style={{ margin: "0 0 4px", fontSize: 15, fontWeight: 600 }}>급여 관리</h3>
+        <p style={{ margin: 0, color: "var(--ark-color-text-secondary)", fontSize: 13 }}>급여 명세서 확인</p>
+      </Card>
+      <Card clickable onClick={() => setClicked("근태 관리")}>
+        <h3 style={{ margin: "0 0 4px", fontSize: 15, fontWeight: 600 }}>근태 관리</h3>
+        <p style={{ margin: 0, color: "var(--ark-color-text-secondary)", fontSize: 13 }}>출퇴근 기록 조회</p>
+      </Card>
+      {clicked && <p style={{ width: "100%", margin: 0, fontSize: 13, color: "var(--ark-color-primary-500)" }}>{clicked} 클릭됨</p>}
+    </div>
+  );
+}
+render(<Demo />)`}
+          scope={{ Card }}
+        />
       </section>
 
       <section className="docs-section" id="interface">
