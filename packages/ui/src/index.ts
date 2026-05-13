@@ -389,3 +389,9 @@ export type { SignaturePadProps, SignaturePadRef } from "./components/SignatureP
 
 export { OrgChart } from "./components/OrgChart";
 export type { OrgChartProps, OrgNode, OrgChartDirection } from "./components/OrgChart";
+
+export { FilterBar } from "./components/FilterBar";
+export type { FilterBarProps, FilterField, FilterOption, FilterValues } from "./components/FilterBar";
+
+export { DataCard } from "./components/DataCard";
+export type { DataCardProps, DataCardField, DataCardSize, DataCardVariant } from "./components/DataCard";

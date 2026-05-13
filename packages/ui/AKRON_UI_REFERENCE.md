@@ -4999,3 +4999,90 @@ interface OrgNode {
   expanded?: boolean;   // 기본 true
 }
 ```
+
+---
+
+## FilterBar
+
+검색/필터 툴바. 텍스트 검색, 셀렉트 필터, 날짜 필터를 하나의 바에 구성.
+
+```tsx
+import { FilterBar } from "@sunghoon_lee/akron-ui";
+
+<FilterBar
+  fields={[
+    { key: "status", label: "상태", type: "select", options: [{ value: "active", label: "활성" }] },
+    { key: "date", label: "날짜", type: "date" },
+  ]}
+  onSearch={(values) => console.log(values)}
+/>
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| fields | FilterField[] | 필수 | 필터 필드 목록 |
+| values | FilterValues | - | 현재 필터 값 (controlled) |
+| onChange | (values) => void | - | 필터 변경 콜백 |
+| onSearch | (values) => void | - | 검색 클릭 콜백 |
+| onReset | () => void | - | 초기화 콜백 |
+| showSearch | boolean | true | 검색 입력 표시 |
+| compact | boolean | false | 컴팩트 모드 |
+
+### FilterField
+
+```ts
+interface FilterField {
+  key: string;
+  label: string;
+  type: "text" | "select" | "date";
+  options?: { value: string; label: string }[];
+  placeholder?: string;
+}
+```
+
+---
+
+## DataCard
+
+구조화된 데이터를 키-값 그리드로 표시하는 카드. 헤더/푸터/구분선 지원.
+
+```tsx
+import { DataCard } from "@sunghoon_lee/akron-ui";
+
+<DataCard
+  title="사용자 정보"
+  columns={2}
+  fields={[
+    { label: "이름", value: "김서연" },
+    { label: "부서", value: "개발팀" },
+    { label: "소개", value: "프론트엔드 개발자", fullWidth: true },
+  ]}
+/>
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| title | string | - | 카드 제목 |
+| subtitle | string | - | 부제목 |
+| headerAction | ReactNode | - | 헤더 우측 액션 |
+| fields | DataCardField[] | 필수 | 필드 목록 |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 크기 |
+| variant | 'default' \| 'outlined' \| 'filled' | 'default' | 변형 |
+| columns | number | 2 | 컬럼 수 |
+| footer | ReactNode | - | footer |
+| divider | boolean | false | 구분선 |
+
+### DataCardField
+
+```ts
+interface DataCardField {
+  label: string;
+  value: ReactNode;
+  fullWidth?: boolean;
+  icon?: ReactNode;
+}
+```

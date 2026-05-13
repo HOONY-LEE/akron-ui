@@ -768,6 +768,17 @@ const tocData: Record<string, { label: string; id: string; indent?: boolean }[]>
     { label: "수평 레이아웃", id: "horizontal" },
     { label: "인터페이스", id: "interface" },
   ],
+  "filter-bar": [
+    { label: "기본 사용", id: "basic" },
+    { label: "컴팩트 모드", id: "compact" },
+    { label: "인터페이스", id: "interface" },
+  ],
+  "data-card": [
+    { label: "기본 사용", id: "basic" },
+    { label: "변형", id: "variants" },
+    { label: "구분선", id: "divider" },
+    { label: "인터페이스", id: "interface" },
+  ],
   "command-palette": [
     { label: "기본 사용", id: "basic" },
     { label: "단축키 힌트", id: "shortcuts" },
