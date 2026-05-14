@@ -82,6 +82,10 @@ import { HoverCardPage } from "./pages/HoverCardPage";
 import { MediaCardPage } from "./pages/MediaCardPage";
 import { MasonryGridPage } from "./pages/MasonryGridPage";
 import { ChatBubblePage } from "./pages/ChatBubblePage";
+import { ChatChannelListPage } from "./pages/ChatChannelListPage";
+import { ChatMessagePage } from "./pages/ChatMessagePage";
+import { ChatInputPage } from "./pages/ChatInputPage";
+import { ChatHeaderPage } from "./pages/ChatHeaderPage";
 import { GradientTextPage } from "./pages/GradientTextPage";
 import { ConfirmDialogPage } from "./pages/ConfirmDialogPage";
 import { CalloutPage } from "./pages/CalloutPage";
@@ -297,7 +301,11 @@ export const pages: PageMeta[] = [
   { path: "icon", component: IconPage, label: "Icon", category: "기타" },
   { path: "divider", component: DividerPage, label: "Divider", category: "기타" },
   { path: "form", component: FormPage, label: "Form", category: "기타" },
-  { path: "chat", component: ChatPage, label: "Chat", category: "채팅" },
+  { path: "chat", component: ChatPage, label: "Chat (전체 데모)", category: "채팅" },
+  { path: "chat-channel-list", component: ChatChannelListPage, label: "ChatChannelList", category: "채팅" },
+  { path: "chat-header", component: ChatHeaderPage, label: "ChatHeader", category: "채팅" },
+  { path: "chat-message", component: ChatMessagePage, label: "ChatMessage", category: "채팅" },
+  { path: "chat-input", component: ChatInputPage, label: "ChatInput", category: "채팅" },
   { path: "chat-bubble", component: ChatBubblePage, label: "ChatBubble", category: "채팅" },
   { path: "gradient-text", component: GradientTextPage, label: "GradientText", category: "기타" },
   { path: "confirm-dialog", component: ConfirmDialogPage, label: "ConfirmDialog", category: "오버레이" },

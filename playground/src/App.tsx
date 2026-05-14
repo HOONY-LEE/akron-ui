@@ -29,6 +29,7 @@ import {
   PenLine, ArrowRightLeft, Code2, PenTool, FlipHorizontal, DollarSign,
   ListOrdered, TrendingUp, StickyNote, History, Gauge, Terminal, GitCompare,
   GripVertical, Braces, Binary, ListTodo, PieChart, Zap, Scan, GitBranch,
+  MessagesSquare, Send, PanelLeftClose,
 } from "lucide-react";
 import { SearchBox } from "./components/SearchBox";
 import { TableOfContents } from "./components/TableOfContents";
@@ -156,7 +157,11 @@ const pageIcons: Record<string, ReactNode> = {
   icon: <Sparkles size={16} />,
   divider: <Minus size={16} />,
   form: <FileText size={16} />,
-  chat: <MessageCircle size={16} />,
+  chat: <MessagesSquare size={16} />,
+  "chat-channel-list": <PanelLeftClose size={16} />,
+  "chat-header": <PanelTop size={16} />,
+  "chat-message": <MessageCircle size={16} />,
+  "chat-input": <Send size={16} />,
   "chat-bubble": <MessageCircle size={16} />,
   "gradient-text": <Paintbrush2 size={16} />,
   "countdown-timer": <Hourglass size={16} />,
