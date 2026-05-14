@@ -156,6 +156,7 @@ const pageIcons: Record<string, ReactNode> = {
   icon: <Sparkles size={16} />,
   divider: <Minus size={16} />,
   form: <FileText size={16} />,
+  chat: <MessageCircle size={16} />,
   "chat-bubble": <MessageCircle size={16} />,
   "gradient-text": <Paintbrush2 size={16} />,
   "countdown-timer": <Hourglass size={16} />,

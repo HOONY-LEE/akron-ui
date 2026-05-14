@@ -174,6 +174,7 @@ import { CopyFieldPage } from "./pages/CopyFieldPage";
 import { InfoTipPage } from "./pages/InfoTipPage";
 import { GridListPage } from "./pages/GridListPage";
 import { ThemeTogglePage } from "./pages/ThemeTogglePage";
+import { ChatPage } from "./pages/ChatPage";
 
 export interface PageMeta {
   component: ComponentType;
@@ -190,6 +191,7 @@ export const categories = [
   "입력",
   "표시",
   "데이터",
+  "채팅",
   "네비게이션",
   "오버레이",
   "기타",
@@ -295,7 +297,8 @@ export const pages: PageMeta[] = [
   { path: "icon", component: IconPage, label: "Icon", category: "기타" },
   { path: "divider", component: DividerPage, label: "Divider", category: "기타" },
   { path: "form", component: FormPage, label: "Form", category: "기타" },
-  { path: "chat-bubble", component: ChatBubblePage, label: "ChatBubble", category: "기타" },
+  { path: "chat", component: ChatPage, label: "Chat", category: "채팅" },
+  { path: "chat-bubble", component: ChatBubblePage, label: "ChatBubble", category: "채팅" },
   { path: "gradient-text", component: GradientTextPage, label: "GradientText", category: "기타" },
   { path: "confirm-dialog", component: ConfirmDialogPage, label: "ConfirmDialog", category: "오버레이" },
   { path: "callout", component: CalloutPage, label: "Callout", category: "표시" },
