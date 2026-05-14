@@ -1,0 +1,118 @@
+/* ─── Root ─────────────────────────────────────────────────────────────────── */
+
+.root {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--ark-spacing-6);
+  font-family: var(--ark-font-family);
+}
+
+.rootLegendBottom {
+  flex-direction: column;
+  align-items: center;
+}
+
+.rootLegendRight {
+  flex-direction: row;
+  align-items: center;
+}
+
+/* ─── Chart wrapper ───────────────────────────────────────────────────────── */
+
+.chartWrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ─── SVG ─────────────────────────────────────────────────────────────────── */
+
+.chart {
+  transform: rotate(-90deg);
+}
+
+/* ─── Segment ─────────────────────────────────────────────────────────────── */
+
+.segment {
+  transition: stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate .segment {
+  animation: segmentGrow 800ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes segmentGrow {
+  from {
+    stroke-dashoffset: var(--circumference, 0);
+  }
+  to {
+    stroke-dashoffset: var(--dash-offset, 0);
+  }
+}
+
+/* ─── Center label ────────────────────────────────────────────────────────── */
+
+.centerLabel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  pointer-events: none;
+  color: var(--ark-color-text);
+  font-weight: var(--ark-font-weight-semibold);
+  line-height: var(--ark-line-height-tight);
+}
+
+.centerLabelSm {
+  font-size: var(--ark-font-size-sm);
+}
+
+.centerLabelMd {
+  font-size: var(--ark-font-size-lg);
+}
+
+.centerLabelLg {
+  font-size: var(--ark-font-size-xl);
+}
+
+/* ─── Legend ───────────────────────────────────────────────────────────────── */
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-2);
+}
+
+.legendItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--ark-spacing-2);
+  font-size: var(--ark-font-size-sm);
+  color: var(--ark-color-text);
+  line-height: var(--ark-line-height-normal);
+}
+
+.legendDot {
+  width: var(--ark-spacing-2);
+  height: var(--ark-spacing-2);
+  border-radius: var(--ark-radius-full);
+  flex-shrink: 0;
+}
+
+.legendName {
+  color: var(--ark-color-text-secondary);
+  flex: 1;
+}
+
+.legendValue {
+  font-weight: var(--ark-font-weight-medium);
+  color: var(--ark-color-text);
+}

@@ -5217,3 +5217,193 @@ import { BarList } from "@sunghoon_lee/akron-ui";
 | color | string | 개별 색상 |
 | icon | ReactNode | 아이콘 |
 | href | string | 링크 URL |
+
+---
+
+## Sparkline
+
+미니 인라인 SVG 차트. 대시보드나 테이블 셀에서 트렌드를 간결하게 표시합니다.
+
+```tsx
+import { Sparkline } from "@sunghoon_lee/akron-ui";
+
+<Sparkline data={[5, 10, 5, 20, 8, 15, 25]} />
+<Sparkline variant="area" data={[5, 12, 8, 20, 15]} color="var(--ark-color-success-500)" />
+<Sparkline variant="bar" data={[5, 10, 15, 8, 20]} />
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| data | number[] | 필수 | 값 배열 |
+| variant | 'line' \| 'area' \| 'bar' | 'line' | 차트 유형 |
+| color | string | primary-500 | 색상 |
+| width | number | 120 | 너비 (px) |
+| height | number | 32 | 높이 (px) |
+| strokeWidth | number | 2 | 선 두께 |
+| showDots | boolean | false | 점 표시 |
+| fillOpacity | number | 0.1 | 영역 투명도 |
+| curveType | 'linear' \| 'monotone' | 'monotone' | 곡선 유형 |
+| animate | boolean | true | 애니메이션 |
+
+---
+
+## DonutChart
+
+도넛/파이 차트. SVG 기반으로 비율 데이터를 시각화합니다.
+
+```tsx
+import { DonutChart } from "@sunghoon_lee/akron-ui";
+
+<DonutChart
+  data={[
+    { name: "데스크톱", value: 5400 },
+    { name: "모바일", value: 3200 },
+    { name: "태블릿", value: 1200 },
+  ]}
+/>
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| data | DonutChartItem[] | 필수 | 데이터 항목 |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 크기 (120/180/240px) |
+| thickness | number | 0.3 | 두께 비율 (0-1, 1=파이) |
+| showLabel | boolean | true | 중앙 라벨 표시 |
+| label | string | - | 커스텀 중앙 라벨 |
+| valueFormatter | (value, total) => string | - | 값 포맷터 |
+| animate | boolean | true | 애니메이션 |
+| showLegend | boolean | true | 범례 표시 |
+| legendPosition | 'bottom' \| 'right' | 'bottom' | 범례 위치 |
+
+### DonutChartItem
+
+| 필드 | 타입 | 설명 |
+|------|------|------|
+| name | string | 항목 이름 (필수) |
+| value | number | 값 (필수) |
+| color | string | 개별 색상 |
+
+---
+
+## HeatMap
+
+캘린더 히트맵. GitHub 기여도 그래프처럼 날짜별 데이터 밀도를 시각화합니다.
+
+```tsx
+import { HeatMap } from "@sunghoon_lee/akron-ui";
+
+<HeatMap
+  data={[
+    { date: "2025-01-15", value: 5 },
+    { date: "2025-01-16", value: 12 },
+  ]}
+  color="green"
+/>
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| data | HeatMapValue[] | 필수 | 날짜별 값 배열 |
+| startDate | Date | 1년 전 | 시작 날짜 |
+| endDate | Date | 오늘 | 종료 날짜 |
+| color | 'green' \| 'blue' \| 'purple' \| 'orange' | 'green' | 색상 팔레트 |
+| cellSize | number | 12 | 셀 크기 (px) |
+| cellGap | number | 2 | 셀 간격 (px) |
+| showMonthLabels | boolean | true | 월 라벨 표시 |
+| showDayLabels | boolean | true | 요일 라벨 표시 |
+| tooltipFormatter | (date, value) => string | - | 툴팁 포맷터 |
+| onCellClick | (date, value) => void | - | 셀 클릭 콜백 |
+
+### HeatMapValue
+
+| 필드 | 타입 | 설명 |
+|------|------|------|
+| date | string | 날짜 (YYYY-MM-DD) |
+| value | number | 값 |
+
+---
+
+## CommentThread
+
+댓글 스레드 컴포넌트. 중첩 답글을 지원하는 토론 UI입니다.
+
+```tsx
+import { CommentThread } from "@sunghoon_lee/akron-ui";
+
+<CommentThread
+  comments={[
+    {
+      id: "1",
+      author: "김철수",
+      content: "좋은 의견이네요!",
+      timestamp: new Date(),
+      replies: [
+        { id: "2", author: "이영희", content: "감사합니다.", timestamp: new Date() },
+      ],
+    },
+  ]}
+  onReply={(parentId, content) => {}}
+/>
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| comments | CommentItem[] | 필수 | 댓글 목록 |
+| size | 'sm' \| 'md' | 'md' | 크기 |
+| maxDepth | number | 3 | 최대 중첩 깊이 |
+| showReplyButton | boolean | true | 답글 버튼 표시 |
+| showTimestamp | boolean | true | 시간 표시 |
+| onReply | (parentId, content) => void | - | 답글 콜백 |
+| onEdit | (commentId, content) => void | - | 수정 콜백 |
+| onDelete | (commentId) => void | - | 삭제 콜백 |
+| replyPlaceholder | string | '답글 작성...' | 답글 플레이스홀더 |
+| emptyMessage | string | '댓글이 없습니다.' | 빈 상태 메시지 |
+
+### CommentItem
+
+| 필드 | 타입 | 설명 |
+|------|------|------|
+| id | string | 고유 ID (필수) |
+| author | string | 작성자 (필수) |
+| avatar | string | 아바타 이미지 URL |
+| content | string | 댓글 내용 (필수) |
+| timestamp | string \| Date | 작성 시간 (필수) |
+| replies | CommentItem[] | 중첩 답글 |
+| isEdited | boolean | 수정 여부 |
+
+---
+
+## FilePreview
+
+파일 미리보기 카드. 파일 유형별 아이콘과 정보를 표시합니다.
+
+```tsx
+import { FilePreview } from "@sunghoon_lee/akron-ui";
+
+<FilePreview name="보고서.pdf" type="application/pdf" size={2048000} onDownload={() => {}} />
+<FilePreview variant="list" name="계약서.docx" type="text/plain" size={45000} />
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| name | string | 필수 | 파일 이름 |
+| size | number | - | 파일 크기 (bytes) |
+| type | string | - | MIME 타입 또는 확장자 |
+| thumbnail | string | - | 미리보기 이미지 URL |
+| variant | 'card' \| 'list' \| 'compact' | 'card' | 변형 |
+| fileSize | 'sm' \| 'md' \| 'lg' | 'md' | 컴포넌트 크기 |
+| onDownload | () => void | - | 다운로드 콜백 |
+| onDelete | () => void | - | 삭제 콜백 |
+| onPreview | () => void | - | 미리보기 콜백 |
+| progress | number | - | 업로드 진행률 (0-100) |
+| error | string | - | 에러 메시지 |

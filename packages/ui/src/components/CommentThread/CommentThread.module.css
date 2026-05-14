@@ -1,0 +1,294 @@
+/* ─── Root ─────────────────────────────────────────────────────────────────── */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-4);
+  font-family: var(--ark-font-family);
+}
+
+/* ─── Comment ──────────────────────────────────────────────────────────────── */
+
+.comment {
+  display: flex;
+  flex-direction: row;
+  gap: var(--ark-spacing-3);
+}
+
+/* ─── Avatar ───────────────────────────────────────────────────────────────── */
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--ark-radius-full);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.avatarImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--ark-radius-full);
+}
+
+.initials {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--ark-font-size-xs);
+  font-weight: var(--ark-font-weight-semibold);
+  color: var(--ark-color-text-inverse);
+  border-radius: var(--ark-radius-full);
+  user-select: none;
+  line-height: 1;
+}
+
+/* ─── Content ──────────────────────────────────────────────────────────────── */
+
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: var(--ark-spacing-2);
+}
+
+.author {
+  font-size: var(--ark-font-size-sm);
+  font-weight: var(--ark-font-weight-medium);
+  color: var(--ark-color-text);
+  line-height: var(--ark-line-height-tight);
+}
+
+.timestamp {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-secondary);
+  line-height: var(--ark-line-height-tight);
+}
+
+.edited {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-secondary);
+  font-style: italic;
+  line-height: var(--ark-line-height-tight);
+}
+
+.body {
+  margin-top: var(--ark-spacing-1);
+  font-size: var(--ark-font-size-sm);
+  color: var(--ark-color-text);
+  line-height: var(--ark-line-height-normal);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ─── Actions ──────────────────────────────────────────────────────────────── */
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  gap: var(--ark-spacing-2);
+  margin-top: var(--ark-spacing-1);
+  opacity: 0;
+  transition: opacity var(--ark-transition-fast);
+}
+
+.comment:hover .actions,
+.comment:focus-within .actions {
+  opacity: 1;
+}
+
+.actionBtn {
+  background: none;
+  border: none;
+  padding: var(--ark-spacing-0-5) var(--ark-spacing-1);
+  font-size: var(--ark-font-size-xs);
+  font-family: var(--ark-font-family);
+  color: var(--ark-color-text-secondary);
+  cursor: pointer;
+  border-radius: var(--ark-radius-sm);
+  line-height: var(--ark-line-height-tight);
+  transition: color var(--ark-transition-fast), background-color var(--ark-transition-fast);
+}
+
+.actionBtn:hover {
+  color: var(--ark-color-text);
+  background-color: var(--ark-color-bg-muted);
+}
+
+.actionBtn:active {
+  background-color: var(--ark-color-gray-200);
+}
+
+.actionBtn:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.actionBtn:disabled {
+  color: var(--ark-color-text-disabled);
+  cursor: not-allowed;
+  background: none;
+}
+
+/* ─── Replies ──────────────────────────────────────────────────────────────── */
+
+.replies {
+  margin-left: var(--ark-spacing-6);
+  padding-left: var(--ark-spacing-4);
+  border-left: 2px solid var(--ark-color-border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-4);
+  margin-top: var(--ark-spacing-3);
+}
+
+/* ─── Reply Box ────────────────────────────────────────────────────────────── */
+
+.replyBox {
+  margin-top: var(--ark-spacing-2);
+}
+
+.replyTextarea {
+  width: 100%;
+  min-height: 64px;
+  padding: var(--ark-spacing-2) var(--ark-spacing-3);
+  font-size: var(--ark-font-size-sm);
+  font-family: var(--ark-font-family);
+  color: var(--ark-color-text);
+  background-color: var(--ark-color-bg);
+  border: 1px solid var(--ark-color-border);
+  border-radius: var(--ark-radius-md);
+  resize: vertical;
+  line-height: var(--ark-line-height-normal);
+  transition: border-color var(--ark-transition-fast);
+  box-sizing: border-box;
+}
+
+.replyTextarea::placeholder {
+  color: var(--ark-color-text-disabled);
+}
+
+.replyTextarea:focus {
+  outline: none;
+  border-color: var(--ark-color-primary-500);
+}
+
+.replyTextarea:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.replyActions {
+  display: flex;
+  flex-direction: row;
+  gap: var(--ark-spacing-2);
+  margin-top: var(--ark-spacing-2);
+  justify-content: flex-end;
+}
+
+.replySubmitBtn {
+  padding: var(--ark-spacing-1) var(--ark-spacing-3);
+  font-size: var(--ark-font-size-xs);
+  font-family: var(--ark-font-family);
+  font-weight: var(--ark-font-weight-medium);
+  color: var(--ark-color-text-inverse);
+  background-color: var(--ark-color-primary-500);
+  border: none;
+  border-radius: var(--ark-radius-md);
+  cursor: pointer;
+  line-height: var(--ark-line-height-normal);
+  transition: background-color var(--ark-transition-fast);
+}
+
+.replySubmitBtn:hover {
+  background-color: var(--ark-color-primary-600);
+}
+
+.replySubmitBtn:active {
+  background-color: var(--ark-color-primary-700);
+}
+
+.replySubmitBtn:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.replySubmitBtn:disabled {
+  background-color: var(--ark-color-gray-300);
+  cursor: not-allowed;
+}
+
+.replyCancelBtn {
+  padding: var(--ark-spacing-1) var(--ark-spacing-3);
+  font-size: var(--ark-font-size-xs);
+  font-family: var(--ark-font-family);
+  font-weight: var(--ark-font-weight-medium);
+  color: var(--ark-color-text-secondary);
+  background: none;
+  border: 1px solid var(--ark-color-border);
+  border-radius: var(--ark-radius-md);
+  cursor: pointer;
+  line-height: var(--ark-line-height-normal);
+  transition: color var(--ark-transition-fast), background-color var(--ark-transition-fast);
+}
+
+.replyCancelBtn:hover {
+  color: var(--ark-color-text);
+  background-color: var(--ark-color-bg-muted);
+}
+
+.replyCancelBtn:active {
+  background-color: var(--ark-color-gray-200);
+}
+
+.replyCancelBtn:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+/* ─── Empty ─────────────────────────────────────────────────────────────────── */
+
+.empty {
+  text-align: center;
+  color: var(--ark-color-text-secondary);
+  font-size: var(--ark-font-size-sm);
+  padding: var(--ark-spacing-8) var(--ark-spacing-4);
+  line-height: var(--ark-line-height-normal);
+}
+
+/* ─── Size: sm ─────────────────────────────────────────────────────────────── */
+
+.sm .avatar,
+.sm .comment > .avatar {
+  width: 24px;
+  height: 24px;
+}
+
+.sm .initials {
+  font-size: 10px;
+}
+
+.sm .author {
+  font-size: var(--ark-font-size-xs);
+}
+
+.sm .body {
+  font-size: var(--ark-font-size-xs);
+}
+
+.sm .comment {
+  gap: var(--ark-spacing-2);
+}
+
+.sm .replies {
+  margin-left: var(--ark-spacing-4);
+  padding-left: var(--ark-spacing-3);
+}

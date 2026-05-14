@@ -407,3 +407,18 @@ export type { StatusDotProps, StatusDotColor, StatusDotSize } from "./components
 
 export { BarList } from "./components/BarList";
 export type { BarListProps, BarListItem, BarListSize } from "./components/BarList";
+
+export { Sparkline } from "./components/Sparkline";
+export type { SparklineProps, SparklineVariant } from "./components/Sparkline";
+
+export { HeatMap } from "./components/HeatMap";
+export type { HeatMapProps, HeatMapValue, HeatMapColor } from "./components/HeatMap";
+
+export { DonutChart } from "./components/DonutChart";
+export type { DonutChartProps, DonutChartItem, DonutChartSize } from "./components/DonutChart";
+
+export { CommentThread } from "./components/CommentThread";
+export type { CommentThreadProps, CommentItem, CommentThreadSize } from "./components/CommentThread";
+
+export { FilePreview } from "./components/FilePreview";
+export type { FilePreviewProps, FilePreviewSize, FilePreviewVariant } from "./components/FilePreview";

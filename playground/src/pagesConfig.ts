@@ -129,6 +129,11 @@ import { ApprovalFlowPage } from "./pages/ApprovalFlowPage";
 import { SearchHighlightPage } from "./pages/SearchHighlightPage";
 import { StatusDotPage } from "./pages/StatusDotPage";
 import { BarListPage } from "./pages/BarListPage";
+import { SparklinePage } from "./pages/SparklinePage";
+import { DonutChartPage } from "./pages/DonutChartPage";
+import { HeatMapPage } from "./pages/HeatMapPage";
+import { CommentThreadPage } from "./pages/CommentThreadPage";
+import { FilePreviewPage } from "./pages/FilePreviewPage";
 
 export interface PageMeta {
   component: ComponentType;
@@ -298,6 +303,11 @@ export const pages: PageMeta[] = [
   { path: "search-highlight", component: SearchHighlightPage, label: "SearchHighlight", category: "표시" },
   { path: "status-dot", component: StatusDotPage, label: "StatusDot", category: "표시" },
   { path: "bar-list", component: BarListPage, label: "BarList", category: "데이터 표시" },
+  { path: "sparkline", component: SparklinePage, label: "Sparkline", category: "데이터 표시" },
+  { path: "donut-chart", component: DonutChartPage, label: "DonutChart", category: "데이터 표시" },
+  { path: "heat-map", component: HeatMapPage, label: "HeatMap", category: "데이터 표시" },
+  { path: "comment-thread", component: CommentThreadPage, label: "CommentThread", category: "기타" },
+  { path: "file-preview", component: FilePreviewPage, label: "FilePreview", category: "표시" },
 ];
 
 export function getPageByPath(pathname: string): PageMeta | undefined {

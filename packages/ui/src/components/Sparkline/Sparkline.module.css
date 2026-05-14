@@ -1,0 +1,77 @@
+.root {
+  display: inline-flex;
+  vertical-align: middle;
+  overflow: visible;
+}
+
+/* ── Line / Area path ── */
+
+.path {
+  fill: none;
+  transition: stroke-dashoffset var(--ark-transition-slow);
+}
+
+.pathAnimated {
+  animation: drawIn var(--ark-transition-slow) forwards;
+}
+
+@keyframes drawIn {
+  from {
+    stroke-dashoffset: var(--ark-sparkline-dash-length);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ── Area fill ── */
+
+.area {
+  transition: opacity var(--ark-transition-fast);
+}
+
+.areaAnimated {
+  animation: fadeIn var(--ark-transition-slow) forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ── Dots ── */
+
+.dot {
+  transition: r var(--ark-transition-fast);
+}
+
+/* ── Bar ── */
+
+.bar {
+  rx: var(--ark-radius-sm);
+  ry: var(--ark-radius-sm);
+  transition: opacity var(--ark-transition-fast);
+}
+
+.bar:hover {
+  opacity: 0.8;
+}
+
+.barAnimated {
+  animation: barGrow var(--ark-transition-normal) forwards;
+  transform-origin: bottom;
+}
+
+@keyframes barGrow {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}

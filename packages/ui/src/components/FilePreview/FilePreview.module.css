@@ -1,0 +1,276 @@
+/* ── Root ── */
+.root {
+  position: relative;
+  border: 1px solid var(--ark-color-border);
+  border-radius: var(--ark-radius-lg);
+  background-color: var(--ark-color-bg);
+  font-family: var(--ark-font-family);
+  overflow: hidden;
+  transition: box-shadow var(--ark-transition-fast),
+    border-color var(--ark-transition-fast);
+}
+
+.root:hover {
+  box-shadow: var(--ark-shadow-sm);
+}
+
+/* ── Variant: card ── */
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.card .iconArea {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--ark-color-bg-muted);
+  border-bottom: 1px solid var(--ark-color-border);
+  overflow: hidden;
+}
+
+/* ── Variant: list ── */
+.list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.list .iconArea {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--ark-color-bg-muted);
+  flex-shrink: 0;
+}
+
+/* ── Variant: compact ── */
+.compact {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: var(--ark-radius-md);
+}
+
+.compact .iconArea {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ── Size: sm ── */
+.sm.card .iconArea {
+  padding: var(--ark-spacing-4);
+}
+
+.sm.list .iconArea,
+.sm.compact .iconArea {
+  padding: var(--ark-spacing-2);
+}
+
+.sm .info {
+  padding: var(--ark-spacing-2);
+  gap: var(--ark-spacing-0-5);
+}
+
+.sm .name {
+  font-size: var(--ark-font-size-xs);
+}
+
+.sm .fileSize {
+  font-size: 10px;
+}
+
+/* ── Size: md ── */
+.md.card .iconArea {
+  padding: var(--ark-spacing-6);
+}
+
+.md.list .iconArea,
+.md.compact .iconArea {
+  padding: var(--ark-spacing-3);
+}
+
+.md .info {
+  padding: var(--ark-spacing-3);
+  gap: var(--ark-spacing-1);
+}
+
+.md .name {
+  font-size: var(--ark-font-size-sm);
+}
+
+.md .fileSize {
+  font-size: var(--ark-font-size-xs);
+}
+
+/* ── Size: lg ── */
+.lg.card .iconArea {
+  padding: var(--ark-spacing-8);
+}
+
+.lg.list .iconArea,
+.lg.compact .iconArea {
+  padding: var(--ark-spacing-4);
+}
+
+.lg .info {
+  padding: var(--ark-spacing-4);
+  gap: var(--ark-spacing-1);
+}
+
+.lg .name {
+  font-size: var(--ark-font-size-md);
+}
+
+.lg .fileSize {
+  font-size: var(--ark-font-size-sm);
+}
+
+/* ── Icon area ── */
+.iconArea {
+  color: var(--ark-color-text-secondary);
+}
+
+/* ── Thumbnail ── */
+.thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card .thumbnail {
+  max-height: 160px;
+}
+
+.list .thumbnail,
+.compact .thumbnail {
+  border-radius: var(--ark-radius-sm);
+}
+
+.sm .thumbnail {
+  width: 24px;
+  height: 24px;
+}
+
+.md.list .thumbnail,
+.md.compact .thumbnail {
+  width: 40px;
+  height: 40px;
+}
+
+.lg.list .thumbnail,
+.lg.compact .thumbnail {
+  width: 56px;
+  height: 56px;
+}
+
+/* ── Info ── */
+.info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.name {
+  font-weight: var(--ark-font-weight-medium);
+  color: var(--ark-color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fileSize {
+  color: var(--ark-color-text-secondary);
+  line-height: var(--ark-line-height-normal);
+}
+
+/* ── Actions ── */
+.actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--ark-spacing-1);
+  opacity: 0;
+  transition: opacity var(--ark-transition-fast);
+  padding-right: var(--ark-spacing-2);
+}
+
+.root:hover .actions {
+  opacity: 1;
+}
+
+.card .actions {
+  position: absolute;
+  top: var(--ark-spacing-2);
+  right: var(--ark-spacing-2);
+  opacity: 0;
+  padding-right: 0;
+}
+
+.actionBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: var(--ark-radius-md);
+  background-color: var(--ark-color-bg);
+  color: var(--ark-color-text-secondary);
+  cursor: pointer;
+  transition: background-color var(--ark-transition-fast),
+    color var(--ark-transition-fast);
+}
+
+.actionBtn:hover {
+  background-color: var(--ark-color-bg-muted);
+  color: var(--ark-color-text);
+}
+
+.actionBtn:active {
+  background-color: var(--ark-color-gray-200);
+}
+
+.actionBtn:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.actionBtn:disabled {
+  color: var(--ark-color-text-disabled);
+  cursor: not-allowed;
+  background-color: transparent;
+}
+
+/* ── Progress bar ── */
+.progressBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: var(--ark-color-bg-muted);
+}
+
+.progressFill {
+  height: 100%;
+  background-color: var(--ark-color-primary-500);
+  transition: width var(--ark-transition-normal);
+  border-radius: 0 var(--ark-radius-sm) var(--ark-radius-sm) 0;
+}
+
+/* ── Error state ── */
+.error {
+  border-color: var(--ark-color-error-500);
+}
+
+.errorText {
+  color: var(--ark-color-error-500);
+  font-size: var(--ark-font-size-xs);
+  line-height: var(--ark-line-height-normal);
+}

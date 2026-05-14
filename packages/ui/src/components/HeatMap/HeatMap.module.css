@@ -1,0 +1,31 @@
+.root {
+  overflow-x: auto;
+}
+
+.svg {
+  display: block;
+}
+
+.cell {
+  cursor: default;
+  transition: fill 0.15s ease;
+}
+
+.cell.clickable {
+  cursor: pointer;
+}
+
+.cell:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.monthLabel {
+  font-size: var(--ark-font-size-xs);
+  fill: var(--ark-color-text-secondary);
+}
+
+.dayLabel {
+  font-size: var(--ark-font-size-xs);
+  fill: var(--ark-color-text-secondary);
+}
