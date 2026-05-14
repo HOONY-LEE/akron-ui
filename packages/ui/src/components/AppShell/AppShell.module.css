@@ -30,7 +30,7 @@
   min-width: 0;
   height: 100vh;
   overflow-y: auto;
-  overscroll-behavior-y: contain;
+  overscroll-behavior-y: none;
   transition: margin-left var(--ark-transition-normal);
 }
 

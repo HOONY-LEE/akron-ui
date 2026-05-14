@@ -12,7 +12,7 @@ export interface HeaderProps extends HTMLAttributes<HTMLElement> {
 
 export const Header = forwardRef<HTMLElement, HeaderProps>(
   ({ logo, nav, actions, menuButton, height = 56, sticky = false, className, children, style, ...rest }, ref) => {
-    const vars = { "--header-height": `${height}px` } as CSSProperties;
+    const vars = { "--ark-header-height": `${height}px` } as CSSProperties;
 
     return (
       <header

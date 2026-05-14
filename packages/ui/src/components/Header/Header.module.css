@@ -12,6 +12,7 @@
   position: sticky;
   top: 0;
   z-index: var(--ark-z-sticky);
+  backface-visibility: hidden;
 }
 
 .logo {
