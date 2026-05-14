@@ -1,0 +1,117 @@
+/* ─── Wrapper ──────────────────────────────────────────────────────────── */
+.wrapper {
+  border: 1px solid var(--akron-border);
+  border-radius: var(--akron-radius-lg);
+  background: var(--akron-bg);
+  overflow: hidden;
+}
+.closed { opacity: 0.85; }
+
+/* ─── Size ─────────────────────────────────────────────────────────────── */
+.sm .header { padding: var(--akron-space-2) var(--akron-space-3); }
+.sm .options { padding: 0 var(--akron-space-3); }
+.sm .footer { padding: var(--akron-space-2) var(--akron-space-3); }
+.sm .title { font-size: var(--akron-font-base); }
+.sm .option { font-size: var(--akron-font-sm); padding: var(--akron-space-1) var(--akron-space-2); }
+
+.md .header { padding: var(--akron-space-3) var(--akron-space-4); }
+.md .options { padding: 0 var(--akron-space-4); }
+.md .footer { padding: var(--akron-space-3) var(--akron-space-4); }
+.md .title { font-size: var(--akron-font-lg); }
+.md .option { font-size: var(--akron-font-base); padding: var(--akron-space-2) var(--akron-space-3); }
+
+.lg .header { padding: var(--akron-space-4) var(--akron-space-5); }
+.lg .options { padding: 0 var(--akron-space-5); }
+.lg .footer { padding: var(--akron-space-4) var(--akron-space-5); }
+.lg .title { font-size: var(--akron-font-xl); }
+.lg .option { font-size: var(--akron-font-lg); padding: var(--akron-space-2) var(--akron-space-3); }
+
+/* ─── Header ───────────────────────────────────────────────────────────── */
+.header { border-bottom: 1px solid var(--akron-border); }
+.title { font-weight: 600; color: var(--akron-text); margin: 0; }
+.description { font-size: var(--akron-font-sm); color: var(--akron-muted-text); margin: var(--akron-space-1) 0 0; }
+
+/* ─── Options ──────────────────────────────────────────────────────────── */
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--akron-space-2);
+  padding-top: var(--akron-space-3);
+  padding-bottom: var(--akron-space-3);
+}
+
+.option {
+  display: flex;
+  flex-direction: column;
+  gap: var(--akron-space-1);
+  width: 100%;
+  border: 1px solid var(--akron-border);
+  border-radius: var(--akron-radius-md);
+  background: var(--akron-bg);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  text-align: left;
+}
+.option:hover:not(:disabled) { border-color: var(--akron-primary); background: color-mix(in srgb, var(--akron-primary) 5%, transparent); }
+.option:disabled { cursor: default; }
+.option.selected { border-color: var(--akron-primary); background: color-mix(in srgb, var(--akron-primary) 8%, transparent); }
+
+.optionContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--akron-space-2);
+}
+
+.optionLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--akron-space-1);
+  font-weight: 500;
+  color: var(--akron-text);
+}
+.checkIcon { color: var(--akron-primary); flex-shrink: 0; }
+
+.voteInfo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--akron-space-2);
+  flex-shrink: 0;
+}
+.voteCount { font-size: var(--akron-font-sm); color: var(--akron-muted-text); }
+.votePct { font-weight: 600; color: var(--akron-text); font-size: var(--akron-font-sm); }
+
+/* ─── Bar ──────────────────────────────────────────────────────────────── */
+.barTrack {
+  height: 4px;
+  border-radius: var(--akron-radius-full);
+  background: var(--akron-muted);
+  overflow: hidden;
+}
+.barFill {
+  height: 100%;
+  border-radius: var(--akron-radius-full);
+  background: var(--akron-primary);
+  opacity: 0.4;
+  transition: width 0.4s ease;
+}
+.winnerFill { opacity: 1; }
+
+.winner { border-color: var(--akron-primary); }
+
+/* ─── Footer ───────────────────────────────────────────────────────────── */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--akron-border);
+}
+.totalVoters { font-size: var(--akron-font-sm); color: var(--akron-muted-text); }
+.closedBadge {
+  font-size: var(--akron-font-sm);
+  font-weight: 500;
+  color: var(--akron-danger);
+  background: color-mix(in srgb, var(--akron-danger) 10%, transparent);
+  padding: 2px var(--akron-space-2);
+  border-radius: var(--akron-radius-full);
+}

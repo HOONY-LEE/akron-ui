@@ -1,0 +1,102 @@
+/* ─── Wrapper ──────────────────────────────────────────────────────────── */
+.wrapper { display: inline-flex; }
+
+/* ─── Size ─────────────────────────────────────────────────────────────── */
+.sm .reactionChip { font-size: var(--akron-font-sm); padding: 2px var(--akron-space-1); gap: 4px; }
+.sm .emoji { font-size: 14px; }
+.md .reactionChip { font-size: var(--akron-font-base); padding: var(--akron-space-1) var(--akron-space-2); gap: var(--akron-space-1); }
+.md .emoji { font-size: 16px; }
+.lg .reactionChip { font-size: var(--akron-font-lg); padding: var(--akron-space-1) var(--akron-space-2); gap: var(--akron-space-1); }
+.lg .emoji { font-size: 20px; }
+
+/* ─── Reaction List ────────────────────────────────────────────────────── */
+.reactionList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--akron-space-1);
+  align-items: center;
+}
+
+/* ─── Reaction Chip ────────────────────────────────────────────────────── */
+.reactionChip {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--akron-border);
+  border-radius: var(--akron-radius-full);
+  background: var(--akron-bg);
+  color: var(--akron-text);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+  user-select: none;
+}
+.reactionChip:hover:not(:disabled) {
+  background: var(--akron-muted);
+  transform: scale(1.05);
+}
+.reactionChip:disabled { cursor: default; }
+.reactionChip.active {
+  background: color-mix(in srgb, var(--akron-primary) 12%, transparent);
+  border-color: var(--akron-primary);
+  color: var(--akron-primary);
+}
+
+.count { font-weight: 500; min-width: 1ch; text-align: center; }
+
+/* ─── Add Button ───────────────────────────────────────────────────────── */
+.addWrapper { position: relative; }
+
+.addBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--akron-space-1);
+  border: 1px dashed var(--akron-border);
+  border-radius: var(--akron-radius-full);
+  background: transparent;
+  color: var(--akron-muted-text);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.addBtn:hover {
+  background: var(--akron-muted);
+  color: var(--akron-text);
+  border-color: var(--akron-text);
+}
+
+/* ─── Picker ───────────────────────────────────────────────────────────── */
+.picker {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  background: var(--akron-bg);
+  border: 1px solid var(--akron-border);
+  border-radius: var(--akron-radius-lg);
+  box-shadow: var(--akron-shadow-lg);
+  padding: var(--akron-space-2);
+}
+
+.pickerGrid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 2px;
+}
+
+.pickerEmoji {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  border-radius: var(--akron-radius-sm);
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.1s, transform 0.1s;
+}
+.pickerEmoji:hover {
+  background: var(--akron-muted);
+  transform: scale(1.2);
+}

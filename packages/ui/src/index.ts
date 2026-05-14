@@ -467,3 +467,18 @@ export type { ProgressTrackerProps, TrackerPhase, PhaseStatus, ProgressTrackerVa
 
 export { PinBoard } from "./components/PinBoard";
 export type { PinBoardProps, PinItem, PinColor } from "./components/PinBoard";
+
+export { TreeSelect } from "./components/TreeSelect";
+export type { TreeSelectProps, TreeSelectNode } from "./components/TreeSelect";
+
+export { ComparisonTable } from "./components/ComparisonTable";
+export type { ComparisonTableProps, ComparisonColumn, ComparisonRow, CellValue } from "./components/ComparisonTable";
+
+export { ReactionPicker } from "./components/ReactionPicker";
+export type { ReactionPickerProps, Reaction } from "./components/ReactionPicker";
+
+export { PollWidget } from "./components/PollWidget";
+export type { PollWidgetProps, PollOption } from "./components/PollWidget";
+
+export { ReadMore } from "./components/ReadMore";
+export type { ReadMoreProps } from "./components/ReadMore";

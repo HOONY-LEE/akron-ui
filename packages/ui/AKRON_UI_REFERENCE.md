@@ -5922,3 +5922,237 @@ import { PinBoard } from "@sunghoon_lee/akron-ui";
 | y | number | Y 위치 (필수) |
 | pinned | boolean | 고정 여부 |
 | author | string | 작성자 |
+
+---
+
+## TreeSelect
+
+트리 구조 드롭다운 선택 컴포넌트.
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| nodes | TreeSelectNode[] | 필수 | 트리 노드 목록 |
+| value | string \| null | - | 선택된 값 (제어) |
+| defaultValue | string \| null | null | 기본 선택 값 |
+| onChange | (id, node) => void | - | 변경 핸들러 |
+| placeholder | string | '선택하세요' | 플레이스홀더 |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 크기 |
+| disabled | boolean | false | 비활성화 |
+| error | boolean | false | 에러 상태 |
+| errorMessage | string | - | 에러 메시지 |
+| searchable | boolean | false | 검색 활성화 |
+| clearable | boolean | false | 선택 해제 허용 |
+| expandAll | boolean | false | 전체 확장 |
+| defaultExpandedIds | string[] | [] | 기본 확장 노드 ID |
+
+### TreeSelectNode
+
+| 필드 | 타입 | 설명 |
+|------|------|------|
+| id | string | 고유 ID (필수) |
+| label | string | 표시 레이블 (필수) |
+| icon | ReactNode | 아이콘 |
+| children | TreeSelectNode[] | 자식 노드 |
+| disabled | boolean | 비활성화 |
+
+### 사용 예시
+
+```tsx
+import { TreeSelect } from "@sunghoon_lee/akron-ui";
+
+<TreeSelect
+  nodes={[
+    { id: "dev", label: "개발팀", children: [
+      { id: "fe", label: "프론트엔드" },
+      { id: "be", label: "백엔드" },
+    ]},
+    { id: "design", label: "디자인팀" },
+  ]}
+  value={value}
+  onChange={(id, node) => setValue(id)}
+  searchable
+  clearable
+/>
+```
+
+---
+
+## ComparisonTable
+
+기능/플랜 비교 테이블 컴포넌트.
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| columns | ComparisonColumn[] | 필수 | 비교 열 목록 |
+| rows | ComparisonRow[] | 필수 | 비교 행 목록 |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 크기 |
+| striped | boolean | false | 줄무늬 행 |
+| onCtaClick | (columnId) => void | - | CTA 클릭 핸들러 |
+| featureColumnTitle | string | '기능' | 기능 열 제목 |
+| stickyFeatureColumn | boolean | false | 고정 기능 열 |
+
+### ComparisonColumn
+
+| 필드 | 타입 | 설명 |
+|------|------|------|
+| id | string | 고유 ID (필수) |
+| title | string | 열 제목 (필수) |
+| subtitle | string | 부제목 |
+| highlighted | boolean | 강조 표시 |
+| price | string | 가격 문자열 |
+| pricePeriod | string | 가격 기간 |
+| ctaLabel | string | CTA 버튼 텍스트 |
+
+### ComparisonRow
+
+| 필드 | 타입 | 설명 |
+|------|------|------|
+| feature | string | 기능 이름 (필수) |
+| description | string | 기능 설명 |
+| category | string | 카테고리 (그룹핑) |
+| values | Record<string, CellValue> | 각 열의 값 (필수) |
+
+CellValue는 `boolean | string | number` 타입입니다.
+
+### 사용 예시
+
+```tsx
+import { ComparisonTable } from "@sunghoon_lee/akron-ui";
+
+<ComparisonTable
+  columns={[
+    { id: "free", title: "Free", price: "₩0", ctaLabel: "시작" },
+    { id: "pro", title: "Pro", highlighted: true, price: "₩29,000", ctaLabel: "업그레이드" },
+  ]}
+  rows={[
+    { feature: "프로젝트 수", values: { free: "3개", pro: "무제한" } },
+    { feature: "API 접근", values: { free: false, pro: true } },
+  ]}
+/>
+```
+
+---
+
+## ReactionPicker
+
+이모지 리액션 선택기 컴포넌트.
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| reactions | Reaction[] | 필수 | 반응 목록 |
+| onChange | (emoji, active) => void | - | 반응 변경 핸들러 |
+| availableEmojis | string[] | 기본 16개 | 선택 가능 이모지 |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 크기 |
+| readOnly | boolean | false | 읽기 전용 |
+| showAddButton | boolean | true | 추가 버튼 표시 |
+| maxPickerEmojis | number | 16 | 최대 피커 이모지 수 |
+
+### Reaction
+
+| 필드 | 타입 | 설명 |
+|------|------|------|
+| emoji | string | 이모지 (필수) |
+| label | string | 접근성 라벨 |
+| count | number | 반응 수 (필수) |
+| active | boolean | 현재 사용자 반응 여부 |
+
+### 사용 예시
+
+```tsx
+import { ReactionPicker } from "@sunghoon_lee/akron-ui";
+
+<ReactionPicker
+  reactions={[
+    { emoji: "👍", count: 12, active: true },
+    { emoji: "❤️", count: 5 },
+  ]}
+  onChange={(emoji, active) => handleReaction(emoji, active)}
+/>
+```
+
+---
+
+## PollWidget
+
+투표/설문 위젯 컴포넌트.
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| title | string | 필수 | 투표 제목 |
+| description | string | - | 투표 설명 |
+| options | PollOption[] | 필수 | 옵션 목록 |
+| votedOptionId | string \| null | - | 투표한 옵션 ID |
+| onVote | (optionId) => void | - | 투표 핸들러 |
+| showResults | boolean | 투표 후 표시 | 결과 표시 여부 |
+| multiSelect | boolean | false | 복수 선택 |
+| votedOptionIds | string[] | [] | 복수 선택 시 선택된 ID |
+| closed | boolean | false | 종료된 투표 |
+| totalVoters | number | 자동 계산 | 총 투표자 수 |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 크기 |
+
+### PollOption
+
+| 필드 | 타입 | 설명 |
+|------|------|------|
+| id | string | 고유 ID (필수) |
+| label | string | 옵션 레이블 (필수) |
+| votes | number | 득표 수 (필수) |
+
+### 사용 예시
+
+```tsx
+import { PollWidget } from "@sunghoon_lee/akron-ui";
+
+<PollWidget
+  title="점심 메뉴 투표"
+  options={[
+    { id: "1", label: "한식", votes: 8 },
+    { id: "2", label: "일식", votes: 12 },
+  ]}
+  votedOptionId={votedId}
+  onVote={(id) => setVotedId(id)}
+/>
+```
+
+---
+
+## ReadMore
+
+접기/펼치기 텍스트 컴포넌트.
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| children | ReactNode | 필수 | 내용 |
+| maxLines | number | - | 최대 줄 수 |
+| maxHeight | number | 120 | 최대 높이 (px) |
+| expanded | boolean | - | 펼침 상태 (제어) |
+| defaultExpanded | boolean | false | 기본 펼침 상태 |
+| onExpandedChange | (expanded) => void | - | 상태 변경 핸들러 |
+| moreLabel | string | '더보기' | 더보기 버튼 텍스트 |
+| lessLabel | string | '접기' | 접기 버튼 텍스트 |
+| showGradient | boolean | true | 그라데이션 오버레이 |
+| animated | boolean | true | 애니메이션 |
+
+### 사용 예시
+
+```tsx
+import { ReadMore } from "@sunghoon_lee/akron-ui";
+
+<ReadMore maxHeight={100}>
+  <p>긴 텍스트 내용...</p>
+</ReadMore>
+
+<ReadMore maxLines={3} moreLabel="전체 보기" lessLabel="간략히">
+  <p>줄 수 기반 제한...</p>
+</ReadMore>
+```

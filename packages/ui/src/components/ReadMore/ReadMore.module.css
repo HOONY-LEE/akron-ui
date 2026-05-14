@@ -1,0 +1,50 @@
+/* ─── Wrapper ──────────────────────────────────────────────────────────── */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Content ──────────────────────────────────────────────────────────── */
+.contentWrapper {
+  position: relative;
+}
+
+.content {
+  color: var(--akron-text);
+  font-size: var(--akron-font-base);
+  line-height: 1.6;
+  word-break: break-word;
+}
+
+.content.animated {
+  transition: max-height 0.3s ease;
+}
+
+/* ─── Gradient ─────────────────────────────────────────────────────────── */
+.gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: linear-gradient(to bottom, transparent, var(--akron-bg));
+  pointer-events: none;
+}
+
+/* ─── Toggle Button ────────────────────────────────────────────────────── */
+.toggleBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--akron-space-1);
+  align-self: flex-start;
+  margin-top: var(--akron-space-2);
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--akron-primary);
+  font-size: var(--akron-font-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.toggleBtn:hover { opacity: 0.8; }

@@ -149,6 +149,11 @@ import { PermissionTablePage } from "./pages/PermissionTablePage";
 import { NotificationBellPage } from "./pages/NotificationBellPage";
 import { ProgressTrackerPage } from "./pages/ProgressTrackerPage";
 import { PinBoardPage } from "./pages/PinBoardPage";
+import { TreeSelectPage } from "./pages/TreeSelectPage";
+import { ComparisonTablePage } from "./pages/ComparisonTablePage";
+import { ReactionPickerPage } from "./pages/ReactionPickerPage";
+import { PollWidgetPage } from "./pages/PollWidgetPage";
+import { ReadMorePage } from "./pages/ReadMorePage";
 
 export interface PageMeta {
   component: ComponentType;
@@ -338,6 +343,11 @@ export const pages: PageMeta[] = [
   { path: "notification-bell", component: NotificationBellPage, label: "NotificationBell", category: "오버레이" },
   { path: "progress-tracker", component: ProgressTrackerPage, label: "ProgressTracker", category: "표시" },
   { path: "pin-board", component: PinBoardPage, label: "PinBoard", category: "기타" },
+  { path: "tree-select", component: TreeSelectPage, label: "TreeSelect", category: "입력" },
+  { path: "comparison-table", component: ComparisonTablePage, label: "ComparisonTable", category: "데이터" },
+  { path: "reaction-picker", component: ReactionPickerPage, label: "ReactionPicker", category: "입력" },
+  { path: "poll-widget", component: PollWidgetPage, label: "PollWidget", category: "기타" },
+  { path: "read-more", component: ReadMorePage, label: "ReadMore", category: "표시" },
 ];
 
 export function getPageByPath(pathname: string): PageMeta | undefined {

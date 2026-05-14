@@ -1008,6 +1008,34 @@ const tocData: Record<string, { label: string; id: string; indent?: boolean }[]>
     { label: "옵션", id: "options" },
     { label: "인터페이스", id: "interface" },
   ],
+  "tree-select": [
+    { label: "기본 사용", id: "basic" },
+    { label: "크기", id: "sizes" },
+    { label: "전체 확장", id: "expand-all" },
+    { label: "인터페이스", id: "interface" },
+  ],
+  "comparison-table": [
+    { label: "기본 사용", id: "basic" },
+    { label: "카테고리 그룹핑", id: "categories" },
+    { label: "인터페이스", id: "interface" },
+  ],
+  "reaction-picker": [
+    { label: "기본 사용", id: "basic" },
+    { label: "크기", id: "sizes" },
+    { label: "읽기 전용", id: "readonly" },
+    { label: "인터페이스", id: "interface" },
+  ],
+  "poll-widget": [
+    { label: "기본 사용", id: "basic" },
+    { label: "종료된 투표", id: "closed" },
+    { label: "인터페이스", id: "interface" },
+  ],
+  "read-more": [
+    { label: "기본 사용", id: "basic" },
+    { label: "최대 줄 수", id: "max-lines" },
+    { label: "커스텀 레이블", id: "custom-labels" },
+    { label: "인터페이스", id: "interface" },
+  ],
 };
 
 export function TableOfContents({ currentPage }: { currentPage: string }) {
