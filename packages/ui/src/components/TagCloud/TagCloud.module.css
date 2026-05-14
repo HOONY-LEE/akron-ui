@@ -1,0 +1,35 @@
+/* ─── Wrapper ──────────────────────────────────────────────────────────── */
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ─── Tag ──────────────────────────────────────────────────────────────── */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--akron-space-1) var(--akron-space-2);
+  border: none;
+  background: transparent;
+  color: var(--akron-primary);
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.15s, opacity 0.15s, color 0.15s;
+  border-radius: var(--akron-radius-sm);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.tag:hover {
+  transform: scale(1.1);
+  opacity: 1 !important;
+  background: color-mix(in srgb, var(--akron-primary) 10%, transparent);
+}
+.tag:focus-visible {
+  outline: 2px solid var(--akron-ring);
+  outline-offset: 2px;
+}
+.tag:active {
+  transform: scale(0.95);
+}

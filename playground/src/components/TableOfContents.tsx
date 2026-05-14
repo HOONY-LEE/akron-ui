@@ -1036,6 +1036,32 @@ const tocData: Record<string, { label: string; id: string; indent?: boolean }[]>
     { label: "커스텀 레이블", id: "custom-labels" },
     { label: "인터페이스", id: "interface" },
   ],
+  "tag-cloud": [
+    { label: "기본 사용", id: "basic" },
+    { label: "정렬", id: "sorted" },
+    { label: "인터페이스", id: "interface" },
+  ],
+  "feedback-widget": [
+    { label: "기본 사용", id: "basic" },
+    { label: "인라인 변형", id: "inline" },
+    { label: "커스텀 설정", id: "custom" },
+    { label: "인터페이스", id: "interface" },
+  ],
+  "cookie-consent": [
+    { label: "기본 사용", id: "basic" },
+    { label: "카드 변형", id: "card" },
+    { label: "인터페이스", id: "interface" },
+  ],
+  "audio-player": [
+    { label: "기본 사용", id: "basic" },
+    { label: "크기", id: "sizes" },
+    { label: "인터페이스", id: "interface" },
+  ],
+  "stopwatch": [
+    { label: "기본 사용", id: "basic" },
+    { label: "크기", id: "sizes" },
+    { label: "인터페이스", id: "interface" },
+  ],
 };
 
 export function TableOfContents({ currentPage }: { currentPage: string }) {

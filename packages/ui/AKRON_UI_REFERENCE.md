@@ -6156,3 +6156,188 @@ import { ReadMore } from "@sunghoon_lee/akron-ui";
   <p>줄 수 기반 제한...</p>
 </ReadMore>
 ```
+
+---
+
+## TagCloud
+
+태그 클라우드 시각화 컴포넌트.
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| tags | TagCloudItem[] | 필수 | 태그 목록 |
+| minFontSize | number | 12 | 최소 폰트 크기 (px) |
+| maxFontSize | number | 36 | 최대 폰트 크기 (px) |
+| onClick | (tag) => void | - | 태그 클릭 핸들러 |
+| gap | number | 8 | 태그 간 간격 |
+| sortBy | 'alphabetical' \| 'weight' \| 'random' \| 'none' | 'none' | 정렬 기준 |
+
+### TagCloudItem
+
+| 필드 | 타입 | 설명 |
+|------|------|------|
+| label | string | 태그 텍스트 (필수) |
+| weight | number | 가중치 (필수) |
+| data | unknown | 커스텀 데이터 |
+| color | string | 색상 |
+
+### 사용 예시
+
+```tsx
+import { TagCloud } from "@sunghoon_lee/akron-ui";
+
+<TagCloud
+  tags={[
+    { label: "React", weight: 95 },
+    { label: "TypeScript", weight: 80 },
+    { label: "CSS", weight: 60 },
+  ]}
+  onClick={(tag) => console.log(tag.label)}
+/>
+```
+
+---
+
+## FeedbackWidget
+
+사용자 피드백 수집 위젯 컴포넌트.
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| title | string | - | 제목 |
+| question | string | '이 내용이 도움이 되었나요?' | 질문 텍스트 |
+| onSubmit | (data: FeedbackData) => void | - | 제출 핸들러 |
+| showComment | boolean | true | 코멘트 입력 표시 |
+| commentPlaceholder | string | '의견을 남겨주세요' | 코멘트 플레이스홀더 |
+| thankYouMessage | string | '감사합니다!' | 제출 후 메시지 |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 크기 |
+| variant | 'inline' \| 'card' | 'card' | 변형 |
+| dismissible | boolean | false | 닫기 가능 |
+| onDismiss | () => void | - | 닫기 핸들러 |
+
+### FeedbackData
+
+| 필드 | 타입 | 설명 |
+|------|------|------|
+| rating | 'positive' \| 'negative' \| null | 평가 |
+| comment | string | 코멘트 |
+
+### 사용 예시
+
+```tsx
+import { FeedbackWidget } from "@sunghoon_lee/akron-ui";
+
+<FeedbackWidget
+  question="이 문서가 도움이 되었나요?"
+  onSubmit={(data) => console.log(data)}
+/>
+```
+
+---
+
+## CookieConsent
+
+쿠키 동의 배너 컴포넌트.
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| title | string | '쿠키 사용 안내' | 제목 |
+| message | string | '이 웹사이트는...' | 설명 메시지 |
+| acceptLabel | string | '수락' | 수락 버튼 텍스트 |
+| declineLabel | string | '거부' | 거부 버튼 텍스트 |
+| settingsLabel | string | - | 설정 버튼 텍스트 |
+| onAccept | () => void | - | 수락 핸들러 |
+| onDecline | () => void | - | 거부 핸들러 |
+| onSettings | () => void | - | 설정 핸들러 |
+| position | 'bottom' \| 'bottom-left' \| 'bottom-right' \| 'top' | 'bottom' | 위치 |
+| variant | 'banner' \| 'card' | 'banner' | 변형 |
+| showIcon | boolean | true | 아이콘 표시 |
+| showCloseButton | boolean | false | 닫기 버튼 표시 |
+
+### 사용 예시
+
+```tsx
+import { CookieConsent } from "@sunghoon_lee/akron-ui";
+
+<CookieConsent
+  onAccept={() => saveCookiePreference(true)}
+  onDecline={() => saveCookiePreference(false)}
+/>
+```
+
+---
+
+## AudioPlayer
+
+오디오 재생 컴포넌트.
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| src | string | 필수 | 오디오 소스 URL |
+| title | string | - | 트랙 제목 |
+| artist | string | - | 아티스트 |
+| coverUrl | string | - | 커버 이미지 URL |
+| autoPlay | boolean | false | 자동 재생 |
+| loop | boolean | false | 반복 재생 |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 크기 |
+| onPrev | () => void | - | 이전 트랙 핸들러 |
+| onNext | () => void | - | 다음 트랙 핸들러 |
+| onEnded | () => void | - | 재생 완료 핸들러 |
+
+### 사용 예시
+
+```tsx
+import { AudioPlayer } from "@sunghoon_lee/akron-ui";
+
+<AudioPlayer
+  src="/audio/track.mp3"
+  title="트랙 제목"
+  artist="아티스트"
+  onNext={() => nextTrack()}
+  onPrev={() => prevTrack()}
+/>
+```
+
+---
+
+## Stopwatch
+
+스톱워치 컴포넌트.
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 크기 |
+| showLaps | boolean | true | 랩 기능 활성화 |
+| onChange | (elapsed: number) => void | - | 시간 변경 핸들러 |
+| onLap | (lap: StopwatchLap) => void | - | 랩 추가 핸들러 |
+| onReset | () => void | - | 리셋 핸들러 |
+| autoStart | boolean | false | 자동 시작 |
+
+### StopwatchLap
+
+| 필드 | 타입 | 설명 |
+|------|------|------|
+| number | number | 랩 번호 |
+| lapTime | number | 랩 시간 (ms) |
+| totalTime | number | 총 경과 시간 (ms) |
+
+### 사용 예시
+
+```tsx
+import { Stopwatch } from "@sunghoon_lee/akron-ui";
+
+<Stopwatch
+  onLap={(lap) => console.log("랩:", lap)}
+  onReset={() => console.log("리셋")}
+/>
+```

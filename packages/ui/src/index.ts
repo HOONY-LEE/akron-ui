@@ -482,3 +482,18 @@ export type { PollWidgetProps, PollOption } from "./components/PollWidget";
 
 export { ReadMore } from "./components/ReadMore";
 export type { ReadMoreProps } from "./components/ReadMore";
+
+export { TagCloud } from "./components/TagCloud";
+export type { TagCloudProps, TagCloudItem } from "./components/TagCloud";
+
+export { FeedbackWidget } from "./components/FeedbackWidget";
+export type { FeedbackWidgetProps, FeedbackData, FeedbackRating } from "./components/FeedbackWidget";
+
+export { CookieConsent } from "./components/CookieConsent";
+export type { CookieConsentProps } from "./components/CookieConsent";
+
+export { AudioPlayer } from "./components/AudioPlayer";
+export type { AudioPlayerProps } from "./components/AudioPlayer";
+
+export { Stopwatch } from "./components/Stopwatch";
+export type { StopwatchProps, StopwatchLap } from "./components/Stopwatch";

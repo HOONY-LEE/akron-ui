@@ -154,6 +154,11 @@ import { ComparisonTablePage } from "./pages/ComparisonTablePage";
 import { ReactionPickerPage } from "./pages/ReactionPickerPage";
 import { PollWidgetPage } from "./pages/PollWidgetPage";
 import { ReadMorePage } from "./pages/ReadMorePage";
+import { TagCloudPage } from "./pages/TagCloudPage";
+import { FeedbackWidgetPage } from "./pages/FeedbackWidgetPage";
+import { CookieConsentPage } from "./pages/CookieConsentPage";
+import { AudioPlayerPage } from "./pages/AudioPlayerPage";
+import { StopwatchPage } from "./pages/StopwatchPage";
 
 export interface PageMeta {
   component: ComponentType;
@@ -348,6 +353,11 @@ export const pages: PageMeta[] = [
   { path: "reaction-picker", component: ReactionPickerPage, label: "ReactionPicker", category: "입력" },
   { path: "poll-widget", component: PollWidgetPage, label: "PollWidget", category: "기타" },
   { path: "read-more", component: ReadMorePage, label: "ReadMore", category: "표시" },
+  { path: "tag-cloud", component: TagCloudPage, label: "TagCloud", category: "데이터 표시" },
+  { path: "feedback-widget", component: FeedbackWidgetPage, label: "FeedbackWidget", category: "기타" },
+  { path: "cookie-consent", component: CookieConsentPage, label: "CookieConsent", category: "오버레이" },
+  { path: "audio-player", component: AudioPlayerPage, label: "AudioPlayer", category: "기타" },
+  { path: "stopwatch", component: StopwatchPage, label: "Stopwatch", category: "기타" },
 ];
 
 export function getPageByPath(pathname: string): PageMeta | undefined {
