@@ -6698,3 +6698,164 @@ import { QRCode } from "@sunghoon_lee/akron-ui";
   label="example.com"
 />
 ```
+
+---
+
+## EventCard
+
+이벤트/일정 카드. 날짜 사이드바와 제목, 시간, 장소, 설명을 표시합니다.
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| title | string | (필수) | 제목 |
+| date | Date | (필수) | 날짜 |
+| time | string | — | 시간 텍스트 (예: "14:00 - 15:30") |
+| location | string | — | 장소 |
+| description | string | — | 설명 |
+| color | string | "var(--akron-primary)" | 날짜 사이드바 색상 |
+| size | "sm" \| "md" \| "lg" | "md" | 크기 |
+
+### 사용 예시
+
+```tsx
+import { EventCard } from "@sunghoon_lee/akron-ui";
+
+<EventCard
+  title="팀 스프린트 회의"
+  date={new Date(2026, 4, 20)}
+  time="14:00 - 15:30"
+  location="회의실 A"
+  description="2분기 계획 논의"
+  color="var(--akron-primary)"
+/>
+```
+
+---
+
+## CopyField
+
+읽기 전용 필드 + 복사 버튼. API 키, URL 등을 한 클릭으로 복사할 수 있습니다.
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| value | string | (필수) | 표시/복사할 값 |
+| label | string | — | 라벨 |
+| size | "sm" \| "md" \| "lg" | "md" | 크기 |
+| timeout | number | 2000 | 복사 완료 유지 시간 (ms) |
+| onCopy | (value: string) => void | — | 복사 완료 콜백 |
+
+### 사용 예시
+
+```tsx
+import { CopyField } from "@sunghoon_lee/akron-ui";
+
+<CopyField
+  label="API 키"
+  value="sk_live_1234567890abcdef"
+  size="md"
+  onCopy={(v) => console.log("복사됨:", v)}
+/>
+```
+
+---
+
+## InfoTip
+
+인라인 정보 아이콘 + 툴팁. 폼 필드 라벨 옆에 도움말을 표시할 때 사용합니다.
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| content | string | (필수) | 툴팁 내용 |
+| label | string | — | 함께 표시할 라벨 |
+| icon | "info" \| "help" \| "alert" | "info" | 아이콘 종류 |
+| iconSize | number | 16 | 아이콘 크기 (px) |
+
+### 사용 예시
+
+```tsx
+import { InfoTip } from "@sunghoon_lee/akron-ui";
+
+<InfoTip
+  label="사용자 이름"
+  content="다른 사용자에게 표시되는 이름입니다."
+  icon="help"
+/>
+```
+
+---
+
+## GridList
+
+선택 가능한 그리드 카드 목록. 단일/다중 선택을 지원합니다.
+
+### GridListItem
+
+| Prop | Type | Description |
+|------|------|-------------|
+| id | string | 고유 ID |
+| label | string | 라벨 |
+| description | string | 설명 |
+| icon | ReactNode | 아이콘 |
+| disabled | boolean | 비활성화 |
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| items | GridListItem[] | (필수) | 항목 목록 |
+| value | string[] | [] | 선택된 ID 목록 |
+| columns | number | 3 | 열 수 |
+| size | "sm" \| "md" \| "lg" | "md" | 크기 |
+| multiple | boolean | false | 다중 선택 허용 |
+| onChange | (selected: string[]) => void | — | 변경 핸들러 |
+
+### 사용 예시
+
+```tsx
+import { GridList } from "@sunghoon_lee/akron-ui";
+import { Zap, Shield } from "lucide-react";
+
+<GridList
+  items={[
+    { id: "speed", label: "성능", icon: <Zap size={24} /> },
+    { id: "security", label: "보안", icon: <Shield size={24} /> },
+  ]}
+  value={["speed"]}
+  columns={3}
+  multiple
+  onChange={(selected) => console.log(selected)}
+/>
+```
+
+---
+
+## ThemeToggle
+
+다크/라이트 모드 전환 버튼. 아이콘 또는 pill 형태를 지원합니다.
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| theme | "light" \| "dark" | "light" | 현재 테마 |
+| size | "sm" \| "md" \| "lg" | "md" | 크기 |
+| variant | "icon" \| "pill" | "icon" | 변형 |
+| onChange | (theme: "light" \| "dark") => void | — | 테마 변경 핸들러 |
+
+### 사용 예시
+
+```tsx
+import { ThemeToggle } from "@sunghoon_lee/akron-ui";
+
+<ThemeToggle
+  theme="light"
+  variant="pill"
+  onChange={(t) => document.documentElement.setAttribute("data-theme", t)}
+/>
+```

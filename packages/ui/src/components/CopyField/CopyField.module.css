@@ -1,0 +1,60 @@
+/* ─── Wrapper ──────────────────────────────────────────────────────────── */
+.wrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--akron-border);
+  border-radius: var(--akron-radius-md);
+  background: var(--akron-muted);
+  overflow: hidden;
+  transition: border-color 0.15s;
+}
+.wrapper:focus-within {
+  border-color: var(--akron-ring);
+}
+
+/* ─── Input ───────────────────────────────────────────────────────────── */
+.input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--akron-text);
+  font-family: monospace;
+  outline: none;
+  min-width: 0;
+}
+.input::selection { background: var(--akron-primary-light); }
+
+/* ─── Button ──────────────────────────────────────────────────────────── */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: var(--akron-muted-text);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: color 0.15s, background 0.15s;
+  border-left: 1px solid var(--akron-border);
+}
+.btn:hover { color: var(--akron-text); background: var(--akron-border); }
+.btn:focus-visible { outline: 2px solid var(--akron-ring); outline-offset: -2px; }
+.copied { color: var(--akron-success); }
+
+/* ─── Label ───────────────────────────────────────────────────────────── */
+.label {
+  font-size: var(--akron-font-sm);
+  font-weight: 500;
+  color: var(--akron-muted-text);
+  margin-bottom: var(--akron-space-1);
+}
+
+/* ─── Size ─────────────────────────────────────────────────────────────── */
+.sm .input { padding: var(--akron-space-1) var(--akron-space-2); font-size: 12px; }
+.sm .btn { padding: var(--akron-space-1) var(--akron-space-2); }
+
+.md .input { padding: var(--akron-space-2) var(--akron-space-3); font-size: var(--akron-font-sm); }
+.md .btn { padding: var(--akron-space-2) var(--akron-space-3); }
+
+.lg .input { padding: var(--akron-space-3) var(--akron-space-4); font-size: var(--akron-font-base); }
+.lg .btn { padding: var(--akron-space-3) var(--akron-space-4); }

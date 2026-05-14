@@ -1,0 +1,68 @@
+/* ─── Wrapper ──────────────────────────────────────────────────────────── */
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--akron-space-1);
+  position: relative;
+}
+
+/* ─── Icon trigger ─────────────────────────────────────────────────────── */
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--akron-muted-text);
+  cursor: help;
+  border: none;
+  background: transparent;
+  padding: 0;
+  border-radius: 50%;
+  transition: color 0.15s;
+}
+.trigger:hover { color: var(--akron-primary); }
+.trigger:focus-visible { outline: 2px solid var(--akron-ring); outline-offset: 2px; }
+
+/* ─── Tooltip ──────────────────────────────────────────────────────────── */
+.tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--akron-text);
+  color: var(--akron-bg);
+  font-size: 12px;
+  line-height: 1.4;
+  padding: var(--akron-space-2) var(--akron-space-3);
+  border-radius: var(--akron-radius-md);
+  white-space: normal;
+  min-width: 160px;
+  max-width: 280px;
+  box-shadow: var(--akron-shadow-lg);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s, visibility 0.15s;
+  z-index: 50;
+}
+.tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--akron-text);
+}
+
+.wrapper:hover .tooltip,
+.trigger:focus-visible + .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ─── Label ───────────────────────────────────────────────────────────── */
+.label {
+  font-size: var(--akron-font-sm);
+  color: var(--akron-text);
+  font-weight: 500;
+}

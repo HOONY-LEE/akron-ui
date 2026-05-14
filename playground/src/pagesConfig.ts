@@ -169,6 +169,11 @@ import { AvatarStackPage } from "./pages/AvatarStackPage";
 import { FeatureCardPage } from "./pages/FeatureCardPage";
 import { NumberStepperPage } from "./pages/NumberStepperPage";
 import { QRCodePage } from "./pages/QRCodePage";
+import { EventCardPage } from "./pages/EventCardPage";
+import { CopyFieldPage } from "./pages/CopyFieldPage";
+import { InfoTipPage } from "./pages/InfoTipPage";
+import { GridListPage } from "./pages/GridListPage";
+import { ThemeTogglePage } from "./pages/ThemeTogglePage";
 
 export interface PageMeta {
   component: ComponentType;
@@ -378,6 +383,11 @@ export const pages: PageMeta[] = [
   { path: "feature-card", component: FeatureCardPage, label: "FeatureCard", category: "표시" },
   { path: "number-stepper", component: NumberStepperPage, label: "NumberStepper", category: "입력" },
   { path: "qr-code", component: QRCodePage, label: "QRCode", category: "기타" },
+  { path: "event-card", component: EventCardPage, label: "EventCard", category: "데이터" },
+  { path: "copy-field", component: CopyFieldPage, label: "CopyField", category: "입력" },
+  { path: "info-tip", component: InfoTipPage, label: "InfoTip", category: "표시" },
+  { path: "grid-list", component: GridListPage, label: "GridList", category: "입력" },
+  { path: "theme-toggle", component: ThemeTogglePage, label: "ThemeToggle", category: "기타" },
 ];
 
 export function getPageByPath(pathname: string): PageMeta | undefined {

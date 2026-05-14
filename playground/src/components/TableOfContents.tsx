@@ -1119,6 +1119,35 @@ const tocData: Record<string, { label: string; id: string; indent?: boolean }[]>
     { label: "크기 비교", id: "sizes" },
     { label: "커스텀 색상", id: "colors" },
   ],
+  "event-card": [
+    { label: "기본 사용", id: "basic" },
+    { label: "색상 변경", id: "colors" },
+    { label: "크기", id: "sizes" },
+  ],
+  "copy-field": [
+    { label: "기본 사용", id: "basic" },
+    { label: "라벨 포함", id: "label" },
+    { label: "크기", id: "sizes" },
+    { label: "다양한 값", id: "values" },
+  ],
+  "info-tip": [
+    { label: "기본 사용", id: "basic" },
+    { label: "라벨 포함", id: "label" },
+    { label: "아이콘 크기", id: "icon-size" },
+    { label: "폼 필드와 함께", id: "form" },
+  ],
+  "grid-list": [
+    { label: "단일 선택", id: "single" },
+    { label: "다중 선택", id: "multiple" },
+    { label: "크기", id: "sizes" },
+    { label: "비활성화 항목", id: "disabled" },
+  ],
+  "theme-toggle": [
+    { label: "기본 사용", id: "basic" },
+    { label: "크기", id: "sizes" },
+    { label: "Pill 변형", id: "pill" },
+    { label: "다크 모드 미리보기", id: "preview" },
+  ],
 };
 
 export function TableOfContents({ currentPage }: { currentPage: string }) {

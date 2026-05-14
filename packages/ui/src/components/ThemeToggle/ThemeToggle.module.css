@@ -1,0 +1,40 @@
+/* ─── Button ──────────────────────────────────────────────────────────── */
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--akron-border);
+  border-radius: var(--akron-radius-md);
+  background: var(--akron-bg);
+  color: var(--akron-text);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.15s;
+}
+.toggle:hover { border-color: var(--akron-primary); background: var(--akron-muted); }
+.toggle:active { transform: scale(0.95); }
+.toggle:focus-visible { outline: 2px solid var(--akron-ring); outline-offset: 2px; }
+
+/* ─── Icon transition ──────────────────────────────────────────────────── */
+.icon {
+  transition: transform 0.3s ease;
+}
+.dark .icon {
+  transform: rotate(180deg);
+}
+
+/* ─── Size ─────────────────────────────────────────────────────────────── */
+.sm { width: 32px; height: 32px; }
+.md { width: 40px; height: 40px; }
+.lg { width: 48px; height: 48px; }
+
+/* ─── Pill variant ─────────────────────────────────────────────────────── */
+.pill {
+  border-radius: 999px;
+  gap: var(--akron-space-1);
+  padding: 0 var(--akron-space-3);
+  width: auto;
+}
+.pill .label {
+  font-size: var(--akron-font-sm);
+  font-weight: 500;
+}
