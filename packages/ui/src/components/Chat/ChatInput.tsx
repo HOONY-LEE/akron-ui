@@ -68,6 +68,8 @@ export const ChatInput = forwardRef<HTMLDivElement, ChatInputProps>(
 
     const handleKeyDown = useCallback(
       (e: React.KeyboardEvent) => {
+        // IME 입력 중(한글 등)에는 Enter 무시
+        if (e.nativeEvent.isComposing || e.keyCode === 229) return;
         if (e.key === "Enter" && !e.shiftKey) {
           e.preventDefault();
           handleSend();
