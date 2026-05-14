@@ -211,6 +211,11 @@
   --ark-toast-bg: var(--ark-color-bg);
   --ark-toast-border-color: var(--ark-color-border);
 
+  /* ── Chat ── */
+  --ark-chat-sidebar-width: 260px;
+  --ark-chat-sidebar-bg: var(--ark-color-bg-subtle);
+  --ark-chat-message-max-width: 75%;
+
   /* ── PageContainer ── */
   --ark-container-sm: 640px;
   --ark-container-md: 768px;

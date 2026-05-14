@@ -542,3 +542,32 @@ export type { GridListProps, GridListItem } from "./components/GridList";
 
 export { ThemeToggle } from "./components/ThemeToggle";
 export type { ThemeToggleProps } from "./components/ThemeToggle";
+
+export {
+  ChatLayout,
+  ChatChannelList,
+  ChatChannelGroup,
+  ChatChannelItem,
+  ChatRoom,
+  ChatHeader,
+  ChatMessageList,
+  ChatMessage,
+  ChatInput,
+  ChatDateDivider,
+  ChatTypingIndicator,
+} from "./components/Chat";
+export type {
+  ChatLayoutProps,
+  ChatChannelListProps,
+  ChatChannelGroupProps,
+  ChatChannelItemProps,
+  ChatRoomProps,
+  ChatHeaderProps,
+  ChatMessageListProps,
+  ChatMessageProps,
+  ChatMessageVariant,
+  ChatMessageSide,
+  ChatInputProps,
+  ChatDateDividerProps,
+  ChatTypingIndicatorProps,
+} from "./components/Chat";

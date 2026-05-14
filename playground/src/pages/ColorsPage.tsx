@@ -683,7 +683,6 @@ function DarkSwatchPreview({ shade, hex }: { shade: number; hex: string }) {
           display: "flex",
           alignItems: "flex-end",
           padding: "0 8px 6px",
-          background: `linear-gradient(135deg, #1e1e1e 0%, #1e1e1e 30%, ${hex} 30%)`,
         }}
       >
         <span style={{ fontSize: 11, fontWeight: 600, color: isDark ? "#fff" : "#111827", opacity: 0.8 }}>

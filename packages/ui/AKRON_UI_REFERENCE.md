@@ -6859,3 +6859,207 @@ import { ThemeToggle } from "@sunghoon_lee/akron-ui";
   onChange={(t) => document.documentElement.setAttribute("data-theme", t)}
 />
 ```
+
+---
+
+## Chat (채팅 레이아웃 시스템)
+
+Slack/Teams 스타일의 완전한 채팅 UI 시스템. 11개의 조합 컴포넌트로 구성됩니다.
+
+### 컴포넌트 계층 구조
+
+```
+ChatLayout
+├── ChatChannelList
+│   ├── ChatChannelGroup
+│   │   └── ChatChannelItem
+│   └── (header / footer 슬롯)
+└── ChatRoom
+    ├── ChatHeader
+    ├── ChatMessageList
+    │   ├── ChatMessage
+    │   ├── ChatDateDivider
+    │   └── ChatTypingIndicator
+    └── ChatInput
+```
+
+### ChatLayout
+
+전체 채팅 레이아웃 컨테이너. 채널 목록과 채팅 영역을 좌우로 배치합니다.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| children | ReactNode | — | ChatChannelList + ChatRoom |
+
+### ChatChannelList
+
+채널/DM 목록 사이드바.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| header | ReactNode | — | 상단 헤더 (제목, 검색 등) |
+| footer | ReactNode | — | 하단 푸터 |
+| children | ReactNode | — | ChatChannelGroup / ChatChannelItem 목록 |
+
+### ChatChannelGroup
+
+채널 그룹 (예: "채널", "다이렉트 메시지").
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| label | string | — | 그룹 라벨 |
+| children | ReactNode | — | ChatChannelItem 목록 |
+
+### ChatChannelItem
+
+개별 채널/DM 항목.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| icon | ReactNode | — | 채널 아이콘 |
+| name | string | — | 채널/사용자 이름 |
+| preview | string | — | 마지막 메시지 미리보기 |
+| timestamp | string | — | 마지막 메시지 시간 |
+| unreadCount | number | — | 읽지 않은 메시지 수 |
+| active | boolean | false | 현재 선택 여부 |
+| online | boolean | false | DM 온라인 상태 표시 |
+| onClick | () => void | — | 클릭 핸들러 |
+
+### ChatRoom
+
+채팅 메인 영역 컨테이너.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| children | ReactNode | — | ChatHeader + ChatMessageList + ChatInput |
+
+### ChatHeader
+
+채팅 영역 상단 헤더.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| icon | ReactNode | — | 채널 아이콘 |
+| title | string | — | 채널/대화 이름 |
+| subtitle | string | — | 부가 정보 (멤버 수 등) |
+| actions | ReactNode | — | 우측 액션 버튼들 |
+
+### ChatMessageList
+
+스크롤 가능한 메시지 목록 (새 메시지 시 자동 스크롤).
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| children | ReactNode | — | ChatMessage / ChatDateDivider 등 |
+| autoScroll | boolean | true | 자동 스크롤 활성화 |
+
+### ChatMessage
+
+개별 메시지. ChatBubble보다 구조화된 상위 컴포넌트.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| avatar | ReactNode | — | 아바타 (예: `<Avatar name="홍길동" size="sm" />`) |
+| name | string | — | 발신자 이름 |
+| aiLabel | string | "AI 어시스턴트" | AI 메시지 레이블 |
+| timestamp | ReactNode | — | 타임스탬프 |
+| status | ReactNode | — | 메시지 상태 아이콘 (읽음 체크 등) |
+| variant | "default" \| "ai" \| "system" | "default" | 메시지 변형 |
+| side | "left" \| "right" | "left" | 메시지 위치 |
+| actions | ReactNode | — | 호버 시 표시되는 액션 |
+| children | ReactNode | — | 메시지 내용 |
+
+### ChatInput
+
+메시지 입력 영역. Enter 키로 전송, Shift+Enter로 줄바꿈.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| value | string | — | 입력값 (controlled) |
+| onChange | (value: string) => void | — | 입력값 변경 콜백 |
+| onSend | (value: string) => void | — | 전송 콜백 |
+| placeholder | string | "메시지를 입력하세요..." | placeholder |
+| disabled | boolean | false | 비활성화 |
+| prefix | ReactNode | — | 좌측 액션 (파일 첨부 등) |
+| suffix | ReactNode | — | 전송 버튼 좌측 추가 액션 |
+| sendIcon | ReactNode | `<Send />` | 커스텀 전송 아이콘 |
+| hideSendButton | boolean | false | 전송 버튼 숨기기 |
+| multiline | boolean | false | textarea 모드 |
+| maxRows | number | 5 | textarea 최대 줄 수 |
+
+### ChatDateDivider
+
+날짜 구분선.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| label | string | — | 날짜 텍스트 |
+
+### ChatTypingIndicator
+
+타이핑 중 표시.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| names | string[] | — | 타이핑 중인 사용자 이름 |
+
+### 커스터마이징 토큰
+
+```css
+:root {
+  --ark-chat-sidebar-width: 260px;
+  --ark-chat-sidebar-bg: var(--ark-color-bg-subtle);
+  --ark-chat-message-max-width: 75%;
+}
+```
+
+### 사용 예시
+
+```tsx
+import {
+  ChatLayout, ChatChannelList, ChatChannelGroup, ChatChannelItem,
+  ChatRoom, ChatHeader, ChatMessageList, ChatMessage,
+  ChatInput, ChatDateDivider, ChatTypingIndicator, Avatar,
+} from "@sunghoon_lee/akron-ui";
+import { Hash, Bot } from "lucide-react";
+
+<ChatLayout style={{ height: "100vh" }}>
+  <ChatChannelList header={<span style={{ fontWeight: 600 }}>메신저</span>}>
+    <ChatChannelGroup label="채널">
+      <ChatChannelItem icon={<Hash size={14} />} name="마케팅팀" active />
+      <ChatChannelItem icon={<Hash size={14} />} name="개발팀" unreadCount={3} />
+    </ChatChannelGroup>
+    <ChatChannelGroup label="다이렉트 메시지">
+      <ChatChannelItem icon={<Bot size={14} />} name="AI 어시스턴트" online />
+    </ChatChannelGroup>
+  </ChatChannelList>
+
+  <ChatRoom>
+    <ChatHeader
+      icon={<Hash size={16} />}
+      title="마케팅팀"
+      subtitle="3명의 멤버"
+    />
+    <ChatMessageList>
+      <ChatDateDivider label="오늘" />
+      <ChatMessage
+        avatar={<Avatar name="홍길동" size="sm" />}
+        name="홍길동"
+        timestamp="오후 2:30"
+        side="left"
+      >
+        안녕하세요, 이번 주 회의 안건 정리해주세요.
+      </ChatMessage>
+      <ChatMessage side="right" timestamp="오후 2:35">
+        네, 준비하겠습니다!
+      </ChatMessage>
+      <ChatMessage variant="ai" side="left" avatar={<Avatar name="AI" size="sm" />}>
+        회의 안건을 분석 중입니다...
+      </ChatMessage>
+      <ChatMessage variant="system">홍길동님이 파일을 공유했습니다.</ChatMessage>
+      <ChatTypingIndicator names={["홍길동"]} />
+    </ChatMessageList>
+    <ChatInput placeholder="메시지를 입력하세요..." onSend={(text) => console.log(text)} />
+  </ChatRoom>
+</ChatLayout>
+```

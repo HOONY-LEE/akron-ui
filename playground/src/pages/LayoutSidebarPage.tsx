@@ -26,25 +26,37 @@ export function LayoutSidebarPage() {
           <code className="inline-code">header</code>와 <code className="inline-code">footer</code> 슬롯도 지원합니다.
         </p>
         <LiveCodeBlock
-          code={`<div style={{ width: 240, height: 380, borderRadius: 8, overflow: "hidden", border: "1px solid var(--ark-color-border)" }}>
-  <LayoutSidebar
-    header={<div style={{ fontWeight: 700, fontSize: 15 }}>Akron ERP</div>}
-    footer={<div style={{ fontSize: 12, color: "var(--ark-color-text-secondary)" }}>v0.1.0</div>}
-  >
-    <SidebarGroup label="일반">
-      <SidebarItem active icon={<BarChart3 size={16} />}>대시보드</SidebarItem>
-      <SidebarItem icon={<Bell size={16} />}>알림</SidebarItem>
-    </SidebarGroup>
-    <SidebarGroup label="인사">
-      <SidebarItem icon={<Users size={16} />}>사원 관리</SidebarItem>
-      <SidebarItem icon={<Building2 size={16} />}>조직도</SidebarItem>
-      <SidebarItem icon={<Clock size={16} />}>근태 관리</SidebarItem>
-    </SidebarGroup>
-    <SidebarGroup label="재무">
-      <SidebarItem icon={<CreditCard size={16} />}>급여 관리</SidebarItem>
-      <SidebarItem icon={<FileText size={16} />}>경비 청구</SidebarItem>
-    </SidebarGroup>
-  </LayoutSidebar>
+          code={`<div style={{ display: "flex", height: 520, borderRadius: 8, overflow: "hidden", border: "1px solid var(--ark-color-border)" }}>
+  <div style={{ width: 240, flexShrink: 0, height: "100%" }}>
+    <LayoutSidebar
+      header={<div style={{ fontWeight: 700, fontSize: 15 }}>Akron ERP</div>}
+      footer={<div style={{ fontSize: 12, color: "var(--ark-color-text-secondary)" }}>v0.1.0</div>}
+    >
+      <SidebarGroup label="일반">
+        <SidebarItem active icon={<BarChart3 size={16} />}>대시보드</SidebarItem>
+        <SidebarItem icon={<Bell size={16} />}>알림</SidebarItem>
+      </SidebarGroup>
+      <SidebarGroup label="인사">
+        <SidebarItem icon={<Users size={16} />}>사원 관리</SidebarItem>
+        <SidebarItem icon={<Building2 size={16} />}>조직도</SidebarItem>
+        <SidebarItem icon={<Clock size={16} />}>근태 관리</SidebarItem>
+      </SidebarGroup>
+      <SidebarGroup label="재무">
+        <SidebarItem icon={<CreditCard size={16} />}>급여 관리</SidebarItem>
+        <SidebarItem icon={<FileText size={16} />}>경비 청구</SidebarItem>
+      </SidebarGroup>
+    </LayoutSidebar>
+  </div>
+  <div style={{
+    flex: 1,
+    background: "var(--ark-color-bg-subtle)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    borderLeft: "1px solid var(--ark-color-border)",
+  }}>
+    <span style={{ fontSize: 13, color: "var(--ark-color-text-disabled)" }}>콘텐츠 영역</span>
+  </div>
 </div>`}
           scope={{ LayoutSidebar, SidebarGroup, SidebarItem, BarChart3, Bell, Users, Building2, Clock, CreditCard, FileText }}
         />

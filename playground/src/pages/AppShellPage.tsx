@@ -373,7 +373,7 @@ function LayoutWireframe({
       width={w}
       height={h}
       viewBox={`0 0 ${w} ${h}`}
-      style={{ borderRadius: radius, border: "1px solid var(--ark-color-border)", transition: "width 0.3s ease, height 0.3s ease" }}
+      style={{ borderRadius: radius, transition: "width 0.3s ease, height 0.3s ease" }}
     >
       <rect width={w} height={h} fill={device === "pc" ? "var(--ark-color-bg-subtle)" : "var(--ark-color-bg)"} rx={radius} />
       {device !== "pc" && (
@@ -487,7 +487,7 @@ function LayoutWireframe({
           <text x={w / 2} y={h - padBot - 3} textAnchor="middle" fontSize={7} fill="var(--ark-color-text-disabled)" fontWeight={600}>탭 바</text>
         </g>
       )}
-      <rect width={w} height={h} fill="none" stroke="var(--ark-color-border)" rx={radius} />
+      <rect width={w} height={h} fill="none" stroke="var(--ark-color-border)" strokeWidth={2.5} rx={radius} />
     </svg>
   );
 }
