@@ -1,0 +1,273 @@
+/* ── Root ── */
+.root {
+  display: flex;
+  width: 100%;
+}
+
+/* ── Horizontal layout ── */
+.horizontal {
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.horizontal .phaseWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex: 1;
+}
+
+.horizontal .phaseWrapper:last-child {
+  flex: 0 0 auto;
+}
+
+.horizontal .phase {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+}
+
+.horizontal .phaseContent {
+  text-align: center;
+  margin-top: var(--ark-spacing-2);
+}
+
+.horizontal .connector {
+  flex: 1;
+  height: 2px;
+  min-width: var(--ark-spacing-6);
+  margin-top: var(--ark-progress-tracker-icon-size-half, 16px);
+  margin-left: var(--ark-spacing-2);
+  margin-right: var(--ark-spacing-2);
+}
+
+/* ── Vertical layout ── */
+.vertical {
+  flex-direction: column;
+}
+
+.vertical .phaseWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.vertical .phase {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--ark-spacing-3);
+}
+
+.vertical .phaseContent {
+  padding-bottom: var(--ark-spacing-2);
+}
+
+.vertical .connector {
+  width: 2px;
+  min-height: var(--ark-spacing-6);
+  margin-left: var(--ark-progress-tracker-icon-offset, 15px);
+  margin-top: var(--ark-spacing-1);
+  margin-bottom: var(--ark-spacing-1);
+}
+
+/* ── Phase icon circle ── */
+.phaseIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--ark-radius-full);
+  flex-shrink: 0;
+  transition: background-color var(--ark-transition-normal),
+    color var(--ark-transition-normal);
+}
+
+/* ── Status colors ── */
+.phaseIcon.completed {
+  background-color: var(--ark-color-success-500);
+  color: var(--ark-color-text-inverse);
+}
+
+.phaseIcon.inProgress {
+  background-color: var(--ark-color-primary-500);
+  color: var(--ark-color-text-inverse);
+}
+
+.phaseIcon.upcoming {
+  background-color: var(--ark-color-bg-muted);
+  color: var(--ark-color-text-secondary);
+}
+
+.phaseIcon.delayed {
+  background-color: var(--ark-color-warning-500);
+  color: var(--ark-color-text-inverse);
+}
+
+.phaseIcon.blocked {
+  background-color: var(--ark-color-error-500);
+  color: var(--ark-color-text-inverse);
+}
+
+/* ── Connector ── */
+.connector {
+  background-color: var(--ark-color-border);
+  transition: background-color var(--ark-transition-normal);
+}
+
+.connectorCompleted {
+  background-color: var(--ark-color-success-500);
+}
+
+/* ── Clickable ── */
+.clickable {
+  cursor: pointer;
+  border-radius: var(--ark-radius-md);
+  padding: var(--ark-spacing-2);
+  margin: calc(-1 * var(--ark-spacing-2));
+  transition: background-color var(--ark-transition-fast);
+}
+
+.clickable:hover {
+  background-color: var(--ark-color-bg-subtle);
+}
+
+.clickable:active {
+  background-color: var(--ark-color-bg-muted);
+}
+
+.clickable:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+/* ── Phase content ── */
+.phaseContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-0-5);
+  min-width: 0;
+}
+
+.phaseLabel {
+  font-weight: var(--ark-font-weight-medium);
+  color: var(--ark-color-text);
+  line-height: var(--ark-line-height-tight);
+}
+
+.phaseDesc {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-secondary);
+  line-height: var(--ark-line-height-normal);
+}
+
+/* ── Progress bar ── */
+.progressBar {
+  height: 4px;
+  background-color: var(--ark-color-bg-muted);
+  border-radius: var(--ark-radius-full);
+  overflow: hidden;
+  width: 100%;
+  margin-top: var(--ark-spacing-1);
+}
+
+.progressFill {
+  height: 100%;
+  background-color: var(--ark-color-primary-500);
+  border-radius: var(--ark-radius-full);
+  transition: width var(--ark-transition-normal);
+}
+
+.progressText {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-primary-500);
+  font-weight: var(--ark-font-weight-medium);
+}
+
+/* ── Dates & assignee ── */
+.phaseDates {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-disabled);
+  line-height: var(--ark-line-height-normal);
+}
+
+.phaseAssignee {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-secondary);
+  line-height: var(--ark-line-height-normal);
+}
+
+/* ── Spin animation ── */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin {
+  animation: spin 1.2s linear infinite;
+}
+
+/* ── Size: sm ── */
+.sm .phaseIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.sm .phaseLabel {
+  font-size: var(--ark-font-size-xs);
+}
+
+.sm .phaseDesc {
+  font-size: 11px;
+}
+
+.sm.horizontal .connector {
+  margin-top: 12px;
+}
+
+.sm.vertical .connector {
+  margin-left: 11px;
+}
+
+/* ── Size: md ── */
+.md .phaseIcon {
+  width: 32px;
+  height: 32px;
+}
+
+.md .phaseLabel {
+  font-size: var(--ark-font-size-sm);
+}
+
+.md.horizontal .connector {
+  margin-top: 16px;
+}
+
+.md.vertical .connector {
+  margin-left: 15px;
+}
+
+/* ── Size: lg ── */
+.lg .phaseIcon {
+  width: 40px;
+  height: 40px;
+}
+
+.lg .phaseLabel {
+  font-size: var(--ark-font-size-md);
+}
+
+.lg .phaseDesc {
+  font-size: var(--ark-font-size-sm);
+}
+
+.lg.horizontal .connector {
+  margin-top: 20px;
+}
+
+.lg.vertical .connector {
+  margin-left: 19px;
+}

@@ -1,0 +1,170 @@
+/* ─── Root ─────────────────────────────────────────────────────────────────── */
+
+.root {
+  position: relative;
+  min-height: var(--ark-pinboard-min-height, 500px);
+  overflow: hidden;
+  border: 1px solid var(--ark-color-border);
+  border-radius: var(--ark-radius-lg);
+  background: var(--ark-color-bg, #ffffff);
+  font-family: var(--ark-font-sans);
+}
+
+/* ─── Grid background ─────────────────────────────────────────────────────── */
+
+.grid {
+  background-image: radial-gradient(
+    circle,
+    var(--ark-color-border) 1px,
+    transparent 1px
+  );
+  background-size:
+    var(--ark-pinboard-grid-size, 20px)
+    var(--ark-pinboard-grid-size, 20px);
+}
+
+/* ─── Item ─────────────────────────────────────────────────────────────────── */
+
+.item {
+  position: absolute;
+  border-radius: var(--ark-radius-md);
+  padding: var(--ark-space-3);
+  cursor: grab;
+  transition: box-shadow 0.15s ease;
+  box-shadow: var(--ark-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  user-select: none;
+  font-family: var(--ark-font-sans);
+}
+
+.item:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.item:hover {
+  box-shadow: var(--ark-shadow-md);
+}
+
+/* ─── Dragging state ──────────────────────────────────────────────────────── */
+
+.dragging {
+  cursor: grabbing;
+  box-shadow: var(--ark-shadow-lg);
+  opacity: 0.9;
+  z-index: 9999;
+}
+
+/* ─── Pinned state ────────────────────────────────────────────────────────── */
+
+.pinned {
+  cursor: default;
+}
+
+/* ─── Color variants ──────────────────────────────────────────────────────── */
+
+.yellow  { background: #fef9c3; color: #854d0e; }
+.green   { background: #dcfce7; color: #166534; }
+.blue    { background: var(--ark-color-primary-100); color: #1e40af; }
+.pink    { background: #fce7f3; color: #9d174d; }
+.purple  { background: #ede9fe; color: #5b21b6; }
+.orange  { background: #ffedd5; color: #c2410c; }
+
+/* ─── Item header ─────────────────────────────────────────────────────────── */
+
+.itemHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--ark-space-2);
+  gap: var(--ark-space-1);
+}
+
+/* ─── Grip handle ─────────────────────────────────────────────────────────── */
+
+.grip {
+  cursor: grab;
+  color: var(--ark-color-text-secondary);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* ─── Delete button ───────────────────────────────────────────────────────── */
+
+.deleteBtn {
+  opacity: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--ark-color-text-secondary);
+  padding: var(--ark-space-1);
+  border-radius: var(--ark-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: opacity 0.15s ease, background 0.15s ease;
+}
+
+.deleteBtn:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.deleteBtn:focus-visible {
+  opacity: 1;
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.item:hover .deleteBtn {
+  opacity: 1;
+}
+
+/* ─── Pin icon ────────────────────────────────────────────────────────────── */
+
+.pinIcon {
+  position: absolute;
+  top: var(--ark-space-2);
+  right: var(--ark-space-2);
+  color: var(--ark-color-text-secondary);
+  display: flex;
+  align-items: center;
+}
+
+/* ─── Item content ────────────────────────────────────────────────────────── */
+
+.itemContent {
+  font-size: var(--ark-font-size-sm);
+  white-space: pre-wrap;
+  overflow: hidden;
+  flex: 1;
+  line-height: 1.5;
+}
+
+/* ─── Item author ─────────────────────────────────────────────────────────── */
+
+.itemAuthor {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-secondary);
+  margin-top: auto;
+  padding-top: var(--ark-space-2);
+}
+
+/* ─── Read-only mode ──────────────────────────────────────────────────────── */
+
+.readOnly .item {
+  cursor: default;
+}
+
+.readOnly .deleteBtn {
+  display: none;
+}
+
+.readOnly .grip {
+  display: none;
+}

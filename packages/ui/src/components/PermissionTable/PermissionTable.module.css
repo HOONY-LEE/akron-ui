@@ -1,0 +1,171 @@
+/* ── PermissionTable custom tokens ── */
+.root {
+  --ark-perm-cell-size-sm: 28px;
+  --ark-perm-cell-size-md: 32px;
+  --ark-perm-padding-x-sm: var(--ark-spacing-2);
+  --ark-perm-padding-y-sm: var(--ark-spacing-1-5);
+  --ark-perm-padding-x-md: var(--ark-spacing-3);
+  --ark-perm-padding-y-md: var(--ark-spacing-2);
+  --ark-perm-font-size-sm: var(--ark-font-size-xs);
+  --ark-perm-font-size-md: var(--ark-font-size-sm);
+
+  overflow: auto;
+  border: 1px solid var(--ark-color-border);
+  border-radius: var(--ark-radius-lg);
+  font-family: var(--ark-font-family);
+  position: relative;
+}
+
+/* ── Table ── */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* ── Head ── */
+.thead {
+  position: sticky;
+  top: 0;
+  background-color: var(--ark-color-bg);
+  z-index: var(--ark-z-sticky);
+}
+
+.th {
+  padding: var(--ark-perm-padding-y-md) var(--ark-perm-padding-x-md);
+  font-weight: var(--ark-font-weight-semibold);
+  font-size: var(--ark-perm-font-size-md);
+  text-align: center;
+  border-bottom: 1px solid var(--ark-color-border-strong);
+  color: var(--ark-color-text);
+  white-space: nowrap;
+  line-height: var(--ark-line-height-normal);
+}
+
+.first {
+  text-align: left;
+  position: sticky;
+  left: 0;
+  background-color: var(--ark-color-bg);
+  z-index: 1;
+}
+
+.thead .first {
+  z-index: calc(var(--ark-z-sticky) + 1);
+}
+
+/* ── Category row ── */
+.categoryRow {
+  background-color: var(--ark-color-bg-muted);
+}
+
+.categoryRow td {
+  padding: var(--ark-perm-padding-y-md) var(--ark-perm-padding-x-md);
+  font-weight: var(--ark-font-weight-semibold);
+  font-size: var(--ark-perm-font-size-md);
+  color: var(--ark-color-text-secondary);
+  border-bottom: 1px solid var(--ark-color-border);
+}
+
+/* ── Body rows ── */
+.tr {
+  border-bottom: 1px solid var(--ark-color-border);
+  transition: background-color var(--ark-transition-fast);
+}
+
+.tr:last-child {
+  border-bottom: none;
+}
+
+.td {
+  text-align: center;
+  padding: var(--ark-perm-padding-y-md) var(--ark-perm-padding-x-md);
+  font-size: var(--ark-perm-font-size-md);
+  line-height: var(--ark-line-height-normal);
+}
+
+.td.first {
+  background-color: var(--ark-color-bg);
+}
+
+/* ── Permission label ── */
+.permLabel {
+  font-weight: var(--ark-font-weight-medium);
+  color: var(--ark-color-text);
+}
+
+.permDesc {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-secondary);
+  margin-top: var(--ark-spacing-0-5);
+  line-height: var(--ark-line-height-tight);
+}
+
+/* ── Cell button ── */
+.cell {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--ark-perm-cell-size-md);
+  height: var(--ark-perm-cell-size-md);
+  border-radius: var(--ark-radius-sm);
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: background-color var(--ark-transition-fast);
+  padding: 0;
+}
+
+.cell:hover {
+  background-color: var(--ark-color-bg-muted);
+}
+
+.cell:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.cell:active {
+  background-color: var(--ark-color-bg-subtle);
+}
+
+.cell.readOnly {
+  cursor: default;
+}
+
+.cell.readOnly:hover {
+  background-color: transparent;
+}
+
+/* ── Value colors ── */
+.granted {
+  color: var(--ark-color-success-500);
+}
+
+.denied {
+  color: var(--ark-color-error-500);
+}
+
+.partial {
+  color: var(--ark-color-warning-500);
+}
+
+.none {
+  color: var(--ark-color-text-disabled);
+}
+
+/* ── Size: sm ── */
+.sm .th,
+.sm .td,
+.sm .categoryRow td {
+  padding: var(--ark-perm-padding-y-sm) var(--ark-perm-padding-x-sm);
+  font-size: var(--ark-perm-font-size-sm);
+}
+
+.sm .cell {
+  width: var(--ark-perm-cell-size-sm);
+  height: var(--ark-perm-cell-size-sm);
+}
+
+.sm .permDesc {
+  font-size: 10px;
+}

@@ -144,6 +144,11 @@ import { VirtualListPage } from "./pages/VirtualListPage";
 import { CronBuilderPage } from "./pages/CronBuilderPage";
 import { MentionInputPage } from "./pages/MentionInputPage";
 import { ImageCropperPage } from "./pages/ImageCropperPage";
+import { TimeSlotPickerPage } from "./pages/TimeSlotPickerPage";
+import { PermissionTablePage } from "./pages/PermissionTablePage";
+import { NotificationBellPage } from "./pages/NotificationBellPage";
+import { ProgressTrackerPage } from "./pages/ProgressTrackerPage";
+import { PinBoardPage } from "./pages/PinBoardPage";
 
 export interface PageMeta {
   component: ComponentType;
@@ -328,6 +333,11 @@ export const pages: PageMeta[] = [
   { path: "cron-builder", component: CronBuilderPage, label: "CronBuilder", category: "입력" },
   { path: "mention-input", component: MentionInputPage, label: "MentionInput", category: "입력" },
   { path: "image-cropper", component: ImageCropperPage, label: "ImageCropper", category: "입력" },
+  { path: "time-slot-picker", component: TimeSlotPickerPage, label: "TimeSlotPicker", category: "입력" },
+  { path: "permission-table", component: PermissionTablePage, label: "PermissionTable", category: "데이터" },
+  { path: "notification-bell", component: NotificationBellPage, label: "NotificationBell", category: "오버레이" },
+  { path: "progress-tracker", component: ProgressTrackerPage, label: "ProgressTracker", category: "표시" },
+  { path: "pin-board", component: PinBoardPage, label: "PinBoard", category: "기타" },
 ];
 
 export function getPageByPath(pathname: string): PageMeta | undefined {

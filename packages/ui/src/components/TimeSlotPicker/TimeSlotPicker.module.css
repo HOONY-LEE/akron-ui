@@ -1,0 +1,108 @@
+.root {
+  display: grid;
+  gap: var(--ark-spacing-2);
+  font-family: var(--ark-font-family);
+}
+
+/* ── Slot button ── */
+.slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--ark-color-gray-200);
+  border-radius: var(--ark-radius-md);
+  background-color: var(--ark-color-bg);
+  color: var(--ark-color-text);
+  font-family: var(--ark-font-family);
+  font-weight: var(--ark-font-weight-medium);
+  cursor: pointer;
+  transition: background-color var(--ark-transition-fast),
+              border-color var(--ark-transition-fast),
+              color var(--ark-transition-fast),
+              box-shadow var(--ark-transition-fast);
+  user-select: none;
+  text-align: center;
+}
+
+.slot:hover:not(.disabled):not(.selected) {
+  background-color: var(--ark-color-bg-subtle);
+  border-color: var(--ark-color-gray-300);
+}
+
+.slot:active:not(.disabled):not(.selected) {
+  background-color: var(--ark-color-bg-muted);
+}
+
+.slot:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+/* ── Selected ── */
+.selected {
+  background-color: var(--ark-color-primary-500);
+  border-color: var(--ark-color-primary-500);
+  color: var(--ark-color-text-inverse);
+}
+
+.selected:hover:not(.disabled) {
+  background-color: var(--ark-color-primary-600);
+  border-color: var(--ark-color-primary-600);
+}
+
+.selected:active:not(.disabled) {
+  background-color: var(--ark-color-primary-700);
+  border-color: var(--ark-color-primary-700);
+}
+
+/* ── In-range (between start and end in range selection) ── */
+.inRange {
+  background-color: var(--ark-color-primary-50);
+  border-color: var(--ark-color-primary-200);
+  color: var(--ark-color-primary-700);
+}
+
+.inRange:hover:not(.disabled) {
+  background-color: var(--ark-color-primary-100);
+}
+
+/* ── Disabled ── */
+.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ── Sizes ── */
+.sm {
+  padding: var(--ark-spacing-1) var(--ark-spacing-2);
+  font-size: var(--ark-font-size-xs);
+  min-height: var(--ark-spacing-8);
+}
+
+.md {
+  padding: var(--ark-spacing-2) var(--ark-spacing-3);
+  font-size: var(--ark-font-size-sm);
+  min-height: var(--ark-spacing-10);
+}
+
+/* ── Slot label ── */
+.slotLabel {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-secondary);
+  line-height: var(--ark-line-height-tight);
+  margin-top: var(--ark-spacing-0-5);
+}
+
+.selected .slotLabel {
+  color: var(--ark-color-primary-100);
+}
+
+/* ── Duration indicator ── */
+.duration {
+  margin-top: var(--ark-spacing-2);
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-secondary);
+  font-weight: var(--ark-font-weight-medium);
+  text-align: center;
+}

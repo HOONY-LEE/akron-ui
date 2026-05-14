@@ -879,6 +879,34 @@ const tocData: Record<string, { label: string; id: string; indent?: boolean }[]>
     { label: "크기", id: "sizes" },
     { label: "인터페이스", id: "interface" },
   ],
+  "time-slot-picker": [
+    { label: "기본 사용", id: "basic" },
+    { label: "다중 선택", id: "multiple" },
+    { label: "커스텀 슬롯", id: "custom-slots" },
+    { label: "인터페이스", id: "interface" },
+  ],
+  "permission-table": [
+    { label: "기본 사용", id: "basic" },
+    { label: "읽기 전용", id: "readonly" },
+    { label: "인터페이스", id: "interface" },
+  ],
+  "notification-bell": [
+    { label: "기본 사용", id: "basic" },
+    { label: "크기", id: "sizes" },
+    { label: "상태", id: "states" },
+    { label: "인터페이스", id: "interface" },
+  ],
+  "progress-tracker": [
+    { label: "수평 레이아웃", id: "horizontal" },
+    { label: "수직 레이아웃", id: "vertical" },
+    { label: "크기", id: "sizes" },
+    { label: "인터페이스", id: "interface" },
+  ],
+  "pin-board": [
+    { label: "기본 사용", id: "basic" },
+    { label: "읽기 전용", id: "readonly" },
+    { label: "인터페이스", id: "interface" },
+  ],
   "bottom-sheet": [
     { label: "기본 사용", id: "basic" },
     { label: "크기", id: "sizes" },

@@ -5750,3 +5750,175 @@ import { ImageCropper } from "@sunghoon_lee/akron-ui";
 | showGrid | boolean | true | 3분할 격자 |
 | quality | number | 0.92 | 출력 품질 (0-1) |
 | outputFormat | string | 'image/png' | 출력 포맷 |
+
+---
+
+## TimeSlotPicker
+
+시간 슬롯 선택 그리드. 회의 예약이나 일정 설정에 사용합니다.
+
+```tsx
+import { TimeSlotPicker } from "@sunghoon_lee/akron-ui";
+
+<TimeSlotPicker startHour={9} endHour={18} interval={30} onChange={(selected) => {}} />
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| slots | TimeSlot[] | 자동 생성 | 시간 슬롯 목록 |
+| startHour | number | 9 | 시작 시간 |
+| endHour | number | 18 | 종료 시간 |
+| interval | number | 30 | 간격 (분) |
+| value | string[] | - | 선택 값 (제어) |
+| onChange | (selected) => void | - | 변경 콜백 |
+| multiple | boolean | false | 다중 선택 |
+| size | 'sm' \| 'md' | 'md' | 크기 |
+| columns | number | 4 | 열 수 |
+| disabledSlots | string[] | - | 비활성 슬롯 |
+
+---
+
+## PermissionTable
+
+권한 매트릭스 테이블. 역할별 권한을 시각적으로 관리합니다.
+
+```tsx
+import { PermissionTable } from "@sunghoon_lee/akron-ui";
+
+<PermissionTable
+  rows={[{ id: "read", label: "읽기" }]}
+  columns={[{ id: "admin", label: "관리자" }]}
+  values={{ read: { admin: "granted" } }}
+  onChange={(rowId, colId, value) => {}}
+/>
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| rows | PermissionRow[] | 필수 | 권한 행 |
+| columns | PermissionColumn[] | 필수 | 역할 열 |
+| values | Record<string, Record<string, PermissionValue>> | 필수 | 권한 값 |
+| onChange | (rowId, colId, value) => void | - | 변경 콜백 |
+| readOnly | boolean | false | 읽기 전용 |
+| size | 'sm' \| 'md' | 'md' | 크기 |
+| showCategories | boolean | true | 카테고리 그룹 |
+| cycleValues | PermissionValue[] | ['granted','denied','none'] | 클릭 순환 값 |
+
+---
+
+## NotificationBell
+
+알림 벨 아이콘 버튼. 배지 카운트와 드롭다운 알림 목록을 표시합니다.
+
+```tsx
+import { NotificationBell } from "@sunghoon_lee/akron-ui";
+
+<NotificationBell
+  count={5}
+  notifications={[{ id: "1", title: "새 알림", timestamp: new Date(), type: "info" }]}
+  onMarkAllRead={() => {}}
+/>
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| count | number | 0 | 배지 카운트 |
+| maxCount | number | 99 | 최대 표시 수 |
+| notifications | NotificationBellItem[] | - | 알림 목록 |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 크기 |
+| onMarkAllRead | () => void | - | 모두 읽음 콜백 |
+| onClear | () => void | - | 모두 지우기 콜백 |
+| muted | boolean | false | 음소거 상태 |
+| emptyMessage | string | '알림이 없습니다.' | 빈 상태 메시지 |
+
+---
+
+## ProgressTracker
+
+프로젝트 진행 추적. 다단계 프로젝트의 진행 상황을 시각화합니다.
+
+```tsx
+import { ProgressTracker } from "@sunghoon_lee/akron-ui";
+
+<ProgressTracker
+  phases={[
+    { id: "1", label: "기획", status: "completed" },
+    { id: "2", label: "개발", status: "in-progress", progress: 65 },
+    { id: "3", label: "배포", status: "upcoming" },
+  ]}
+/>
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| phases | TrackerPhase[] | 필수 | 단계 목록 |
+| variant | 'horizontal' \| 'vertical' | 'horizontal' | 레이아웃 |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 크기 |
+| showProgress | boolean | true | 진행률 표시 |
+| showDates | boolean | false | 날짜 표시 |
+| showAssignee | boolean | false | 담당자 표시 |
+| onPhaseClick | (phase) => void | - | 단계 클릭 콜백 |
+
+### TrackerPhase
+
+| 필드 | 타입 | 설명 |
+|------|------|------|
+| id | string | 고유 ID (필수) |
+| label | string | 단계 이름 (필수) |
+| status | 'completed' \| 'in-progress' \| 'upcoming' \| 'delayed' \| 'blocked' | 상태 (필수) |
+| progress | number | 진행률 (0-100) |
+| startDate | string | 시작일 |
+| endDate | string | 종료일 |
+| assignee | string | 담당자 |
+
+---
+
+## PinBoard
+
+핀 보드. 드래그 가능한 스티키 노트를 자유롭게 배치합니다.
+
+```tsx
+import { PinBoard } from "@sunghoon_lee/akron-ui";
+
+<PinBoard
+  items={[
+    { id: "1", content: "할 일 메모", color: "yellow", x: 20, y: 20 },
+    { id: "2", content: "아이디어", color: "blue", x: 240, y: 30 },
+  ]}
+  onChange={(items) => setItems(items)}
+/>
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| items | PinItem[] | 필수 | 핀 항목 |
+| onChange | (items) => void | - | 변경 콜백 |
+| onItemClick | (item) => void | - | 항목 클릭 콜백 |
+| onItemDelete | (id) => void | - | 삭제 콜백 |
+| readOnly | boolean | false | 읽기 전용 |
+| minHeight | number | 500 | 최소 높이 |
+| showGrid | boolean | true | 격자 배경 |
+| gridSize | number | 20 | 격자 간격 |
+| snapToGrid | boolean | false | 격자에 맞춤 |
+
+### PinItem
+
+| 필드 | 타입 | 설명 |
+|------|------|------|
+| id | string | 고유 ID (필수) |
+| content | string | 내용 (필수) |
+| color | 'yellow' \| 'green' \| 'blue' \| 'pink' \| 'purple' \| 'orange' | 색상 |
+| x | number | X 위치 (필수) |
+| y | number | Y 위치 (필수) |
+| pinned | boolean | 고정 여부 |
+| author | string | 작성자 |

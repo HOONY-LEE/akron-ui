@@ -1,0 +1,313 @@
+/* ── Root ── */
+.root {
+  position: relative;
+  display: inline-flex;
+}
+
+/* ── Bell Button ── */
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: var(--ark-radius-md);
+  cursor: pointer;
+  color: var(--ark-color-text);
+  transition: background-color var(--ark-transition-fast),
+    color var(--ark-transition-fast);
+  padding: 0;
+}
+
+.button:hover {
+  background-color: var(--ark-color-bg-muted);
+}
+
+.button:active {
+  background-color: var(--ark-color-gray-200);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.button:disabled {
+  color: var(--ark-color-text-disabled);
+  cursor: not-allowed;
+}
+
+.button:disabled:hover {
+  background: none;
+}
+
+/* ── Size Variants ── */
+.sm {
+  width: 28px;
+  height: 28px;
+}
+
+.md {
+  width: 36px;
+  height: 36px;
+}
+
+.lg {
+  width: 44px;
+  height: 44px;
+}
+
+/* ── Badge ── */
+.badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--ark-color-error-500);
+  color: var(--ark-color-text-inverse);
+  font-family: var(--ark-font-family);
+  font-size: var(--ark-font-size-xs);
+  font-weight: var(--ark-font-weight-semibold);
+  line-height: 1;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 var(--ark-spacing-1);
+  border-radius: var(--ark-radius-full);
+  pointer-events: none;
+  transform: translate(50%, -50%);
+}
+
+.pulse {
+  animation: badgePulse 1.5s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+  0%,
+  100% {
+    transform: translate(50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(50%, -50%) scale(1.15);
+  }
+}
+
+/* ── Dropdown ── */
+.dropdown {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  margin-top: var(--ark-spacing-1);
+  width: 360px;
+  max-height: 400px;
+  background-color: var(--ark-color-bg);
+  border: 1px solid var(--ark-color-border);
+  border-radius: var(--ark-radius-lg);
+  box-shadow: var(--ark-shadow-lg);
+  z-index: var(--ark-z-dropdown);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ── Dropdown Header ── */
+.dropdownHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ark-spacing-3) var(--ark-spacing-4);
+  border-bottom: 1px solid var(--ark-color-border);
+}
+
+.dropdownTitle {
+  font-family: var(--ark-font-family);
+  font-size: var(--ark-font-size-sm);
+  font-weight: var(--ark-font-weight-semibold);
+  color: var(--ark-color-text);
+  margin: 0;
+}
+
+.headerActions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--ark-spacing-1);
+}
+
+.actionBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--ark-font-family);
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-secondary);
+  padding: var(--ark-spacing-1) var(--ark-spacing-2);
+  border-radius: var(--ark-radius-sm);
+  transition: background-color var(--ark-transition-fast),
+    color var(--ark-transition-fast);
+  white-space: nowrap;
+}
+
+.actionBtn:hover {
+  background-color: var(--ark-color-bg-muted);
+  color: var(--ark-color-text);
+}
+
+.actionBtn:active {
+  background-color: var(--ark-color-gray-200);
+}
+
+.actionBtn:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.actionBtn:disabled {
+  color: var(--ark-color-text-disabled);
+  cursor: not-allowed;
+}
+
+.settingsBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--ark-color-text-secondary);
+  padding: var(--ark-spacing-1);
+  border-radius: var(--ark-radius-sm);
+  transition: background-color var(--ark-transition-fast),
+    color var(--ark-transition-fast);
+}
+
+.settingsBtn:hover {
+  background-color: var(--ark-color-bg-muted);
+  color: var(--ark-color-text);
+}
+
+.settingsBtn:active {
+  background-color: var(--ark-color-gray-200);
+}
+
+.settingsBtn:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+/* ── Notification List ── */
+.notificationList {
+  overflow-y: auto;
+  max-height: 300px;
+  flex: 1;
+}
+
+/* ── Notification Item ── */
+.notification {
+  display: flex;
+  flex-direction: row;
+  padding: var(--ark-spacing-3) var(--ark-spacing-4);
+  gap: var(--ark-spacing-3);
+  border-bottom: 1px solid var(--ark-color-border);
+  cursor: pointer;
+  transition: background-color var(--ark-transition-fast);
+}
+
+.notification:last-child {
+  border-bottom: none;
+}
+
+.notification:hover {
+  background-color: var(--ark-color-bg-subtle);
+}
+
+.unread {
+  background-color: var(--ark-color-primary-50);
+}
+
+.unread:hover {
+  background-color: var(--ark-color-primary-100);
+}
+
+/* ── Type Dot ── */
+.typeDot {
+  width: 8px;
+  height: 8px;
+  min-width: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: var(--ark-spacing-1);
+}
+
+.typeDot.info {
+  background-color: var(--ark-color-info-500);
+}
+
+.typeDot.success {
+  background-color: var(--ark-color-success-500);
+}
+
+.typeDot.warning {
+  background-color: var(--ark-color-warning-500);
+}
+
+.typeDot.error {
+  background-color: var(--ark-color-error-500);
+}
+
+/* ── Notification Content ── */
+.notifContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.notifTitle {
+  font-family: var(--ark-font-family);
+  font-size: var(--ark-font-size-sm);
+  font-weight: var(--ark-font-weight-medium);
+  color: var(--ark-color-text);
+  margin: 0;
+  line-height: var(--ark-line-height-tight);
+}
+
+.notifMessage {
+  font-family: var(--ark-font-family);
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-secondary);
+  margin: var(--ark-spacing-0-5) 0 0;
+  line-height: var(--ark-line-height-normal);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.notifTime {
+  font-family: var(--ark-font-family);
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-disabled);
+  margin: var(--ark-spacing-0-5) 0 0;
+  line-height: var(--ark-line-height-normal);
+}
+
+/* ── Footer ── */
+.footer {
+  border-top: 1px solid var(--ark-color-border);
+  padding: var(--ark-spacing-2) var(--ark-spacing-4);
+  text-align: center;
+}
+
+/* ── Empty State ── */
+.empty {
+  padding: var(--ark-spacing-8) var(--ark-spacing-4);
+  text-align: center;
+  font-family: var(--ark-font-family);
+  font-size: var(--ark-font-size-sm);
+  color: var(--ark-color-text-secondary);
+}
