@@ -879,6 +879,36 @@ const tocData: Record<string, { label: string; id: string; indent?: boolean }[]>
     { label: "크기", id: "sizes" },
     { label: "인터페이스", id: "interface" },
   ],
+  "bottom-sheet": [
+    { label: "기본 사용", id: "basic" },
+    { label: "크기", id: "sizes" },
+    { label: "푸터", id: "footer" },
+    { label: "인터페이스", id: "interface" },
+  ],
+  "virtual-list": [
+    { label: "기본 사용", id: "basic" },
+    { label: "끝 도달 감지", id: "end-reached" },
+    { label: "인터페이스", id: "interface" },
+  ],
+  "cron-builder": [
+    { label: "기본 사용", id: "basic" },
+    { label: "제어 모드", id: "controlled" },
+    { label: "옵션", id: "options" },
+    { label: "인터페이스", id: "interface" },
+  ],
+  "mention-input": [
+    { label: "기본 사용", id: "basic" },
+    { label: "멀티라인", id: "multiline" },
+    { label: "크기", id: "sizes" },
+    { label: "상태", id: "states" },
+    { label: "인터페이스", id: "interface" },
+  ],
+  "image-cropper": [
+    { label: "기본 사용", id: "basic" },
+    { label: "비율 고정", id: "aspect-ratio" },
+    { label: "원형 크롭", id: "circle" },
+    { label: "인터페이스", id: "interface" },
+  ],
   "activity-feed": [
     { label: "기본 사용", id: "basic" },
     { label: "날짜별 그룹", id: "grouped" },

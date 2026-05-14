@@ -5592,3 +5592,161 @@ import { RichTextPreview } from "@sunghoon_lee/akron-ui";
 | onShowMore | () => void | - | 더 보기 콜백 |
 | linkTarget | '_blank' \| '_self' | '_blank' | 링크 대상 |
 | compact | boolean | false | 컴팩트 모드 |
+
+---
+
+## BottomSheet
+
+하단 시트 오버레이. 모바일 친화적으로 콘텐츠를 표시합니다.
+
+```tsx
+import { BottomSheet } from "@sunghoon_lee/akron-ui";
+
+<BottomSheet open={open} onClose={() => setOpen(false)} title="제목">
+  <p>내용</p>
+</BottomSheet>
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| open | boolean | 필수 | 열림 상태 |
+| onClose | () => void | 필수 | 닫기 콜백 |
+| size | 'sm' \| 'md' \| 'lg' \| 'full' | 'md' | 최대 높이 (30/50/75/95%) |
+| title | string | - | 제목 |
+| showHandle | boolean | true | 드래그 핸들 |
+| showClose | boolean | true | 닫기 버튼 |
+| closeOnOverlay | boolean | true | 오버레이 클릭 닫기 |
+| closeOnEscape | boolean | true | ESC 닫기 |
+| footer | ReactNode | - | 하단 고정 영역 |
+
+---
+
+## VirtualList
+
+가상화 리스트. 대량 데이터를 효율적으로 렌더링합니다.
+
+```tsx
+import { VirtualList } from "@sunghoon_lee/akron-ui";
+
+<VirtualList
+  items={items}
+  height={400}
+  itemHeight={40}
+  renderItem={(item, i) => <div>{item.name}</div>}
+/>
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| items | T[] | 필수 | 데이터 배열 |
+| itemHeight | number | 필수 | 항목 높이 (px) |
+| height | number \| string | 필수 | 컨테이너 높이 |
+| width | number \| string | '100%' | 컨테이너 너비 |
+| overscan | number | 5 | 추가 렌더링 수 |
+| renderItem | (item, index) => ReactNode | 필수 | 항목 렌더러 |
+| onEndReached | () => void | - | 끝 도달 콜백 |
+| endReachedThreshold | number | 200 | 끝 도달 임계값 (px) |
+| getItemKey | (item, index) => string \| number | - | 키 추출 |
+| emptyMessage | string | '항목이 없습니다.' | 빈 상태 메시지 |
+
+---
+
+## CronBuilder
+
+크론 표현식 빌더. 스케줄링을 위한 크론 표현식을 시각적으로 구성합니다.
+
+```tsx
+import { CronBuilder } from "@sunghoon_lee/akron-ui";
+
+<CronBuilder defaultValue="*/5 * * * *" onChange={(cron) => console.log(cron)} />
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| value | string | - | 크론 표현식 (제어) |
+| defaultValue | string | - | 기본 표현식 |
+| onChange | (cron) => void | - | 변경 콜백 |
+| size | 'sm' \| 'md' | 'md' | 크기 |
+| showExpression | boolean | true | 표현식 표시 |
+| showPreview | boolean | true | 읽기 쉬운 미리보기 |
+| locale | 'ko' \| 'en' | 'ko' | 로케일 |
+
+---
+
+## MentionInput
+
+멘션 입력. @를 입력하면 사용자를 태그할 수 있습니다.
+
+```tsx
+import { MentionInput } from "@sunghoon_lee/akron-ui";
+
+<MentionInput
+  users={[{ id: "1", name: "김철수" }, { id: "2", name: "이영희" }]}
+  placeholder="@를 입력하여 멘션하세요..."
+  onChange={(value, mentions) => console.log(value, mentions)}
+/>
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| users | MentionUser[] | 필수 | 멘션 가능 사용자 |
+| value | string | - | 값 (제어) |
+| defaultValue | string | - | 기본값 |
+| onChange | (value, mentions) => void | - | 변경 콜백 |
+| trigger | string | '@' | 트리거 문자 |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 크기 |
+| placeholder | string | - | 플레이스홀더 |
+| disabled | boolean | false | 비활성화 |
+| error | boolean | false | 에러 상태 |
+| helperText | string | - | 도움말 |
+| multiline | boolean | false | 멀티라인 모드 |
+| rows | number | 3 | 멀티라인 행 수 |
+
+### MentionUser
+
+| 필드 | 타입 | 설명 |
+|------|------|------|
+| id | string | 고유 ID (필수) |
+| name | string | 이름 (필수) |
+| avatar | string | 아바타 URL |
+
+---
+
+## ImageCropper
+
+이미지 크롭 도구. 이미지를 원하는 영역으로 자르고 크기를 조절합니다.
+
+```tsx
+import { ImageCropper } from "@sunghoon_lee/akron-ui";
+
+<ImageCropper
+  src="/photo.jpg"
+  aspectRatio={1}
+  shape="circle"
+  onCrop={(dataUrl) => console.log(dataUrl)}
+/>
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| src | string | 필수 | 이미지 URL |
+| aspectRatio | number | - | 비율 (width/height) |
+| shape | 'rect' \| 'circle' | 'rect' | 크롭 형태 |
+| minWidth | number | 50 | 최소 크롭 너비 |
+| minHeight | number | 50 | 최소 크롭 높이 |
+| onChange | (cropArea) => void | - | 영역 변경 콜백 |
+| onCrop | (dataUrl) => void | - | 크롭 완료 콜백 |
+| showControls | boolean | true | 줌/회전 컨트롤 |
+| showGrid | boolean | true | 3분할 격자 |
+| quality | number | 0.92 | 출력 품질 (0-1) |
+| outputFormat | string | 'image/png' | 출력 포맷 |

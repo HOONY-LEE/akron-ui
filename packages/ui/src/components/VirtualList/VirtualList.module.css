@@ -1,0 +1,26 @@
+.root {
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.inner {
+  position: relative;
+}
+
+.item {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ark-spacing-8);
+  color: var(--ark-color-text-secondary);
+  font-size: var(--ark-font-size-sm);
+  font-family: var(--ark-font-family);
+}

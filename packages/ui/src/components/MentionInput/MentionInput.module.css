@@ -1,0 +1,207 @@
+/* ── Root ── */
+.root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--ark-font-family);
+}
+
+/* ── Input Wrapper ── */
+.inputWrapper {
+  position: relative;
+}
+
+/* ── Shared input styles (contentEditable div) ── */
+.input {
+  width: 100%;
+  border: 1px solid var(--ark-input-border-color, var(--ark-color-border));
+  border-radius: var(--ark-input-radius);
+  background-color: var(--ark-input-bg);
+  color: var(--ark-color-text);
+  font-family: var(--ark-font-family);
+  line-height: var(--ark-line-height-normal);
+  transition: border-color var(--ark-transition-fast),
+              box-shadow var(--ark-transition-fast);
+  cursor: text;
+  overflow-x: hidden;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  outline: none;
+}
+
+.input:empty::before {
+  content: attr(data-placeholder);
+  color: var(--ark-color-text-disabled);
+  pointer-events: none;
+}
+
+/* ── Size variants ── */
+.sm .input {
+  min-height: var(--ark-input-height-sm);
+  padding: var(--ark-spacing-1) var(--ark-input-padding-x);
+  font-size: var(--ark-input-font-size-sm);
+}
+
+.md .input {
+  min-height: var(--ark-input-height-md);
+  padding: var(--ark-spacing-1-5) var(--ark-input-padding-x);
+  font-size: var(--ark-input-font-size-md);
+}
+
+.lg .input {
+  min-height: var(--ark-input-height-lg);
+  padding: var(--ark-spacing-2) var(--ark-spacing-4);
+  font-size: var(--ark-input-font-size-lg);
+}
+
+/* ── Single-line mode ── */
+.singleLine {
+  white-space: nowrap;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+/* ── Multiline (textarea-like) ── */
+.textarea {
+  white-space: pre-wrap;
+  overflow-y: auto;
+}
+
+/* ── States ── */
+.input:hover:not(.disabled):not(:focus) {
+  border-color: var(--ark-color-gray-400);
+}
+
+.input:focus {
+  border-color: var(--ark-color-primary-500);
+  box-shadow: 0 0 0 1px var(--ark-color-primary-500);
+}
+
+.input:focus-visible {
+  outline: none;
+  border-color: var(--ark-color-primary-500);
+  box-shadow: 0 0 0 1px var(--ark-color-primary-500);
+}
+
+.disabled .input {
+  background-color: var(--ark-color-gray-50);
+  color: var(--ark-color-text-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── Error ── */
+.error .input {
+  border-color: var(--ark-color-error-500);
+}
+
+.error .input:focus,
+.error .input:focus-visible {
+  border-color: var(--ark-color-error-500);
+  box-shadow: 0 0 0 1px var(--ark-color-error-500);
+}
+
+/* ── Mention span inside contentEditable ── */
+.mention {
+  color: var(--ark-color-primary-500);
+  background-color: var(--ark-color-primary-50);
+  border-radius: var(--ark-radius-sm);
+  padding: 0 var(--ark-spacing-0-5);
+  font-weight: var(--ark-font-weight-medium);
+  white-space: nowrap;
+  user-select: all;
+}
+
+/* ── Dropdown ── */
+.dropdown {
+  position: absolute;
+  left: 0;
+  z-index: var(--ark-z-dropdown);
+  background-color: var(--ark-color-bg);
+  border: 1px solid var(--ark-color-border);
+  border-radius: var(--ark-radius-md);
+  box-shadow: var(--ark-shadow-lg);
+  max-height: 200px;
+  overflow-y: auto;
+  width: 100%;
+  min-width: 200px;
+  margin-top: var(--ark-spacing-1);
+}
+
+/* ── Dropdown Item ── */
+.dropdownItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: var(--ark-spacing-2) var(--ark-spacing-3);
+  cursor: pointer;
+  gap: var(--ark-spacing-2);
+  transition: background-color var(--ark-transition-fast);
+}
+
+.dropdownItem:hover {
+  background-color: var(--ark-color-bg-subtle);
+}
+
+.dropdownItem.active {
+  background-color: var(--ark-color-bg-subtle);
+}
+
+/* ── Avatar ── */
+.avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--ark-radius-full);
+  flex-shrink: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatarImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--ark-radius-full);
+}
+
+.initials {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--ark-color-primary-100);
+  color: var(--ark-color-primary-700);
+  font-size: var(--ark-font-size-xs);
+  font-weight: var(--ark-font-weight-medium);
+  line-height: 1;
+}
+
+/* ── User Name ── */
+.userName {
+  font-size: var(--ark-font-size-sm);
+  color: var(--ark-color-text);
+  line-height: var(--ark-line-height-normal);
+}
+
+/* ── Helper Text ── */
+.helperText {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-secondary);
+  margin-top: var(--ark-spacing-1);
+  line-height: var(--ark-line-height-normal);
+}
+
+.helperText.helperError {
+  color: var(--ark-color-error-500);
+}
+
+/* ── No results ── */
+.noResults {
+  padding: var(--ark-spacing-2) var(--ark-spacing-3);
+  font-size: var(--ark-font-size-sm);
+  color: var(--ark-color-text-disabled);
+}

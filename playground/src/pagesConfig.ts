@@ -139,6 +139,11 @@ import { DateRangePickerPage } from "./pages/DateRangePickerPage";
 import { FormWizardPage } from "./pages/FormWizardPage";
 import { UserCardPage } from "./pages/UserCardPage";
 import { RichTextPreviewPage } from "./pages/RichTextPreviewPage";
+import { BottomSheetPage } from "./pages/BottomSheetPage";
+import { VirtualListPage } from "./pages/VirtualListPage";
+import { CronBuilderPage } from "./pages/CronBuilderPage";
+import { MentionInputPage } from "./pages/MentionInputPage";
+import { ImageCropperPage } from "./pages/ImageCropperPage";
 
 export interface PageMeta {
   component: ComponentType;
@@ -318,6 +323,11 @@ export const pages: PageMeta[] = [
   { path: "form-wizard", component: FormWizardPage, label: "FormWizard", category: "입력" },
   { path: "user-card", component: UserCardPage, label: "UserCard", category: "표시" },
   { path: "rich-text-preview", component: RichTextPreviewPage, label: "RichTextPreview", category: "표시" },
+  { path: "bottom-sheet", component: BottomSheetPage, label: "BottomSheet", category: "오버레이" },
+  { path: "virtual-list", component: VirtualListPage, label: "VirtualList", category: "데이터" },
+  { path: "cron-builder", component: CronBuilderPage, label: "CronBuilder", category: "입력" },
+  { path: "mention-input", component: MentionInputPage, label: "MentionInput", category: "입력" },
+  { path: "image-cropper", component: ImageCropperPage, label: "ImageCropper", category: "입력" },
 ];
 
 export function getPageByPath(pathname: string): PageMeta | undefined {

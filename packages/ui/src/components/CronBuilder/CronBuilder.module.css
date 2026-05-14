@@ -1,0 +1,200 @@
+/* ── CronBuilder Custom Tokens ── */
+.root {
+  --ark-cron-padding: var(--ark-spacing-5);
+  --ark-cron-gap: var(--ark-spacing-4);
+  --ark-cron-border-color: var(--ark-color-border);
+  --ark-cron-bg: var(--ark-color-bg);
+  --ark-cron-radius: var(--ark-radius-lg);
+
+  border: 1px solid var(--ark-cron-border-color);
+  border-radius: var(--ark-cron-radius);
+  background: var(--ark-cron-bg);
+  padding: var(--ark-cron-padding);
+  font-family: var(--ark-font-family);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-cron-gap);
+}
+
+.root.sm {
+  --ark-cron-padding: var(--ark-spacing-3);
+  --ark-cron-gap: var(--ark-spacing-3);
+  font-size: var(--ark-font-size-xs);
+}
+
+.root.md {
+  font-size: var(--ark-font-size-sm);
+}
+
+/* ── Presets ── */
+.presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ark-spacing-2);
+  margin-bottom: var(--ark-spacing-2);
+}
+
+.presetBtn {
+  padding: var(--ark-spacing-1) var(--ark-spacing-3);
+  border: 1px solid var(--ark-color-border);
+  border-radius: var(--ark-radius-md);
+  background: var(--ark-color-bg);
+  color: var(--ark-color-text);
+  font-size: inherit;
+  font-family: var(--ark-font-family);
+  cursor: pointer;
+  transition: all var(--ark-transition-fast);
+  line-height: var(--ark-line-height-normal);
+  white-space: nowrap;
+}
+
+.presetBtn:hover {
+  background: var(--ark-color-bg-muted);
+  border-color: var(--ark-color-border-strong);
+}
+
+.presetBtn:active {
+  background: var(--ark-color-primary-100);
+}
+
+.presetBtn:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.presetBtn.active {
+  background: var(--ark-color-primary-50);
+  border-color: var(--ark-color-primary-500);
+  color: var(--ark-color-primary-600);
+}
+
+/* ── Fields ── */
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-4);
+}
+
+.field {
+  display: grid;
+  grid-template-columns: minmax(80px, auto) 1fr;
+  gap: var(--ark-spacing-3);
+  align-items: start;
+}
+
+.fieldLabel {
+  font-weight: var(--ark-font-weight-medium);
+  min-width: 80px;
+  padding-top: var(--ark-spacing-1-5);
+  color: var(--ark-color-text);
+  line-height: var(--ark-line-height-normal);
+}
+
+.fieldControl {
+  display: flex;
+  flex-direction: row;
+  gap: var(--ark-spacing-2);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* ── Select ── */
+.select {
+  padding: var(--ark-spacing-1-5) var(--ark-spacing-3);
+  border: 1px solid var(--ark-color-border);
+  border-radius: var(--ark-radius-md);
+  background: var(--ark-color-bg);
+  color: var(--ark-color-text);
+  font-size: inherit;
+  font-family: var(--ark-font-family);
+  cursor: pointer;
+  transition: border-color var(--ark-transition-fast);
+  min-width: 100px;
+}
+
+.select:hover {
+  border-color: var(--ark-color-border-strong);
+}
+
+.select:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Checkbox Grid ── */
+.checkboxGrid {
+  display: grid;
+  gap: var(--ark-spacing-1);
+}
+
+.checkboxGrid.days {
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.checkboxGrid.months {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.checkboxGrid.monthDays {
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.checkboxItem {
+  display: flex;
+  align-items: center;
+  gap: var(--ark-spacing-1);
+  cursor: pointer;
+  padding: var(--ark-spacing-1);
+  border-radius: var(--ark-radius-sm);
+  transition: background var(--ark-transition-fast);
+  user-select: none;
+  font-size: inherit;
+  color: var(--ark-color-text);
+}
+
+.checkboxItem:hover {
+  background: var(--ark-color-bg-muted);
+}
+
+.checkboxItem input[type="checkbox"] {
+  accent-color: var(--ark-color-primary-500);
+  cursor: pointer;
+  margin: 0;
+}
+
+.checkboxItem input[type="checkbox"]:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+/* ── Expression Display ── */
+.expression {
+  font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', monospace;
+  background: var(--ark-color-bg-muted);
+  padding: var(--ark-spacing-3) var(--ark-spacing-4);
+  border-radius: var(--ark-radius-md);
+  text-align: center;
+  color: var(--ark-color-text);
+  font-size: var(--ark-font-size-sm);
+  letter-spacing: 0.05em;
+  border: 1px solid var(--ark-color-border);
+}
+
+/* ── Preview ── */
+.preview {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--ark-spacing-2);
+  color: var(--ark-color-text-secondary);
+  font-size: var(--ark-font-size-sm);
+}
+
+.preview svg {
+  flex-shrink: 0;
+}
