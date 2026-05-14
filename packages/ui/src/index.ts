@@ -497,3 +497,18 @@ export type { AudioPlayerProps } from "./components/AudioPlayer";
 
 export { Stopwatch } from "./components/Stopwatch";
 export type { StopwatchProps, StopwatchLap } from "./components/Stopwatch";
+
+export { Changelog } from "./components/Changelog";
+export type { ChangelogProps, ChangelogRelease, ChangelogEntry, ChangeType } from "./components/Changelog";
+
+export { PasswordChecklist } from "./components/PasswordChecklist";
+export type { PasswordChecklistProps, PasswordRule } from "./components/PasswordChecklist";
+
+export { BrowserFrame } from "./components/BrowserFrame";
+export type { BrowserFrameProps } from "./components/BrowserFrame";
+
+export { Testimonial } from "./components/Testimonial";
+export type { TestimonialProps } from "./components/Testimonial";
+
+export { StatsGrid } from "./components/StatsGrid";
+export type { StatsGridProps, StatItem } from "./components/StatsGrid";

@@ -1062,6 +1062,32 @@ const tocData: Record<string, { label: string; id: string; indent?: boolean }[]>
     { label: "크기", id: "sizes" },
     { label: "인터페이스", id: "interface" },
   ],
+  "changelog": [
+    { label: "기본 사용", id: "basic" },
+    { label: "인터페이스", id: "interface" },
+  ],
+  "password-checklist": [
+    { label: "기본 사용", id: "basic" },
+    { label: "커스텀 규칙", id: "custom-rules" },
+    { label: "인터페이스", id: "interface" },
+  ],
+  "browser-frame": [
+    { label: "Chrome 스타일", id: "chrome" },
+    { label: "Safari 스타일", id: "safari" },
+    { label: "다크 프레임", id: "dark" },
+    { label: "인터페이스", id: "interface" },
+  ],
+  "testimonial": [
+    { label: "카드 변형", id: "card" },
+    { label: "강조 변형", id: "featured" },
+    { label: "미니멀 변형", id: "minimal" },
+    { label: "인터페이스", id: "interface" },
+  ],
+  "stats-grid": [
+    { label: "기본 사용", id: "basic" },
+    { label: "변형", id: "variants" },
+    { label: "인터페이스", id: "interface" },
+  ],
 };
 
 export function TableOfContents({ currentPage }: { currentPage: string }) {

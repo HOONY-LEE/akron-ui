@@ -1,0 +1,82 @@
+/* ─── Wrapper ──────────────────────────────────────────────────────────── */
+.wrapper {
+  display: grid;
+  gap: var(--akron-space-4);
+}
+
+/* ─── Size ─────────────────────────────────────────────────────────────── */
+.sm .label { font-size: var(--akron-font-sm); }
+.sm .value { font-size: var(--akron-font-xl); }
+.sm .card { padding: var(--akron-space-3); }
+.md .label { font-size: var(--akron-font-sm); }
+.md .value { font-size: 28px; }
+.md .card { padding: var(--akron-space-4); }
+.lg .label { font-size: var(--akron-font-base); }
+.lg .value { font-size: 36px; }
+.lg .card { padding: var(--akron-space-5); }
+
+/* ─── Variant ──────────────────────────────────────────────────────────── */
+.default .card { background: transparent; }
+.bordered .card {
+  border: 1px solid var(--akron-border);
+  border-radius: var(--akron-radius-lg);
+  background: var(--akron-bg);
+}
+.filled .card {
+  border-radius: var(--akron-radius-lg);
+  background: var(--akron-muted);
+}
+
+/* ─── Card ─────────────────────────────────────────────────────────────── */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--akron-space-2);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.label {
+  font-weight: 500;
+  color: var(--akron-muted-text);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.icon {
+  display: flex;
+  color: var(--akron-muted-text);
+}
+
+/* ─── Value ─────────────────────────────────────────────────────────────── */
+.valueRow { display: flex; align-items: baseline; }
+
+.value {
+  font-weight: 700;
+  color: var(--akron-text);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* ─── Change ───────────────────────────────────────────────────────────── */
+.changeRow {
+  display: flex;
+  align-items: center;
+  gap: var(--akron-space-1);
+  font-size: var(--akron-font-sm);
+}
+
+.trendIcon { display: flex; align-items: center; }
+
+.changeValue { font-weight: 600; }
+
+.changeLabel { color: var(--akron-muted-text); }
+
+/* ─── Trend Colors ─────────────────────────────────────────────────────── */
+.up .trendIcon, .up .changeValue { color: var(--akron-success); }
+.down .trendIcon, .down .changeValue { color: var(--akron-danger); }
+.neutral .trendIcon, .neutral .changeValue { color: var(--akron-muted-text); }

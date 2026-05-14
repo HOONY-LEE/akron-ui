@@ -1,0 +1,88 @@
+/* ─── Wrapper ──────────────────────────────────────────────────────────── */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Size ─────────────────────────────────────────────────────────────── */
+.sm .version { font-size: var(--akron-font-base); }
+.sm .changeDesc { font-size: var(--akron-font-sm); }
+.sm .badge { font-size: 10px; padding: 1px var(--akron-space-1); }
+.md .version { font-size: var(--akron-font-lg); }
+.md .changeDesc { font-size: var(--akron-font-base); }
+.md .badge { font-size: 11px; padding: 2px var(--akron-space-2); }
+.lg .version { font-size: var(--akron-font-xl); }
+.lg .changeDesc { font-size: var(--akron-font-lg); }
+.lg .badge { font-size: 12px; padding: var(--akron-space-1) var(--akron-space-2); }
+
+/* ─── Release ──────────────────────────────────────────────────────────── */
+.release { padding: var(--akron-space-4) 0; }
+.release:first-child { padding-top: 0; }
+
+.releaseHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--akron-space-3);
+}
+
+.versionRow {
+  display: flex;
+  align-items: center;
+  gap: var(--akron-space-2);
+}
+
+.tagIcon { color: var(--akron-muted-text); }
+
+.version { font-weight: 700; color: var(--akron-text); }
+
+.currentBadge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px var(--akron-space-2);
+  border-radius: var(--akron-radius-full);
+  background: var(--akron-primary);
+  color: var(--akron-primary-text);
+}
+
+.date { font-size: var(--akron-font-sm); color: var(--akron-muted-text); }
+
+/* ─── Change List ──────────────────────────────────────────────────────── */
+.changeList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--akron-space-2);
+}
+
+.changeItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--akron-space-2);
+}
+
+.changeDesc { color: var(--akron-text); line-height: 1.5; }
+
+/* ─── Badge ────────────────────────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: var(--akron-radius-full);
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.badge-added { background: color-mix(in srgb, var(--akron-success) 15%, transparent); color: var(--akron-success); }
+.badge-changed { background: color-mix(in srgb, var(--akron-primary) 15%, transparent); color: var(--akron-primary); }
+.badge-fixed { background: color-mix(in srgb, var(--akron-info, #3b82f6) 15%, transparent); color: var(--akron-info, #3b82f6); }
+.badge-removed { background: color-mix(in srgb, var(--akron-danger) 15%, transparent); color: var(--akron-danger); }
+.badge-deprecated { background: color-mix(in srgb, var(--akron-warning) 15%, transparent); color: var(--akron-warning); }
+.badge-security { background: color-mix(in srgb, var(--akron-danger) 15%, transparent); color: var(--akron-danger); }
+
+/* ─── Divider ──────────────────────────────────────────────────────────── */
+.divider {
+  height: 1px;
+  background: var(--akron-border);
+  margin-top: var(--akron-space-4);
+}

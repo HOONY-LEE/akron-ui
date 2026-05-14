@@ -6341,3 +6341,186 @@ import { Stopwatch } from "@sunghoon_lee/akron-ui";
   onReset={() => console.log("리셋")}
 />
 ```
+
+---
+
+## Changelog
+
+변경 로그/릴리스 노트 컴포넌트.
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| releases | ChangelogRelease[] | 필수 | 릴리스 목록 |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 크기 |
+| showIcons | boolean | true | 아이콘 표시 |
+| showBadges | boolean | true | 배지 표시 |
+
+### ChangelogRelease
+
+| 필드 | 타입 | 설명 |
+|------|------|------|
+| version | string | 버전 (필수) |
+| date | string | 릴리스 날짜 (필수) |
+| changes | ChangelogEntry[] | 변경 내역 (필수) |
+| current | boolean | 현재 버전 표시 |
+
+### ChangelogEntry
+
+| 필드 | 타입 | 설명 |
+|------|------|------|
+| type | 'added' \| 'changed' \| 'fixed' \| 'removed' \| 'deprecated' \| 'security' | 변경 유형 (필수) |
+| description | string | 변경 설명 (필수) |
+
+### 사용 예시
+
+```tsx
+import { Changelog } from "@sunghoon_lee/akron-ui";
+
+<Changelog
+  releases={[
+    { version: "2.0.0", date: "2025-05-01", current: true, changes: [
+      { type: "added", description: "다크모드 지원" },
+      { type: "fixed", description: "버그 수정" },
+    ]},
+  ]}
+/>
+```
+
+---
+
+## PasswordChecklist
+
+비밀번호 규칙 체크리스트 컴포넌트.
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| password | string | 필수 | 비밀번호 |
+| rules | PasswordRule[] | 기본 5가지 | 규칙 목록 |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 크기 |
+| onAllPassed | (passed: boolean) => void | - | 모두 통과 콜백 |
+| minLength | number | 8 | 최소 길이 (기본 규칙용) |
+
+### PasswordRule
+
+| 필드 | 타입 | 설명 |
+|------|------|------|
+| id | string | 규칙 ID (필수) |
+| label | string | 규칙 레이블 (필수) |
+| validate | (password: string) => boolean | 검증 함수 (필수) |
+
+### 사용 예시
+
+```tsx
+import { PasswordChecklist } from "@sunghoon_lee/akron-ui";
+
+<PasswordChecklist
+  password={password}
+  minLength={8}
+  onAllPassed={(passed) => setValid(passed)}
+/>
+```
+
+---
+
+## BrowserFrame
+
+브라우저 프레임 목업 컴포넌트.
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| url | string | 'https://example.com' | 주소 표시줄 URL |
+| variant | 'chrome' \| 'safari' \| 'minimal' | 'chrome' | 변형 |
+| dark | boolean | false | 다크 프레임 |
+| shadow | boolean | true | 그림자 |
+| children | ReactNode | 필수 | 내용 |
+
+### 사용 예시
+
+```tsx
+import { BrowserFrame } from "@sunghoon_lee/akron-ui";
+
+<BrowserFrame url="https://my-app.dev" variant="chrome">
+  <div style={{ padding: 40 }}>콘텐츠</div>
+</BrowserFrame>
+```
+
+---
+
+## Testimonial
+
+추천사/후기 카드 컴포넌트.
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| quote | string | 필수 | 추천사 본문 |
+| authorName | string | 필수 | 작성자 이름 |
+| authorTitle | string | - | 작성자 직책 |
+| authorImage | string | - | 프로필 이미지 URL |
+| rating | number | - | 별점 (0-5) |
+| variant | 'card' \| 'minimal' \| 'featured' | 'card' | 변형 |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 크기 |
+
+### 사용 예시
+
+```tsx
+import { Testimonial } from "@sunghoon_lee/akron-ui";
+
+<Testimonial
+  quote="훌륭한 라이브러리입니다."
+  authorName="김철수"
+  authorTitle="개발자"
+  rating={5}
+/>
+```
+
+---
+
+## StatsGrid
+
+통계 대시보드 그리드 컴포넌트.
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| items | StatItem[] | 필수 | 통계 항목 목록 |
+| columns | number | 4 | 열 수 |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 크기 |
+| variant | 'default' \| 'bordered' \| 'filled' | 'default' | 변형 |
+
+### StatItem
+
+| 필드 | 타입 | 설명 |
+|------|------|------|
+| id | string | 고유 ID (필수) |
+| label | string | 라벨 (필수) |
+| value | string \| number | 값 (필수) |
+| change | number | 변화율 (%) |
+| changeLabel | string | 변화 설명 |
+| icon | ReactNode | 아이콘 |
+| prefix | string | 접두사 |
+| suffix | string | 접미사 |
+
+### 사용 예시
+
+```tsx
+import { StatsGrid } from "@sunghoon_lee/akron-ui";
+
+<StatsGrid
+  variant="bordered"
+  columns={3}
+  items={[
+    { id: "1", label: "매출", value: "₩12.4M", change: 12.5 },
+    { id: "2", label: "사용자", value: "8,429", change: 5.2 },
+    { id: "3", label: "전환율", value: "3.2", suffix: "%", change: -2.1 },
+  ]}
+/>
+```

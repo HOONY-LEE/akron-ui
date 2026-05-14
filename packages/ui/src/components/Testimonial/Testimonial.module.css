@@ -1,0 +1,98 @@
+/* ─── Wrapper ──────────────────────────────────────────────────────────── */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--akron-space-3);
+}
+
+/* ─── Variant: Card ────────────────────────────────────────────────────── */
+.card {
+  border: 1px solid var(--akron-border);
+  border-radius: var(--akron-radius-lg);
+  background: var(--akron-bg);
+}
+
+/* ─── Variant: Minimal ─────────────────────────────────────────────────── */
+.minimal {
+  border-left: 3px solid var(--akron-primary);
+}
+
+/* ─── Variant: Featured ────────────────────────────────────────────────── */
+.featured {
+  align-items: center;
+  text-align: center;
+}
+
+/* ─── Size ─────────────────────────────────────────────────────────────── */
+.sm { padding: var(--akron-space-3); }
+.sm .quote { font-size: var(--akron-font-sm); }
+.sm .authorName { font-size: var(--akron-font-sm); }
+.sm .avatar { width: 32px; height: 32px; }
+.md { padding: var(--akron-space-4); }
+.md .quote { font-size: var(--akron-font-base); }
+.md .authorName { font-size: var(--akron-font-base); }
+.md .avatar { width: 40px; height: 40px; }
+.lg { padding: var(--akron-space-5); }
+.lg .quote { font-size: var(--akron-font-lg); }
+.lg .authorName { font-size: var(--akron-font-lg); }
+.lg .avatar { width: 48px; height: 48px; }
+
+/* ─── Quote Icon ───────────────────────────────────────────────────────── */
+.quoteIcon {
+  color: var(--akron-primary);
+  opacity: 0.3;
+}
+
+.inlineQuoteIcon {
+  color: var(--akron-primary);
+  opacity: 0.5;
+  margin-right: var(--akron-space-1);
+  vertical-align: text-top;
+}
+
+/* ─── Stars ────────────────────────────────────────────────────────────── */
+.stars {
+  display: flex;
+  gap: 2px;
+}
+.starFilled { color: var(--akron-warning); }
+.starEmpty { color: var(--akron-muted); }
+
+/* ─── Quote ────────────────────────────────────────────────────────────── */
+.quote {
+  margin: 0;
+  color: var(--akron-text);
+  line-height: 1.6;
+  font-style: italic;
+}
+
+/* ─── Author ───────────────────────────────────────────────────────────── */
+.author {
+  display: flex;
+  align-items: center;
+  gap: var(--akron-space-2);
+}
+.featured .author { justify-content: center; }
+
+.avatar {
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.authorInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.authorName {
+  font-weight: 600;
+  color: var(--akron-text);
+  font-style: normal;
+}
+
+.authorTitle {
+  font-size: var(--akron-font-sm);
+  color: var(--akron-muted-text);
+  font-style: normal;
+}

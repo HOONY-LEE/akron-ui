@@ -159,6 +159,11 @@ import { FeedbackWidgetPage } from "./pages/FeedbackWidgetPage";
 import { CookieConsentPage } from "./pages/CookieConsentPage";
 import { AudioPlayerPage } from "./pages/AudioPlayerPage";
 import { StopwatchPage } from "./pages/StopwatchPage";
+import { ChangelogPage } from "./pages/ChangelogPage";
+import { PasswordChecklistPage } from "./pages/PasswordChecklistPage";
+import { BrowserFramePage } from "./pages/BrowserFramePage";
+import { TestimonialPage } from "./pages/TestimonialPage";
+import { StatsGridPage } from "./pages/StatsGridPage";
 
 export interface PageMeta {
   component: ComponentType;
@@ -358,6 +363,11 @@ export const pages: PageMeta[] = [
   { path: "cookie-consent", component: CookieConsentPage, label: "CookieConsent", category: "오버레이" },
   { path: "audio-player", component: AudioPlayerPage, label: "AudioPlayer", category: "기타" },
   { path: "stopwatch", component: StopwatchPage, label: "Stopwatch", category: "기타" },
+  { path: "changelog", component: ChangelogPage, label: "Changelog", category: "표시" },
+  { path: "password-checklist", component: PasswordChecklistPage, label: "PasswordChecklist", category: "입력" },
+  { path: "browser-frame", component: BrowserFramePage, label: "BrowserFrame", category: "기타" },
+  { path: "testimonial", component: TestimonialPage, label: "Testimonial", category: "표시" },
+  { path: "stats-grid", component: StatsGridPage, label: "StatsGrid", category: "데이터 표시" },
 ];
 
 export function getPageByPath(pathname: string): PageMeta | undefined {

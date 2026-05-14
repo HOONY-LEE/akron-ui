@@ -1,0 +1,86 @@
+/* ─── Wrapper ──────────────────────────────────────────────────────────── */
+.wrapper {
+  border: 1px solid var(--akron-border);
+  border-radius: var(--akron-radius-lg);
+  overflow: hidden;
+  background: var(--akron-bg);
+}
+.shadow { box-shadow: var(--akron-shadow-lg); }
+
+/* ─── Dark ─────────────────────────────────────────────────────────────── */
+.dark .toolbar { background: #1e1e1e; border-bottom-color: #333; }
+.dark .addressBar { background: #333; }
+.dark .url { color: #ccc; }
+.dark .lockIcon { color: #888; }
+.dark .navIcon { color: #888; }
+
+/* ─── Toolbar ──────────────────────────────────────────────────────────── */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--akron-space-2);
+  padding: var(--akron-space-2) var(--akron-space-3);
+  background: var(--akron-muted);
+  border-bottom: 1px solid var(--akron-border);
+  min-height: 36px;
+}
+
+/* ─── Traffic Lights ───────────────────────────────────────────────────── */
+.trafficLights {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.close { background: #ff5f57; }
+.minimize { background: #febc2e; }
+.maximize { background: #28c840; }
+
+/* ─── Nav Buttons ──────────────────────────────────────────────────────── */
+.navButtons {
+  display: flex;
+  align-items: center;
+  gap: var(--akron-space-1);
+  flex-shrink: 0;
+}
+.navIcon { color: var(--akron-muted-text); }
+
+/* ─── Address Bar ──────────────────────────────────────────────────────── */
+.addressBar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--akron-space-1);
+  padding: var(--akron-space-1) var(--akron-space-2);
+  background: var(--akron-bg);
+  border-radius: var(--akron-radius-md);
+  border: 1px solid var(--akron-border);
+  min-width: 0;
+}
+
+.lockIcon { color: var(--akron-success); flex-shrink: 0; }
+
+.url {
+  font-size: var(--akron-font-sm);
+  color: var(--akron-muted-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ─── Variant: Safari ──────────────────────────────────────────────────── */
+.safari .toolbar { justify-content: center; position: relative; }
+.safari .trafficLights { position: absolute; left: var(--akron-space-3); }
+.safari .addressBar { max-width: 360px; justify-content: center; }
+
+/* ─── Variant: Minimal ─────────────────────────────────────────────────── */
+.minimal .toolbar { justify-content: flex-start; }
+
+/* ─── Content ──────────────────────────────────────────────────────────── */
+.content {
+  min-height: 120px;
+}
