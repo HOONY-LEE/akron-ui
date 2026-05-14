@@ -134,6 +134,11 @@ import { DonutChartPage } from "./pages/DonutChartPage";
 import { HeatMapPage } from "./pages/HeatMapPage";
 import { CommentThreadPage } from "./pages/CommentThreadPage";
 import { FilePreviewPage } from "./pages/FilePreviewPage";
+import { ActivityFeedPage } from "./pages/ActivityFeedPage";
+import { DateRangePickerPage } from "./pages/DateRangePickerPage";
+import { FormWizardPage } from "./pages/FormWizardPage";
+import { UserCardPage } from "./pages/UserCardPage";
+import { RichTextPreviewPage } from "./pages/RichTextPreviewPage";
 
 export interface PageMeta {
   component: ComponentType;
@@ -308,6 +313,11 @@ export const pages: PageMeta[] = [
   { path: "heat-map", component: HeatMapPage, label: "HeatMap", category: "데이터 표시" },
   { path: "comment-thread", component: CommentThreadPage, label: "CommentThread", category: "기타" },
   { path: "file-preview", component: FilePreviewPage, label: "FilePreview", category: "표시" },
+  { path: "activity-feed", component: ActivityFeedPage, label: "ActivityFeed", category: "데이터 표시" },
+  { path: "date-range-picker", component: DateRangePickerPage, label: "DateRangePicker", category: "입력" },
+  { path: "form-wizard", component: FormWizardPage, label: "FormWizard", category: "입력" },
+  { path: "user-card", component: UserCardPage, label: "UserCard", category: "표시" },
+  { path: "rich-text-preview", component: RichTextPreviewPage, label: "RichTextPreview", category: "표시" },
 ];
 
 export function getPageByPath(pathname: string): PageMeta | undefined {

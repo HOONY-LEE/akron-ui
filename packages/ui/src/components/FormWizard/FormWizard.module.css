@@ -1,0 +1,350 @@
+/* ── Root ── */
+.root {
+  display: flex;
+  font-family: var(--ark-font-family);
+}
+
+.horizontal {
+  flex-direction: column;
+}
+
+.vertical {
+  flex-direction: row;
+  gap: var(--ark-spacing-6);
+}
+
+/* ── Step Indicator ── */
+.stepIndicator {
+  display: flex;
+  padding: var(--ark-spacing-4);
+}
+
+.horizontal .stepIndicator {
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.vertical .stepIndicator {
+  flex-direction: column;
+  align-items: stretch;
+  min-width: 200px;
+}
+
+/* ── Step ── */
+.step {
+  display: flex;
+  align-items: center;
+  gap: var(--ark-spacing-3);
+  user-select: none;
+}
+
+.step.clickable {
+  cursor: pointer;
+}
+
+.step.clickable:hover .stepNumber.completed,
+.step.clickable:hover .stepNumber.upcoming {
+  border-color: var(--ark-color-primary-400);
+}
+
+.step.clickable:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+  border-radius: var(--ark-radius-sm);
+}
+
+.horizontal .step {
+  flex-direction: column;
+  text-align: center;
+  flex: 0 0 auto;
+}
+
+.vertical .step {
+  flex-direction: row;
+  padding: var(--ark-spacing-2) 0;
+}
+
+/* ── Step Number ── */
+.stepNumber {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--ark-radius-full);
+  font-weight: var(--ark-font-weight-semibold);
+  flex-shrink: 0;
+  border: 2px solid var(--ark-color-border);
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Size: sm */
+.sm .stepNumber {
+  width: 28px;
+  height: 28px;
+  font-size: var(--ark-font-size-xs);
+}
+
+/* Size: md (default) */
+.md .stepNumber {
+  width: 32px;
+  height: 32px;
+  font-size: var(--ark-font-size-xs);
+}
+
+/* Size: lg */
+.lg .stepNumber {
+  width: 40px;
+  height: 40px;
+  font-size: var(--ark-font-size-sm);
+}
+
+.stepNumber.active {
+  border-color: var(--ark-color-primary-500);
+  background-color: var(--ark-color-primary-500);
+  color: var(--ark-color-text-inverse);
+}
+
+.stepNumber.completed {
+  border-color: var(--ark-color-success-500);
+  background-color: var(--ark-color-success-500);
+  color: var(--ark-color-text-inverse);
+}
+
+.stepNumber.upcoming {
+  border-color: var(--ark-color-border);
+  background-color: var(--ark-color-bg-muted);
+  color: var(--ark-color-text-secondary);
+}
+
+/* ── Step Text ── */
+.stepText {
+  display: flex;
+  flex-direction: column;
+}
+
+.horizontal .stepText {
+  align-items: center;
+  margin-top: var(--ark-spacing-2);
+}
+
+.stepTitle {
+  font-weight: var(--ark-font-weight-medium);
+  color: var(--ark-color-text);
+  line-height: var(--ark-line-height-tight);
+}
+
+.sm .stepTitle {
+  font-size: var(--ark-font-size-xs);
+}
+
+.md .stepTitle {
+  font-size: var(--ark-font-size-sm);
+}
+
+.lg .stepTitle {
+  font-size: var(--ark-font-size-md);
+}
+
+.stepTitle.upcoming {
+  color: var(--ark-color-text-secondary);
+}
+
+.stepDescription {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-secondary);
+  margin-top: var(--ark-spacing-0-5);
+  line-height: var(--ark-line-height-normal);
+}
+
+/* ── Connector ── */
+.connector {
+  background-color: var(--ark-color-border);
+  transition: background-color 0.3s ease;
+}
+
+.connector.completed {
+  background-color: var(--ark-color-primary-500);
+}
+
+.horizontal .connector {
+  flex: 1;
+  height: 2px;
+  align-self: center;
+  margin: 0 var(--ark-spacing-2);
+}
+
+.vertical .connector {
+  width: 2px;
+  min-height: var(--ark-spacing-4);
+  flex: 1;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── Horizontal step row ── */
+.stepRow {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* ── Content Area ── */
+.contentArea {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.sm .contentArea {
+  padding: var(--ark-spacing-3);
+}
+
+.md .contentArea {
+  padding: var(--ark-spacing-4);
+}
+
+.lg .contentArea {
+  padding: var(--ark-spacing-6);
+}
+
+.content {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.slideInRight {
+  animation: slideInRight 0.3s ease forwards;
+}
+
+.slideInLeft {
+  animation: slideInLeft 0.3s ease forwards;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* ── Footer ── */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--ark-color-border);
+}
+
+.sm .footer {
+  padding: var(--ark-spacing-3);
+  gap: var(--ark-spacing-2);
+}
+
+.md .footer {
+  padding: var(--ark-spacing-4);
+  gap: var(--ark-spacing-3);
+}
+
+.lg .footer {
+  padding: var(--ark-spacing-6);
+  gap: var(--ark-spacing-4);
+}
+
+.footerLeft,
+.footerRight {
+  display: flex;
+  align-items: center;
+  gap: var(--ark-spacing-2);
+}
+
+/* ── Nav Buttons ── */
+.navButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ark-spacing-1-5);
+  border: 1px solid var(--ark-color-border);
+  border-radius: var(--ark-radius-md);
+  font-family: var(--ark-font-family);
+  font-weight: var(--ark-font-weight-medium);
+  cursor: pointer;
+  background-color: var(--ark-color-bg);
+  color: var(--ark-color-text);
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.sm .navButton {
+  padding: var(--ark-spacing-1) var(--ark-spacing-3);
+  font-size: var(--ark-font-size-xs);
+}
+
+.md .navButton {
+  padding: var(--ark-spacing-2) var(--ark-spacing-4);
+  font-size: var(--ark-font-size-sm);
+}
+
+.lg .navButton {
+  padding: var(--ark-spacing-3) var(--ark-spacing-5);
+  font-size: var(--ark-font-size-md);
+}
+
+.navButton:hover:not(:disabled) {
+  background-color: var(--ark-color-bg-subtle);
+  border-color: var(--ark-color-border-strong);
+}
+
+.navButton:active:not(:disabled) {
+  background-color: var(--ark-color-bg-muted);
+}
+
+.navButton:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.navButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  color: var(--ark-color-text-disabled);
+}
+
+.navButtonPrimary {
+  background-color: var(--ark-color-primary-500);
+  border-color: var(--ark-color-primary-500);
+  color: var(--ark-color-text-inverse);
+}
+
+.navButtonPrimary:hover:not(:disabled) {
+  background-color: var(--ark-color-primary-600);
+  border-color: var(--ark-color-primary-600);
+}
+
+.navButtonPrimary:active:not(:disabled) {
+  background-color: var(--ark-color-primary-700);
+  border-color: var(--ark-color-primary-700);
+}
+
+.cancelButton {
+  border: none;
+  background: none;
+  color: var(--ark-color-text-secondary);
+}
+
+.cancelButton:hover:not(:disabled) {
+  background-color: transparent;
+  color: var(--ark-color-text);
+  border-color: transparent;
+}

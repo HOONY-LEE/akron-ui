@@ -1,0 +1,294 @@
+/* ── Root ── */
+.root {
+  border: 1px solid var(--ark-color-border);
+  border-radius: var(--ark-radius-xl);
+  background-color: var(--ark-color-bg);
+  overflow: hidden;
+  font-family: var(--ark-font-family);
+}
+
+/* ── Variant: default (vertical) ── */
+.default {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--ark-spacing-6);
+  gap: var(--ark-spacing-4);
+}
+
+/* ── Variant: compact ── */
+.compact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--ark-spacing-4);
+  gap: var(--ark-spacing-3);
+}
+
+/* ── Variant: horizontal ── */
+.horizontal {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: var(--ark-spacing-5);
+  gap: var(--ark-spacing-4);
+}
+
+.horizontal .info {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.horizontal .contactList {
+  align-items: flex-start;
+}
+
+.horizontal .actions {
+  margin-left: auto;
+}
+
+/* ── Avatar wrapper ── */
+.avatarWrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* ── Size: sm ── */
+.sm .avatarWrapper {
+  width: 40px;
+  height: 40px;
+}
+
+.sm .avatar,
+.sm .initials {
+  width: 40px;
+  height: 40px;
+  font-size: var(--ark-font-size-sm);
+}
+
+.sm .name {
+  font-size: var(--ark-font-size-sm);
+}
+
+.sm .role {
+  font-size: var(--ark-font-size-xs);
+}
+
+.sm .department {
+  font-size: var(--ark-font-size-xs);
+}
+
+.sm .contactItem {
+  font-size: var(--ark-font-size-xs);
+}
+
+/* ── Size: md ── */
+.md .avatarWrapper {
+  width: 56px;
+  height: 56px;
+}
+
+.md .avatar,
+.md .initials {
+  width: 56px;
+  height: 56px;
+  font-size: var(--ark-font-size-md);
+}
+
+.md .name {
+  font-size: var(--ark-font-size-md);
+}
+
+.md .role {
+  font-size: var(--ark-font-size-sm);
+}
+
+.md .department {
+  font-size: var(--ark-font-size-xs);
+}
+
+.md .contactItem {
+  font-size: var(--ark-font-size-sm);
+}
+
+/* ── Size: lg ── */
+.lg .avatarWrapper {
+  width: 72px;
+  height: 72px;
+}
+
+.lg .avatar,
+.lg .initials {
+  width: 72px;
+  height: 72px;
+  font-size: var(--ark-font-size-xl);
+}
+
+.lg .name {
+  font-size: var(--ark-font-size-lg);
+}
+
+.lg .role {
+  font-size: var(--ark-font-size-md);
+}
+
+.lg .department {
+  font-size: var(--ark-font-size-sm);
+}
+
+.lg .contactItem {
+  font-size: var(--ark-font-size-sm);
+}
+
+/* ── Avatar image ── */
+.avatar {
+  border-radius: var(--ark-radius-full);
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Initials fallback ── */
+.initials {
+  border-radius: var(--ark-radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ark-color-text-inverse);
+  font-weight: var(--ark-font-weight-semibold);
+  user-select: none;
+}
+
+/* ── Status dot ── */
+.statusDot {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: var(--ark-radius-full);
+  border: 2px solid var(--ark-color-bg);
+  box-sizing: content-box;
+}
+
+.statusOnline {
+  background-color: var(--ark-color-success-500);
+}
+
+.statusOffline {
+  background-color: var(--ark-color-gray-400);
+}
+
+.statusAway {
+  background-color: var(--ark-color-warning-500);
+}
+
+.statusBusy {
+  background-color: var(--ark-color-error-500);
+}
+
+/* ── Info block ── */
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ark-spacing-0-5);
+  min-width: 0;
+}
+
+/* ── Name ── */
+.name {
+  font-weight: var(--ark-font-weight-semibold);
+  color: var(--ark-color-text);
+  line-height: var(--ark-line-height-tight);
+  word-break: break-word;
+}
+
+/* ── Role ── */
+.role {
+  color: var(--ark-color-text-secondary);
+  line-height: var(--ark-line-height-normal);
+}
+
+/* ── Department ── */
+.department {
+  color: var(--ark-color-text-secondary);
+  line-height: var(--ark-line-height-normal);
+}
+
+/* ── Contact list ── */
+.contactList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-2);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* ── Contact item ── */
+.contactItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--ark-spacing-2);
+  color: var(--ark-color-text);
+  line-height: var(--ark-line-height-normal);
+}
+
+.contactItem span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+/* ── Clickable contact item ── */
+.clickable {
+  cursor: pointer;
+  transition: color var(--ark-transition-fast);
+  border-radius: var(--ark-radius-sm);
+}
+
+.clickable:hover {
+  color: var(--ark-color-primary-500);
+}
+
+.clickable:active {
+  color: var(--ark-color-primary-600);
+}
+
+.clickable:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+/* ── Contact icon ── */
+.contactIcon {
+  color: var(--ark-color-text-secondary);
+  flex-shrink: 0;
+}
+
+.clickable:hover .contactIcon {
+  color: var(--ark-color-primary-500);
+}
+
+/* ── Actions ── */
+.actions {
+  display: flex;
+  flex-direction: row;
+  gap: var(--ark-spacing-2);
+  padding-top: var(--ark-spacing-4);
+  border-top: 1px solid var(--ark-color-border);
+  width: 100%;
+  justify-content: center;
+}
+
+.horizontal .actions {
+  border-top: none;
+  padding-top: 0;
+  width: auto;
+  justify-content: flex-end;
+}

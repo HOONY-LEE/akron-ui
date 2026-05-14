@@ -5407,3 +5407,188 @@ import { FilePreview } from "@sunghoon_lee/akron-ui";
 | onPreview | () => void | - | 미리보기 콜백 |
 | progress | number | - | 업로드 진행률 (0-100) |
 | error | string | - | 에러 메시지 |
+
+---
+
+## ActivityFeed
+
+활동 피드 컴포넌트. 팀 활동, 감사 로그, 변경 이력을 타임라인으로 표시합니다.
+
+```tsx
+import { ActivityFeed } from "@sunghoon_lee/akron-ui";
+
+<ActivityFeed
+  items={[
+    { id: "1", type: "create", user: "김철수", message: "프로젝트 생성", timestamp: new Date() },
+    { id: "2", type: "comment", user: "이영희", message: "코멘트 작성", timestamp: new Date() },
+  ]}
+  groupByDate
+/>
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| items | ActivityItem[] | 필수 | 활동 목록 |
+| size | 'sm' \| 'md' | 'md' | 크기 |
+| showTimeline | boolean | true | 타임라인 표시 |
+| showAvatar | boolean | true | 아바타 표시 |
+| maxItems | number | - | 표시 항목 수 제한 |
+| onItemClick | (item) => void | - | 클릭 콜백 |
+| groupByDate | boolean | false | 날짜별 그룹 |
+| emptyMessage | string | '활동 내역이 없습니다.' | 빈 상태 메시지 |
+
+### ActivityItem
+
+| 필드 | 타입 | 설명 |
+|------|------|------|
+| id | string | 고유 ID (필수) |
+| type | 'create' \| 'update' \| 'delete' \| 'comment' \| 'assign' \| 'status' \| 'upload' \| 'custom' | 활동 유형 (필수) |
+| user | string | 사용자 이름 (필수) |
+| avatar | string | 아바타 URL |
+| message | string | 활동 메시지 (필수) |
+| detail | string | 상세 정보 |
+| timestamp | string \| Date | 시간 (필수) |
+| icon | ReactNode | 커스텀 아이콘 |
+
+---
+
+## DateRangePicker
+
+날짜 범위 선택 컴포넌트. 두 개의 캘린더로 시작/종료 날짜를 선택합니다.
+
+```tsx
+import { DateRangePicker } from "@sunghoon_lee/akron-ui";
+
+<DateRangePicker onChange={(range) => console.log(range)} />
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| value | DateRange | - | 선택된 범위 (제어) |
+| defaultValue | DateRange | - | 기본 범위 |
+| onChange | (range) => void | - | 변경 콜백 |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 크기 |
+| placeholder | string | '날짜 범위 선택' | 플레이스홀더 |
+| minDate | Date | - | 최소 날짜 |
+| maxDate | Date | - | 최대 날짜 |
+| disabled | boolean | false | 비활성화 |
+| error | boolean | false | 에러 상태 |
+| helperText | string | - | 도움말/에러 텍스트 |
+| presets | DateRangePreset[] | - | 프리셋 목록 |
+| locale | 'ko' \| 'en' | 'ko' | 로케일 |
+
+### DateRange
+
+| 필드 | 타입 | 설명 |
+|------|------|------|
+| start | Date \| null | 시작 날짜 |
+| end | Date \| null | 종료 날짜 |
+
+---
+
+## FormWizard
+
+멀티 스텝 폼 위자드. 복잡한 양식을 단계별로 나누어 입력합니다.
+
+```tsx
+import { FormWizard } from "@sunghoon_lee/akron-ui";
+
+<FormWizard
+  steps={[
+    { title: "기본 정보", content: <div>...</div> },
+    { title: "상세 설정", content: <div>...</div> },
+    { title: "확인", content: <div>...</div> },
+  ]}
+  onComplete={() => console.log("완료")}
+/>
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| steps | WizardStep[] | 필수 | 단계 목록 |
+| activeStep | number | - | 현재 단계 (제어) |
+| defaultStep | number | 0 | 초기 단계 |
+| onChange | (step) => void | - | 단계 변경 콜백 |
+| onComplete | () => void | - | 완료 콜백 |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 크기 |
+| variant | 'horizontal' \| 'vertical' | 'horizontal' | 레이아웃 |
+| showStepNumbers | boolean | true | 단계 번호 표시 |
+| allowStepClick | boolean | true | 완료 단계 클릭 허용 |
+| showCancel | boolean | false | 취소 버튼 |
+| onCancel | () => void | - | 취소 콜백 |
+
+### WizardStep
+
+| 필드 | 타입 | 설명 |
+|------|------|------|
+| title | string | 단계 제목 (필수) |
+| description | string | 단계 설명 |
+| content | ReactNode | 단계 내용 (필수) |
+| optional | boolean | 선택적 단계 |
+| validate | () => boolean \| Promise<boolean> | 유효성 검증 |
+
+---
+
+## UserCard
+
+사용자 프로필 카드. 이름, 역할, 연락처 등을 표시합니다.
+
+```tsx
+import { UserCard } from "@sunghoon_lee/akron-ui";
+
+<UserCard
+  name="김철수"
+  role="프론트엔드 개발자"
+  department="개발팀"
+  email="chulsoo@company.com"
+  status="online"
+/>
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| name | string | 필수 | 사용자 이름 |
+| role | string | - | 역할 |
+| department | string | - | 부서 |
+| email | string | - | 이메일 |
+| phone | string | - | 전화번호 |
+| location | string | - | 위치 |
+| avatar | string | - | 아바타 URL |
+| status | 'online' \| 'offline' \| 'away' \| 'busy' | - | 상태 |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 크기 |
+| variant | 'default' \| 'compact' \| 'horizontal' | 'default' | 변형 |
+| onEmailClick | () => void | - | 이메일 클릭 콜백 |
+| onPhoneClick | () => void | - | 전화 클릭 콜백 |
+| actions | ReactNode | - | 액션 버튼 슬롯 |
+
+---
+
+## RichTextPreview
+
+마크다운 미리보기. 마크다운 텍스트를 스타일된 HTML로 안전하게 렌더링합니다.
+
+```tsx
+import { RichTextPreview } from "@sunghoon_lee/akron-ui";
+
+<RichTextPreview content="**굵은 텍스트**와 *기울임*, `코드`를 지원합니다." />
+```
+
+### Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| content | string | 필수 | 마크다운 텍스트 |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | 크기 |
+| maxLines | number | - | 최대 줄 수 |
+| showMoreLabel | string | '더 보기' | 더 보기 텍스트 |
+| onShowMore | () => void | - | 더 보기 콜백 |
+| linkTarget | '_blank' \| '_self' | '_blank' | 링크 대상 |
+| compact | boolean | false | 컴팩트 모드 |

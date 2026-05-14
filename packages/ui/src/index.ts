@@ -422,3 +422,18 @@ export type { CommentThreadProps, CommentItem, CommentThreadSize } from "./compo
 
 export { FilePreview } from "./components/FilePreview";
 export type { FilePreviewProps, FilePreviewSize, FilePreviewVariant } from "./components/FilePreview";
+
+export { ActivityFeed } from "./components/ActivityFeed";
+export type { ActivityFeedProps, ActivityItem, ActivityType, ActivityFeedSize } from "./components/ActivityFeed";
+
+export { DateRangePicker } from "./components/DateRangePicker";
+export type { DateRangePickerProps, DateRange, DateRangePreset, DateRangePickerSize } from "./components/DateRangePicker";
+
+export { FormWizard } from "./components/FormWizard";
+export type { FormWizardProps, WizardStep, FormWizardSize, FormWizardVariant } from "./components/FormWizard";
+
+export { UserCard } from "./components/UserCard";
+export type { UserCardProps, UserCardSize, UserCardVariant } from "./components/UserCard";
+
+export { RichTextPreview } from "./components/RichTextPreview";
+export type { RichTextPreviewProps, RichTextPreviewSize } from "./components/RichTextPreview";

@@ -1,0 +1,245 @@
+/* ActivityFeed */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-0);
+  font-family: var(--ark-font-family);
+}
+
+/* ── Date group header ── */
+.dateGroup {
+  padding: var(--ark-spacing-2) var(--ark-spacing-0);
+}
+
+.dateGroupLabel {
+  font-size: var(--ark-font-size-xs);
+  font-weight: var(--ark-font-weight-semibold);
+  color: var(--ark-color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ── Item row ── */
+.item {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--ark-spacing-3);
+  padding: var(--ark-spacing-3) var(--ark-spacing-2);
+  border-radius: var(--ark-radius-md);
+  transition: background-color 0.15s ease;
+  position: relative;
+}
+
+.item.clickable {
+  cursor: pointer;
+}
+
+.item.clickable:hover {
+  background-color: var(--ark-color-bg-subtle);
+}
+
+.item.clickable:active {
+  background-color: var(--ark-color-bg-muted);
+}
+
+/* ── Timeline connector ── */
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.timelineConnector {
+  position: absolute;
+  top: 28px;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  background-color: var(--ark-color-border);
+}
+
+.sm .timelineConnector {
+  top: 20px;
+  bottom: -8px;
+}
+
+/* ── Icon dot ── */
+.iconDot {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--ark-radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--ark-color-text-inverse);
+}
+
+.sm .iconDot {
+  width: 20px;
+  height: 20px;
+}
+
+.iconDot svg {
+  width: 14px;
+  height: 14px;
+}
+
+.sm .iconDot svg {
+  width: 10px;
+  height: 10px;
+}
+
+/* ── Icon dot colors ── */
+.iconDot.colorSuccess {
+  background-color: var(--ark-color-success-500);
+}
+
+.iconDot.colorPrimary {
+  background-color: var(--ark-color-primary-500);
+}
+
+.iconDot.colorError {
+  background-color: var(--ark-color-error-500);
+}
+
+.iconDot.colorInfo {
+  background-color: var(--ark-color-info-500);
+}
+
+.iconDot.colorWarning {
+  background-color: var(--ark-color-warning-500);
+}
+
+/* ── Avatar ── */
+.avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--ark-radius-full);
+  flex-shrink: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--ark-font-size-xs);
+  font-weight: var(--ark-font-weight-medium);
+  color: var(--ark-color-text-inverse);
+  background-color: var(--ark-color-primary-400);
+}
+
+.sm .avatar {
+  width: 20px;
+  height: 20px;
+  font-size: 10px;
+}
+
+.avatarImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── Content ── */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-0-5);
+  min-width: 0;
+  flex: 1;
+}
+
+.contentHeader {
+  display: flex;
+  align-items: baseline;
+  gap: var(--ark-spacing-2);
+  flex-wrap: wrap;
+}
+
+.user {
+  font-size: var(--ark-font-size-sm);
+  font-weight: var(--ark-font-weight-medium);
+  color: var(--ark-color-text);
+  white-space: nowrap;
+}
+
+.sm .user {
+  font-size: var(--ark-font-size-xs);
+}
+
+.message {
+  font-size: var(--ark-font-size-sm);
+  color: var(--ark-color-text);
+  line-height: var(--ark-line-height-normal);
+}
+
+.sm .message {
+  font-size: var(--ark-font-size-xs);
+}
+
+.detail {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-secondary);
+  line-height: var(--ark-line-height-normal);
+}
+
+.timestamp {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-secondary);
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+/* ── Show more button ── */
+.showMore {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: var(--ark-spacing-2) var(--ark-spacing-4);
+  font-family: var(--ark-font-family);
+  font-size: var(--ark-font-size-sm);
+  font-weight: var(--ark-font-weight-medium);
+  color: var(--ark-color-primary-500);
+  cursor: pointer;
+  border-radius: var(--ark-radius-md);
+  transition: background-color 0.15s ease;
+}
+
+.showMore:hover {
+  background-color: var(--ark-color-primary-50);
+}
+
+.showMore:active {
+  background-color: var(--ark-color-primary-100);
+}
+
+.showMore:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+/* ── Empty state ── */
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ark-spacing-8) var(--ark-spacing-4);
+  font-size: var(--ark-font-size-sm);
+  color: var(--ark-color-text-secondary);
+}
+
+/* ── Size: sm ── */
+.sm .item {
+  gap: var(--ark-spacing-2);
+  padding: var(--ark-spacing-2) var(--ark-spacing-1);
+}
+
+.sm .dateGroupLabel {
+  font-size: 10px;
+}

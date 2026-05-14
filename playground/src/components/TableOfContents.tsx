@@ -879,6 +879,37 @@ const tocData: Record<string, { label: string; id: string; indent?: boolean }[]>
     { label: "크기", id: "sizes" },
     { label: "인터페이스", id: "interface" },
   ],
+  "activity-feed": [
+    { label: "기본 사용", id: "basic" },
+    { label: "날짜별 그룹", id: "grouped" },
+    { label: "최대 항목 수", id: "max-items" },
+    { label: "인터페이스", id: "interface" },
+  ],
+  "date-range-picker": [
+    { label: "기본 사용", id: "basic" },
+    { label: "프리셋", id: "presets" },
+    { label: "크기", id: "sizes" },
+    { label: "상태", id: "states" },
+    { label: "인터페이스", id: "interface" },
+  ],
+  "form-wizard": [
+    { label: "기본 사용", id: "basic" },
+    { label: "수직 레이아웃", id: "vertical" },
+    { label: "취소 버튼", id: "with-cancel" },
+    { label: "인터페이스", id: "interface" },
+  ],
+  "user-card": [
+    { label: "기본 사용", id: "basic" },
+    { label: "변형", id: "variants" },
+    { label: "크기", id: "sizes" },
+    { label: "인터페이스", id: "interface" },
+  ],
+  "rich-text-preview": [
+    { label: "기본 사용", id: "basic" },
+    { label: "줄 수 제한", id: "max-lines" },
+    { label: "크기", id: "sizes" },
+    { label: "인터페이스", id: "interface" },
+  ],
   "sparkline": [
     { label: "라인 차트", id: "line" },
     { label: "영역 차트", id: "area" },

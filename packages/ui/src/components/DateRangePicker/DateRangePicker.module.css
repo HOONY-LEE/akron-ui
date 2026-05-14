@@ -1,0 +1,340 @@
+/* ── Root ── */
+.root {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-1-5);
+  position: relative;
+}
+
+/* ── Trigger ── */
+.trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--ark-spacing-2);
+  padding: 0 var(--ark-spacing-3);
+  border: 1px solid var(--ark-color-border-strong);
+  border-radius: var(--ark-radius-md);
+  background-color: var(--ark-color-bg);
+  cursor: pointer;
+  transition: border-color var(--ark-transition-fast), box-shadow var(--ark-transition-fast);
+  user-select: none;
+  font-family: var(--ark-font-family);
+}
+
+.trigger:hover:not(.disabled) {
+  border-color: var(--ark-color-primary-500);
+}
+
+.trigger.focused {
+  border-color: var(--ark-color-primary-500);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+}
+
+.trigger:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.trigger.error {
+  border-color: var(--ark-color-error-500);
+}
+
+.trigger.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--ark-color-bg-muted);
+}
+
+/* ── Size variants ── */
+.trigger.sm {
+  height: 32px;
+  font-size: var(--ark-font-size-xs);
+}
+
+.trigger.md {
+  height: 40px;
+  font-size: var(--ark-font-size-sm);
+}
+
+.trigger.lg {
+  height: 48px;
+  font-size: var(--ark-font-size-md);
+}
+
+/* ── Trigger internals ── */
+.calIcon {
+  color: var(--ark-color-text-secondary);
+  flex-shrink: 0;
+}
+
+.dateText {
+  flex: 1;
+  color: var(--ark-color-text);
+  font-size: inherit;
+  white-space: nowrap;
+}
+
+.placeholder {
+  flex: 1;
+  color: var(--ark-color-text-disabled);
+  font-size: inherit;
+  white-space: nowrap;
+}
+
+.clearBtn {
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  background: transparent;
+  border: none;
+  border-radius: var(--ark-radius-full);
+  cursor: pointer;
+  color: var(--ark-color-text-secondary);
+  margin-left: auto;
+  transition: background-color var(--ark-transition-fast);
+  flex-shrink: 0;
+}
+
+.clearBtn:hover {
+  background-color: var(--ark-color-bg-muted);
+  color: var(--ark-color-text);
+}
+
+.clearBtn:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+/* ── Dropdown ── */
+.dropdown {
+  position: absolute;
+  top: calc(100% + var(--ark-spacing-1));
+  left: 0;
+  z-index: var(--ark-z-dropdown);
+  background-color: var(--ark-color-bg);
+  border: 1px solid var(--ark-color-border);
+  border-radius: var(--ark-radius-xl);
+  box-shadow: var(--ark-shadow-lg);
+  overflow: hidden;
+}
+
+.dropdownInner {
+  display: flex;
+  flex-direction: row;
+}
+
+/* ── Presets sidebar ── */
+.presets {
+  display: flex;
+  flex-direction: column;
+  min-width: 140px;
+  border-right: 1px solid var(--ark-color-border);
+  padding: var(--ark-spacing-2);
+  gap: var(--ark-spacing-0-5);
+}
+
+.presetBtn {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  text-align: left;
+  padding: var(--ark-spacing-1-5) var(--ark-spacing-3);
+  background: transparent;
+  border: none;
+  border-radius: var(--ark-radius-md);
+  cursor: pointer;
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text);
+  font-family: var(--ark-font-family);
+  transition: background-color var(--ark-transition-fast);
+  white-space: nowrap;
+}
+
+.presetBtn:hover {
+  background-color: var(--ark-color-bg-muted);
+}
+
+.presetBtn:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.presetBtn.active {
+  background-color: var(--ark-color-primary-500);
+  color: var(--ark-color-text-inverse);
+}
+
+/* ── Calendars container ── */
+.calendars {
+  display: flex;
+  flex-direction: row;
+  gap: var(--ark-spacing-4);
+  padding: var(--ark-spacing-4);
+}
+
+/* ── Single calendar ── */
+.calendar {
+  width: 280px;
+}
+
+.calendarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--ark-spacing-3);
+}
+
+.monthLabel {
+  font-size: var(--ark-font-size-sm);
+  font-weight: var(--ark-font-weight-semibold);
+  color: var(--ark-color-text);
+}
+
+.navBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--ark-radius-full);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--ark-color-text-secondary);
+  transition: background-color var(--ark-transition-fast);
+}
+
+.navBtn:hover {
+  background-color: var(--ark-color-bg-muted);
+  color: var(--ark-color-text);
+}
+
+.navBtn:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 2px;
+}
+
+.navBtnHidden {
+  visibility: hidden;
+}
+
+/* ── Day grid ── */
+.dayGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0;
+}
+
+.dayName {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--ark-font-size-xs);
+  font-weight: var(--ark-font-weight-medium);
+  color: var(--ark-color-text-secondary);
+  padding: var(--ark-spacing-1) 0;
+  height: 32px;
+}
+
+/* ── Day cell ── */
+.day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: var(--ark-radius-full);
+  background: transparent;
+  cursor: pointer;
+  font-size: var(--ark-font-size-xs);
+  font-family: var(--ark-font-family);
+  color: var(--ark-color-text);
+  transition: background-color 0.1s ease, color 0.1s ease;
+  position: relative;
+  margin: 1px 0;
+}
+
+.day:hover:not(.disabled):not(.outside) {
+  background-color: var(--ark-color-bg-muted);
+}
+
+.day:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: 1px;
+}
+
+.day.outside {
+  color: var(--ark-color-text-disabled);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.day.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.day.today {
+  border: 2px solid var(--ark-color-primary-500);
+  color: var(--ark-color-primary-500);
+  font-weight: var(--ark-font-weight-semibold);
+}
+
+.day.inRange {
+  background-color: var(--ark-color-primary-100);
+  border-radius: 0;
+  color: var(--ark-color-primary-700);
+}
+
+.day.rangeStart {
+  background-color: var(--ark-color-primary-500);
+  color: var(--ark-color-text-inverse);
+  font-weight: var(--ark-font-weight-semibold);
+  border-radius: var(--ark-radius-full) 0 0 var(--ark-radius-full);
+}
+
+.day.rangeEnd {
+  background-color: var(--ark-color-primary-500);
+  color: var(--ark-color-text-inverse);
+  font-weight: var(--ark-font-weight-semibold);
+  border-radius: 0 var(--ark-radius-full) var(--ark-radius-full) 0;
+}
+
+.day.rangeStart.rangeEnd {
+  border-radius: var(--ark-radius-full);
+}
+
+/* ── Helper text ── */
+.helperText {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-secondary);
+  margin: 0;
+}
+
+.helperText.errorHelper {
+  color: var(--ark-color-error-500);
+}
+
+/* ── Dark mode ── */
+[data-theme="dark"] .dropdown {
+  background-color: var(--ark-color-gray-800);
+  border-color: var(--ark-color-gray-700);
+}
+
+[data-theme="dark"] .presets {
+  border-color: var(--ark-color-gray-700);
+}
+
+[data-theme="dark"] .day:hover:not(.disabled):not(.outside) {
+  background-color: var(--ark-color-gray-700);
+}
+
+[data-theme="dark"] .day.inRange {
+  background-color: color-mix(in srgb, var(--ark-color-primary-500) 20%, transparent);
+  color: var(--ark-color-primary-300);
+}
+
+[data-theme="dark"] .presetBtn:hover {
+  background-color: var(--ark-color-gray-700);
+}
