@@ -1088,6 +1088,37 @@ const tocData: Record<string, { label: string; id: string; indent?: boolean }[]>
     { label: "변형", id: "variants" },
     { label: "인터페이스", id: "interface" },
   ],
+  "link-preview": [
+    { label: "Horizontal", id: "basic" },
+    { label: "Vertical 레이아웃", id: "vertical" },
+    { label: "크기 비교", id: "sizes" },
+    { label: "이미지 없음", id: "no-image" },
+  ],
+  "avatar-stack": [
+    { label: "기본 사용", id: "basic" },
+    { label: "크기", id: "sizes" },
+    { label: "최대 표시 수", id: "max" },
+    { label: "이미지 아바타", id: "image" },
+  ],
+  "feature-card": [
+    { label: "기본 사용", id: "basic" },
+    { label: "크기", id: "sizes" },
+    { label: "Horizontal 레이아웃", id: "horizontal" },
+  ],
+  "number-stepper": [
+    { label: "기본 사용", id: "basic" },
+    { label: "제어 모드", id: "controlled" },
+    { label: "크기", id: "sizes" },
+    { label: "Step 설정", id: "step" },
+    { label: "비활성화", id: "disabled" },
+    { label: "인터페이스", id: "interface" },
+  ],
+  "qr-code": [
+    { label: "기본 사용", id: "basic" },
+    { label: "인터랙티브", id: "interactive" },
+    { label: "크기 비교", id: "sizes" },
+    { label: "커스텀 색상", id: "colors" },
+  ],
 };
 
 export function TableOfContents({ currentPage }: { currentPage: string }) {

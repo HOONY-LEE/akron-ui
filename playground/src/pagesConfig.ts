@@ -164,6 +164,11 @@ import { PasswordChecklistPage } from "./pages/PasswordChecklistPage";
 import { BrowserFramePage } from "./pages/BrowserFramePage";
 import { TestimonialPage } from "./pages/TestimonialPage";
 import { StatsGridPage } from "./pages/StatsGridPage";
+import { LinkPreviewPage } from "./pages/LinkPreviewPage";
+import { AvatarStackPage } from "./pages/AvatarStackPage";
+import { FeatureCardPage } from "./pages/FeatureCardPage";
+import { NumberStepperPage } from "./pages/NumberStepperPage";
+import { QRCodePage } from "./pages/QRCodePage";
 
 export interface PageMeta {
   component: ComponentType;
@@ -368,6 +373,11 @@ export const pages: PageMeta[] = [
   { path: "browser-frame", component: BrowserFramePage, label: "BrowserFrame", category: "기타" },
   { path: "testimonial", component: TestimonialPage, label: "Testimonial", category: "표시" },
   { path: "stats-grid", component: StatsGridPage, label: "StatsGrid", category: "데이터 표시" },
+  { path: "link-preview", component: LinkPreviewPage, label: "LinkPreview", category: "표시" },
+  { path: "avatar-stack", component: AvatarStackPage, label: "AvatarStack", category: "표시" },
+  { path: "feature-card", component: FeatureCardPage, label: "FeatureCard", category: "표시" },
+  { path: "number-stepper", component: NumberStepperPage, label: "NumberStepper", category: "입력" },
+  { path: "qr-code", component: QRCodePage, label: "QRCode", category: "기타" },
 ];
 
 export function getPageByPath(pathname: string): PageMeta | undefined {

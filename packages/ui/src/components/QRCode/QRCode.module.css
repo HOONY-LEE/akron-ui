@@ -1,0 +1,24 @@
+/* ─── Wrapper ──────────────────────────────────────────────────────────── */
+.wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--akron-space-2);
+}
+
+/* ─── SVG ──────────────────────────────────────────────────────────────── */
+.svg {
+  border-radius: var(--akron-radius-md);
+  border: 1px solid var(--akron-border);
+}
+
+/* ─── Label ────────────────────────────────────────────────────────────── */
+.label {
+  font-size: var(--akron-font-sm);
+  color: var(--akron-muted-text);
+  text-align: center;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

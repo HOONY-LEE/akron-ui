@@ -6524,3 +6524,177 @@ import { StatsGrid } from "@sunghoon_lee/akron-ui";
   ]}
 />
 ```
+
+---
+
+## LinkPreview
+
+URL 링크의 미리보기 카드. Open Graph 스타일의 제목, 설명, 이미지, 파비콘을 표시합니다.
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| url | string | (필수) | URL |
+| title | string | (필수) | 제목 |
+| description | string | — | 설명 |
+| imageUrl | string | — | 이미지 URL |
+| siteName | string | — | 사이트 이름 |
+| faviconUrl | string | — | 파비콘 URL |
+| openInNewTab | boolean | true | 새 탭에서 열기 |
+| size | "sm" \| "md" \| "lg" | "md" | 크기 |
+| layout | "horizontal" \| "vertical" | "horizontal" | 레이아웃 방향 |
+
+### 사용 예시
+
+```tsx
+import { LinkPreview } from "@sunghoon_lee/akron-ui";
+
+<LinkPreview
+  url="https://example.com/article"
+  title="Akron UI 소개"
+  description="React 기반 컴포넌트 라이브러리"
+  imageUrl="https://example.com/og.png"
+  siteName="Example"
+  layout="horizontal"
+  size="md"
+/>
+```
+
+---
+
+## AvatarStack
+
+여러 아바타를 겹쳐서 표시하는 컴포넌트. 최대 표시 수 초과 시 "+N" 오버플로 버튼을 제공합니다.
+
+### AvatarStackItem
+
+| Prop | Type | Description |
+|------|------|-------------|
+| name | string | 이름 |
+| src | string | 이미지 URL |
+| color | string | 배경 색상 (이미지 없을 때) |
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| items | AvatarStackItem[] | (필수) | 아바타 목록 |
+| max | number | 5 | 최대 표시 수 |
+| size | "sm" \| "md" \| "lg" \| "xl" | "md" | 크기 |
+| overlap | number | avatarSize × 0.3 | 겹침 정도 (px) |
+| onOverflowClick | () => void | — | 나머지 인원 클릭 핸들러 |
+
+### 사용 예시
+
+```tsx
+import { AvatarStack } from "@sunghoon_lee/akron-ui";
+
+<AvatarStack
+  items={[
+    { name: "김민수", color: "#e74c3c" },
+    { name: "이지은", src: "https://i.pravatar.cc/150?img=1" },
+    { name: "박서준", color: "#2ecc71" },
+  ]}
+  max={3}
+  size="md"
+  onOverflowClick={() => console.log("더 보기")}
+/>
+```
+
+---
+
+## FeatureCard
+
+기능 소개 카드. 아이콘, 제목, 설명을 포함한 피쳐 소개용 카드 컴포넌트입니다.
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| icon | ReactNode | — | 아이콘 |
+| iconBg | string | "var(--akron-primary-light)" | 아이콘 배경 색상 |
+| iconColor | string | "var(--akron-primary)" | 아이콘 색상 |
+| title | string | (필수) | 제목 |
+| description | string | — | 설명 |
+| size | "sm" \| "md" \| "lg" | "md" | 크기 |
+| layout | "vertical" \| "horizontal" | "vertical" | 레이아웃 방향 |
+
+### 사용 예시
+
+```tsx
+import { FeatureCard } from "@sunghoon_lee/akron-ui";
+import { Zap } from "lucide-react";
+
+<FeatureCard
+  icon={<Zap size={24} />}
+  title="빠른 속도"
+  description="최적화된 번들 사이즈로 빠른 로딩 속도를 제공합니다."
+  size="md"
+  layout="vertical"
+/>
+```
+
+---
+
+## NumberStepper
+
+증감 버튼이 있는 숫자 입력 컴포넌트. 제어/비제어 모드를 지원합니다.
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| value | number | — | 현재 값 (제어) |
+| defaultValue | number | 0 | 기본값 (비제어) |
+| min | number | -Infinity | 최솟값 |
+| max | number | Infinity | 최댓값 |
+| step | number | 1 | 증감 단위 |
+| size | "sm" \| "md" \| "lg" | "md" | 크기 |
+| disabled | boolean | false | 비활성화 |
+| onChange | (value: number) => void | — | 값 변경 핸들러 |
+
+### 사용 예시
+
+```tsx
+import { NumberStepper } from "@sunghoon_lee/akron-ui";
+
+<NumberStepper
+  defaultValue={1}
+  min={0}
+  max={99}
+  step={1}
+  size="md"
+  onChange={(v) => console.log(v)}
+/>
+```
+
+---
+
+## QRCode
+
+SVG 기반 QR 코드 컴포넌트. 데이터를 QR 패턴으로 시각화합니다 (데모용 의사 패턴).
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| data | string | (필수) | 인코딩할 데이터 |
+| size | number | 128 | QR 크기 (px) |
+| fgColor | string | "var(--akron-text)" | 전경 색 |
+| bgColor | string | "var(--akron-bg)" | 배경 색 |
+| label | string | — | 하단 라벨 |
+
+### 사용 예시
+
+```tsx
+import { QRCode } from "@sunghoon_lee/akron-ui";
+
+<QRCode
+  data="https://example.com"
+  size={160}
+  fgColor="#2563eb"
+  bgColor="#eff6ff"
+  label="example.com"
+/>
+```

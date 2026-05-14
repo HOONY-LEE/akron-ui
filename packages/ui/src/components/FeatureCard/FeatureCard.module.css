@@ -1,0 +1,59 @@
+/* ─── Wrapper ──────────────────────────────────────────────────────────── */
+.wrapper {
+  border: 1px solid var(--akron-border);
+  border-radius: var(--akron-radius-lg);
+  background: var(--akron-bg);
+  padding: var(--akron-space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--akron-space-3);
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+.wrapper:hover {
+  border-color: var(--akron-primary);
+  box-shadow: var(--akron-shadow-md);
+  transform: translateY(-2px);
+}
+
+/* ─── Icon ─────────────────────────────────────────────────────────────── */
+.iconWrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--akron-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ─── Content ──────────────────────────────────────────────────────────── */
+.title {
+  font-weight: 600;
+  color: var(--akron-text);
+  margin: 0;
+}
+.description {
+  color: var(--akron-muted-text);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ─── Size ─────────────────────────────────────────────────────────────── */
+.sm { padding: var(--akron-space-3); gap: var(--akron-space-2); }
+.sm .iconWrapper { width: 36px; height: 36px; }
+.sm .title { font-size: var(--akron-font-sm); }
+.sm .description { font-size: 12px; }
+
+.md .title { font-size: var(--akron-font-base); }
+.md .description { font-size: var(--akron-font-sm); }
+
+.lg { padding: var(--akron-space-6); gap: var(--akron-space-4); }
+.lg .iconWrapper { width: 56px; height: 56px; }
+.lg .title { font-size: var(--akron-font-lg); }
+.lg .description { font-size: var(--akron-font-base); }
+
+/* ─── Horizontal ───────────────────────────────────────────────────────── */
+.horizontal {
+  flex-direction: row;
+  align-items: flex-start;
+}

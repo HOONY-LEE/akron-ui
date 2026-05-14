@@ -512,3 +512,18 @@ export type { TestimonialProps } from "./components/Testimonial";
 
 export { StatsGrid } from "./components/StatsGrid";
 export type { StatsGridProps, StatItem } from "./components/StatsGrid";
+
+export { LinkPreview } from "./components/LinkPreview";
+export type { LinkPreviewProps } from "./components/LinkPreview";
+
+export { AvatarStack } from "./components/AvatarStack";
+export type { AvatarStackProps, AvatarStackItem } from "./components/AvatarStack";
+
+export { FeatureCard } from "./components/FeatureCard";
+export type { FeatureCardProps } from "./components/FeatureCard";
+
+export { NumberStepper } from "./components/NumberStepper";
+export type { NumberStepperProps } from "./components/NumberStepper";
+
+export { QRCode } from "./components/QRCode";
+export type { QRCodeProps } from "./components/QRCode";
