@@ -55,6 +55,15 @@
   align-items: center;
   justify-content: center;
   color: var(--ark-color-text-inverse);
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity var(--ark-transition-fast), transform var(--ark-transition-fast);
+}
+
+.indicator[data-state="checked"],
+.indicator[data-state="indeterminate"] {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .icon {

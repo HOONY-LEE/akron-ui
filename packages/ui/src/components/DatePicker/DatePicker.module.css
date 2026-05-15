@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: var(--ark-spacing-1-5);
   position: relative;
+  min-width: 280px;
 }
 
 .label {
@@ -88,15 +89,15 @@
 /* ── Calendar popup ── */
 .calendar {
   position: absolute;
-  top: calc(100% + 4px);
+  top: calc(100% + 6px);
   left: 0;
   z-index: 100;
   background-color: var(--ark-color-bg);
   border: 1px solid var(--ark-color-border);
   border-radius: var(--ark-radius-xl);
   box-shadow: var(--ark-shadow-lg);
-  padding: var(--ark-spacing-4);
-  width: 280px;
+  padding: var(--ark-spacing-5);
+  width: 320px;
 }
 
 /* ── Header ── */
@@ -111,8 +112,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   border-radius: var(--ark-radius-full);
   border: none;
   background: transparent;
@@ -132,7 +133,7 @@
 }
 
 .monthLabel {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--ark-color-text);
 }
@@ -146,17 +147,17 @@
 
 .dayLabel {
   text-align: center;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--ark-color-text-secondary);
-  padding: var(--ark-spacing-1) 0;
+  padding: var(--ark-spacing-1-5) 0;
 }
 
 /* ── Days grid ── */
 .daysGrid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 2px;
+  gap: 3px;
 }
 
 .dayBtn {
@@ -164,7 +165,7 @@
   align-items: center;
   justify-content: center;
   aspect-ratio: 1;
-  font-size: 13px;
+  font-size: 14px;
   border: none;
   border-radius: var(--ark-radius-full);
   background: transparent;
@@ -199,8 +200,8 @@
 }
 
 .today {
-  border: 2px solid var(--ark-color-primary-500);
-  color: var(--ark-color-primary-500);
+  background-color: color-mix(in srgb, var(--ark-color-primary-500) 12%, transparent);
+  color: var(--ark-color-primary-600);
   font-weight: 600;
 }
 
@@ -217,7 +218,7 @@
 }
 
 .todayBtn {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--ark-color-primary-500);
   background: transparent;
   border: none;
@@ -239,13 +240,13 @@
 
 /* ── Helper/Error ── */
 .helperText {
-  font-size: 13px;
+  font-size: var(--ark-font-size-xs);
   color: var(--ark-color-text-secondary);
   margin: 0;
 }
 
 .errorText {
-  font-size: 13px;
+  font-size: var(--ark-font-size-xs);
   color: var(--ark-color-error-500);
   margin: 0;
 }

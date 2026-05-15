@@ -135,7 +135,7 @@ function RadioItem({
         disabled={disabled}
         className={styles.radio}
       >
-        <RadixRadioGroup.Indicator className={styles.indicator} />
+        <RadixRadioGroup.Indicator forceMount className={styles.indicator} />
       </RadixRadioGroup.Item>
 
       {(label || description) && (
@@ -187,7 +187,7 @@ export const Radio = forwardRef<HTMLButtonElement, RadioProps>(
           disabled={disabled}
           className={styles.radio}
         >
-          <RadixRadioGroup.Indicator className={styles.indicator} />
+          <RadixRadioGroup.Indicator forceMount className={styles.indicator} />
         </RadixRadioGroup.Item>
 
         {(label || description) && (

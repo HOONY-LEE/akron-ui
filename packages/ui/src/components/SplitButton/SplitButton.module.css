@@ -4,8 +4,7 @@
   display: inline-flex;
   align-items: stretch;
   position: relative;
-  border-radius: var(--ark-radius-md);
-  overflow: visible;
+  border-radius: var(--ark-btn-radius);
 }
 
 .root.fullWidth {
@@ -19,32 +18,27 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--ark-space-2);
   font-family: var(--ark-font-family);
   font-weight: var(--ark-font-weight-medium);
   border: 1px solid transparent;
   cursor: pointer;
   transition:
-    background var(--ark-duration-fast) ease,
-    border-color var(--ark-duration-fast) ease,
-    color var(--ark-duration-fast) ease,
-    box-shadow var(--ark-duration-fast) ease;
+    background-color var(--ark-transition-fast),
+    border-color var(--ark-transition-fast),
+    color var(--ark-transition-fast);
   outline: none;
+  white-space: nowrap;
 }
 
 .mainBtn {
   flex: 1;
-  border-radius: var(--ark-radius-md) 0 0 var(--ark-radius-md);
-  white-space: nowrap;
-}
-
-.root.fullWidth .mainBtn {
-  flex: 1;
+  gap: var(--ark-spacing-2);
+  border-radius: var(--ark-btn-radius) 0 0 var(--ark-btn-radius);
 }
 
 .caretBtn {
   flex-shrink: 0;
-  border-radius: 0 var(--ark-radius-md) var(--ark-radius-md) 0;
+  border-radius: 0 var(--ark-btn-radius) var(--ark-btn-radius) 0;
 }
 
 .mainBtn:focus-visible,
@@ -59,44 +53,37 @@
 .divider {
   width: 1px;
   flex-shrink: 0;
-  opacity: 0.3;
 }
 
 /* ─── Sizes ────────────────────────────────────────────────────────────────── */
 
 .size-sm .mainBtn {
-  font-size: var(--ark-font-size-xs);
-  padding: var(--ark-space-1-5) var(--ark-space-3);
-  height: 30px;
+  height: var(--ark-btn-height-sm);
+  padding: 0 var(--ark-btn-padding-x-sm);
+  font-size: var(--ark-btn-font-size-sm);
 }
-
 .size-sm .caretBtn {
-  padding: 0 var(--ark-space-2);
-  height: 30px;
+  height: var(--ark-btn-height-sm);
   width: 28px;
 }
 
 .size-md .mainBtn {
-  font-size: var(--ark-font-size-sm);
-  padding: var(--ark-space-2) var(--ark-space-4);
-  height: 36px;
+  height: var(--ark-btn-height-md);
+  padding: 0 var(--ark-btn-padding-x-md);
+  font-size: var(--ark-btn-font-size-md);
 }
-
 .size-md .caretBtn {
-  padding: 0 var(--ark-space-2-5);
-  height: 36px;
+  height: var(--ark-btn-height-md);
   width: 32px;
 }
 
 .size-lg .mainBtn {
-  font-size: var(--ark-font-size-base);
-  padding: var(--ark-space-2-5) var(--ark-space-5);
-  height: 44px;
+  height: var(--ark-btn-height-lg);
+  padding: 0 var(--ark-btn-padding-x-lg);
+  font-size: var(--ark-btn-font-size-lg);
 }
-
 .size-lg .caretBtn {
-  padding: 0 var(--ark-space-3);
-  height: 44px;
+  height: var(--ark-btn-height-lg);
   width: 40px;
 }
 
@@ -105,109 +92,109 @@
 /* primary */
 .variant-primary .mainBtn,
 .variant-primary .caretBtn {
-  background: var(--ark-color-primary);
-  color: var(--ark-color-primary-foreground);
-  border-color: var(--ark-color-primary);
+  background-color: var(--ark-color-primary-500);
+  color: var(--ark-color-text-inverse);
+  border-color: var(--ark-color-primary-500);
 }
-
 .variant-primary .divider {
-  background: var(--ark-color-primary-foreground);
+  background: rgba(255, 255, 255, 0.3);
 }
-
 .variant-primary .mainBtn:hover,
 .variant-primary .caretBtn:hover {
-  background: var(--ark-color-primary-hover);
-  border-color: var(--ark-color-primary-hover);
+  background-color: var(--ark-color-primary-600);
+  border-color: var(--ark-color-primary-600);
 }
-
 .variant-primary .mainBtn:active,
 .variant-primary .caretBtn:active {
-  background: var(--ark-color-primary-active);
-  border-color: var(--ark-color-primary-active);
+  background-color: var(--ark-color-primary-700);
+  border-color: var(--ark-color-primary-700);
 }
 
 /* secondary */
 .variant-secondary .mainBtn,
 .variant-secondary .caretBtn {
-  background: var(--ark-color-secondary);
-  color: var(--ark-color-secondary-foreground);
-  border-color: var(--ark-color-secondary);
+  background-color: var(--ark-color-gray-100);
+  color: var(--ark-color-gray-700);
+  border-color: var(--ark-color-gray-100);
 }
-
 .variant-secondary .divider {
-  background: var(--ark-color-secondary-foreground);
+  background: var(--ark-color-gray-300);
 }
-
 .variant-secondary .mainBtn:hover,
 .variant-secondary .caretBtn:hover {
-  background: var(--ark-color-secondary-hover);
-  border-color: var(--ark-color-secondary-hover);
+  background-color: var(--ark-color-gray-200);
+  border-color: var(--ark-color-gray-200);
+}
+.variant-secondary .mainBtn:active,
+.variant-secondary .caretBtn:active {
+  background-color: var(--ark-color-gray-300);
+  border-color: var(--ark-color-gray-300);
 }
 
 /* outline */
 .variant-outline .mainBtn,
 .variant-outline .caretBtn {
-  background: transparent;
-  color: var(--ark-color-text-primary);
-  border-color: var(--ark-color-border);
+  background-color: transparent;
+  color: var(--ark-color-gray-700);
+  border-color: var(--ark-color-border-strong);
 }
-
 .variant-outline .divider {
-  background: var(--ark-color-border);
-  opacity: 1;
+  background: var(--ark-color-border-strong);
 }
-
 .variant-outline .mainBtn:hover,
 .variant-outline .caretBtn:hover {
-  background: var(--ark-color-surface-hover);
+  background-color: var(--ark-color-gray-50);
 }
-
 .variant-outline .mainBtn:active,
 .variant-outline .caretBtn:active {
-  background: var(--ark-color-surface-active);
+  background-color: var(--ark-color-gray-100);
 }
 
 /* ghost */
 .variant-ghost .mainBtn,
 .variant-ghost .caretBtn {
-  background: transparent;
-  color: var(--ark-color-text-primary);
+  background-color: transparent;
+  color: var(--ark-color-gray-700);
   border-color: transparent;
 }
-
 .variant-ghost .divider {
-  background: var(--ark-color-border);
-  opacity: 1;
+  background: var(--ark-color-border-strong);
 }
-
 .variant-ghost .mainBtn:hover,
 .variant-ghost .caretBtn:hover {
-  background: var(--ark-color-surface-hover);
+  background-color: var(--ark-color-gray-100);
+}
+.variant-ghost .mainBtn:active,
+.variant-ghost .caretBtn:active {
+  background-color: var(--ark-color-gray-200);
 }
 
 /* danger */
 .variant-danger .mainBtn,
 .variant-danger .caretBtn {
-  background: var(--ark-color-error);
-  color: #fff;
-  border-color: var(--ark-color-error);
+  background-color: var(--ark-color-error-500);
+  color: var(--ark-color-text-inverse);
+  border-color: var(--ark-color-error-500);
 }
-
 .variant-danger .divider {
-  background: #fff;
+  background: rgba(255, 255, 255, 0.3);
 }
-
 .variant-danger .mainBtn:hover,
 .variant-danger .caretBtn:hover {
-  background: var(--ark-color-error-hover);
-  border-color: var(--ark-color-error-hover);
+  background-color: var(--ark-color-error-600);
+  border-color: var(--ark-color-error-600);
+}
+.variant-danger .mainBtn:active,
+.variant-danger .caretBtn:active {
+  background-color: var(--ark-color-error-600);
+  border-color: var(--ark-color-error-600);
 }
 
 /* ─── Disabled ─────────────────────────────────────────────────────────────── */
 
 .disabled .mainBtn,
 .disabled .caretBtn {
-  opacity: 0.45;
+  opacity: 0.5;
   cursor: not-allowed;
   pointer-events: none;
 }
@@ -215,7 +202,7 @@
 /* ─── Caret icon ───────────────────────────────────────────────────────────── */
 
 .caret {
-  transition: transform var(--ark-duration-fast) ease;
+  transition: transform var(--ark-transition-fast);
   flex-shrink: 0;
 }
 
@@ -231,83 +218,85 @@
   border: 2px solid currentColor;
   border-top-color: transparent;
   border-radius: 50%;
-  animation: spinnerRotate 0.7s linear infinite;
+  animation: spin 0.6s linear infinite;
   flex-shrink: 0;
 }
 
-@keyframes spinnerRotate {
+@keyframes spin {
   to { transform: rotate(360deg); }
 }
 
-/* ─── Dropdown ─────────────────────────────────────────────────────────────── */
+/* ─── Dropdown — Select 드롭다운과 동일한 스타일 ────────────────────────────── */
 
 .dropdown {
   position: absolute;
-  top: calc(100% + 4px);
-  min-width: 160px;
-  background: var(--ark-color-surface-overlay);
+  top: calc(100% + 6px);
+  min-width: max(100%, 180px);
+  background-color: var(--ark-color-bg);
   border: 1px solid var(--ark-color-border);
-  border-radius: var(--ark-radius-md);
+  border-radius: var(--ark-radius-lg);
   box-shadow: var(--ark-shadow-lg);
   z-index: var(--ark-z-dropdown, 100);
-  padding: var(--ark-space-1);
+  padding: var(--ark-spacing-1);
   animation: dropdownIn 0.12s ease;
+  overflow: hidden;
 }
 
 @keyframes dropdownIn {
   from { opacity: 0; transform: translateY(-4px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.dropdownStart {
-  left: 0;
-}
+.dropdownStart { left: 0; }
+.dropdownEnd   { right: 0; }
 
-.dropdownEnd {
-  right: 0;
-}
+/* ─── Dropdown item — Select .item과 동일 ─────────────────────────────────── */
 
 .dropdownItem {
   display: flex;
   align-items: center;
   width: 100%;
-  padding: var(--ark-space-2) var(--ark-space-3);
+  padding: var(--ark-spacing-1-5) var(--ark-spacing-3);
   font-size: var(--ark-font-size-sm);
-  color: var(--ark-color-text-primary);
+  font-family: var(--ark-font-family);
+  color: var(--ark-color-text);
   background: transparent;
   border: none;
-  border-radius: var(--ark-radius-sm);
+  border-radius: var(--ark-radius-md);
   cursor: pointer;
   text-align: left;
-  transition: background var(--ark-duration-fast) ease;
+  transition: background-color var(--ark-transition-fast);
   white-space: nowrap;
+  outline: none;
+  user-select: none;
 }
 
-.dropdownItem:hover {
-  background: var(--ark-color-surface-hover);
-}
-
+.dropdownItem:hover,
 .dropdownItem:focus-visible {
-  outline: 2px solid var(--ark-color-primary-500);
-  outline-offset: -2px;
+  background-color: color-mix(in srgb, var(--ark-color-primary-500) 5%, transparent);
+  color: var(--ark-color-primary-600);
 }
 
 .dropdownItemDisabled {
-  opacity: 0.4;
+  color: var(--ark-color-text-disabled);
   cursor: not-allowed;
   pointer-events: none;
 }
 
 .dropdownItemDanger {
-  color: var(--ark-color-error);
+  color: var(--ark-color-error-500);
 }
 
-.dropdownItemDanger:hover {
-  background: var(--ark-color-error-subtle);
+.dropdownItemDanger:hover,
+.dropdownItemDanger:focus-visible {
+  background-color: color-mix(in srgb, var(--ark-color-error-500) 6%, transparent);
+  color: var(--ark-color-error-500);
 }
+
+/* ─── Divider ──────────────────────────────────────────────────────────────── */
 
 .dropdownDivider {
   height: 1px;
   background: var(--ark-color-border);
-  margin: var(--ark-space-1) 0;
+  margin: var(--ark-spacing-1) 0;
 }

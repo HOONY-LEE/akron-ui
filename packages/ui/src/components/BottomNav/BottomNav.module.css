@@ -1,0 +1,134 @@
+/* ===================================================
+   BottomNav — iOS / Android 스타일 하단 탭바
+   =================================================== */
+
+.root {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-around;
+  width: 100%;
+  background: var(--ark-color-bg);
+  border-top: 1px solid var(--ark-color-border);
+  font-family: var(--ark-font-family);
+  z-index: var(--ark-z-sticky);
+}
+
+.fixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.safeArea {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+/* ─── Item ─────────────────────────────────────────── */
+
+.item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ark-spacing-0-5);
+  padding: var(--ark-spacing-2) var(--ark-spacing-1);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--ark-color-text-secondary);
+  transition: color var(--ark-transition-fast);
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  position: relative;
+  min-height: 52px;
+}
+
+.item:active {
+  opacity: 0.7;
+}
+
+.item:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: -2px;
+  border-radius: var(--ark-radius-sm);
+}
+
+.item:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.item:disabled:active {
+  opacity: 0.4;
+}
+
+/* ─── Active ───────────────────────────────────────── */
+
+.active {
+  color: var(--ark-color-primary-500);
+}
+
+/* ─── Icon ─────────────────────────────────────────── */
+
+.iconWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.iconWrap > svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* ─── Badge ────────────────────────────────────────── */
+
+.badge {
+  position: absolute;
+  top: -4px;
+  right: -10px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: var(--ark-radius-full);
+  background: var(--ark-color-error-500);
+  color: #fff;
+  font-size: 10px;
+  font-weight: var(--ark-font-weight-bold);
+  line-height: 16px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.badgeDot {
+  min-width: 8px;
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  top: -2px;
+  right: -4px;
+}
+
+/* ─── Label ────────────────────────────────────────── */
+
+.label {
+  font-size: 10px;
+  font-weight: var(--ark-font-weight-medium);
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* ─── Dark mode ────────────────────────────────────── */
+
+:global([data-theme="dark"]) .root {
+  background: var(--ark-color-bg);
+  border-top-color: var(--ark-color-border);
+}

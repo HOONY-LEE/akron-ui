@@ -26,8 +26,9 @@
 
 .nav {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   gap: var(--ark-spacing-2);
+  height: 100%;
 }
 
 .menuButton {

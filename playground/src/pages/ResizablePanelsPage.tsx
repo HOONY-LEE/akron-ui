@@ -14,21 +14,24 @@ export function ResizablePanelsPage() {
       <section className="docs-section" id="horizontal">
         <h2 className="section-title">수평 분할 (기본)</h2>
         <LiveCodeBlock
-          code={`<div style={{ height: 200, border: "1px solid var(--ark-color-border)", borderRadius: 8, overflow: "hidden" }}>
+          fullWidth
+          code={`<div style={{ height: 440, border: "1px solid var(--ark-color-border)", borderRadius: 10, overflow: "hidden" }}>
   <ResizablePanels
     first={
-      <div style={{ padding: 16, background: "var(--ark-color-primary-50)", height: "100%", boxSizing: "border-box" }}>
-        <strong>왼쪽 패널</strong>
-        <p style={{ margin: "8px 0 0", fontSize: 14, color: "var(--ark-color-text-secondary)" }}>
-          구분선을 드래그하여 크기를 조절하세요
+      <div style={{ padding: 24, height: "100%", boxSizing: "border-box" }}>
+        <strong style={{ fontSize: 15 }}>왼쪽 패널</strong>
+        <p style={{ margin: "10px 0 0", fontSize: 14, color: "var(--ark-color-text-secondary)", lineHeight: 1.6 }}>
+          구분선을 드래그하여 크기를 조절하세요.<br />
+          키보드 방향키도 사용할 수 있습니다.
         </p>
       </div>
     }
     second={
-      <div style={{ padding: 16, height: "100%", boxSizing: "border-box" }}>
-        <strong>오른쪽 패널</strong>
-        <p style={{ margin: "8px 0 0", fontSize: 14, color: "var(--ark-color-text-secondary)" }}>
-          키보드 방향키도 사용 가능합니다
+      <div style={{ padding: 24, height: "100%", boxSizing: "border-box" }}>
+        <strong style={{ fontSize: 15 }}>오른쪽 패널</strong>
+        <p style={{ margin: "10px 0 0", fontSize: 14, color: "var(--ark-color-text-secondary)", lineHeight: 1.6 }}>
+          두 번째 패널입니다.<br />
+          각 패널에 자유롭게 콘텐츠를 배치할 수 있습니다.
         </p>
       </div>
     }
@@ -41,18 +44,25 @@ export function ResizablePanelsPage() {
       <section className="docs-section" id="vertical">
         <h2 className="section-title">수직 분할</h2>
         <LiveCodeBlock
-          code={`<div style={{ height: 300, border: "1px solid var(--ark-color-border)", borderRadius: 8, overflow: "hidden" }}>
+          fullWidth
+          code={`<div style={{ height: 440, border: "1px solid var(--ark-color-border)", borderRadius: 10, overflow: "hidden" }}>
   <ResizablePanels
     direction="vertical"
     defaultSize={40}
     first={
-      <div style={{ padding: 16, background: "var(--ark-color-primary-50)", height: "100%", boxSizing: "border-box" }}>
-        <strong>상단 패널</strong>
+      <div style={{ padding: 24, height: "100%", boxSizing: "border-box" }}>
+        <strong style={{ fontSize: 15 }}>상단 패널</strong>
+        <p style={{ margin: "10px 0 0", fontSize: 14, color: "var(--ark-color-text-secondary)" }}>
+          수직 방향으로 분할된 패널입니다. 구분선을 위아래로 드래그하세요.
+        </p>
       </div>
     }
     second={
-      <div style={{ padding: 16, height: "100%", boxSizing: "border-box" }}>
-        <strong>하단 패널</strong>
+      <div style={{ padding: 24, height: "100%", boxSizing: "border-box" }}>
+        <strong style={{ fontSize: 15 }}>하단 패널</strong>
+        <p style={{ margin: "10px 0 0", fontSize: 14, color: "var(--ark-color-text-secondary)" }}>
+          하단 패널입니다.
+        </p>
       </div>
     }
   />
@@ -64,19 +74,26 @@ export function ResizablePanelsPage() {
       <section className="docs-section" id="min-max">
         <h2 className="section-title">최소/최대 크기 제한</h2>
         <LiveCodeBlock
-          code={`<div style={{ height: 200, border: "1px solid var(--ark-color-border)", borderRadius: 8, overflow: "hidden" }}>
+          fullWidth
+          code={`<div style={{ height: 440, border: "1px solid var(--ark-color-border)", borderRadius: 10, overflow: "hidden" }}>
   <ResizablePanels
     defaultSize={30}
     minSize={20}
     maxSize={70}
     first={
-      <div style={{ padding: 16, background: "var(--ark-color-primary-50)", height: "100%", boxSizing: "border-box" }}>
-        <strong>최소 20% / 최대 70%</strong>
+      <div style={{ padding: 24, height: "100%", boxSizing: "border-box" }}>
+        <strong style={{ fontSize: 15 }}>최소 20% / 최대 70%</strong>
+        <p style={{ margin: "10px 0 0", fontSize: 14, color: "var(--ark-color-text-secondary)" }}>
+          이 패널은 전체 너비의 20%~70% 범위 내에서만 조절됩니다.
+        </p>
       </div>
     }
     second={
-      <div style={{ padding: 16, height: "100%", boxSizing: "border-box" }}>
-        <strong>두 번째 패널</strong>
+      <div style={{ padding: 24, height: "100%", boxSizing: "border-box" }}>
+        <strong style={{ fontSize: 15 }}>두 번째 패널</strong>
+        <p style={{ margin: "10px 0 0", fontSize: 14, color: "var(--ark-color-text-secondary)" }}>
+          반대편 패널도 자동으로 제한됩니다.
+        </p>
       </div>
     }
   />

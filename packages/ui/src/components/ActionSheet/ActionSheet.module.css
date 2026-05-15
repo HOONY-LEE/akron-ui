@@ -1,0 +1,159 @@
+/* ===================================================
+   ActionSheet — iOS 스타일 액션 시트
+   =================================================== */
+
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: var(--ark-z-modal);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  font-family: var(--ark-font-family);
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ─── Overlay ──────────────────────────────────────── */
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--ark-color-overlay);
+}
+
+/* ─── Container ────────────────────────────────────── */
+
+.container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 420px;
+  padding: var(--ark-spacing-2);
+  padding-bottom: calc(var(--ark-spacing-2) + env(safe-area-inset-bottom, 0));
+  display: flex;
+  flex-direction: column;
+  gap: var(--ark-spacing-2);
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0.5;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ─── Group ────────────────────────────────────────── */
+
+.group {
+  background: var(--ark-color-bg);
+  border-radius: var(--ark-radius-xl);
+  overflow: hidden;
+}
+
+/* ─── Header ───────────────────────────────────────── */
+
+.header {
+  padding: var(--ark-spacing-4);
+  text-align: center;
+  border-bottom: 1px solid var(--ark-color-border);
+}
+
+.title {
+  font-size: var(--ark-font-size-sm);
+  font-weight: var(--ark-font-weight-semibold);
+  color: var(--ark-color-text);
+  line-height: 1.4;
+}
+
+.description {
+  font-size: var(--ark-font-size-xs);
+  color: var(--ark-color-text-secondary);
+  margin-top: var(--ark-spacing-1);
+  line-height: 1.4;
+}
+
+/* ─── Action button ────────────────────────────────── */
+
+.action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ark-spacing-2);
+  width: 100%;
+  padding: var(--ark-spacing-4);
+  border: none;
+  background: transparent;
+  color: var(--ark-color-primary-500);
+  font-size: var(--ark-font-size-md);
+  font-weight: var(--ark-font-weight-regular);
+  font-family: var(--ark-font-family);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background var(--ark-transition-fast);
+}
+
+.action + .action {
+  border-top: 1px solid var(--ark-color-border);
+}
+
+.firstAction {
+  border-top: none;
+}
+
+.action:active {
+  background: var(--ark-color-bg-muted);
+}
+
+.action:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: -2px;
+}
+
+.action:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.action:disabled:active {
+  background: transparent;
+}
+
+/* ─── Destructive ──────────────────────────────────── */
+
+.destructive {
+  color: var(--ark-color-error-500);
+}
+
+/* ─── Cancel ───────────────────────────────────────── */
+
+.cancel {
+  font-weight: var(--ark-font-weight-semibold);
+}
+
+/* ─── Action icon ──────────────────────────────────── */
+
+.actionIcon {
+  display: flex;
+  align-items: center;
+}
+
+.actionIcon > svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ─── Dark mode ────────────────────────────────────── */
+
+:global([data-theme="dark"]) .group {
+  background: var(--ark-color-bg-subtle);
+}

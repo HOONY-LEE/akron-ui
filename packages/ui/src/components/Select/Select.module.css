@@ -145,7 +145,7 @@
 
 .item:hover,
 .item[data-highlighted] {
-  background-color: var(--ark-color-primary-50);
+  background-color: color-mix(in srgb, var(--ark-color-primary-500) 5%, transparent);
   color: var(--ark-color-primary-600);
 }
 

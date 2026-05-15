@@ -179,6 +179,10 @@ import { InfoTipPage } from "./pages/InfoTipPage";
 import { GridListPage } from "./pages/GridListPage";
 import { ThemeTogglePage } from "./pages/ThemeTogglePage";
 import { ChatPage } from "./pages/ChatPage";
+import { BottomNavPage } from "./pages/BottomNavPage";
+import { SwipeActionPage } from "./pages/SwipeActionPage";
+import { PullToRefreshPage } from "./pages/PullToRefreshPage";
+import { ActionSheetPage } from "./pages/ActionSheetPage";
 
 export interface PageMeta {
   component: ComponentType;
@@ -399,6 +403,10 @@ export const pages: PageMeta[] = [
   { path: "info-tip", component: InfoTipPage, label: "InfoTip", category: "표시" },
   { path: "grid-list", component: GridListPage, label: "GridList", category: "입력" },
   { path: "theme-toggle", component: ThemeTogglePage, label: "ThemeToggle", category: "기타" },
+  { path: "bottom-nav", component: BottomNavPage, label: "BottomNav", category: "네비게이션" },
+  { path: "swipe-action", component: SwipeActionPage, label: "SwipeAction", category: "입력" },
+  { path: "pull-to-refresh", component: PullToRefreshPage, label: "PullToRefresh", category: "기타" },
+  { path: "action-sheet", component: ActionSheetPage, label: "ActionSheet", category: "오버레이" },
 ];
 
 export function getPageByPath(pathname: string): PageMeta | undefined {

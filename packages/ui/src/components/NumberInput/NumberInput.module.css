@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   font-family: var(--ark-font-family);
+  min-width: 160px;
 }
 
 .label {
@@ -33,10 +34,18 @@
   box-shadow: 0 0 0 1px var(--ark-color-primary-500);
 }
 
-/* ── Input ── */
-.input {
+/* ── InputWrap: prefix + input + suffix 그룹 ── */
+.inputWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex: 1;
   min-width: 0;
+}
+
+/* ── Input ── */
+.input {
+  min-width: 4ch;
   border: none;
   background: transparent;
   color: var(--ark-color-text);
@@ -60,15 +69,15 @@
 
 /* ── Sizes ── */
 .sm .field { height: var(--ark-input-height-sm); }
-.sm .input { font-size: var(--ark-input-font-size-sm); padding: 0 var(--ark-spacing-1); }
+.sm .input, .sm .prefix, .sm .suffix { font-size: var(--ark-input-font-size-sm); padding: 0; }
 .sm .stepBtn { width: 28px; }
 
 .md .field { height: var(--ark-input-height-md); }
-.md .input { font-size: var(--ark-input-font-size-md); padding: 0 var(--ark-spacing-2); }
+.md .input, .md .prefix, .md .suffix { font-size: var(--ark-input-font-size-md); padding: 0; }
 .md .stepBtn { width: 32px; }
 
 .lg .field { height: var(--ark-input-height-lg); }
-.lg .input { font-size: var(--ark-input-font-size-lg); padding: 0 var(--ark-spacing-2); }
+.lg .input, .lg .prefix, .lg .suffix { font-size: var(--ark-input-font-size-lg); padding: 0; }
 .lg .stepBtn { width: 36px; }
 
 /* ── Step buttons ── */
@@ -112,25 +121,16 @@
   cursor: not-allowed;
 }
 
-/* ── Prefix / Suffix ── */
+/* ── Prefix / Suffix — value 바로 양옆에 인라인으로 붙음 ── */
 .prefix,
 .suffix {
   display: flex;
   align-items: center;
-  padding: 0 var(--ark-spacing-2);
-  font-size: var(--ark-font-size-sm);
-  color: var(--ark-color-text-secondary);
-  background-color: var(--ark-color-bg-subtle);
+  color: var(--ark-color-text);
   white-space: nowrap;
   flex-shrink: 0;
-}
-
-.prefix {
-  border-right: 1px solid var(--ark-input-border-color);
-}
-
-.suffix {
-  border-left: 1px solid var(--ark-input-border-color);
+  user-select: none;
+  pointer-events: none;
 }
 
 /* ── Error state ── */
@@ -180,11 +180,6 @@
 
 [data-theme="dark"] .stepBtn:active:not(:disabled) {
   background-color: var(--ark-color-gray-600);
-}
-
-[data-theme="dark"] .prefix,
-[data-theme="dark"] .suffix {
-  background-color: var(--ark-color-gray-800);
 }
 
 [data-theme="dark"] .disabled .field {

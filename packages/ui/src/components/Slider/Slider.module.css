@@ -4,6 +4,7 @@
   flex-direction: column;
   font-family: var(--ark-font-family);
   user-select: none;
+  min-width: 280px;
 }
 
 .labelRow {
@@ -131,6 +132,14 @@
   cursor: grab;
   transition: box-shadow var(--ark-transition-fast), transform var(--ark-transition-fast);
   z-index: 2;
+}
+
+.horizontal .thumb {
+  top: 50%;
+}
+
+.vertical .thumb {
+  left: 50%;
 }
 
 .sm .thumb  { width: 16px; height: 16px; }

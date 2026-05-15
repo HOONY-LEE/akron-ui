@@ -1,0 +1,209 @@
+/* ── Root ── */
+.root {
+  display: flex;
+  align-items: stretch;
+  font-family: var(--ark-font-family);
+  background: var(--ark-color-surface);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  height: 100%;
+}
+
+.root::-webkit-scrollbar {
+  display: none;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+/* ── Tab list ── */
+.list {
+  display: flex;
+  align-items: stretch;
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+}
+
+/* ── Tab item ── */
+.tab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--ark-spacing-1-5);
+  padding: 0 var(--ark-spacing-3);
+  height: 100%;
+  color: var(--ark-color-text-secondary);
+  background: transparent;
+  border: none;
+  border-right: 1px solid var(--ark-color-border);
+  cursor: pointer;
+  font-family: var(--ark-font-family);
+  font-weight: var(--ark-font-weight-normal);
+  white-space: nowrap;
+  outline: none;
+  transition:
+    color var(--ark-transition-fast),
+    background-color var(--ark-transition-fast);
+  flex-shrink: 0;
+}
+
+.tab:hover {
+  color: var(--ark-color-text);
+  background-color: var(--ark-color-bg-muted);
+}
+
+.tab:hover .close {
+  opacity: 1;
+}
+
+.tab[data-state="active"] {
+  color: var(--ark-color-text);
+  font-weight: var(--ark-font-weight-medium);
+  background-color: var(--ark-color-bg);
+}
+
+.tab[data-state="active"]::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--ark-color-primary-500);
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: -2px;
+  border-radius: var(--ark-radius-sm);
+}
+
+/* ── Icon ── */
+.icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: inherit;
+  opacity: 0.7;
+}
+
+.tab[data-state="active"] .icon {
+  opacity: 1;
+}
+
+/* ── Label ── */
+.label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Modified dot ── */
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--ark-color-text-secondary);
+  flex-shrink: 0;
+}
+
+.tab[data-state="active"] .dot {
+  background-color: var(--ark-color-text);
+}
+
+/* ── Close button ── */
+.close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--ark-radius-sm);
+  color: var(--ark-color-text-secondary);
+  opacity: 0;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition:
+    opacity var(--ark-transition-fast),
+    background-color var(--ark-transition-fast),
+    color var(--ark-transition-fast);
+}
+
+.tab[data-state="active"] .close {
+  opacity: 0.6;
+}
+
+.close:hover {
+  opacity: 1 !important;
+  background-color: var(--ark-color-bg-muted);
+  color: var(--ark-color-text);
+}
+
+/* ── Add button ── */
+.addBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin: 0 var(--ark-spacing-1);
+  border: none;
+  border-radius: var(--ark-radius-sm);
+  background: transparent;
+  color: var(--ark-color-text-secondary);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    background-color var(--ark-transition-fast),
+    color var(--ark-transition-fast);
+}
+
+.addBtn:hover {
+  background-color: var(--ark-color-bg-muted);
+  color: var(--ark-color-text);
+}
+
+.addBtn:focus-visible {
+  outline: 2px solid var(--ark-color-primary-500);
+  outline-offset: -2px;
+}
+
+/* ═══════════════════════════════════
+   Sizes
+═══════════════════════════════════ */
+.sm .tab {
+  font-size: var(--ark-font-size-xs);
+  padding: 0 var(--ark-spacing-2);
+  gap: var(--ark-spacing-1);
+}
+
+.sm .close {
+  width: 16px;
+  height: 16px;
+}
+
+.sm .addBtn {
+  width: 26px;
+  height: 26px;
+}
+
+.md .tab {
+  font-size: var(--ark-font-size-sm);
+}
+
+.lg .tab {
+  font-size: var(--ark-font-size-md);
+  padding: 0 var(--ark-spacing-4);
+}
+
+.lg .close {
+  width: 22px;
+  height: 22px;
+}
+
+.lg .addBtn {
+  width: 36px;
+  height: 36px;
+}

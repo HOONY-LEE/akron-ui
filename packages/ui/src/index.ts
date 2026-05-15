@@ -77,6 +77,9 @@ export type { AvatarProps, AvatarGroupProps, AvatarSize, AvatarShape, AvatarStat
 export { Tabs, TabsList, TabsTrigger, TabsContent } from "./components/Tabs";
 export type { TabsProps, TabsListProps, TabsTriggerProps, TabsContentProps, TabsVariant, TabsSize } from "./components/Tabs";
 
+export { EditorTabs } from "./components/EditorTabs";
+export type { EditorTabsProps, EditorTabsSize, EditorTab } from "./components/EditorTabs";
+
 export { Tooltip, TooltipProvider } from "./components/Tooltip";
 export type { TooltipProps, TooltipProviderProps, TooltipSide, TooltipAlign } from "./components/Tooltip";
 
@@ -542,6 +545,18 @@ export type { GridListProps, GridListItem } from "./components/GridList";
 
 export { ThemeToggle } from "./components/ThemeToggle";
 export type { ThemeToggleProps } from "./components/ThemeToggle";
+
+export { BottomNav } from "./components/BottomNav";
+export type { BottomNavProps, BottomNavItem } from "./components/BottomNav";
+
+export { SwipeAction } from "./components/SwipeAction";
+export type { SwipeActionProps, SwipeActionButton } from "./components/SwipeAction";
+
+export { PullToRefresh } from "./components/PullToRefresh";
+export type { PullToRefreshProps } from "./components/PullToRefresh";
+
+export { ActionSheet } from "./components/ActionSheet";
+export type { ActionSheetProps, ActionSheetAction } from "./components/ActionSheet";
 
 export {
   ChatLayout,

@@ -57,14 +57,14 @@
 
 .filled {
   color: var(--ark-color-warning-400);
-  fill: var(--ark-color-warning-400);
+  fill: currentColor;
 }
 
 .halfFilled {
   color: var(--ark-color-warning-400);
   /* clip to left half */
   clip-path: inset(0 50% 0 0);
-  fill: var(--ark-color-warning-400);
+  fill: currentColor;
 }
 
 .empty {

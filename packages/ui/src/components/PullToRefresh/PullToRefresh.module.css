@@ -1,0 +1,76 @@
+/* ===================================================
+   PullToRefresh — 당겨서 새로고침
+   =================================================== */
+
+.root {
+  position: relative;
+  overflow: hidden;
+  font-family: var(--ark-font-family);
+}
+
+/* ─── Indicator ────────────────────────────────────── */
+
+.indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.indicatorInner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.1s ease;
+}
+
+.defaultIndicator {
+  display: flex;
+  align-items: center;
+  gap: var(--ark-spacing-2);
+  color: var(--ark-color-text-secondary);
+}
+
+.indicatorText {
+  font-size: var(--ark-font-size-xs);
+  white-space: nowrap;
+}
+
+/* ─── Spinning animation ──────────────────────────── */
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinning {
+  animation: spin 0.8s linear infinite;
+}
+
+.refreshing .indicatorInner {
+  transform: none !important;
+}
+
+/* ─── Content ──────────────────────────────────────── */
+
+.content {
+  position: relative;
+  overflow-y: auto;
+  height: 100%;
+  will-change: transform;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -webkit-overflow-scrolling: touch;
+}
+
+.pulling {
+  transition: none;
+}

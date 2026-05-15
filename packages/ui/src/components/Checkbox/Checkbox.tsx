@@ -76,7 +76,7 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
             disabled={disabled}
             className={styles.checkbox}
           >
-            <RadixCheckbox.Indicator className={styles.indicator}>
+            <RadixCheckbox.Indicator forceMount className={styles.indicator}>
               {isIndeterminate ? (
                 <Minus className={styles.icon} />
               ) : (

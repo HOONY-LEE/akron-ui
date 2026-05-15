@@ -1,0 +1,105 @@
+/* ===================================================
+   SwipeAction — 밀어서 삭제/보관 (iOS 스타일)
+   =================================================== */
+
+.root {
+  position: relative;
+  overflow: hidden;
+  font-family: var(--ark-font-family);
+  background: var(--ark-color-bg);
+}
+
+/* ─── Content ──────────────────────────────────────── */
+
+.content {
+  position: relative;
+  z-index: 2;
+  background: var(--ark-color-bg);
+  will-change: transform;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.swiping {
+  transition: none;
+}
+
+/* ─── Action buttons container ─────────────────────── */
+
+.actions {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  z-index: 1;
+}
+
+.actions-left {
+  left: 0;
+}
+
+.actions-right {
+  right: 0;
+}
+
+/* ─── Action button ────────────────────────────────── */
+
+.actionBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ark-spacing-1);
+  width: 72px;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  padding: var(--ark-spacing-2);
+  font-family: var(--ark-font-family);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.actionBtn:active {
+  opacity: 0.85;
+}
+
+/* ─── Colors ───────────────────────────────────────── */
+
+.color-primary {
+  background: var(--ark-color-primary-500);
+}
+
+.color-error {
+  background: var(--ark-color-error-500);
+}
+
+.color-warning {
+  background: var(--ark-color-warning-500);
+  color: var(--ark-color-text);
+}
+
+.color-success {
+  background: var(--ark-color-success-500);
+}
+
+.color-gray {
+  background: var(--ark-color-gray-400);
+}
+
+/* ─── Icon & Label ─────────────────────────────────── */
+
+.actionIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.actionIcon > svg {
+  width: 20px;
+  height: 20px;
+}
+
+.actionLabel {
+  font-size: var(--ark-font-size-xs);
+  font-weight: var(--ark-font-weight-medium);
+  white-space: nowrap;
+}

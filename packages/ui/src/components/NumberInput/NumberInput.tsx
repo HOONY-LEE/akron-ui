@@ -170,7 +170,6 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
       <div className={wrapperCls} style={style}>
         {label && <label className={styles.label}>{label}</label>}
         <div className={styles.field}>
-          {prefix && <span className={styles.prefix}>{prefix}</span>}
           {!hideControls && (
             <button
               type="button"
@@ -187,19 +186,24 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
               <Minus size={14} />
             </button>
           )}
-          <input
-            {...rest}
-            ref={ref}
-            type="text"
-            inputMode="decimal"
-            className={styles.input}
-            value={inputStr}
-            onChange={handleInputChange}
-            onBlur={handleBlur}
-            disabled={disabled}
-            placeholder={placeholder}
-            aria-invalid={hasError || undefined}
-          />
+          <div className={styles.inputWrap}>
+            {prefix && <span className={styles.prefix}>{prefix}</span>}
+            <input
+              {...rest}
+              ref={ref}
+              type="text"
+              inputMode="decimal"
+              className={styles.input}
+              value={inputStr}
+              onChange={handleInputChange}
+              onBlur={handleBlur}
+              disabled={disabled}
+              placeholder={placeholder}
+              aria-invalid={hasError || undefined}
+              style={{ width: `${Math.max((inputStr || placeholder || "0").length, 1) + 0.5}ch` }}
+            />
+            {suffix && <span className={styles.suffix}>{suffix}</span>}
+          </div>
           {!hideControls && (
             <button
               type="button"
@@ -216,7 +220,6 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
               <Plus size={14} />
             </button>
           )}
-          {suffix && <span className={styles.suffix}>{suffix}</span>}
         </div>
         {!hasError && helperText && (
           <span className={styles.helperText}>{helperText}</span>
